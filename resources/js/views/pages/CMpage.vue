@@ -835,7 +835,7 @@ export default {
     },
     save: function () {
       axios
-        .post("http://127.0.0.1:8000/api/Update/CM", {
+        .post("http://it.home33.com.tw/api/Update/CM", {
           cust: this.cust,
           custT: this.custT,
           CustType: this.CustType,
@@ -852,7 +852,7 @@ export default {
           console.log(response);
         });
       axios
-        .post("http://127.0.0.1:8000/api/Update/CMCRFItems", {
+        .post("http://it.home33.com.tw/api/Update/CMCRFItems", {
           cust: this.cust,
           UseExp: this.UseExp,
           UDS: this.UDS,
@@ -867,7 +867,7 @@ export default {
         });
 
       axios
-        .post("http://127.0.0.1:8000/api/Update/CmMemo", {
+        .post("http://it.home33.com.tw/api/Update/CmMemo", {
           cust: this.cust,
           Cmemo: this.Cmemo,
         })
@@ -886,7 +886,7 @@ export default {
   beforeCreate() {
     if (this.$route.params.CNO != "") {
       axios
-        .get("http://127.0.0.1:8000/api/search/CM/" + this.$route.params.CNO)
+        .get("http://it.home33.com.tw/api/search/CM/" + this.$route.params.CNO)
         .then((response) => {
           console.log(response);
           this.cust = response.data[0];
@@ -898,7 +898,7 @@ export default {
         }),
         axios
           .get(
-            "http://127.0.0.1:8000/api/search/CMCRFItems/" +
+            "http://it.home33.com.tw/api/search/CMCRFItems/" +
               this.$route.params.CNO
           )
           .then((response) => {
@@ -914,32 +914,32 @@ export default {
               this.space[i]["value"] = response.data[3][i];
           }),
         axios
-          .get("http://127.0.0.1:8000/api/search/CTD/客來源")
+          .get("http://it.home33.com.tw/api/search/CTD/客來源")
           .then((response) => {
             console.log(response.data.Cust);
             this.CustType = response.data;
           }),
         axios
-          .get("http://127.0.0.1:8000/api/search/CTD/買原因")
+          .get("http://it.home33.com.tw/api/search/CTD/買原因")
           .then((response) => {
             console.log(response.data);
             this.BuyReason = response.data;
           }),
         axios
-          .get("http://127.0.0.1:8000/api/search/CTD/成員組合")
+          .get("http://it.home33.com.tw/api/search/CTD/成員組合")
           .then((response) => {
             console.log(response.data);
             this.Family = response.data;
           }),
         axios
-          .get("http://127.0.0.1:8000/api/search/CTD/屋型")
+          .get("http://it.home33.com.tw/api/search/CTD/屋型")
           .then((response) => {
             console.log(response.data);
             this.HouseType = response.data;
           });
       axios
         .get(
-          "http://127.0.0.1:8000/api/search/CmMemo/" +
+          "http://it.home33.com.tw/api/search/CmMemo/" +
             this.$route.params.CNO +
             "&&00"
         )

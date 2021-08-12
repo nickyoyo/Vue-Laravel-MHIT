@@ -18265,6 +18265,225 @@ function parse(template, options = {}) {
 
 /***/ }),
 
+/***/ "./node_modules/@vue/devtools-api/lib/esm/api/api.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/@vue/devtools-api/lib/esm/api/api.js ***!
+  \***********************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements:  */
+/***/ (() => {
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@vue/devtools-api/lib/esm/api/app.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/@vue/devtools-api/lib/esm/api/app.js ***!
+  \***********************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements:  */
+/***/ (() => {
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@vue/devtools-api/lib/esm/api/component.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@vue/devtools-api/lib/esm/api/component.js ***!
+  \*****************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements:  */
+/***/ (() => {
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@vue/devtools-api/lib/esm/api/context.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@vue/devtools-api/lib/esm/api/context.js ***!
+  \***************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements:  */
+/***/ (() => {
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@vue/devtools-api/lib/esm/api/hooks.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@vue/devtools-api/lib/esm/api/hooks.js ***!
+  \*************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements:  */
+/***/ (() => {
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@vue/devtools-api/lib/esm/api/index.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@vue/devtools-api/lib/esm/api/index.js ***!
+  \*************************************************************/
+/*! namespace exports */
+/*! export default [not provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [maybe provided (runtime-defined)] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./api */ "./node_modules/@vue/devtools-api/lib/esm/api/api.js");
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_api__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _api__WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _api__WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app */ "./node_modules/@vue/devtools-api/lib/esm/api/app.js");
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_app__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _app__WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _app__WEBPACK_IMPORTED_MODULE_1__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./component */ "./node_modules/@vue/devtools-api/lib/esm/api/component.js");
+/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_component__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _component__WEBPACK_IMPORTED_MODULE_2__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _component__WEBPACK_IMPORTED_MODULE_2__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./context */ "./node_modules/@vue/devtools-api/lib/esm/api/context.js");
+/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_context__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _context__WEBPACK_IMPORTED_MODULE_3__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _context__WEBPACK_IMPORTED_MODULE_3__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
+/* harmony import */ var _hooks__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./hooks */ "./node_modules/@vue/devtools-api/lib/esm/api/hooks.js");
+/* harmony import */ var _hooks__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_hooks__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _hooks__WEBPACK_IMPORTED_MODULE_4__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _hooks__WEBPACK_IMPORTED_MODULE_4__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util */ "./node_modules/@vue/devtools-api/lib/esm/api/util.js");
+/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_util__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _util__WEBPACK_IMPORTED_MODULE_5__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _util__WEBPACK_IMPORTED_MODULE_5__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
+
+
+
+
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@vue/devtools-api/lib/esm/api/util.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@vue/devtools-api/lib/esm/api/util.js ***!
+  \************************************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements:  */
+/***/ (() => {
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@vue/devtools-api/lib/esm/const.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@vue/devtools-api/lib/esm/const.js ***!
+  \*********************************************************/
+/*! namespace exports */
+/*! export HOOK_SETUP [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "HOOK_SETUP": () => /* binding */ HOOK_SETUP
+/* harmony export */ });
+const HOOK_SETUP = 'devtools-plugin:setup';
+
+
+/***/ }),
+
+/***/ "./node_modules/@vue/devtools-api/lib/esm/env.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/@vue/devtools-api/lib/esm/env.js ***!
+  \*******************************************************/
+/*! namespace exports */
+/*! export getDevtoolsGlobalHook [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export getTarget [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__.r, __webpack_exports__, __webpack_require__.g, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getDevtoolsGlobalHook": () => /* binding */ getDevtoolsGlobalHook,
+/* harmony export */   "getTarget": () => /* binding */ getTarget
+/* harmony export */ });
+function getDevtoolsGlobalHook() {
+    return getTarget().__VUE_DEVTOOLS_GLOBAL_HOOK__;
+}
+function getTarget() {
+    // @ts-ignore
+    return typeof navigator !== 'undefined'
+        ? window
+        : typeof __webpack_require__.g !== 'undefined'
+            ? __webpack_require__.g
+            : {};
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@vue/devtools-api/lib/esm/index.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@vue/devtools-api/lib/esm/index.js ***!
+  \*********************************************************/
+/*! namespace exports */
+/*! export default [not provided] [no usage info] [missing usage info prevents renaming] */
+/*! export setupDevtoolsPlugin [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [maybe provided (runtime-defined)] [no usage info] -> ./node_modules/@vue/devtools-api/lib/esm/api/index.js */
+/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "setupDevtoolsPlugin": () => /* binding */ setupDevtoolsPlugin
+/* harmony export */ });
+/* harmony import */ var _env__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./env */ "./node_modules/@vue/devtools-api/lib/esm/env.js");
+/* harmony import */ var _const__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./const */ "./node_modules/@vue/devtools-api/lib/esm/const.js");
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./api */ "./node_modules/@vue/devtools-api/lib/esm/api/index.js");
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _api__WEBPACK_IMPORTED_MODULE_0__) if(["default","setupDevtoolsPlugin"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _api__WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
+
+
+
+function setupDevtoolsPlugin(pluginDescriptor, setupFn) {
+    const hook = (0,_env__WEBPACK_IMPORTED_MODULE_1__.getDevtoolsGlobalHook)();
+    if (hook) {
+        hook.emit(_const__WEBPACK_IMPORTED_MODULE_2__.HOOK_SETUP, pluginDescriptor, setupFn);
+    }
+    else {
+        const target = (0,_env__WEBPACK_IMPORTED_MODULE_1__.getTarget)();
+        const list = target.__VUE_DEVTOOLS_PLUGINS__ = target.__VUE_DEVTOOLS_PLUGINS__ || [];
+        list.push({
+            pluginDescriptor,
+            setupFn
+        });
+    }
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js":
 /*!*********************************************************************!*\
   !*** ./node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js ***!
@@ -28344,7 +28563,6 @@ module.exports = __webpack_require__(/*! ./lib/axios */ "./node_modules/axios/li
   \************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 11:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -28538,7 +28756,6 @@ module.exports = function xhrAdapter(config) {
   \*****************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 50:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -28605,7 +28822,6 @@ module.exports.default = axios;
   \*************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 19:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -28638,7 +28854,6 @@ module.exports = Cancel;
   \******************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 57:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -28709,7 +28924,6 @@ module.exports = CancelToken;
   \***************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 3:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -28728,7 +28942,6 @@ module.exports = function isCancel(value) {
   \**********************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 94:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -28836,7 +29049,6 @@ module.exports = Axios;
   \***********************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 52:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -28902,7 +29114,6 @@ module.exports = InterceptorManager;
   \******************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 15:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -28936,7 +29147,6 @@ module.exports = function buildFullPath(baseURL, requestedURL) {
   \****************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 15:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -28968,7 +29178,6 @@ module.exports = function createError(message, config, code, request, response) 
   \********************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 23:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -29061,7 +29270,6 @@ module.exports = function dispatchRequest(config) {
   \*****************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 13:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -29117,7 +29325,6 @@ module.exports = function enhanceError(error, config, code, request, response) {
   \****************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 13:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -29204,7 +29411,6 @@ module.exports = function mergeConfig(config1, config2) {
   \***********************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 12:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -29243,7 +29449,6 @@ module.exports = function settle(resolve, reject, response) {
   \******************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 13:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -29277,7 +29482,6 @@ module.exports = function transformData(data, headers, fns) {
   \********************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 97:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -29388,7 +29592,6 @@ module.exports = defaults;
   \************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 3:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -29413,7 +29616,6 @@ module.exports = function bind(fn, thisArg) {
   \****************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 23:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -29498,7 +29700,6 @@ module.exports = function buildURL(url, params, paramsSerializer) {
   \*******************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 10:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -29526,7 +29727,6 @@ module.exports = function combineURLs(baseURL, relativeURL) {
   \***************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 5:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -29593,7 +29793,6 @@ module.exports = (
   \*********************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 9:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -29621,7 +29820,6 @@ module.exports = function isAbsoluteURL(url) {
   \***********************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 5:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -29703,7 +29901,6 @@ module.exports = (
   \***************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 5:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -29729,7 +29926,6 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
   \********************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 27:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -29796,7 +29992,6 @@ module.exports = function parseHeaders(headers) {
   \**************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 23:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -29837,7 +30032,6 @@ module.exports = function spread(callback) {
   \*****************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 322:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -30687,7 +30881,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       this.custT.Woodwork = '';
     },
     save: function save() {
-      axios.post("http://127.0.0.1:8000/api/Update/CM", {
+      axios.post("http://it.home33.com.tw/api/Update/CM", {
         cust: this.cust,
         custT: this.custT,
         CustType: this.CustType,
@@ -30701,7 +30895,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       })["catch"](function (response) {
         console.log(response);
       });
-      axios.post("http://127.0.0.1:8000/api/Update/CMCRFItems", {
+      axios.post("http://it.home33.com.tw/api/Update/CMCRFItems", {
         cust: this.cust,
         UseExp: this.UseExp,
         UDS: this.UDS,
@@ -30712,7 +30906,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       })["catch"](function (response) {
         console.log(response);
       });
-      axios.post("http://127.0.0.1:8000/api/Update/CmMemo", {
+      axios.post("http://it.home33.com.tw/api/Update/CmMemo", {
         cust: this.cust,
         Cmemo: this.Cmemo
       }).then(function (response) {
@@ -30732,7 +30926,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     var _this = this;
 
     if (this.$route.params.CNO != "") {
-      axios.get("http://127.0.0.1:8000/api/search/CM/" + this.$route.params.CNO).then(function (response) {
+      axios.get("http://it.home33.com.tw/api/search/CM/" + this.$route.params.CNO).then(function (response) {
         console.log(response);
         _this.cust = response.data[0];
         _this.custT = response.data;
@@ -30747,7 +30941,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
             }
           });
         }
-      }), axios.get("http://127.0.0.1:8000/api/search/CMCRFItems/" + this.$route.params.CNO).then(function (response) {
+      }), axios.get("http://it.home33.com.tw/api/search/CMCRFItems/" + this.$route.params.CNO).then(function (response) {
         console.log(response.data);
 
         for (var i = 0; i < 4; i++) {
@@ -30765,20 +30959,20 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         for (var _i3 = 0; _i3 < 9; _i3++) {
           _this.space[_i3]["value"] = response.data[3][_i3];
         }
-      }), axios.get("http://127.0.0.1:8000/api/search/CTD/客來源").then(function (response) {
+      }), axios.get("http://it.home33.com.tw/api/search/CTD/客來源").then(function (response) {
         console.log(response.data.Cust);
         _this.CustType = response.data;
-      }), axios.get("http://127.0.0.1:8000/api/search/CTD/買原因").then(function (response) {
+      }), axios.get("http://it.home33.com.tw/api/search/CTD/買原因").then(function (response) {
         console.log(response.data);
         _this.BuyReason = response.data;
-      }), axios.get("http://127.0.0.1:8000/api/search/CTD/成員組合").then(function (response) {
+      }), axios.get("http://it.home33.com.tw/api/search/CTD/成員組合").then(function (response) {
         console.log(response.data);
         _this.Family = response.data;
-      }), axios.get("http://127.0.0.1:8000/api/search/CTD/屋型").then(function (response) {
+      }), axios.get("http://it.home33.com.tw/api/search/CTD/屋型").then(function (response) {
         console.log(response.data);
         _this.HouseType = response.data;
       });
-      axios.get("http://127.0.0.1:8000/api/search/CmMemo/" + this.$route.params.CNO + "&&00").then(function (response) {
+      axios.get("http://it.home33.com.tw/api/search/CmMemo/" + this.$route.params.CNO + "&&00").then(function (response) {
         console.log(response.data);
         _this.Cmemo = response.data;
       });
@@ -31704,7 +31898,6 @@ ___CSS_LOADER_EXPORT___.push([module.id, "\n.PDtableborder {\n  width: 900px;\n 
   \*****************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 9:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -32334,7 +32527,6 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
   \****************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__.nc, __webpack_require__.* */
-/*! CommonJS bailout: module.exports is used directly at 230:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -37960,7 +38152,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 /*! export useRouter [provided] [no usage info] [missing usage info prevents renaming] */
 /*! export viewDepthKey [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.g, __webpack_require__.d, __webpack_require__.* */
+/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -37990,11 +38182,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "viewDepthKey": () => /* binding */ viewDepthKey
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _vue_devtools_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/devtools-api */ "./node_modules/@vue/devtools-api/lib/esm/index.js");
 /*!
-  * vue-router v4.0.6
+  * vue-router v4.0.11
   * (c) 2021 Eduardo San Martin Morote
   * @license MIT
   */
+
 
 
 const hasSymbol = typeof Symbol === 'function' && typeof Symbol.toStringTag === 'symbol';
@@ -38055,7 +38249,7 @@ function applyToParams(fn, params) {
     }
     return newParams;
 }
-let noop = () => { };
+const noop = () => { };
 
 function warn(msg) {
     // avoid using ...args as it breaks in older Edge builds
@@ -38106,7 +38300,7 @@ function parseURL(parseQuery, location, currentLocation = '/') {
  * @param location
  */
 function stringifyURL(stringifyQuery, location) {
-    let query = location.query ? stringifyQuery(location.query) : '';
+    const query = location.query ? stringifyQuery(location.query) : '';
     return location.path + (query && '?') + query + (location.hash || '');
 }
 /**
@@ -38118,7 +38312,7 @@ function stringifyURL(stringifyQuery, location) {
  */
 function stripBase(pathname, base) {
     // no base or base is not found at the beginning
-    if (!base || pathname.toLowerCase().indexOf(base.toLowerCase()))
+    if (!base || !pathname.toLowerCase().startsWith(base.toLowerCase()))
         return pathname;
     return pathname.slice(base.length) || '/';
 }
@@ -38131,8 +38325,8 @@ function stripBase(pathname, base) {
  * @param b - second {@link RouteLocation}
  */
 function isSameRouteLocation(stringifyQuery, a, b) {
-    let aLastIndex = a.matched.length - 1;
-    let bLastIndex = b.matched.length - 1;
+    const aLastIndex = a.matched.length - 1;
+    const bLastIndex = b.matched.length - 1;
     return (aLastIndex > -1 &&
         aLastIndex === bLastIndex &&
         isSameRouteRecord(a.matched[aLastIndex], b.matched[bLastIndex]) &&
@@ -38156,7 +38350,7 @@ function isSameRouteRecord(a, b) {
 function isSameRouteLocationParams(a, b) {
     if (Object.keys(a).length !== Object.keys(b).length)
         return false;
-    for (let key in a) {
+    for (const key in a) {
         if (!isSameRouteLocationParamsValue(a[key], b[key]))
             return false;
     }
@@ -38285,7 +38479,7 @@ const computeScrollPosition = () => ({
 function scrollToPosition(position) {
     let scrollToOptions;
     if ('el' in position) {
-        let positionEl = position.el;
+        const positionEl = position.el;
         const isIdSelector = typeof positionEl === 'string' && positionEl.startsWith('#');
         /**
          * `id`s can accept pretty much any characters, including CSS combinators
@@ -38311,7 +38505,7 @@ function scrollToPosition(position) {
         if (( true) && typeof position.el === 'string') {
             if (!isIdSelector || !document.getElementById(position.el.slice(1))) {
                 try {
-                    let foundEl = document.querySelector(position.el);
+                    const foundEl = document.querySelector(position.el);
                     if (isIdSelector && foundEl) {
                         warn(`The selector "${position.el}" should be passed as "el: document.querySelector('${position.el}')" because it starts with "#".`);
                         // return to avoid other warnings
@@ -38383,11 +38577,14 @@ let createBaseLocation = () => location.protocol + '//' + location.host;
  */
 function createCurrentLocation(base, location) {
     const { pathname, search, hash } = location;
-    // allows hash based url
+    // allows hash bases like #, /#, #/, #!, #!/, /#!/, or even /folder#end
     const hashPos = base.indexOf('#');
     if (hashPos > -1) {
+        let slicePos = hash.includes(base.slice(hashPos))
+            ? base.slice(hashPos).length
+            : 1;
+        let pathFromHash = hash.slice(slicePos);
         // prepend the starting slash to hash so the url starts with /#
-        let pathFromHash = hash.slice(1);
         if (pathFromHash[0] !== '/')
             pathFromHash = '/' + pathFromHash;
         return stripBase(pathFromHash, '');
@@ -38489,10 +38686,10 @@ function buildState(back, current, forward, replaced = false, computeScroll = fa
 function useHistoryStateNavigation(base) {
     const { history, location } = window;
     // private variables
-    let currentLocation = {
+    const currentLocation = {
         value: createCurrentLocation(base, location),
     };
-    let historyState = { value: history.state };
+    const historyState = { value: history.state };
     // build current history entry as this is a fresh navigation
     if (!historyState.value) {
         changeLocation(currentLocation.value, {
@@ -38595,9 +38792,11 @@ function createWebHistory(base) {
         createHref: createHref.bind(null, base),
     }, historyNavigation, historyListeners);
     Object.defineProperty(routerHistory, 'location', {
+        enumerable: true,
         get: () => historyNavigation.location.value,
     });
     Object.defineProperty(routerHistory, 'state', {
+        enumerable: true,
         get: () => historyNavigation.state.value,
     });
     return routerHistory;
@@ -38632,13 +38831,14 @@ function createMemoryHistory(base = '') {
             delta,
             type: NavigationType.pop,
         };
-        for (let callback of listeners) {
+        for (const callback of listeners) {
             callback(to, from, info);
         }
     }
     const routerHistory = {
         // rewritten by Object.defineProperty
         location: START,
+        // TODO: should be kept in queue
         state: {},
         base,
         createHref: createHref.bind(null, base),
@@ -38660,6 +38860,8 @@ function createMemoryHistory(base = '') {
         },
         destroy() {
             listeners = [];
+            queue = [START];
+            position = 0;
         },
         go(delta, shouldTrigger = true) {
             const from = this.location;
@@ -38678,6 +38880,7 @@ function createMemoryHistory(base = '') {
         },
     };
     Object.defineProperty(routerHistory, 'location', {
+        enumerable: true,
         get: () => queue[position],
     });
     return routerHistory;
@@ -38715,7 +38918,7 @@ function createWebHashHistory(base) {
     // location.pathname contains an initial `/` even at the root: `https://example.com`
     base = location.host ? base || location.pathname + location.search : '';
     // allow the user to provide a `#` in the middle: `/base/#/app`
-    if (base.indexOf('#') < 0)
+    if (!base.includes('#'))
         base += '#';
     if (( true) && !base.endsWith('#/') && !base.endsWith('#')) {
         warn(`A hash base must end with a "#":\n"${base}" should be "${base.replace(/#.*$/, '#')}".`);
@@ -38801,6 +39004,7 @@ const ErrorTypeMessages = {
     },
 };
 function createRouterError(type, params) {
+    // keep full error messages in cjs versions
     if (true) {
         return assign(new Error(ErrorTypeMessages[type](params)), {
             type,
@@ -38848,7 +39052,7 @@ const REGEX_CHARS_RE = /[.+*?^${}()[\]/\\]/g;
 function tokensToParser(segments, extraOptions) {
     const options = assign({}, BASE_PATH_PARSER_OPTIONS, extraOptions);
     // the amount of scores is the same as the length of segments except for the root segment "/"
-    let score = [];
+    const score = [];
     // the regexp as a string
     let pattern = options.start ? '^' : '';
     // extracted keys
@@ -38995,6 +39199,7 @@ function tokensToParser(segments, extraOptions) {
 /**
  * Compares an array of numbers as used in PathParser.score and returns a
  * number. This function can be used to `sort` an array
+ *
  * @param a - first array of numbers
  * @param b - second array of numbers
  * @returns 0 if both are equal, < 0 if a should be sorted first, > 0 if b
@@ -39025,6 +39230,7 @@ function compareScoreArray(a, b) {
 }
 /**
  * Compare function that can be used with `sort` to sort an array of PathParser
+ *
  * @param a - first PathParser
  * @param b - second PathParser
  * @returns 0 if both are equal, < 0 if a should be sorted first, > 0 if b
@@ -39247,8 +39453,8 @@ function createRouterMatcher(routes, globalOptions) {
     }
     function addRoute(record, parent, originalRecord) {
         // used later on to remove by name
-        let isRootAdd = !originalRecord;
-        let mainNormalizedRecord = normalizeRouteRecord(record);
+        const isRootAdd = !originalRecord;
+        const mainNormalizedRecord = normalizeRouteRecord(record);
         // we might be the child of an alias
         mainNormalizedRecord.aliasOf = originalRecord && originalRecord.record;
         const options = mergeOptions(globalOptions, record);
@@ -39278,13 +39484,13 @@ function createRouterMatcher(routes, globalOptions) {
         let matcher;
         let originalMatcher;
         for (const normalizedRecord of normalizedRecords) {
-            let { path } = normalizedRecord;
+            const { path } = normalizedRecord;
             // Build up the path for nested routes if the child isn't an absolute
             // route. Only add the / delimiter if the child path isn't empty and if the
             // parent path doesn't have a trailing slash
             if (parent && path[0] !== '/') {
-                let parentPath = parent.record.path;
-                let connectingSlash = parentPath[parentPath.length - 1] === '/' ? '' : '/';
+                const parentPath = parent.record.path;
+                const connectingSlash = parentPath[parentPath.length - 1] === '/' ? '' : '/';
                 normalizedRecord.path =
                     parent.record.path + (path && connectingSlash + path);
             }
@@ -39315,7 +39521,7 @@ function createRouterMatcher(routes, globalOptions) {
                     removeRoute(record.name);
             }
             if ('children' in mainNormalizedRecord) {
-                let children = mainNormalizedRecord.children;
+                const children = mainNormalizedRecord.children;
                 for (let i = 0; i < children.length; i++) {
                     addRoute(children[i], matcher, originalRecord && originalRecord.children[i]);
                 }
@@ -39347,7 +39553,7 @@ function createRouterMatcher(routes, globalOptions) {
             }
         }
         else {
-            let index = matchers.indexOf(matcherRef);
+            const index = matchers.indexOf(matcherRef);
             if (index > -1) {
                 matchers.splice(index, 1);
                 if (matcherRef.record.name)
@@ -39447,8 +39653,8 @@ function createRouterMatcher(routes, globalOptions) {
     return { addRoute, resolve, removeRoute, getRoutes, getRecordMatcher };
 }
 function paramsFromLocation(params, keys) {
-    let newParams = {};
-    for (let key of keys) {
+    const newParams = {};
+    for (const key of keys) {
         if (key in params)
             newParams[key] = params[key];
     }
@@ -39494,7 +39700,7 @@ function normalizeRecordProps(record) {
     else {
         // NOTE: we could also allow a function to be applied to every component.
         // Would need user feedback for use cases
-        for (let name in record.components)
+        for (const name in record.components)
             propsObject[name] = typeof props === 'boolean' ? props : props[name];
     }
     return propsObject;
@@ -39520,10 +39726,9 @@ function mergeMetaFields(matched) {
     return matched.reduce((meta, record) => assign(meta, record.meta), {});
 }
 function mergeOptions(defaults, partialOptions) {
-    let options = {};
-    for (let key in defaults) {
-        options[key] =
-            key in partialOptions ? partialOptions[key] : defaults[key];
+    const options = {};
+    for (const key in defaults) {
+        options[key] = key in partialOptions ? partialOptions[key] : defaults[key];
     }
     return options;
 }
@@ -39539,17 +39744,17 @@ function isSameParam(a, b) {
  * @param b - alias record
  */
 function checkSameParams(a, b) {
-    for (let key of a.keys) {
+    for (const key of a.keys) {
         if (!key.optional && !b.keys.find(isSameParam.bind(null, key)))
             return warn(`Alias "${b.record.path}" and the original record: "${a.record.path}" should have the exact same param named "${key.name}"`);
     }
-    for (let key of b.keys) {
+    for (const key of b.keys) {
         if (!key.optional && !a.keys.find(isSameParam.bind(null, key)))
             return warn(`Alias "${b.record.path}" and the original record: "${a.record.path}" should have the exact same param named "${key.name}"`);
     }
 }
 function checkMissingParamsInAbsolutePath(record, parent) {
-    for (let key of parent.keys) {
+    for (const key of parent.keys) {
         if (!record.keys.find(isSameParam.bind(null, key)))
             return warn(`Absolute path "${record.record.path}" should have the exact same param named "${key.name}" as its parent "${parent.record.path}".`);
     }
@@ -39665,13 +39870,14 @@ function encodePath(text) {
 /**
  * Encode characters that need to be encoded on the path section of the URL as a
  * param. This function encodes everything {@link encodePath} does plus the
- * slash (`/`) character.
+ * slash (`/`) character. If `text` is `null` or `undefined`, returns an empty
+ * string instead.
  *
  * @param text - string to encode
  * @returns encoded string
  */
 function encodeParam(text) {
-    return encodePath(text).replace(SLASH_RE, '%2F');
+    return text == null ? '' : encodePath(text).replace(SLASH_RE, '%2F');
 }
 /**
  * Decode text using `decodeURIComponent`. Returns the original text if it
@@ -39711,9 +39917,9 @@ function parseQuery(search) {
         // pre decode the + into space
         const searchParam = searchParams[i].replace(PLUS_RE, ' ');
         // allow the = character
-        let eqPos = searchParam.indexOf('=');
-        let key = decode(eqPos < 0 ? searchParam : searchParam.slice(0, eqPos));
-        let value = eqPos < 0 ? null : decode(searchParam.slice(eqPos + 1));
+        const eqPos = searchParam.indexOf('=');
+        const key = decode(eqPos < 0 ? searchParam : searchParam.slice(0, eqPos));
+        const value = eqPos < 0 ? null : decode(searchParam.slice(eqPos + 1));
         if (key in query) {
             // an extra variable for ts types
             let currentValue = query[key];
@@ -39740,26 +39946,29 @@ function parseQuery(search) {
 function stringifyQuery(query) {
     let search = '';
     for (let key in query) {
-        if (search.length)
-            search += '&';
         const value = query[key];
         key = encodeQueryKey(key);
         if (value == null) {
             // only null adds the value
-            if (value !== undefined)
-                search += key;
+            if (value !== undefined) {
+                search += (search.length ? '&' : '') + key;
+            }
             continue;
         }
         // keep null values
-        let values = Array.isArray(value)
+        const values = Array.isArray(value)
             ? value.map(v => v && encodeQueryValue(v))
             : [value && encodeQueryValue(value)];
-        for (let i = 0; i < values.length; i++) {
-            // only append & with i > 0
-            search += (i ? '&' : '') + key;
-            if (values[i] != null)
-                search += ('=' + values[i]);
-        }
+        values.forEach(value => {
+            // skip undefined values in arrays as if they were not present
+            // smaller code than using filter
+            if (value !== undefined) {
+                // only append & with non-empty search
+                search += (search.length ? '&' : '') + key;
+                if (value != null)
+                    search += '=' + value;
+            }
+        });
     }
     return search;
 }
@@ -39773,8 +39982,8 @@ function stringifyQuery(query) {
  */
 function normalizeQuery(query) {
     const normalizedQuery = {};
-    for (let key in query) {
-        let value = query[key];
+    for (const key in query) {
+        const value = query[key];
         if (value !== undefined) {
             normalizedQuery[key] = Array.isArray(value)
                 ? value.map(v => (v == null ? null : '' + v))
@@ -39832,7 +40041,9 @@ function onBeforeRouteLeave(leaveGuard) {
         warn('getCurrentInstance() returned null. onBeforeRouteLeave() must be called at the top of a setup function');
         return;
     }
-    const activeRecord = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)(matchedRouteKey, {}).value;
+    const activeRecord = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)(matchedRouteKey, 
+    // to avoid warning
+    {}).value;
     if (!activeRecord) {
         ( true) &&
             warn('No active route record was found. Are you missing a <router-view> component?');
@@ -39852,7 +40063,9 @@ function onBeforeRouteUpdate(updateGuard) {
         warn('getCurrentInstance() returned null. onBeforeRouteUpdate() must be called at the top of a setup function');
         return;
     }
-    const activeRecord = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)(matchedRouteKey, {}).value;
+    const activeRecord = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)(matchedRouteKey, 
+    // to avoid warning
+    {}).value;
     if (!activeRecord) {
         ( true) &&
             warn('No active route record was found. Are you missing a <router-view> component?');
@@ -39899,7 +40112,7 @@ function guardToPromiseFn(guard, to, from, record, name) {
             const message = `The "next" callback was never called inside of ${guard.name ? '"' + guard.name + '"' : ''}:\n${guard.toString()}\n. If you are returning a value instead of calling "next", make sure to remove the "next" parameter from your function.`;
             if (typeof guardReturn === 'object' && 'then' in guardReturn) {
                 guardCall = guardCall.then(resolvedValue => {
-                    // @ts-ignore: _called is added at canOnlyBeCalledOnce
+                    // @ts-expect-error: _called is added at canOnlyBeCalledOnce
                     if (!next._called) {
                         warn(message);
                         return Promise.reject(new Error('Invalid navigation guard'));
@@ -39909,7 +40122,7 @@ function guardToPromiseFn(guard, to, from, record, name) {
                 // TODO: test me!
             }
             else if (guardReturn !== undefined) {
-                // @ts-ignore: _called is added at canOnlyBeCalledOnce
+                // @ts-expect-error: _called is added at canOnlyBeCalledOnce
                 if (!next._called) {
                     warn(message);
                     reject(new Error('Invalid navigation guard'));
@@ -39925,7 +40138,7 @@ function canOnlyBeCalledOnce(next, to, from) {
     return function () {
         if (called++ === 1)
             warn(`The "next" callback was called more than once in one navigation guard when going from "${from.fullPath}" to "${to.fullPath}". It should be called exactly one time in each navigation guard. This will fail in production.`);
-        // @ts-ignore: we put it in the original one because it's easier to check
+        // @ts-expect-error: we put it in the original one because it's easier to check
         next._called = true;
         if (called === 1)
             next.apply(null, arguments);
@@ -39954,7 +40167,7 @@ function extractComponentsGuards(matched, guardType, to, from) {
                         `write "import('./MyPage.vue')" instead of ` +
                         `"() => import('./MyPage.vue')" ? This will break in ` +
                         `production if not fixed.`);
-                    let promise = rawComponent;
+                    const promise = rawComponent;
                     rawComponent = () => promise;
                 }
                 else if (rawComponent.__asyncLoader &&
@@ -39972,7 +40185,7 @@ function extractComponentsGuards(matched, guardType, to, from) {
                 continue;
             if (isRouteComponent(rawComponent)) {
                 // __vccOpts is added by vue-class-component and contain the regular options
-                let options = rawComponent.__vccOpts || rawComponent;
+                const options = rawComponent.__vccOpts || rawComponent;
                 const guard = options[guardType];
                 guard && guards.push(guardToPromiseFn(guard, to, from, record, name));
             }
@@ -39983,10 +40196,6 @@ function extractComponentsGuards(matched, guardType, to, from) {
                     warn(`Component "${name}" in record with path "${record.path}" is a function that does not return a Promise. If you were passing a functional component, make sure to add a "displayName" to the component. This will break in production if not fixed.`);
                     componentPromise = Promise.resolve(componentPromise);
                 }
-                else {
-                    // display the error if any
-                    componentPromise = componentPromise.catch(console.error);
-                }
                 guards.push(() => componentPromise.then(resolved => {
                     if (!resolved)
                         return Promise.reject(new Error(`Couldn't resolve component "${name}" at "${record.path}"`));
@@ -39996,7 +40205,7 @@ function extractComponentsGuards(matched, guardType, to, from) {
                     // replace the function with the resolved component
                     record.components[name] = resolvedComponent;
                     // __vccOpts is added by vue-class-component and contain the regular options
-                    let options = resolvedComponent.__vccOpts || resolvedComponent;
+                    const options = resolvedComponent.__vccOpts || resolvedComponent;
                     const guard = options[guardType];
                     return guard && guardToPromiseFn(guard, to, from, record, name)();
                 }));
@@ -40007,6 +40216,7 @@ function extractComponentsGuards(matched, guardType, to, from) {
 }
 /**
  * Allows differentiating lazy components from functional components and vue-class-component
+ *
  * @param component
  */
 function isRouteComponent(component) {
@@ -40023,17 +40233,17 @@ function useLink(props) {
     const currentRoute = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)(routeLocationKey);
     const route = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => router.resolve((0,vue__WEBPACK_IMPORTED_MODULE_0__.unref)(props.to)));
     const activeRecordIndex = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => {
-        let { matched } = route.value;
-        let { length } = matched;
+        const { matched } = route.value;
+        const { length } = matched;
         const routeMatched = matched[length - 1];
-        let currentMatched = currentRoute.matched;
+        const currentMatched = currentRoute.matched;
         if (!routeMatched || !currentMatched.length)
             return -1;
-        let index = currentMatched.findIndex(isSameRouteRecord.bind(null, routeMatched));
+        const index = currentMatched.findIndex(isSameRouteRecord.bind(null, routeMatched));
         if (index > -1)
             return index;
         // possible parent record
-        let parentRecordPath = getOriginalPath(matched[length - 2]);
+        const parentRecordPath = getOriginalPath(matched[length - 2]);
         return (
         // we are dealing with nested routes
         length > 1 &&
@@ -40052,9 +40262,32 @@ function useLink(props) {
         activeRecordIndex.value === currentRoute.matched.length - 1 &&
         isSameRouteLocationParams(currentRoute.params, route.value.params));
     function navigate(e = {}) {
-        if (guardEvent(e))
-            return router[(0,vue__WEBPACK_IMPORTED_MODULE_0__.unref)(props.replace) ? 'replace' : 'push']((0,vue__WEBPACK_IMPORTED_MODULE_0__.unref)(props.to));
+        if (guardEvent(e)) {
+            return router[(0,vue__WEBPACK_IMPORTED_MODULE_0__.unref)(props.replace) ? 'replace' : 'push']((0,vue__WEBPACK_IMPORTED_MODULE_0__.unref)(props.to)
+            // avoid uncaught errors are they are logged anyway
+            ).catch(noop);
+        }
         return Promise.resolve();
+    }
+    // devtools only
+    if (( true) && isBrowser) {
+        const instance = (0,vue__WEBPACK_IMPORTED_MODULE_0__.getCurrentInstance)();
+        if (instance) {
+            const linkContextDevtools = {
+                route: route.value,
+                isActive: isActive.value,
+                isExactActive: isExactActive.value,
+            };
+            // @ts-expect-error: this is internal
+            instance.__vrl_devtools = instance.__vrl_devtools || [];
+            // @ts-expect-error: this is internal
+            instance.__vrl_devtools.push(linkContextDevtools);
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.watchEffect)(() => {
+                linkContextDevtools.route = route.value;
+                linkContextDevtools.isActive = isActive.value;
+                linkContextDevtools.isExactActive = isExactActive.value;
+            }, { flush: 'post' });
+        }
     }
     return {
         route,
@@ -40081,6 +40314,7 @@ const RouterLinkImpl = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.defineC
             default: 'page',
         },
     },
+    useLink,
     setup(props, { slots }) {
         const link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)(useLink(props));
         const { options } = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)(routerKey);
@@ -40093,20 +40327,6 @@ const RouterLinkImpl = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.defineC
             // )]: !link.isExactActive,
             [getLinkClass(props.exactActiveClass, options.linkExactActiveClass, 'router-link-exact-active')]: link.isExactActive,
         }));
-        if (true) {
-            const instance = (0,vue__WEBPACK_IMPORTED_MODULE_0__.getCurrentInstance)();
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.watchEffect)(() => {
-                if (!instance)
-                    return;
-                instance.__vrl_route = link.route;
-            }, { flush: 'post' });
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.watchEffect)(() => {
-                if (!instance)
-                    return;
-                instance.__vrl_active = link.isActive;
-                instance.__vrl_exactActive = link.isExactActive;
-            }, { flush: 'post' });
-        }
         return () => {
             const children = slots.default && slots.default(link);
             return props.custom
@@ -40141,9 +40361,9 @@ function guardEvent(e) {
     if (e.button !== undefined && e.button !== 0)
         return;
     // don't redirect if `target="_blank"`
-    // @ts-ignore getAttribute does exist
+    // @ts-expect-error getAttribute does exist
     if (e.currentTarget && e.currentTarget.getAttribute) {
-        // @ts-ignore getAttribute exists
+        // @ts-expect-error getAttribute exists
         const target = e.currentTarget.getAttribute('target');
         if (/\b_blank\b/i.test(target))
             return;
@@ -40154,9 +40374,9 @@ function guardEvent(e) {
     return true;
 }
 function includesParams(outer, inner) {
-    for (let key in inner) {
-        let innerValue = inner[key];
-        let outerValue = outer[key];
+    for (const key in inner) {
+        const innerValue = inner[key];
+        const outerValue = outer[key];
         if (typeof innerValue === 'string') {
             if (innerValue !== outerValue)
                 return false;
@@ -40309,35 +40529,6 @@ function warnDeprecatedUsage() {
     }
 }
 
-function getDevtoolsGlobalHook() {
-    return getTarget().__VUE_DEVTOOLS_GLOBAL_HOOK__;
-}
-function getTarget() {
-    // @ts-ignore
-    return typeof navigator !== 'undefined'
-        ? window
-        : typeof __webpack_require__.g !== 'undefined'
-            ? __webpack_require__.g
-            : {};
-}
-
-const HOOK_SETUP = 'devtools-plugin:setup';
-
-function setupDevtoolsPlugin(pluginDescriptor, setupFn) {
-    const hook = getDevtoolsGlobalHook();
-    if (hook) {
-        hook.emit(HOOK_SETUP, pluginDescriptor, setupFn);
-    }
-    else {
-        const target = getTarget();
-        const list = target.__VUE_DEVTOOLS_PLUGINS__ = target.__VUE_DEVTOOLS_PLUGINS__ || [];
-        list.push({
-            pluginDescriptor,
-            setupFn
-        });
-    }
-}
-
 function formatRouteLocation(routeLocation, tooltip) {
     const copy = assign({}, routeLocation, {
         // remove variables that can contain vue instances
@@ -40370,7 +40561,7 @@ function addDevtools(app, router, matcher) {
     router.__hasDevtools = true;
     // increment to support multiple router instances
     const id = routerId++;
-    setupDevtoolsPlugin({
+    (0,_vue_devtools_api__WEBPACK_IMPORTED_MODULE_1__.setupDevtoolsPlugin)({
         id: 'org.vuejs.router' + (id ? '.' + id : ''),
         label: 'Vue Router',
         packageName: 'vue-router',
@@ -40392,28 +40583,27 @@ function addDevtools(app, router, matcher) {
         });
         // mark router-link as active
         api.on.visitComponentTree(({ treeNode: node, componentInstance }) => {
-            if (node.name === 'RouterLink') {
-                if (componentInstance.__vrl_route) {
+            // if multiple useLink are used
+            if (Array.isArray(componentInstance.__vrl_devtools)) {
+                componentInstance.__devtoolsApi = api;
+                componentInstance.__vrl_devtools.forEach(devtoolsData => {
+                    let backgroundColor = ORANGE_400;
+                    let tooltip = '';
+                    if (devtoolsData.isExactActive) {
+                        backgroundColor = LIME_500;
+                        tooltip = 'This is exactly active';
+                    }
+                    else if (devtoolsData.isActive) {
+                        backgroundColor = BLUE_600;
+                        tooltip = 'This link is active';
+                    }
                     node.tags.push({
-                        label: componentInstance.__vrl_route.path,
+                        label: devtoolsData.route.path,
                         textColor: 0,
-                        backgroundColor: ORANGE_400,
+                        tooltip,
+                        backgroundColor,
                     });
-                }
-                if (componentInstance.__vrl_exactActive) {
-                    node.tags.push({
-                        label: 'exact',
-                        textColor: 0,
-                        backgroundColor: LIME_500,
-                    });
-                }
-                if (componentInstance.__vrl_active) {
-                    node.tags.push({
-                        label: 'active',
-                        textColor: 0,
-                        backgroundColor: BLUE_600,
-                    });
-                }
+                });
             }
         });
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(router.currentRoute, () => {
@@ -40421,6 +40611,7 @@ function addDevtools(app, router, matcher) {
             refreshRoutesView();
             api.notifyComponentUpdate();
             api.sendInspectorTree(routerInspectorId);
+            api.sendInspectorState(routerInspectorId);
         });
         const navigationsLayerId = 'router:navigations:' + id;
         api.addTimelineLayer({
@@ -40434,15 +40625,16 @@ function addDevtools(app, router, matcher) {
         //   label: 'Router Errors',
         //   color: 0xea5455,
         // })
-        router.onError(error => {
+        router.onError((error, to) => {
             api.addTimelineEvent({
                 layerId: navigationsLayerId,
                 event: {
-                    title: 'Error',
-                    subtitle: 'An uncaught error happened during navigation',
+                    title: 'Error during Navigation',
+                    subtitle: to.fullPath,
                     logType: 'error',
                     time: Date.now(),
                     data: { error },
+                    groupId: to.meta.__navigationId,
                 },
             });
         });
@@ -40463,6 +40655,7 @@ function addDevtools(app, router, matcher) {
                 event: {
                     time: Date.now(),
                     title: 'Start of navigation',
+                    subtitle: to.fullPath,
                     data,
                     groupId: to.meta.__navigationId,
                 },
@@ -40494,6 +40687,7 @@ function addDevtools(app, router, matcher) {
                 layerId: navigationsLayerId,
                 event: {
                     title: 'End of navigation',
+                    subtitle: to.fullPath,
                     time: Date.now(),
                     data,
                     logType: failure ? 'warning' : 'default',
@@ -40680,8 +40874,11 @@ function formatRouteRecordForInspector(route) {
     }
     // add an id to be able to select it. Using the `path` is not possible because
     // empty path children would collide with their parents
-    let id = String(routeRecordId++);
-    record.__vd_id = id;
+    let id = record.__vd_id;
+    if (id == null) {
+        id = String(routeRecordId++);
+        record.__vd_id = id;
+    }
     return {
         id,
         label: record.path,
@@ -40740,9 +40937,9 @@ function isRouteMatching(route, filter) {
 }
 function omit(obj, keys) {
     const ret = {};
-    for (let key in obj) {
+    for (const key in obj) {
         if (!keys.includes(key)) {
-            // @ts-ignore
+            // @ts-expect-error
             ret[key] = obj[key];
         }
     }
@@ -40756,9 +40953,9 @@ function omit(obj, keys) {
  */
 function createRouter(options) {
     const matcher = createRouterMatcher(options.routes, options);
-    let parseQuery$1 = options.parseQuery || parseQuery;
-    let stringifyQuery$1 = options.stringifyQuery || stringifyQuery;
-    let routerHistory = options.history;
+    const parseQuery$1 = options.parseQuery || parseQuery;
+    const stringifyQuery$1 = options.stringifyQuery || stringifyQuery;
+    const routerHistory = options.history;
     if (( true) && !routerHistory)
         throw new Error('Provide the "history" option when calling "createRouter()":' +
             ' https://next.router.vuejs.org/api/#history.');
@@ -40773,7 +40970,9 @@ function createRouter(options) {
     }
     const normalizeParams = applyToParams.bind(null, paramValue => '' + paramValue);
     const encodeParams = applyToParams.bind(null, encodeParam);
-    const decodeParams = applyToParams.bind(null, decode);
+    const decodeParams = 
+    // @ts-expect-error: intentionally avoid the type check
+    applyToParams.bind(null, decode);
     function addRoute(parentOrRoute, route) {
         let parent;
         let record;
@@ -40787,7 +40986,7 @@ function createRouter(options) {
         return matcher.addRoute(record, parent);
     }
     function removeRoute(name) {
-        let recordMatcher = matcher.getRecordMatcher(name);
+        const recordMatcher = matcher.getRecordMatcher(name);
         if (recordMatcher) {
             matcher.removeRoute(recordMatcher);
         }
@@ -40806,9 +41005,9 @@ function createRouter(options) {
         // we create a copy to modify it later
         currentLocation = assign({}, currentLocation || currentRoute.value);
         if (typeof rawLocation === 'string') {
-            let locationNormalized = parseURL(parseQuery$1, rawLocation, currentLocation.path);
-            let matchedRoute = matcher.resolve({ path: locationNormalized.path }, currentLocation);
-            let href = routerHistory.createHref(locationNormalized.fullPath);
+            const locationNormalized = parseURL(parseQuery$1, rawLocation, currentLocation.path);
+            const matchedRoute = matcher.resolve({ path: locationNormalized.path }, currentLocation);
+            const href = routerHistory.createHref(locationNormalized.fullPath);
             if ((true)) {
                 if (href.startsWith('//'))
                     warn(`Location "${rawLocation}" resolved to "${href}". A resolved location cannot start with multiple slashes.`);
@@ -40838,6 +41037,13 @@ function createRouter(options) {
             });
         }
         else {
+            // remove any nullish param
+            const targetParams = assign({}, rawLocation.params);
+            for (const key in targetParams) {
+                if (targetParams[key] == null) {
+                    delete targetParams[key];
+                }
+            }
             // pass encoded values to the matcher so it can produce encoded path and fullPath
             matcherLocation = assign({}, rawLocation, {
                 params: encodeParams(rawLocation.params),
@@ -40846,7 +41052,7 @@ function createRouter(options) {
             // matcher merges the params
             currentLocation.params = encodeParams(currentLocation.params);
         }
-        let matchedRoute = matcher.resolve(matcherLocation, currentLocation);
+        const matchedRoute = matcher.resolve(matcherLocation, currentLocation);
         const hash = rawLocation.hash || '';
         if (( true) && hash && !hash.startsWith('#')) {
             warn(`A \`hash\` should always start with the character "#". Replace "${hash}" with "#${hash}".`);
@@ -40858,7 +41064,7 @@ function createRouter(options) {
             hash: encodeHash(hash),
             path: matchedRoute.path,
         }));
-        let href = routerHistory.createHref(fullPath);
+        const href = routerHistory.createHref(fullPath);
         if ((true)) {
             if (href.startsWith('//')) {
                 warn(`Location "${rawLocation}" resolved to "${href}". A resolved location cannot start with multiple slashes.`);
@@ -40880,7 +41086,7 @@ function createRouter(options) {
             // https://github.com/vuejs/vue-router-next/issues/328#issuecomment-649481567
             stringifyQuery$1 === stringifyQuery
                 ? normalizeQuery(rawLocation.query)
-                : rawLocation.query,
+                : (rawLocation.query || {}),
         }, matchedRoute, {
             redirectedFrom: undefined,
             href,
@@ -40912,10 +41118,13 @@ function createRouter(options) {
             let newTargetLocation = typeof redirect === 'function' ? redirect(to) : redirect;
             if (typeof newTargetLocation === 'string') {
                 newTargetLocation =
-                    newTargetLocation.indexOf('?') > -1 ||
-                        newTargetLocation.indexOf('#') > -1
+                    newTargetLocation.includes('?') || newTargetLocation.includes('#')
                         ? (newTargetLocation = locationAsObject(newTargetLocation))
-                        : { path: newTargetLocation };
+                        : // force empty params
+                            { path: newTargetLocation };
+                // @ts-expect-error: force empty params when a string is passed to let
+                // the router parse them again
+                newTargetLocation.params = {};
             }
             if (( true) &&
                 !('path' in newTargetLocation) &&
@@ -40965,7 +41174,7 @@ function createRouter(options) {
             .catch((error) => isNavigationFailure(error)
             ? error
             : // reject any unknown error
-                triggerError(error))
+                triggerError(error, toLocation, from))
             .then((failure) => {
             if (failure) {
                 if (isNavigationFailure(failure, 2 /* NAVIGATION_GUARD_REDIRECT */)) {
@@ -40974,9 +41183,9 @@ function createRouter(options) {
                         isSameRouteLocation(stringifyQuery$1, resolve(failure.to), toLocation) &&
                         // and we have done it a couple of times
                         redirectedFrom &&
-                        // @ts-ignore
+                        // @ts-expect-error: added only in dev
                         (redirectedFrom._count = redirectedFrom._count
-                            ? // @ts-ignore
+                            ? // @ts-expect-error
                                 redirectedFrom._count + 1
                             : 1) > 10) {
                         warn(`Detected an infinite redirection in a navigation guard when going from "${from.fullPath}" to "${toLocation.fullPath}". Aborting to avoid a Stack Overflow. This will break in production if not fixed.`);
@@ -41013,7 +41222,7 @@ function createRouter(options) {
     // TODO: refactor the whole before guards by internally using router.beforeEach
     function navigate(to, from) {
         let guards;
-        const [leavingRecords, updatingRecords, enteringRecords,] = extractChangingRecords(to, from);
+        const [leavingRecords, updatingRecords, enteringRecords] = extractChangingRecords(to, from);
         // all components here have been resolved once because we are leaving
         guards = extractComponentsGuards(leavingRecords.reverse(), 'beforeRouteLeave', to, from);
         // leavingRecords is already reversed
@@ -41052,7 +41261,7 @@ function createRouter(options) {
             guards = [];
             for (const record of to.matched) {
                 // do not trigger beforeEnter on reused views
-                if (record.beforeEnter && from.matched.indexOf(record) < 0) {
+                if (record.beforeEnter && !from.matched.includes(record)) {
                     if (Array.isArray(record.beforeEnter)) {
                         for (const beforeEnter of record.beforeEnter)
                             guards.push(guardToPromiseFn(beforeEnter, to, from));
@@ -41131,7 +41340,7 @@ function createRouter(options) {
     function setupListeners() {
         removeHistoryListener = routerHistory.listen((to, _from, info) => {
             // cannot be a redirect route because it was in history
-            let toLocation = resolve(to);
+            const toLocation = resolve(to);
             // due to dynamic routing, and to hash history with manual navigation
             // (manually changing the url or calling history.hash = '#/somewhere'),
             // there could be a redirect record in history
@@ -41163,7 +41372,19 @@ function createRouter(options) {
                     // logging the error
                     pushWithRedirect(error.to, toLocation
                     // avoid an uncaught rejection, let push call triggerError
-                    ).catch(noop);
+                    )
+                        .then(failure => {
+                        // manual change in hash history #916 ending up in the URL not
+                        // changing but it was changed by the manual url change, so we
+                        // need to manually change it ourselves
+                        if (isNavigationFailure(failure, 4 /* NAVIGATION_ABORTED */ |
+                            16 /* NAVIGATION_DUPLICATED */) &&
+                            !info.delta &&
+                            info.type === NavigationType.pop) {
+                            routerHistory.go(-1, false);
+                        }
+                    })
+                        .catch(noop);
                     // avoid the then branch
                     return Promise.reject();
                 }
@@ -41171,7 +41392,7 @@ function createRouter(options) {
                 if (info.delta)
                     routerHistory.go(-info.delta, false);
                 // unrecognized error, transfer to the global handler
-                return triggerError(error);
+                return triggerError(error, toLocation, from);
             })
                 .then((failure) => {
                 failure =
@@ -41180,8 +41401,17 @@ function createRouter(options) {
                         // after navigation, all matched components are resolved
                         toLocation, from, false);
                 // revert the navigation
-                if (failure && info.delta)
-                    routerHistory.go(-info.delta, false);
+                if (failure) {
+                    if (info.delta) {
+                        routerHistory.go(-info.delta, false);
+                    }
+                    else if (info.type === NavigationType.pop &&
+                        isNavigationFailure(failure, 4 /* NAVIGATION_ABORTED */ | 16 /* NAVIGATION_DUPLICATED */)) {
+                        // manual change in hash history #916
+                        // it's like a push but lacks the information of the direction
+                        routerHistory.go(-1, false);
+                    }
+                }
                 triggerAfterEach(toLocation, from, failure);
             })
                 .catch(noop);
@@ -41193,12 +41423,24 @@ function createRouter(options) {
     let ready;
     /**
      * Trigger errorHandlers added via onError and throws the error as well
+     *
      * @param error - error to throw
+     * @param to - location we were navigating to when the error happened
+     * @param from - location we were navigating from when the error happened
      * @returns the error as a rejected promise
      */
-    function triggerError(error) {
+    function triggerError(error, to, from) {
         markAsReady(error);
-        errorHandlers.list().forEach(handler => handler(error));
+        const list = errorHandlers.list();
+        if (list.length) {
+            list.forEach(handler => handler(error, to, from));
+        }
+        else {
+            if ((true)) {
+                warn('uncaught error during route navigation:');
+            }
+            console.error(error);
+        }
         return Promise.reject(error);
     }
     function isReady() {
@@ -41228,7 +41470,7 @@ function createRouter(options) {
         const { scrollBehavior } = options;
         if (!isBrowser || !scrollBehavior)
             return Promise.resolve();
-        let scrollPosition = (!isPush && getSavedScrollPosition(getScrollKey(to.fullPath, 0))) ||
+        const scrollPosition = (!isPush && getSavedScrollPosition(getScrollKey(to.fullPath, 0))) ||
             ((isFirstNavigation || !isPush) &&
                 history.state &&
                 history.state.scroll) ||
@@ -41236,7 +41478,7 @@ function createRouter(options) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.nextTick)()
             .then(() => scrollBehavior(to, from, scrollPosition))
             .then(position => position && scrollToPosition(position))
-            .catch(triggerError);
+            .catch(err => triggerError(err, to, from));
     }
     const go = (delta) => routerHistory.go(delta);
     let started;
@@ -41265,6 +41507,7 @@ function createRouter(options) {
             app.component('RouterView', RouterView);
             app.config.globalProperties.$router = router;
             Object.defineProperty(app.config.globalProperties, '$route', {
+                enumerable: true,
                 get: () => (0,vue__WEBPACK_IMPORTED_MODULE_0__.unref)(currentRoute),
             });
             // this initial navigation is only necessary on client, on server it doesn't
@@ -41283,26 +41526,29 @@ function createRouter(options) {
                 });
             }
             const reactiveRoute = {};
-            for (let key in START_LOCATION_NORMALIZED) {
-                // @ts-ignore: the key matches
+            for (const key in START_LOCATION_NORMALIZED) {
+                // @ts-expect-error: the key matches
                 reactiveRoute[key] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => currentRoute.value[key]);
             }
             app.provide(routerKey, router);
             app.provide(routeLocationKey, (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)(reactiveRoute));
             app.provide(routerViewLocationKey, currentRoute);
-            let unmountApp = app.unmount;
+            const unmountApp = app.unmount;
             installedApps.add(app);
             app.unmount = function () {
                 installedApps.delete(app);
+                // the router is not attached to an app anymore
                 if (installedApps.size < 1) {
-                    removeHistoryListener();
+                    // invalidate the current navigation
+                    pendingLocation = START_LOCATION_NORMALIZED;
+                    removeHistoryListener && removeHistoryListener();
                     currentRoute.value = START_LOCATION_NORMALIZED;
                     started = false;
                     ready = false;
                 }
                 unmountApp();
             };
-            if (true) {
+            if (( true) && isBrowser) {
                 addDevtools(app, router, matcher);
             }
         },
