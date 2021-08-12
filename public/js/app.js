@@ -30449,8 +30449,17 @@ __webpack_require__.r(__webpack_exports__);
 
         if (response.data != null) {
           _this.state = 2;
+          sessionStorage.setItem('store', EMData);
+          console.log(sessionStorage.getItem('store'));
         }
       });
+    },
+    LogoutPD: function LogoutPD() {
+      this.$router.push({
+        name: "Home"
+      });
+      this.state = 1;
+      this.EMData = '';
     }
   }
 });
@@ -32626,12 +32635,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _Header_vue_vue_type_template_id_201dc39c_bindings_EMData_data_state_data_PD_options_LoginPD_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Header.vue?vue&type=template&id=201dc39c&bindings={"EMData":"data","state":"data","PD":"options","LoginPD":"options"} */ "./resources/js/views/layouts/Header.vue?vue&type=template&id=201dc39c&bindings={\"EMData\":\"data\",\"state\":\"data\",\"PD\":\"options\",\"LoginPD\":\"options\"}");
+/* harmony import */ var _Header_vue_vue_type_template_id_201dc39c_bindings_EMData_data_state_data_PD_options_LoginPD_options_LogoutPD_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Header.vue?vue&type=template&id=201dc39c&bindings={"EMData":"data","state":"data","PD":"options","LoginPD":"options","LogoutPD":"options"} */ "./resources/js/views/layouts/Header.vue?vue&type=template&id=201dc39c&bindings={\"EMData\":\"data\",\"state\":\"data\",\"PD\":\"options\",\"LoginPD\":\"options\",\"LogoutPD\":\"options\"}");
 /* harmony import */ var _Header_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Header.vue?vue&type=script&lang=js */ "./resources/js/views/layouts/Header.vue?vue&type=script&lang=js");
 
 
 
-_Header_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _Header_vue_vue_type_template_id_201dc39c_bindings_EMData_data_state_data_PD_options_LoginPD_options___WEBPACK_IMPORTED_MODULE_0__.render
+_Header_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _Header_vue_vue_type_template_id_201dc39c_bindings_EMData_data_state_data_PD_options_LoginPD_options_LogoutPD_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* hot reload */
 if (false) {}
 
@@ -33290,12 +33299,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/layouts/Header.vue?vue&type=template&id=201dc39c&bindings={\"EMData\":\"data\",\"state\":\"data\",\"PD\":\"options\",\"LoginPD\":\"options\"}":
-/*!**********************************************************************************************************************************************************!*\
-  !*** ./resources/js/views/layouts/Header.vue?vue&type=template&id=201dc39c&bindings={"EMData":"data","state":"data","PD":"options","LoginPD":"options"} ***!
-  \**********************************************************************************************************************************************************/
+/***/ "./resources/js/views/layouts/Header.vue?vue&type=template&id=201dc39c&bindings={\"EMData\":\"data\",\"state\":\"data\",\"PD\":\"options\",\"LoginPD\":\"options\",\"LogoutPD\":\"options\"}":
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/views/layouts/Header.vue?vue&type=template&id=201dc39c&bindings={"EMData":"data","state":"data","PD":"options","LoginPD":"options","LogoutPD":"options"} ***!
+  \*******************************************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Header.vue?vue&type=template&id=201dc39c&bindings={"EMData":"data","state":"data","PD":"options","LoginPD":"options"} .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Header.vue?vue&type=template&id=201dc39c&bindings={"EMData":"data","state":"data","PD":"options","LoginPD":"options","LogoutPD":"options"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -33303,9 +33312,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Header_vue_vue_type_template_id_201dc39c_bindings_EMData_data_state_data_PD_options_LoginPD_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Header_vue_vue_type_template_id_201dc39c_bindings_EMData_data_state_data_PD_options_LoginPD_options_LogoutPD_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Header_vue_vue_type_template_id_201dc39c_bindings_EMData_data_state_data_PD_options_LoginPD_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Header.vue?vue&type=template&id=201dc39c&bindings={"EMData":"data","state":"data","PD":"options","LoginPD":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Header.vue?vue&type=template&id=201dc39c&bindings={\"EMData\":\"data\",\"state\":\"data\",\"PD\":\"options\",\"LoginPD\":\"options\"}");
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Header_vue_vue_type_template_id_201dc39c_bindings_EMData_data_state_data_PD_options_LoginPD_options_LogoutPD_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Header.vue?vue&type=template&id=201dc39c&bindings={"EMData":"data","state":"data","PD":"options","LoginPD":"options","LogoutPD":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Header.vue?vue&type=template&id=201dc39c&bindings={\"EMData\":\"data\",\"state\":\"data\",\"PD\":\"options\",\"LoginPD\":\"options\",\"LogoutPD\":\"options\"}");
 
 
 /***/ }),
@@ -33544,10 +33553,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Header.vue?vue&type=template&id=201dc39c&bindings={\"EMData\":\"data\",\"state\":\"data\",\"PD\":\"options\",\"LoginPD\":\"options\"}":
-/*!*******************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Header.vue?vue&type=template&id=201dc39c&bindings={"EMData":"data","state":"data","PD":"options","LoginPD":"options"} ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Header.vue?vue&type=template&id=201dc39c&bindings={\"EMData\":\"data\",\"state\":\"data\",\"PD\":\"options\",\"LoginPD\":\"options\",\"LogoutPD\":\"options\"}":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Header.vue?vue&type=template&id=201dc39c&bindings={"EMData":"data","state":"data","PD":"options","LoginPD":"options","LogoutPD":"options"} ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -33605,8 +33614,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         hidden: $data.state == 1
       }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.EMData.EMME), 9 /* TEXT, PROPS */, ["hidden"]),
       (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
-        href: "/logout",
-        onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => (_ctx.searchCM(...args)), ["prevent"])),
+        href: "/",
+        onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.LogoutPD(...args)), ["prevent"])),
         style: {"color":"white"},
         hidden: $data.state == 1
       }, "登出", 8 /* PROPS */, ["hidden"])

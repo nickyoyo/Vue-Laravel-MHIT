@@ -6,7 +6,7 @@
 			<div class="col-md-6 mb-4"  style="text-align:right;font-size:30px;">
 				<a href="" @click.prevent="LoginPD" style="color:white;" :hidden="state == 2">登入</a>
 				<a href="" @click.prevent="PD" style="color:white;" :hidden="state == 1">{{EMData.EMME}}</a>
-				<a href="/logout" @click.prevent="searchCM" style="color:white;" :hidden="state == 1">登出</a>
+				<a href="/" @click.prevent="LogoutPD" style="color:white;" :hidden="state == 1">登出</a>
 			</div>
 		</header>
 </template>
@@ -32,9 +32,17 @@
 			this.EMData = response.data.EM13;
 			if(response.data!= null) {
 				this.state = 2;
+				sessionStorage.setItem('store', EMData);
+				console.log(sessionStorage.getItem('store')) 
 			}
 		})
+		},
+		LogoutPD:function(){
+			this.$router.push({ name: "Home"});
+			this.state = 1;
+			this.EMData ='';
 		}
-	},
+	 },
+
 	};
 </script>
