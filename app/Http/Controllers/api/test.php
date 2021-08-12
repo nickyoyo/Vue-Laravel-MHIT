@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 use PDO;
 use Session;
 
-class SearchController extends Controller
+class test extends Controller
 {
     /**
      * Display a listing of the resource.
