@@ -20,7 +20,7 @@
         .get("https://it.home33.com.tw/api/EMID")
         .then((response) => {
            console.log(response.data);
-          this.EMID = this.response.data;
+          this.EMID = this.response.data.EMID;
         })
     }
 	};

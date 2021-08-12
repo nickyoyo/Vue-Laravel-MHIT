@@ -30414,7 +30414,7 @@ __webpack_require__.r(__webpack_exports__);
 
     axios.get("https://it.home33.com.tw/api/EMID").then(function (response) {
       console.log(response.data);
-      _this.EMID = _this.response.data;
+      _this.EMID = _this.response.data.EMID;
     });
   }
 });
