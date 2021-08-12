@@ -35,6 +35,7 @@ class GoogleController extends Controller
             $doc = DB::table('EM13')->where('E_MAIL',$user->email)->where('OFDT','00000000')->first();
             if(strpos($user->email,'@home33.com.tw')){            //是公司信箱                 
                 $finduser = User::where('google_id', $user->id)->first();
+                Session::put('EMID', $doc->EMID);
                 if($finduser){ 
                     return redirect('/');
                 }else{
@@ -45,6 +46,7 @@ class GoogleController extends Controller
                         'google_id'=> $user->id,
                         'password' => "NULL"
                     ]);
+                   
                     return redirect('/');
                 }
             }

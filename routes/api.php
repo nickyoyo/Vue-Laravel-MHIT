@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\api\SearchController;
 use App\Http\Controllers\api\UpdateController;
 use App\Http\Controllers\api\CreateController;
+use App\Http\Controllers\api\test;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/EMID',[test::class,'index']);
 
 Route::get('/search/CM/name/{CNO}',[SearchController::class,'searchCMname']);
 Route::get('/search/CM/{CNO}',[SearchController::class,'searchCM']);
