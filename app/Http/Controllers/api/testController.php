@@ -24,7 +24,6 @@ class testController extends Controller
     public function index()
     {
         Session::put('EMID', '21072177');
-        //dd(Session::get('EMID')); 
         if(Session::has('EMID') ==NULL){
             $EMID = '';
         }
