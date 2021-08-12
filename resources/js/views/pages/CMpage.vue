@@ -145,7 +145,7 @@
           </h4>
           <br />
         </div>
-        <div class="col-md-4 mb-4">
+        <div class="col-md-3 mb-4">
           <br /><br /><br />
           <h4>
             <label class="font-weight-bold"
@@ -196,7 +196,7 @@
           </h4>
           <br />
         </div>
-        <div class="col-md-3 mb-4">
+        <div class="col-md-4 mb-4">
           <h2>
             <label class="font-weight-bold" style="color: #ff5151"
               >來源與經驗</label
@@ -753,7 +753,7 @@ export default {
         { type: "|同業了解", value: "false", data: "其他" },
       ],
       UseExp: [
-        { type: "|使用經驗", value: "false", data: "使用過系統傢俱" },
+        { type: "|使用經驗", value: "false", data: "使用過系統家具" },
         { type: "|使用經驗", value: "false", data: "曾有裝修經驗" },
         { type: "|使用經驗", value: "false", data: "使用過木地板" },
         { type: "|使用經驗", value: "false", data: "購買過沙發" },

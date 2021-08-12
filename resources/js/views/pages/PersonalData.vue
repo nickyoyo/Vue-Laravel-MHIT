@@ -34,7 +34,7 @@ export default {
   },
   mounted() {
     axios
-      .get("http://127.0.0.1:8000/api/search/PD/21072177")
+      .get("http://127.0.0.1:8000/api/search/PD/"+ this.$route.params.EMID)
       .then((response) => {
         console.log(response.data.EM13);
         this.pd = response.data.EM13;

@@ -3,26 +3,13 @@
 	<div class="main">
 		<router-view></router-view>
 	</div>
-	{{EMID}}
 </template>
 
 <script>
 	import Header from "./Header";
 	export default {
 		components: { Header },
-	 data() {
-			return {
-			EMID:[],
-			};
-		},	
-	mounted() {
-      axios
-        .get("https://it.home33.com.tw/api/EMID")
-        .then((response) => {
-           console.log(response.data);
-          this.EMID = this.response.data.EMID;
-        })
-    }
+	
 	};
 </script>
 
