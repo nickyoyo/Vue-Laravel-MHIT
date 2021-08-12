@@ -55,4 +55,15 @@ class GoogleController extends Controller
                 } 
           
     }
+    public function index()
+    {
+        //Session::put('EMID', '21072176');
+        if(Session::has('EMID') ==NULL){
+            $EMID = 'This email is vaild';
+        }
+        else{
+            $EMID = Session::get('EMID');
+        }
+        return response()->json(['EMID' => $EMID],200);
+    }
 }
