@@ -10,12 +10,7 @@
 </head>
 
 <body>
-    <div id="app">
-    @if(\Session::has('EMID'))
-                    <li><a>{!! \Session::get('EMID') !!}</a></li>
-    @endif
-
-    </div>
+    <div id="app"></div>
     <script src="{{ mix('js/app.js') }}"></script>
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

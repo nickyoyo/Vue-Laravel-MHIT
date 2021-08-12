@@ -34,13 +34,5 @@ export default {
       this.$router.push({ name: "CMpage", params: { CNO,state } });
     },
   },
-   mounted() {
-      axios
-        .get("https://it.home33.com.tw/api/EMID")
-        .then((response) => {
-           console.log(response.data);
-          this.EMID = this.response.data;
-        })
-    }
 };
 </script>
