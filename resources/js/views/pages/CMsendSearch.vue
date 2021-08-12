@@ -19,6 +19,7 @@ export default {
   data() {
     return {
       PID: [],
+      EMID:[],
     };
   },
   methods: {
@@ -33,15 +34,12 @@ export default {
       this.$router.push({ name: "CMpage", params: { CNO,state } });
     },
   },
-   beforeCreate() {
+   mounted() {
       axios
         .get("https://it.home33.com.tw/api/EMID")
         .then((response) => {
-           console.log(response);
-          // if (response == NULL) {
-          //   const message = "未登入";
-          //   this.$router.push({ path: "/", params: { message } });
-          // }
+           console.log(response.data);
+          this.EMID = this.response.data;
         })
     }
 };

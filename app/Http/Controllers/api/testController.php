@@ -23,12 +23,14 @@ class testController extends Controller
      */
     public function index()
     {
-        // if(Session::get('EMID')==NULL){
-        //     $EMID = '';
-        // }
-        // else{
-            $EMID = '21072177';
-        // }
+        Session::put('EMID', '21072177');
+        dd(Session::get('EMID')); 
+        if(Session::has('EMID') ==NULL){
+            $EMID = '';
+        }
+        else{
+            $EMID = Session::get('EMID');
+        }
         return response()->json(['EMID' => $EMID],200);
     }
 }

@@ -31213,7 +31213,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   name: "CMsendSearch",
   data: function data() {
     return {
-      PID: []
+      PID: [],
+      EMID: []
     };
   },
   methods: {
@@ -31240,12 +31241,12 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       });
     }
   },
-  beforeCreate: function beforeCreate() {
+  mounted: function mounted() {
+    var _this = this;
+
     axios.get("https://it.home33.com.tw/api/EMID").then(function (response) {
-      console.log(response); // if (response == NULL) {
-      //   const message = "未登入";
-      //   this.$router.push({ path: "/", params: { message } });
-      // }
+      console.log(response.data);
+      _this.EMID = _this.response.data;
     });
   }
 });
@@ -33067,12 +33068,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _CMsendSearch_vue_vue_type_template_id_55e06864_bindings_PID_data_searchCM_options_modifyCM_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CMsendSearch.vue?vue&type=template&id=55e06864&bindings={"PID":"data","searchCM":"options","modifyCM":"options"} */ "./resources/js/views/pages/CMsendSearch.vue?vue&type=template&id=55e06864&bindings={\"PID\":\"data\",\"searchCM\":\"options\",\"modifyCM\":\"options\"}");
+/* harmony import */ var _CMsendSearch_vue_vue_type_template_id_55e06864_bindings_PID_data_EMID_data_searchCM_options_modifyCM_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CMsendSearch.vue?vue&type=template&id=55e06864&bindings={"PID":"data","EMID":"data","searchCM":"options","modifyCM":"options"} */ "./resources/js/views/pages/CMsendSearch.vue?vue&type=template&id=55e06864&bindings={\"PID\":\"data\",\"EMID\":\"data\",\"searchCM\":\"options\",\"modifyCM\":\"options\"}");
 /* harmony import */ var _CMsendSearch_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CMsendSearch.vue?vue&type=script&lang=js */ "./resources/js/views/pages/CMsendSearch.vue?vue&type=script&lang=js");
 
 
 
-_CMsendSearch_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _CMsendSearch_vue_vue_type_template_id_55e06864_bindings_PID_data_searchCM_options_modifyCM_options___WEBPACK_IMPORTED_MODULE_0__.render
+_CMsendSearch_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _CMsendSearch_vue_vue_type_template_id_55e06864_bindings_PID_data_EMID_data_searchCM_options_modifyCM_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* hot reload */
 if (false) {}
 
@@ -33713,12 +33714,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/pages/CMsendSearch.vue?vue&type=template&id=55e06864&bindings={\"PID\":\"data\",\"searchCM\":\"options\",\"modifyCM\":\"options\"}":
-/*!***************************************************************************************************************************************************!*\
-  !*** ./resources/js/views/pages/CMsendSearch.vue?vue&type=template&id=55e06864&bindings={"PID":"data","searchCM":"options","modifyCM":"options"} ***!
-  \***************************************************************************************************************************************************/
+/***/ "./resources/js/views/pages/CMsendSearch.vue?vue&type=template&id=55e06864&bindings={\"PID\":\"data\",\"EMID\":\"data\",\"searchCM\":\"options\",\"modifyCM\":\"options\"}":
+/*!*****************************************************************************************************************************************************************!*\
+  !*** ./resources/js/views/pages/CMsendSearch.vue?vue&type=template&id=55e06864&bindings={"PID":"data","EMID":"data","searchCM":"options","modifyCM":"options"} ***!
+  \*****************************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMsendSearch.vue?vue&type=template&id=55e06864&bindings={"PID":"data","searchCM":"options","modifyCM":"options"} .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMsendSearch.vue?vue&type=template&id=55e06864&bindings={"PID":"data","EMID":"data","searchCM":"options","modifyCM":"options"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -33726,9 +33727,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CMsendSearch_vue_vue_type_template_id_55e06864_bindings_PID_data_searchCM_options_modifyCM_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CMsendSearch_vue_vue_type_template_id_55e06864_bindings_PID_data_EMID_data_searchCM_options_modifyCM_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CMsendSearch_vue_vue_type_template_id_55e06864_bindings_PID_data_searchCM_options_modifyCM_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./CMsendSearch.vue?vue&type=template&id=55e06864&bindings={"PID":"data","searchCM":"options","modifyCM":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMsendSearch.vue?vue&type=template&id=55e06864&bindings={\"PID\":\"data\",\"searchCM\":\"options\",\"modifyCM\":\"options\"}");
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CMsendSearch_vue_vue_type_template_id_55e06864_bindings_PID_data_EMID_data_searchCM_options_modifyCM_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./CMsendSearch.vue?vue&type=template&id=55e06864&bindings={"PID":"data","EMID":"data","searchCM":"options","modifyCM":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMsendSearch.vue?vue&type=template&id=55e06864&bindings={\"PID\":\"data\",\"EMID\":\"data\",\"searchCM\":\"options\",\"modifyCM\":\"options\"}");
 
 
 /***/ }),
@@ -37237,10 +37238,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMsendSearch.vue?vue&type=template&id=55e06864&bindings={\"PID\":\"data\",\"searchCM\":\"options\",\"modifyCM\":\"options\"}":
-/*!************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMsendSearch.vue?vue&type=template&id=55e06864&bindings={"PID":"data","searchCM":"options","modifyCM":"options"} ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMsendSearch.vue?vue&type=template&id=55e06864&bindings={\"PID\":\"data\",\"EMID\":\"data\",\"searchCM\":\"options\",\"modifyCM\":\"options\"}":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMsendSearch.vue?vue&type=template&id=55e06864&bindings={"PID":"data","EMID":"data","searchCM":"options","modifyCM":"options"} ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
