@@ -30403,14 +30403,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     Header: _Header__WEBPACK_IMPORTED_MODULE_0__.default
-  },
-  mounted: function mounted() {
-    var _this = this;
-
-    axios.get("https://it.home33.com.tw/api/EMID").then(function (response) {
-      console.log(response.data);
-      _this.EMID = _this.response.data;
-    });
   }
 });
 
@@ -33861,6 +33853,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const _hoisted_1 = { class: "main" }
+const _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" @{!! \\Session::get('EMID') !!} ")
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Header = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Header")
@@ -33869,6 +33862,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Header),
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [
+      _hoisted_2,
       (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view)
     ])
   ], 64 /* STABLE_FRAGMENT */))
