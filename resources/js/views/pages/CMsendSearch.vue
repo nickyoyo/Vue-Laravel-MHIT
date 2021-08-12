@@ -35,13 +35,13 @@ export default {
   },
    beforeCreate() {
       axios
-        .get("http://it.home33.com.tw/api/EMID")
+        .get("https://it.home33.com.tw/api/EMID")
         .then((response) => {
-          console.log(response);
-          if (response == NULL) {
-            const message = "未登入";
-            this.$router.push({ path: "/", params: { message } });
-          }
+           console.log(response);
+          // if (response == NULL) {
+          //   const message = "未登入";
+          //   this.$router.push({ path: "/", params: { message } });
+          // }
         })
     }
 };

@@ -31241,21 +31241,11 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     }
   },
   beforeCreate: function beforeCreate() {
-    var _this = this;
-
-    axios.get("http://it.home33.com.tw/api/EMID").then(function (response) {
-      console.log(response);
-
-      if (response == NULL) {
-        var message = "未登入";
-
-        _this.$router.push({
-          path: "/",
-          params: {
-            message: message
-          }
-        });
-      }
+    axios.get("https://it.home33.com.tw/api/EMID").then(function (response) {
+      console.log(response); // if (response == NULL) {
+      //   const message = "未登入";
+      //   this.$router.push({ path: "/", params: { message } });
+      // }
     });
   }
 });

@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 use PDO;
 use Session;
 
-class test extends Controller
+class testController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,12 +23,12 @@ class test extends Controller
      */
     public function index()
     {
-        if(Session::get('EMID')==NULL){
-            $EMID = '';
-        }
-        else{
-            $EMID = Session::get('EMID');
-        }
+        // if(Session::get('EMID')==NULL){
+        //     $EMID = '';
+        // }
+        // else{
+            $EMID = '21072177';
+        // }
         return response()->json(['EMID' => $EMID],200);
     }
 }
