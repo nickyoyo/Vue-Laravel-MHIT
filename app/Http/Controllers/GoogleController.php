@@ -51,7 +51,7 @@ class GoogleController extends Controller
                 }
             }
             else{                                                   //不是公司信箱
-                 return redirect('/123')->with('msg', 'This email is vaild');
+                 return redirect('/')->with('msg', 'This email is vaild');
                 } 
           
     }

@@ -23,9 +23,9 @@ class testController extends Controller
      */
     public function index()
     {
-        Session::put('EMID', '21072177');
+        //Session::put('EMID', '21072176');
         if(Session::has('EMID') ==NULL){
-            $EMID = '';
+            $EMID = 'This email is vaild';
         }
         else{
             $EMID = Session::get('EMID');
