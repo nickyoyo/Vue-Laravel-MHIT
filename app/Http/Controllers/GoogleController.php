@@ -36,8 +36,6 @@ class GoogleController extends Controller
             if(strpos($user->email,'@home33.com.tw')){            //是公司信箱                 
                 $finduser = User::where('google_id', $user->id)->first();
                 if($finduser){ 
-                    Auth::login($finduser);
-                    Session::put('EMID', $doc->EMID);
                     return redirect('/');
                 }else{
                     $newUser = User::create([
@@ -47,8 +45,6 @@ class GoogleController extends Controller
                         'google_id'=> $user->id,
                         'password' => "NULL"
                     ]);
-                    Session::put('EMID', $doc->EMID);
-                    Auth::login($newUser);
                     return redirect('/');
                 }
             }
