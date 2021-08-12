@@ -704,7 +704,7 @@ export default {
   methods: {
     save: function () {
       axios
-        .post("http://127.0.0.1:8000/api/Create/CMCRFItems", {
+        .post("http://it.home33.com.tw/api/Create/CMCRFItems", {
           UseExp: this.UseExp,
           UDS: this.UDS,
           likeStyle: this.likeStyle,
@@ -718,7 +718,7 @@ export default {
         });
 
       axios
-        .post("http://127.0.0.1:8000/api/Create/CmMemo", {
+        .post("http://it.home33.com.tw/api/Create/CmMemo", {
           Cmemo: this.Cmemo,
         })
         .then(function (response) {
@@ -728,7 +728,7 @@ export default {
           console.log(response);
         });
      axios
-        .post("http://127.0.0.1:8000/api/Create/CM", {
+        .post("http://it.home33.com.tw/api/Create/CM", {
           cust: this.cust,
           CustType: this.CustType,
           BuyReason: this.BuyReason,
@@ -750,25 +750,25 @@ export default {
   },
   beforeCreate() {
     axios
-      .get("http://127.0.0.1:8000/api/search/CTD/客來源")
+      .get("http://it.home33.com.tw/api/search/CTD/客來源")
       .then((response) => {
         console.log(response.data.Cust);
         this.CustType = response.data;
       }),
       axios
-        .get("http://127.0.0.1:8000/api/search/CTD/買原因")
+        .get("http://it.home33.com.tw/api/search/CTD/買原因")
         .then((response) => {
           console.log(response.data);
           this.BuyReason = response.data;
         }),
       axios
-        .get("http://127.0.0.1:8000/api/search/CTD/成員組合")
+        .get("http://it.home33.com.tw/api/search/CTD/成員組合")
         .then((response) => {
           console.log(response.data);
           this.Family = response.data;
         }),
       axios
-        .get("http://127.0.0.1:8000/api/search/CTD/屋型")
+        .get("http://it.home33.com.tw/api/search/CTD/屋型")
         .then((response) => {
           console.log(response.data);
           this.HouseType = response.data;

@@ -172,7 +172,7 @@ export default {
    methods: {
     save: function () {
         if(this.AF10[0]['value']==false){
-          axios.post("http://127.0.0.1:8000/api/Create/self-evaluation",{
+          axios.post("http://it.home33.com.tw/api/Create/self-evaluation",{
              AF1: this.AF1,
              AF2: this.AF2,
              AF3: this.AF3,
@@ -197,7 +197,7 @@ export default {
     } 
     },
      saveT: function () {
-          axios.post("http://127.0.0.1:8000/api/Create/self-evaluation",{
+          axios.post("http://it.home33.com.tw/api/Create/self-evaluation",{
              AF1: this.AF1,
              AF2: this.AF2,
              AF3: this.AF3,
