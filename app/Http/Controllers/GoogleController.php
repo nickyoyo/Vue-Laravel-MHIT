@@ -29,9 +29,8 @@ class GoogleController extends Controller
      */
     public function handleGoogleCallback()
     { 
-        try {
+      
             $user = Socialite::driver('google')->user();
-            //dd($user);
             //return response()->json(['message' => $user], 200);
             $doc = DB::table('EM13')->where('E_MAIL',$user->email)->where('OFDT','00000000')->first();
             if(strpos($user->email,'@home33.com.tw')){            //是公司信箱                 
@@ -56,9 +55,6 @@ class GoogleController extends Controller
             else{                                                   //不是公司信箱
                  return redirect('/')->with('msg', 'This email is vaild');
                 } 
-            }
-            catch (Exception $e) {
-                return response()->json(['message' => '456'], 200);
-        }
+          
     }
 }
