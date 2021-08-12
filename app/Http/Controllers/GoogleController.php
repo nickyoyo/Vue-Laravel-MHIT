@@ -47,7 +47,7 @@ class GoogleController extends Controller
                         'password' => "NULL"
                     ]);
                    
-                    return redirect('/');
+                    return redirect('/456');
                 }
             }
             else{                                                   //不是公司信箱
