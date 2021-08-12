@@ -13,6 +13,7 @@
 </template>
 
 <script>
+  const axios = require("axios");
 export default {
   name: "CMsendSearch",
   data() {
@@ -32,5 +33,16 @@ export default {
       this.$router.push({ name: "CMpage", params: { CNO,state } });
     },
   },
+   beforeCreate() {
+      axios
+        .get("http://it.home33.com.tw/api/EMID")
+        .then((response) => {
+          console.log(response);
+          if (response == NULL) {
+            const message = "未登入";
+            this.$router.push({ path: "/", params: { message } });
+          }
+        })
+    }
 };
 </script>

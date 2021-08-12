@@ -31199,7 +31199,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /*! namespace exports */
 /*! export default [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
+/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__, __webpack_require__.d, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -31207,6 +31207,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
+var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "CMsendSearch",
   data: function data() {
@@ -31237,6 +31239,24 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     }
+  },
+  beforeCreate: function beforeCreate() {
+    var _this = this;
+
+    axios.get("http://it.home33.com.tw/api/EMID").then(function (response) {
+      console.log(response);
+
+      if (response == NULL) {
+        var message = "未登入";
+
+        _this.$router.push({
+          path: "/",
+          params: {
+            message: message
+          }
+        });
+      }
+    });
   }
 });
 

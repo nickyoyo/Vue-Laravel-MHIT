@@ -23,7 +23,7 @@ class SearchController extends Controller
      */
     public function index()
     {
-        if( Session::get('EMID')==NULL){
+        if(Session::get('EMID')==NULL){
             $EMID = '';
         }
         else{
