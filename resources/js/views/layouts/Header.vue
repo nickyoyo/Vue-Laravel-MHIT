@@ -4,6 +4,7 @@
 				<router-link to="/" style="color:white;">MHIT</router-link>
 			</div>
 			<div class="col-md-6 mb-4"  style="text-align:right;font-size:30px;">
+				<a href="/auth/google" style="color:white;" :hidden="state == 2">Login</a>
 				<a href="" @click.prevent="LoginPD" style="color:white;" :hidden="state == 2">登入</a>
 				<a href="" @click.prevent="PD" style="color:white;" :hidden="state == 1">{{EMData.EMME}}</a>
 				<a href="/" @click.prevent="LogoutPD" style="color:white;" :hidden="state == 1">登出</a>
