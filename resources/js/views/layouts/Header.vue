@@ -27,15 +27,15 @@
 		},
 		LoginPD:function(){
 			axios
-			.get("http://127.0.0.1:8000/api/search/PD/"+"21072177")
+			.get("/api/search/PD")
 			.then((response) => {
 			console.log(response.data);
-			this.EMData = response.data.EM13;
-			if(response.data!= null) {
-				this.state = 2;
-				sessionStorage.setItem('store', EMData);
-				console.log(sessionStorage.getItem('store')) 
-			}
+			this.EMData = response.data;
+			// if(response.data!= null) {
+			// 	this.state = 2;
+			// 	sessionStorage.setItem('store', EMData);
+			// 	console.log(sessionStorage.getItem('store')) 
+			// }
 		})
 		},
 		LogoutPD:function(){

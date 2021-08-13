@@ -11,6 +11,7 @@ use App\Models\CTD;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Auth;
 use PDO;
 use Session;
 
@@ -214,10 +215,10 @@ class SearchController extends Controller
         }
         return response()->json([$UseExp,$UDS,$likeStyle,$space],200);
     }
-    public function searchPD($EMID)
+    public function searchPD()
     {
         //$EMID = Session::get('EMID');
-        $EM13 = EM13::where('EMID','=', $EMID)->where('OFDT','=','00000000')->first();
-        return response()->json(['EM13' => $EM13, 'EMID' => $EMID],200);
+       // $EM13 = EM13::where('EMID','=', $EMID)->where('OFDT','=','00000000')->first();
+        return response()->json(['YA' => Auth::user()],200);
     }
 }

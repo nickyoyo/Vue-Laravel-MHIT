@@ -30,7 +30,7 @@ Route::get('/search/CM/{CNO}',[SearchController::class,'searchCM']);
 Route::get('/search/CTD/{codename}',[SearchController::class,'searchCTD']);
 Route::get('/search/CmMemo/{CNO}&&{MemoType}',[SearchController::class,'searchCmMemo']);
 Route::get('/search/CMCRFItems/{CNO}',[SearchController::class,'searchCMCRFItems']);
-Route::get('/search/PD/{EMID}',[SearchController::class,'searchPD']);
+Route::get('/search/PD',[SearchController::class,'searchPD']);
 
 Route::post('/Update/CM',[UpdateController::class,'UpdateCM']);
 Route::post('/Update/CmMemo',[UpdateController::class,'UpdateCmMemo']);

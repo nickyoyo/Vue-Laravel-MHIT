@@ -30467,15 +30467,13 @@ __webpack_require__.r(__webpack_exports__);
     LoginPD: function LoginPD() {
       var _this = this;
 
-      axios.get("http://127.0.0.1:8000/api/search/PD/" + "21072177").then(function (response) {
+      axios.get("/api/search/PD").then(function (response) {
         console.log(response.data);
-        _this.EMData = response.data.EM13;
-
-        if (response.data != null) {
-          _this.state = 2;
-          sessionStorage.setItem('store', EMData);
-          console.log(sessionStorage.getItem('store'));
-        }
+        _this.EMData = response.data; // if(response.data!= null) {
+        // 	this.state = 2;
+        // 	sessionStorage.setItem('store', EMData);
+        // 	console.log(sessionStorage.getItem('store')) 
+        // }
       });
     },
     LogoutPD: function LogoutPD() {
@@ -30484,6 +30482,67 @@ __webpack_require__.r(__webpack_exports__);
       });
       this.state = 1;
       this.EMData = '';
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=script&lang=js":
+/*!**************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=script&lang=js ***!
+  \**************************************************************************************************************************************************************************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "Login",
+  data: function data() {
+    return {
+      PID: [],
+      EMID: []
+    };
+  },
+  methods: {
+    opendata: function opendata() {
+      var _this = this;
+
+      axios.get("http://127.0.0.1:8000/api/search/PD/" + 21072177).then(function (response) {
+        console.log(response.data.EM13);
+        _this.pd = response.data.EM13;
+      });
+    },
+    send: function send() {
+      var CNO = this.PID;
+      var state = 1;
+      this.$router.push({
+        name: "CMpage",
+        params: {
+          CNO: CNO,
+          state: state
+        }
+      });
+    },
+    close: function close() {
+      var CNO = this.PID;
+      var state = 2;
+      this.$router.push({
+        name: "CMpage",
+        params: {
+          CNO: CNO,
+          state: state
+        }
+      });
     }
   }
 });
@@ -31474,6 +31533,31 @@ keymaster__WEBPACK_IMPORTED_MODULE_2___default()('⌘+r, ctrl+r', function () {
   alert('stopped reload!');
   return false;
 });
+$("#ooo").on("show.bs.modal", function (e) {
+  console.log('顯示視窗前呼叫');
+}); //轉場特效結束，已完全呈現時呼叫
+
+$("#ooo").on("shown.bs.modal", function (e) {
+  console.log('轉場特效結束，已完全呈現時呼叫');
+}); //關閉視窗前呼叫
+
+$("#ooo").on("hide.bs.modal", function (e) {
+  console.log('關閉視窗前呼叫');
+}); //轉場特效結束，已完全隱藏時呼叫
+
+$("#ooo").on("hidden.bs.modal", function (e) {
+  console.log('轉場特效結束，已完全隱藏時呼叫');
+}); //隱藏視窗
+
+$("#ooo").modal('hide'); //開啟視窗
+
+$("#ooo").modal('show'); //切換視窗顯示、不顯示
+
+$("#ooo").modal('toggle'); //判斷視窗是否開啟中
+
+if ($("#ooo").hasClass('in')) {
+  console.log('視窗目前是開啟的狀態..');
+}
 
 /***/ }),
 
@@ -33050,16 +33134,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _Login_vue_vue_type_template_id_a42cef58__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Login.vue?vue&type=template&id=a42cef58 */ "./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58");
+/* harmony import */ var _Login_vue_vue_type_template_id_a42cef58_bindings_PID_data_EMID_data_opendata_options_send_options_close_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Login.vue?vue&type=template&id=a42cef58&bindings={"PID":"data","EMID":"data","opendata":"options","send":"options","close":"options"} */ "./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={\"PID\":\"data\",\"EMID\":\"data\",\"opendata\":\"options\",\"send\":\"options\",\"close\":\"options\"}");
+/* harmony import */ var _Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Login.vue?vue&type=script&lang=js */ "./resources/js/views/layouts/Login.vue?vue&type=script&lang=js");
 
-const script = {}
-script.render = _Login_vue_vue_type_template_id_a42cef58__WEBPACK_IMPORTED_MODULE_0__.render
+
+
+_Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _Login_vue_vue_type_template_id_a42cef58_bindings_PID_data_EMID_data_opendata_options_send_options_close_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* hot reload */
 if (false) {}
 
-script.__file = "resources/js/views/layouts/Login.vue"
+_Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__file = "resources/js/views/layouts/Login.vue"
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (script);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default);
 
 /***/ }),
 
@@ -33388,6 +33474,26 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/views/layouts/Login.vue?vue&type=script&lang=js":
+/*!**********************************************************************!*\
+  !*** ./resources/js/views/layouts/Login.vue?vue&type=script&lang=js ***!
+  \**********************************************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=script&lang=js .default */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__.default
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Login.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./resources/js/views/pages/About.vue?vue&type=script&lang=js":
 /*!********************************************************************!*\
   !*** ./resources/js/views/pages/About.vue?vue&type=script&lang=js ***!
@@ -33704,12 +33810,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58":
-/*!****************************************************************************!*\
-  !*** ./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58 ***!
-  \****************************************************************************/
+/***/ "./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={\"PID\":\"data\",\"EMID\":\"data\",\"opendata\":\"options\",\"send\":\"options\",\"close\":\"options\"}":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={"PID":"data","EMID":"data","opendata":"options","send":"options","close":"options"} ***!
+  \**************************************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58 .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={"PID":"data","EMID":"data","opendata":"options","send":"options","close":"options"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -33717,9 +33823,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Login_vue_vue_type_template_id_a42cef58__WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Login_vue_vue_type_template_id_a42cef58_bindings_PID_data_EMID_data_opendata_options_send_options_close_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Login_vue_vue_type_template_id_a42cef58__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Login.vue?vue&type=template&id=a42cef58 */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58");
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Login_vue_vue_type_template_id_a42cef58_bindings_PID_data_EMID_data_opendata_options_send_options_close_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Login.vue?vue&type=template&id=a42cef58&bindings={"PID":"data","EMID":"data","opendata":"options","send":"options","close":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={\"PID\":\"data\",\"EMID\":\"data\",\"opendata\":\"options\",\"send\":\"options\",\"close\":\"options\"}");
 
 
 /***/ }),
@@ -34022,10 +34128,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58":
-/*!*************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58 ***!
-  \*************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={\"PID\":\"data\",\"EMID\":\"data\",\"opendata\":\"options\",\"send\":\"options\",\"close\":\"options\"}":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={"PID":"data","EMID":"data","opendata":"options","send":"options","close":"options"} ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -34040,12 +34146,58 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 
-const _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<head><title>跳出視窗</title><meta charset=\"UTF-8\"><!-- 響應式網站 --><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><!-- Boostrap 導入程式 --><link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x\" crossorigin=\"anonymous\"></head><body><!-- 按鈕 --><a href=\"#\" type=\"button\" data-bs-toggle=\"modal\" data-bs-target=\"#loginModal\">會員登入</a><!-- 跳出視窗內容 --><div class=\"modal fade\" id=\"loginModal\"><div class=\"modal-dialog\"><div class=\"modal-content\"><!-- Header --><div class=\"modal-header\"><h3>會員登入</h3><button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\"></button></div><!-- Body --><div class=\"modal-body\"><!-- 登入表單 --><form><!-- email --><div class=\"form-group\"><input type=\"email\" class=\"account form-control\" placeholder=\"Email\"></div><!-- password --><div class=\"form-group\"><input type=\"password\" class=\"password form-control\" placeholder=\"Password\"></div><!-- checkbox --><div class=\"form-group\"><input type=\"checkbox\" class=\"remember\">記住我的密碼 </div><!-- 送出按鈕 --><button type=\"button\" class=\"btn btn-info\"> 登入 </button></form></div><!-- Footer --><div class=\"modal-footer\"><div class=\"signup\"><span>尚未成為會員</span><a href=\"#\" type=\"button\" class=\"member\"> 立即加入 </a></div></div></div></div></div></body>", 2)
+const _hoisted_1 = {
+  id: "ooo",
+  class: "modal inmodal fade",
+  tabindex: "-1",
+  role: "dialog",
+  "aria-hidden": "true",
+  "data-backdrop": "static",
+  "data-keyboard": "true"
+}
+const _hoisted_2 = { class: "modal-dialog modal-lg" }
+const _hoisted_3 = { class: "modal-content" }
+const _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", { class: "modal-header" }, [
+  /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+    type: "button",
+    class: "close",
+    "data-dismiss": "modal"
+  }, [
+    /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", null, "×")
+  ])
+], -1 /* HOISTED */)
+const _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", { class: "modal-body" }, " 內容 ", -1 /* HOISTED */)
+const _hoisted_6 = { class: "modal-footer" }
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("html", null, [
-    _hoisted_1
-  ]))
+  return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [
+      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [
+          _hoisted_4,
+          _hoisted_5,
+          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+              onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.send(...args)), ["prevent"])),
+              class: "btn"
+            }, "OK"),
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+              onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.close(...args)), ["prevent"])),
+              class: "btn"
+            }, "Cancel")
+          ])
+        ])
+      ])
+    ]),
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 使用按鈕開啟  data-target"),
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+      onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.close(...args)), ["prevent"])),
+      type: "button",
+      class: "btn btn-primary",
+      "data-toggle": "modal",
+      "data-target": "#ooo"
+    }, "YO")
+  ], 64 /* STABLE_FRAGMENT */))
 }
 
 /***/ }),
