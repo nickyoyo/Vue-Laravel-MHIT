@@ -891,7 +891,7 @@ export default {
           console.log(response);
           this.cust = response.data[0];
           this.custT = response.data;
-          if (response.data[0] == NULL) {
+          if (response.data[0] == null) {
             const message = "此客編不存在";
             this.$router.push({ path: "/CM/sendSearch", params: { message } });
           }

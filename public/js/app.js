@@ -31013,7 +31013,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         _this.cust = response.data[0];
         _this.custT = response.data;
 
-        if (response.data[0] == NULL) {
+        if (response.data[0] == null) {
           var message = "此客編不存在";
 
           _this.$router.push({
@@ -31463,16 +31463,17 @@ app.use(_store__WEBPACK_IMPORTED_MODULE_1__.default); // Mount the App
 
 app.mount('#app'); // Done.....!
 
-keymaster__WEBPACK_IMPORTED_MODULE_2___default()('a', function () {
-  alert('you pressed a!');
-}); // 回调函数返回 false 以阻止浏览器默认事件行为
+keymaster__WEBPACK_IMPORTED_MODULE_2___default()('a', function () {}); // 回调函数返回 false 以阻止浏览器默认事件行为
 
 keymaster__WEBPACK_IMPORTED_MODULE_2___default()('ctrl+r', function () {
   alert('stopped reload!');
   return false;
 }); // 绑定多个快捷键，做同一件事
 
-keymaster__WEBPACK_IMPORTED_MODULE_2___default()('⌘+r, ctrl+r', function () {});
+keymaster__WEBPACK_IMPORTED_MODULE_2___default()('⌘+r, ctrl+r', function () {
+  alert('stopped reload!');
+  return false;
+});
 
 /***/ }),
 
@@ -32134,8 +32135,6 @@ async function asyncWalk(
   \*********************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, top-level-this-exports */
-/*! CommonJS bailout: this is used directly at 296:3-7 */
-/*! CommonJS bailout: module.exports is used directly at 294:36-50 */
 /***/ (function(module) {
 
 //     keymaster.js
@@ -34030,7 +34029,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -34038,9 +34037,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "render": () => /* binding */ render
 /* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+const _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<head><title>跳出視窗</title><meta charset=\"UTF-8\"><!-- 響應式網站 --><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><!-- Boostrap 導入程式 --><link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x\" crossorigin=\"anonymous\"></head><body><!-- 按鈕 --><a href=\"#\" type=\"button\" data-bs-toggle=\"modal\" data-bs-target=\"#loginModal\">會員登入</a><!-- 跳出視窗內容 --><div class=\"modal fade\" id=\"loginModal\"><div class=\"modal-dialog\"><div class=\"modal-content\"><!-- Header --><div class=\"modal-header\"><h3>會員登入</h3><button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\"></button></div><!-- Body --><div class=\"modal-body\"><!-- 登入表單 --><form><!-- email --><div class=\"form-group\"><input type=\"email\" class=\"account form-control\" placeholder=\"Email\"></div><!-- password --><div class=\"form-group\"><input type=\"password\" class=\"password form-control\" placeholder=\"Password\"></div><!-- checkbox --><div class=\"form-group\"><input type=\"checkbox\" class=\"remember\">記住我的密碼 </div><!-- 送出按鈕 --><button type=\"button\" class=\"btn btn-info\"> 登入 </button></form></div><!-- Footer --><div class=\"modal-footer\"><div class=\"signup\"><span>尚未成為會員</span><a href=\"#\" type=\"button\" class=\"member\"> 立即加入 </a></div></div></div></div></div></body>", 2)
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return " 123 "
+  return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("html", null, [
+    _hoisted_1
+  ]))
 }
 
 /***/ }),
@@ -37001,9 +37006,7 @@ const _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)
 const _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("dd", null, null, -1 /* HOISTED */)
 const _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("dt", null, "TEST", -1 /* HOISTED */)
 const _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("員工資料")
-const _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("dd", null, [
-  /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", null, "|功能B-修改特定需求")
-], -1 /* HOISTED */)
+const _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("|功能B-修改特定需求")
 const _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("dd", null, [
   /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
     href: "BFeature2",
@@ -37047,7 +37050,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               _: 1
             })
           ]),
-          _hoisted_12,
+          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("dd", null, [
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, { to: "/Login" }, {
+              default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
+                _hoisted_12
+              ]),
+              _: 1
+            })
+          ]),
           _hoisted_13
         ])
       ])

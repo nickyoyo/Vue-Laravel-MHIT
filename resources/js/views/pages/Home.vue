@@ -15,7 +15,7 @@
                     <dl>
 						<dt>TEST</dt> 
 						<dd><router-link to="/PersonalData" >員工資料</router-link></dd>
-                        <dd><a>|功能B-修改特定需求</a></dd>
+                        <dd><router-link to="/Login" >|功能B-修改特定需求</router-link></dd>
                         <dd><a href="BFeature2" target='_parent'>功能B-顯示剛修改需求</a></dd>
                     </dl>
                 </li> 

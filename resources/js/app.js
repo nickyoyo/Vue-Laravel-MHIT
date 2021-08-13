@@ -35,10 +35,15 @@ app.mount('#app')
 // Done.....!
 
 
-key('a', function(){ alert('you pressed a!') });
+
+
+
+key('a', function(){ 
+ 
+});
 
 // 回调函数返回 false 以阻止浏览器默认事件行为
 key('ctrl+r', function(){ alert('stopped reload!'); return false });
 
 // 绑定多个快捷键，做同一件事
-key('⌘+r, ctrl+r', function(){ });
+key('⌘+r, ctrl+r', function(){ alert('stopped reload!'); return false });
