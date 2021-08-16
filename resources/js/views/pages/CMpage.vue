@@ -49,7 +49,7 @@
     <br /><br /><br />
     <form action="/" v-on:submit.prevent="postdata">
       <div class="row" style="height: 750px">
-        <div class="col-md-5 mb-4">
+        <div class="col-md-6 mb-4">
           <h2>
             <label class="font-weight-bold" style="color: #ff5151"
               >基本資料</label
@@ -824,6 +824,9 @@ export default {
     Modify: function () {
       this.state = 2;
     },
+    sameup: function () {
+      this.state = 2;
+    },
     FClear: function () {
       this.custT.FavColor = '';
     },
@@ -967,6 +970,7 @@ export default {
 }
 .AF11tableborder-250wid {
   font-size: 10px;
+  width: 262px;
   border: 1px black solid;
 }
 .textw20 {

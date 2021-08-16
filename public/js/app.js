@@ -30509,39 +30509,41 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   name: "Login",
   data: function data() {
     return {
-      PID: [],
-      EMID: []
+      addresschoose: [],
+      addressC: [],
+      addressS: [],
+      zip: [],
+      data: [],
+      street: [{
+        value: "empty"
+      }]
     };
   },
   methods: {
-    opendata: function opendata() {
+    send: function send() {
       var _this = this;
 
-      axios.get("http://127.0.0.1:8000/api/search/PD/" + 21072177).then(function (response) {
-        console.log(response.data.EM13);
-        _this.pd = response.data.EM13;
+      this.addressC = this.addresschoose.縣市 + this.addresschoose.區鄉鎮市 + this.addresschoose.街路;
+      axios.get("http://127.0.0.1:8000/api/search/zip/" + this.addressC).then(function (response) {
+        console.log(response);
+        _this.zip = response;
       });
     },
-    send: function send() {
-      var CNO = this.PID;
-      var state = 1;
-      this.$router.push({
-        name: "CMpage",
-        params: {
-          CNO: CNO,
-          state: state
-        }
+    close: function close() {},
+    getdata: function getdata() {
+      var _this2 = this;
+
+      axios.get("http://127.0.0.1:8000/api/search/zip/" + this.street[0].value).then(function (response) {
+        console.log(response.data);
+        _this2.data = response.data;
       });
     },
-    close: function close() {
-      var CNO = this.PID;
-      var state = 2;
-      this.$router.push({
-        name: "CMpage",
-        params: {
-          CNO: CNO,
-          state: state
-        }
+    datasearch: function datasearch() {
+      var _this3 = this;
+
+      axios.get("http://127.0.0.1:8000/api/search/zip/" + this.street[0].value).then(function (response) {
+        console.log(response.data);
+        _this3.data = response.data;
       });
     }
   }
@@ -31010,6 +31012,9 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   },
   methods: {
     Modify: function Modify() {
+      this.state = 2;
+    },
+    sameup: function sameup() {
       this.state = 2;
     },
     FClear: function FClear() {
@@ -31781,7 +31786,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.topic {\n  position: relative;\n  margin-top: 10px;\n  margin-left: 450px;\n}\n.AF2topic {\n  position: absolute;\n  left: 16%;\n}\n.AF11tableborder-250wid {\n  font-size: 10px;\n  border: 1px black solid;\n}\n.textw20 {\n  width: 20%;\n  padding: 10px 0px;\n  color: #555;\n  background-color: #fff;\n  border: 1px solid black;\n  font-size: 16px;\n  font-weight: solid;\n}\n.clearbutton {\n  text-align: center;\n  display: inline;\n  font-size: 15px;\n  width: 30px;\n  height: 30px;\n  color: red;\n  border: 2px solid #2d302d;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.topic {\n  position: relative;\n  margin-top: 10px;\n  margin-left: 450px;\n}\n.AF2topic {\n  position: absolute;\n  left: 16%;\n}\n.AF11tableborder-250wid {\n  font-size: 10px;\n  width: 262px;\n  border: 1px black solid;\n}\n.textw20 {\n  width: 20%;\n  padding: 10px 0px;\n  color: #555;\n  background-color: #fff;\n  border: 1px solid black;\n  font-size: 16px;\n  font-weight: solid;\n}\n.clearbutton {\n  text-align: center;\n  display: inline;\n  font-size: 15px;\n  width: 30px;\n  height: 30px;\n  color: red;\n  border: 2px solid #2d302d;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -33134,12 +33139,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _Login_vue_vue_type_template_id_a42cef58_bindings_PID_data_EMID_data_opendata_options_send_options_close_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Login.vue?vue&type=template&id=a42cef58&bindings={"PID":"data","EMID":"data","opendata":"options","send":"options","close":"options"} */ "./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={\"PID\":\"data\",\"EMID\":\"data\",\"opendata\":\"options\",\"send\":\"options\",\"close\":\"options\"}");
+/* harmony import */ var _Login_vue_vue_type_template_id_a42cef58_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_send_options_close_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Login.vue?vue&type=template&id=a42cef58&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} */ "./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"send\":\"options\",\"close\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}");
 /* harmony import */ var _Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Login.vue?vue&type=script&lang=js */ "./resources/js/views/layouts/Login.vue?vue&type=script&lang=js");
 
 
 
-_Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _Login_vue_vue_type_template_id_a42cef58_bindings_PID_data_EMID_data_opendata_options_send_options_close_options___WEBPACK_IMPORTED_MODULE_0__.render
+_Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _Login_vue_vue_type_template_id_a42cef58_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_send_options_close_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* hot reload */
 if (false) {}
 
@@ -33227,7 +33232,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _CMpage_vue_vue_type_template_id_79664523_bindings_state_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_custT_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_Modify_options_FClear_options_LClear_options_WClear_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CMpage.vue?vue&type=template&id=79664523&bindings={"state":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","custT":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","Modify":"options","FClear":"options","LClear":"options","WClear":"options","save":"options","msg":"props"} */ "./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={\"state\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"custT\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"Modify\":\"options\",\"FClear\":\"options\",\"LClear\":\"options\",\"WClear\":\"options\",\"save\":\"options\",\"msg\":\"props\"}");
+/* harmony import */ var _CMpage_vue_vue_type_template_id_79664523_bindings_state_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_custT_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_Modify_options_sameup_options_FClear_options_LClear_options_WClear_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CMpage.vue?vue&type=template&id=79664523&bindings={"state":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","custT":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","Modify":"options","sameup":"options","FClear":"options","LClear":"options","WClear":"options","save":"options","msg":"props"} */ "./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={\"state\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"custT\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"Modify\":\"options\",\"sameup\":\"options\",\"FClear\":\"options\",\"LClear\":\"options\",\"WClear\":\"options\",\"save\":\"options\",\"msg\":\"props\"}");
 /* harmony import */ var _CMpage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CMpage.vue?vue&type=script&lang=js */ "./resources/js/views/pages/CMpage.vue?vue&type=script&lang=js");
 /* harmony import */ var _CMpage_vue_vue_type_style_index_0_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CMpage.vue?vue&type=style&index=0&lang=css */ "./resources/js/views/pages/CMpage.vue?vue&type=style&index=0&lang=css");
 
@@ -33235,7 +33240,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-_CMpage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _CMpage_vue_vue_type_template_id_79664523_bindings_state_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_custT_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_Modify_options_FClear_options_LClear_options_WClear_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__.render
+_CMpage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _CMpage_vue_vue_type_template_id_79664523_bindings_state_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_custT_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_Modify_options_sameup_options_FClear_options_LClear_options_WClear_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__.render
 /* hot reload */
 if (false) {}
 
@@ -33810,12 +33815,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={\"PID\":\"data\",\"EMID\":\"data\",\"opendata\":\"options\",\"send\":\"options\",\"close\":\"options\"}":
-/*!**************************************************************************************************************************************************************************!*\
-  !*** ./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={"PID":"data","EMID":"data","opendata":"options","send":"options","close":"options"} ***!
-  \**************************************************************************************************************************************************************************/
+/***/ "./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"send\":\"options\",\"close\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}":
+/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={"PID":"data","EMID":"data","opendata":"options","send":"options","close":"options"} .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -33823,9 +33828,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Login_vue_vue_type_template_id_a42cef58_bindings_PID_data_EMID_data_opendata_options_send_options_close_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Login_vue_vue_type_template_id_a42cef58_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_send_options_close_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Login_vue_vue_type_template_id_a42cef58_bindings_PID_data_EMID_data_opendata_options_send_options_close_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Login.vue?vue&type=template&id=a42cef58&bindings={"PID":"data","EMID":"data","opendata":"options","send":"options","close":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={\"PID\":\"data\",\"EMID\":\"data\",\"opendata\":\"options\",\"send\":\"options\",\"close\":\"options\"}");
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Login_vue_vue_type_template_id_a42cef58_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_send_options_close_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Login.vue?vue&type=template&id=a42cef58&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"send\":\"options\",\"close\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}");
 
 
 /***/ }),
@@ -33870,12 +33875,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={\"state\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"custT\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"Modify\":\"options\",\"FClear\":\"options\",\"LClear\":\"options\",\"WClear\":\"options\",\"save\":\"options\",\"msg\":\"props\"}":
-/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={"state":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","custT":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","Modify":"options","FClear":"options","LClear":"options","WClear":"options","save":"options","msg":"props"} ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={\"state\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"custT\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"Modify\":\"options\",\"sameup\":\"options\",\"FClear\":\"options\",\"LClear\":\"options\",\"WClear\":\"options\",\"save\":\"options\",\"msg\":\"props\"}":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={"state":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","custT":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","Modify":"options","sameup":"options","FClear":"options","LClear":"options","WClear":"options","save":"options","msg":"props"} ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={"state":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","custT":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","Modify":"options","FClear":"options","LClear":"options","WClear":"options","save":"options","msg":"props"} .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={"state":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","custT":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","Modify":"options","sameup":"options","FClear":"options","LClear":"options","WClear":"options","save":"options","msg":"props"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -33883,9 +33888,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CMpage_vue_vue_type_template_id_79664523_bindings_state_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_custT_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_Modify_options_FClear_options_LClear_options_WClear_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CMpage_vue_vue_type_template_id_79664523_bindings_state_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_custT_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_Modify_options_sameup_options_FClear_options_LClear_options_WClear_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CMpage_vue_vue_type_template_id_79664523_bindings_state_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_custT_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_Modify_options_FClear_options_LClear_options_WClear_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./CMpage.vue?vue&type=template&id=79664523&bindings={"state":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","custT":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","Modify":"options","FClear":"options","LClear":"options","WClear":"options","save":"options","msg":"props"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={\"state\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"custT\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"Modify\":\"options\",\"FClear\":\"options\",\"LClear\":\"options\",\"WClear\":\"options\",\"save\":\"options\",\"msg\":\"props\"}");
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CMpage_vue_vue_type_template_id_79664523_bindings_state_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_custT_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_Modify_options_sameup_options_FClear_options_LClear_options_WClear_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./CMpage.vue?vue&type=template&id=79664523&bindings={"state":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","custT":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","Modify":"options","sameup":"options","FClear":"options","LClear":"options","WClear":"options","save":"options","msg":"props"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={\"state\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"custT\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"Modify\":\"options\",\"sameup\":\"options\",\"FClear\":\"options\",\"LClear\":\"options\",\"WClear\":\"options\",\"save\":\"options\",\"msg\":\"props\"}");
 
 
 /***/ }),
@@ -34128,10 +34133,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={\"PID\":\"data\",\"EMID\":\"data\",\"opendata\":\"options\",\"send\":\"options\",\"close\":\"options\"}":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={"PID":"data","EMID":"data","opendata":"options","send":"options","close":"options"} ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"send\":\"options\",\"close\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -34157,41 +34162,82 @@ const _hoisted_1 = {
 }
 const _hoisted_2 = { class: "modal-dialog modal-lg" }
 const _hoisted_3 = { class: "modal-content" }
-const _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", { class: "modal-header" }, [
-  /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-    type: "button",
-    class: "close",
-    "data-dismiss": "modal"
-  }, [
-    /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", null, "×")
-  ])
+const _hoisted_4 = { class: "modal-header" }
+const _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+  type: "button",
+  class: "close",
+  "data-dismiss": "modal"
+}, [
+  /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", null, "×")
 ], -1 /* HOISTED */)
-const _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", { class: "modal-body" }, " 內容 ", -1 /* HOISTED */)
-const _hoisted_6 = { class: "modal-footer" }
+const _hoisted_6 = { class: "modal-body" }
+const _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 街路: ")
+const _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [
       (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [
-          _hoisted_4,
-          _hoisted_5,
-          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-              onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.send(...args)), ["prevent"])),
-              class: "btn"
-            }, "OK"),
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-              onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.close(...args)), ["prevent"])),
-              class: "btn"
-            }, "Cancel")
+          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [
+            _hoisted_5,
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [
+              _hoisted_7,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                type: "text",
+                class: "form-control",
+                style: {"width":"200px","display":"inline"},
+                "onUpdate:modelValue": _cache[1] || (_cache[1] = $event => ($data.street[0].value = $event))
+              }, null, 512 /* NEED_PATCH */), [
+                [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.street[0].value]
+              ]),
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+                onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.getdata(...args)), ["prevent"])),
+                style: {"display":"inline"},
+                class: "btn"
+              }, "查詢"),
+              _hoisted_8,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("select", {
+                "onUpdate:modelValue": _cache[3] || (_cache[3] = $event => ($data.addresschoose = $event))
+              }, [
+                ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.data, (item) => {
+                  return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
+                    value: item,
+                    key: item
+                  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.縣市) + "-" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.區鄉鎮市) + "-" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.街路), 9 /* TEXT, PROPS */, ["value"]))
+                }), 128 /* KEYED_FRAGMENT */))
+              ], 512 /* NEED_PATCH */), [
+                [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.addresschoose]
+              ]),
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+                onClick: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.send(...args)), ["prevent"])),
+                class: "btn"
+              }, "送出")
+            ])
           ])
         ])
       ])
     ]),
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 使用按鈕開啟  data-target"),
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+      type: "text",
+      class: "form-control",
+      style: {"width":"200px","display":"inline"},
+      "onUpdate:modelValue": _cache[5] || (_cache[5] = $event => ($data.addressC = $event)),
+      readonly: ""
+    }, null, 512 /* NEED_PATCH */), [
+      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.addressC]
+    ]),
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+      type: "text",
+      class: "form-control",
+      style: {"width":"200px","display":"inline"},
+      "onUpdate:modelValue": _cache[6] || (_cache[6] = $event => ($data.addressS = $event))
+    }, null, 512 /* NEED_PATCH */), [
+      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.addressS]
+    ]),
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-      onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.close(...args)), ["prevent"])),
+      onClick: _cache[7] || (_cache[7] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.getdata(...args)), ["prevent"])),
       type: "button",
       class: "btn btn-primary",
       "data-toggle": "modal",
@@ -35245,10 +35291,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={\"state\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"custT\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"Modify\":\"options\",\"FClear\":\"options\",\"LClear\":\"options\",\"WClear\":\"options\",\"save\":\"options\",\"msg\":\"props\"}":
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={"state":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","custT":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","Modify":"options","FClear":"options","LClear":"options","WClear":"options","save":"options","msg":"props"} ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={\"state\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"custT\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"Modify\":\"options\",\"sameup\":\"options\",\"FClear\":\"options\",\"LClear\":\"options\",\"WClear\":\"options\",\"save\":\"options\",\"msg\":\"props\"}":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={"state":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","custT":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","Modify":"options","sameup":"options","FClear":"options","LClear":"options","WClear":"options","save":"options","msg":"props"} ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -35316,7 +35362,7 @@ const _hoisted_21 = {
   class: "row",
   style: {"height":"750px"}
 }
-const _hoisted_22 = { class: "col-md-5 mb-4" }
+const _hoisted_22 = { class: "col-md-6 mb-4" }
 const _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", null, [
   /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
     class: "font-weight-bold",

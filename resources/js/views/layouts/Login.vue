@@ -6,20 +6,31 @@
         <button type="button" class="close" data-dismiss="modal">
           <span>&times;</span>
         </button>
+        <div class="modal-body" >
+        街路: <input
+                type="text"
+                class="form-control"
+                style="width: 200px;display:inline"
+                v-model="street[0].value"
+            /><button  @click.prevent="getdata" style="display:inline" class="btn">查詢</button><br>
+               <select v-model="addresschoose"> 
+                <option
+                  v-for="item in data" :value="item" :key="item"
+                >
+                    {{ item.縣市 }}-{{ item.區鄉鎮市 }}-{{ item.街路}}
+                </option>
+              </select>
+        <button  @click.prevent="send" class="btn">送出</button>
       </div>
-      <div class="modal-body" >
-        內容
-      </div>
-      <div class="modal-footer" >
-        <button  @click.prevent="send" class="btn">OK</button>
-        <button  @click.prevent="close" class="btn">Cancel</button>
       </div>
     </div>
   </div>
 </div>
 
 <!-- 使用按鈕開啟  data-target-->
-<button @click.prevent="close" type="button" class="btn btn-primary" data-toggle="modal" data-target="#ooo">YO</button>
+<input type="text" class="form-control" style="width: 200px;display:inline" v-model="addressC" readonly/>
+<input type="text" class="form-control" style="width: 200px;display:inline" v-model="addressS"/>
+<button @click.prevent="getdata" type="button" class="btn btn-primary" data-toggle="modal" data-target="#ooo">YO</button>
 </template>
 
 <script>
@@ -28,29 +39,43 @@ export default {
   name: "Login",
   data() {
     return {
-      PID: [],
-      EMID:[],
+      addresschoose:[],
+      addressC:[],
+      addressS:[],
+      zip:[],
+      data:[],
+      street:[{value:"empty"}],
     };
   },
   methods: {
-	opendata: function(){
-		axios
-      .get("http://127.0.0.1:8000/api/search/PD/"+ 21072177)
-      .then((response) => {
-        console.log(response.data.EM13);
-        this.pd = response.data.EM13;
-      });
-  },
     send: function () {
-       const CNO = this.PID
-        const state = 1
-      this.$router.push({ name: "CMpage", params: { CNO,state } });
+       this.addressC = this.addresschoose.縣市+this.addresschoose.區鄉鎮市+this.addresschoose.街路;
+         axios
+          .get("http://127.0.0.1:8000/api/search/zip/"+this.addressC)
+          .then((response) => {
+            console.log(response);
+            this.zip = response;
+          });
     },
      close: function () {
-       const CNO = this.PID
-        const state = 2
-      this.$router.push({ name: "CMpage", params: { CNO,state } });
+    
     },
+    getdata: function(){
+           axios
+          .get("http://127.0.0.1:8000/api/search/zip/"+this.street[0].value)
+          .then((response) => {
+            console.log(response.data);
+            this.data = response.data;
+          });
+    },
+    datasearch: function(){
+           axios
+          .get("http://127.0.0.1:8000/api/search/zip/"+this.street[0].value)
+          .then((response) => {
+            console.log(response.data);
+            this.data = response.data;
+          });
+    }
   },
 };
 </script>

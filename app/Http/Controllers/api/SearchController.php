@@ -8,9 +8,11 @@ use App\Models\CMCRFItems;
 use App\Models\CM_接待自評;
 use App\Models\CmMemo;
 use App\Models\CTD;
+use App\Models\zip;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Auth;
 use PDO;
 use Session;
@@ -220,5 +222,39 @@ class SearchController extends Controller
         //$EMID = Session::get('EMID');
        // $EM13 = EM13::where('EMID','=', $EMID)->where('OFDT','=','00000000')->first();
         return response()->json(['YA' => Auth::user()],200);
+    }
+
+    public function searchaddress($street)
+    {
+        //找Zip
+        $length = strlen($street);
+        if($length>7){          
+            $city= mb_substr($street,0,3,"utf-8");
+            $area= mb_substr($street,3,3,"utf-8");
+            $road= mb_substr($street,6,$length-6,"utf-8");
+            $address = zip::where('縣市',$city)->where('區鄉鎮市',$area)->where('街路',$road)->first();
+            $zip = substr($address->區號,0,3);
+            return response()->json($zip,200);
+        }
+        else{
+        //傳資料
+            if($street=="empty"){
+                $address  = DB::select('SELECT DISTINCT 縣市,區鄉鎮市,街路 FROM zip'); 
+                foreach($address as $data){
+                    $data->街路=trim($data->街路);
+                }
+            }
+            else{
+                $str='%'.$street.'%';
+                $address = DB::select("SELECT DISTINCT 縣市,區鄉鎮市,街路 FROM zip WHERE 街路 LIKE '".$str."'");
+                if($address==NULL){
+                    $address  = DB::select('SELECT DISTINCT 縣市,區鄉鎮市,街路 FROM zip'); 
+                }
+                foreach($address as $data){
+                    $data->街路=trim($data->街路);
+                }
+            }
+            return response()->json($address,200);
+        } 
     }
 }
