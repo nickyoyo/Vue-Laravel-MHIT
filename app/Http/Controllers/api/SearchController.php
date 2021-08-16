@@ -45,11 +45,21 @@ class SearchController extends Controller
     {
         $useCM = cm::where('CustNo',trim($CNO))->first();
         $FinishDate='';$CheckInDate='';$HouseDate='';$FavColor='';$Woodwork='';$LastModify='';
-
+        $CusAddressC='';$CusAddressS='';$FittingAddC='';$FittingAddS='';
         if($useCM == NULL){
             $useCM = new cm;
         }  
         else{
+            if($useCM->CusAddress != NULL){
+                $length = mb_strlen($useCM->CusAddress,"utf-8");
+                $CusAddressC= mb_substr($useCM->CusAddress,0,6,"utf-8");
+                $CusAddressS= mb_substr($useCM->CusAddress,6,$length-6,"utf-8");
+            }
+            if($useCM->FittingAdd != NULL){
+                $length = mb_strlen($useCM->FittingAdd,"utf-8");
+                $FittingAddC= mb_substr($useCM->FittingAdd,0,6,"utf-8");
+                $FittingAddS= mb_substr($useCM->FittingAdd,6,$length-6,"utf-8");
+            }
             if($useCM->FinishDate != NULL){
                 $FinishDate= substr($useCM->FinishDate, 0, 4)."-".substr($useCM->FinishDate, 4, 2)."-".substr($useCM->FinishDate, 6, 2);  
             }
@@ -77,7 +87,7 @@ class SearchController extends Controller
         return response()->json([
              $useCM,
             'LastModify' => $LastModify , 'Woodwork' => $Woodwork , 'FavColor' => $FavColor ,'FinishDate' => $FinishDate , 'CheckInDate'=> $CheckInDate ,'HouseDate' =>$HouseDate,
-           ],200);
+            'CusAddressC' => $CusAddressC,'CusAddressS'=>$CusAddressS,'FittingAddC'=>$FittingAddC,'FittingAddS'=>$FittingAddS],200);
     }
     public function searchCTD($codename)        //CTD
     {
@@ -119,7 +129,7 @@ class SearchController extends Controller
                     'code_' => $i,
                     '備註' => '',
                     'Date_' =>  date('Ymd'),
-                    'UserId' => $use->UserId,
+                    'UserId' => $useCM->UserId,
                     'Items' => 0,
                 ]);
             }

@@ -31076,7 +31076,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       this.custT.Woodwork = '';
     },
     save: function save() {
-      axios.post("http://it.home33.com.tw/api/Update/CM", {
+      axios.post("http://http://127.0.0.1:8000/api/Update/CM", {
         cust: this.cust,
         custT: this.custT,
         CustType: this.CustType,
@@ -31090,7 +31090,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       })["catch"](function (response) {
         console.log(response);
       });
-      axios.post("http://it.home33.com.tw/api/Update/CMCRFItems", {
+      axios.post("http://http://127.0.0.1:8000/api/Update/CMCRFItems", {
         cust: this.cust,
         UseExp: this.UseExp,
         UDS: this.UDS,
@@ -31101,7 +31101,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       })["catch"](function (response) {
         console.log(response);
       });
-      axios.post("http://it.home33.com.tw/api/Update/CmMemo", {
+      axios.post("http://http://127.0.0.1:8000/api/Update/CmMemo", {
         cust: this.cust,
         Cmemo: this.Cmemo
       }).then(function (response) {
@@ -31121,7 +31121,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     var _this = this;
 
     if (this.$route.params.CNO != "") {
-      axios.get("http://it.home33.com.tw/api/search/CM/" + this.$route.params.CNO).then(function (response) {
+      axios.get("http://http://127.0.0.1:8000/api/search/CM/" + this.$route.params.CNO).then(function (response) {
         console.log(response);
         _this.cust = response.data[0];
         _this.custT = response.data;
@@ -31136,7 +31136,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
             }
           });
         }
-      }), axios.get("http://it.home33.com.tw/api/search/CMCRFItems/" + this.$route.params.CNO).then(function (response) {
+      }), axios.get("http://http://127.0.0.1:8000/api/search/CMCRFItems/" + this.$route.params.CNO).then(function (response) {
         console.log(response.data);
 
         for (var i = 0; i < 4; i++) {
@@ -31154,20 +31154,20 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         for (var _i3 = 0; _i3 < 9; _i3++) {
           _this.space[_i3]["value"] = response.data[3][_i3];
         }
-      }), axios.get("http://it.home33.com.tw/api/search/CTD/客來源").then(function (response) {
+      }), axios.get("http://http://127.0.0.1:8000/api/search/CTD/客來源").then(function (response) {
         console.log(response.data.Cust);
         _this.CustType = response.data;
-      }), axios.get("http://it.home33.com.tw/api/search/CTD/買原因").then(function (response) {
+      }), axios.get("http://http://127.0.0.1:8000/api/search/CTD/買原因").then(function (response) {
         console.log(response.data);
         _this.BuyReason = response.data;
-      }), axios.get("http://it.home33.com.tw/api/search/CTD/成員組合").then(function (response) {
+      }), axios.get("http://http://127.0.0.1:8000/api/search/CTD/成員組合").then(function (response) {
         console.log(response.data);
         _this.Family = response.data;
-      }), axios.get("http://it.home33.com.tw/api/search/CTD/屋型").then(function (response) {
+      }), axios.get("http://http://127.0.0.1:8000/api/search/CTD/屋型").then(function (response) {
         console.log(response.data);
         _this.HouseType = response.data;
       });
-      axios.get("http://it.home33.com.tw/api/search/CmMemo/" + this.$route.params.CNO + "&&00").then(function (response) {
+      axios.get("http://http://127.0.0.1:8000/api/search/CmMemo/" + this.$route.params.CNO + "&&00").then(function (response) {
         console.log(response.data);
         _this.Cmemo = response.data;
       });
