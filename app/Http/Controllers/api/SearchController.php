@@ -227,12 +227,11 @@ class SearchController extends Controller
     public function searchaddress($street)
     {
         //找Zip
-        $length = strlen($street);
-        if($length>7){          
+        $length = mb_strlen($street, "utf-8");
+        if($length>=6){          
             $city= mb_substr($street,0,3,"utf-8");
             $area= mb_substr($street,3,3,"utf-8");
-            $road= mb_substr($street,6,$length-6,"utf-8");
-            $address = zip::where('縣市',$city)->where('區鄉鎮市',$area)->where('街路',$road)->first();
+            $address = zip::where('縣市',$city)->where('區鄉鎮市',$area)->first();
             $zip = substr($address->區號,0,3);
             return response()->json($zip,200);
         }

@@ -49,12 +49,13 @@ export default {
   },
   methods: {
     send: function () {
-       this.addressC = this.addresschoose.縣市+this.addresschoose.區鄉鎮市+this.addresschoose.街路;
+       this.addressC = this.addresschoose.縣市+this.addresschoose.區鄉鎮市;
+       this.addressS = this.addresschoose.街路;
          axios
           .get("http://127.0.0.1:8000/api/search/zip/"+this.addressC)
           .then((response) => {
             console.log(response);
-            this.zip = response;
+            this.zip = response.data;
           });
     },
      close: function () {
