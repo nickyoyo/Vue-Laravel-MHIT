@@ -600,7 +600,7 @@
               <button
                 @click.prevent="FClear"
                 class="clearbutton"
-                :readonly="state == 1"
+                :disabled="state == 1"
               >
                 X</button
               >
@@ -620,7 +620,7 @@
                <button
                 @click.prevent="WClear"
                 class="clearbutton"
-                :readonly="state == 1"
+                :disabled="state == 1"
               >
                 X</button
               ></label>
@@ -638,7 +638,7 @@
               <button
                 @click.prevent="LClear"
                 class="clearbutton"
-                :readonly="state == 1"
+                :disabled="state == 1"
               >
                 X</button
               ></label>

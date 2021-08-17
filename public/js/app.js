@@ -36575,8 +36575,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
                   onClick: _cache[41] || (_cache[41] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.FClear(...args)), ["prevent"])),
                   class: "clearbutton",
-                  readonly: $data.state == 1
-                }, " X", 8 /* PROPS */, ["readonly"])
+                  disabled: $data.state == 1
+                }, " X", 8 /* PROPS */, ["disabled"])
               ])
             ]),
             _hoisted_163,
@@ -36596,8 +36596,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
                   onClick: _cache[43] || (_cache[43] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.WClear(...args)), ["prevent"])),
                   class: "clearbutton",
-                  readonly: $data.state == 1
-                }, " X", 8 /* PROPS */, ["readonly"])
+                  disabled: $data.state == 1
+                }, " X", 8 /* PROPS */, ["disabled"])
               ])
             ]),
             _hoisted_167,
@@ -36617,8 +36617,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
                   onClick: _cache[45] || (_cache[45] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.LClear(...args)), ["prevent"])),
                   class: "clearbutton",
-                  readonly: $data.state == 1
-                }, " X", 8 /* PROPS */, ["readonly"])
+                  disabled: $data.state == 1
+                }, " X", 8 /* PROPS */, ["disabled"])
               ])
             ]),
             _hoisted_171,
