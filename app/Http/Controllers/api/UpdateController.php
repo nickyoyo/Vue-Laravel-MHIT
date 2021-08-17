@@ -63,7 +63,7 @@ class UpdateController extends Controller
                 'FavColor' => ($FavColor == NULL) ? '' : $FavColor,
                 'Budget' => ($data['Budget'] == NULL) ? '' : $data['Budget'],
                 //'PorductType',
-                //'ZipCode',
+                'ZipCode' => ($data['ZipCode'] == NULL) ? '' : $data['ZipCode'],
                 'LastUse' => ($data['LastUse'] == NULL) ? '' : $data['LastUse'],
                 //'UserId',
                 //'Designer',

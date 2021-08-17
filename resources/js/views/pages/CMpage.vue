@@ -1,4 +1,34 @@
 <template>
+ <!-- 跳出選住址-->
+    <div id="ooo" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
+      <div class="modal-dialog modal-lg" >
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+            <div class="modal-body" >
+            街路: <input
+                    type="text"
+                    class="form-control"
+                    style="width: 200px;display:inline"
+                    v-model="street[0].value"
+                /><button  @click.prevent="getcusaddress" style="display:inline" class="btn">查詢</button><br>
+                  <select v-model="addresschoose"> 
+                    <option
+                      v-for="item in data" :value="item" :key="item"
+                    >
+                        {{ item.縣市 }}-{{ item.區鄉鎮市 }}-{{ item.街路}}
+                    </option>
+                  </select>
+            <button  @click.prevent="sendaddress" class="btn" data-dismiss="modal">送出</button>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   <div
     style="
       position: relative;
@@ -65,6 +95,7 @@
                   class="form-control"
                   v-model="cust.CustName"
                   :readonly="state == 1"
+                  style="width:300px"
                 />
               </th>
               <th style="padding: 5px">
@@ -95,6 +126,7 @@
                 class="form-control"
                 v-model="cust.COMPANY"
                 :readonly="state == 1"
+                style="width:300px"
             /></label>
           </h4>
           <br />
@@ -106,44 +138,51 @@
                 class="form-control"
                 v-model="cust.email"
                 :readonly="state == 1"
+                style="width:300px"
             /></label>
           </h4>
           <br />
-          <h4>
-            <label class="font-weight-bold"
-              >通訊地址
-              <input
-                type="text"
-                class="form-control"
-                style="width: 400px"
-                v-model="cust.CusAddress"
-                :readonly="state == 1"
-            /></label>
-          </h4>
+          <h4><label class="font-weight-bold"  style="display:inline">通訊地址</label></h4>
+          <input
+            type="text"
+            class="form-control"
+            v-model="custT.CusAddressC"
+            style="display:inline;width:130px"
+            readonly
+          /><input
+            type="text"
+            class="form-control"
+            v-model="custT.CusAddressS"
+             style="display:inline;width:270px"
+              :readonly="state == 1"
+          />
+          <button @click.prevent="getcusaddress" type="button" class="btn btn-primary"  style="display:inline" data-toggle="modal" data-target="#ooo" :disabled="state == 1">S</button>
           <br />
-          <h4>
-            <label class="font-weight-bold"
-              >安裝地址
-              <input
-                type="text"
-                class="form-control"
-                v-model="cust.FittingAdd"
-                style="width: 400px"
-                :readonly="state == 1"
-            /></label>
-          </h4>
+          <h4><label class="font-weight-bold">安裝地址</label></h4>
+           <input
+            type="text"
+            class="form-control"
+            v-model="custT.FittingAddC"
+            style="display:inline;width:130px"
+            readonly
+          />
+          <input
+            type="text"
+            class="form-control"
+            style="display:inline;width:270px"
+            v-model="custT.FittingAddS"
+             :readonly="state == 1"
+          />
+         <button @click.prevent="getfitaddress" type="button" class="btn btn-primary"  style="display:inline" data-toggle="modal" data-target="#ooo" :disabled="state == 1">S</button>
           <br />
-          <h4>
-            <label class="font-weight-bold"
-              >建案名稱
-              <input
-                type="text"
-                class="form-control"
-                v-model="cust.BuildName"
-                :readonly="state == 1"
-            /></label>
-          </h4>
-          <br />
+           <h4><label class="font-weight-bold">建案名稱</label></h4>
+          <input
+            type="text"
+            class="form-control"
+            v-model="cust.BuildName"
+            :readonly="state == 1"
+            style="width:300px"
+          /><br />
         </div>
         <div class="col-md-3 mb-4">
           <br /><br /><br />
@@ -818,9 +857,52 @@ export default {
         { value: "0", data: "小姐" },
         { value: "1", data: "先生" },
       ],
+
+      addresschoose:[],
+      data:[],
+      zip:[],
+      street:[{value:"empty"}],
+      addressState:true
     };
   },
   methods: {
+      getcusaddress: function(){
+        axios
+          .get("http://127.0.0.1:8000/api/search/zip/"+this.street[0].value)
+          .then((response) => {
+            console.log(response.data);
+            this.data = response.data;
+          });
+      this.addressState=true;
+    },
+    getfitaddress: function(){
+        axios
+          .get("http://127.0.0.1:8000/api/search/zip/"+this.street[0].value)
+          .then((response) => {
+            console.log(response.data);
+            this.data = response.data;
+          });
+        this.addressState=false;
+    },
+    sendaddress: function () {
+      if(this.addressState==true){
+          this.custT.CusAddressC = this.addresschoose.縣市+this.addresschoose.區鄉鎮市;
+       this.custT.CusAddressS = this.addresschoose.街路;
+       this.cust.CusAddress = this.addresschoose.縣市+this.addresschoose.區鄉鎮市+this.addresschoose.街路;
+         axios
+          .get("http://127.0.0.1:8000/api/search/zip/"+this.CusAddressC)
+          .then((response) => {
+            console.log(response.data);
+            this.cust.ZipCode = response.data;
+            this.zip = response.data;
+          });
+      }
+      if(this.addressState==false){
+          this.custT.FittingAddC = this.addresschoose.縣市+this.addresschoose.區鄉鎮市;
+       this.custT.FittingAddS = this.addresschoose.街路;
+       this.cust.FittingAdd = this.addresschoose.縣市+this.addresschoose.區鄉鎮市+this.addresschoose.街路;
+      }
+    },
     Modify: function () {
       this.state = 2;
     },
@@ -834,8 +916,10 @@ export default {
       this.custT.Woodwork = '';
     },
     save: function () {
+      this.cust.CusAddress = this.custT.CusAddressC + this.custT.CusAddressS;
+       this.cust.FittingAdd = this.custT.FittingAddC + this.custT.FittingAddS;
       axios
-        .post("http://http://127.0.0.1:8000/api/Update/CM", {
+        .post("http://127.0.0.1:8000/api/Update/CM", {
           cust: this.cust,
           custT: this.custT,
           CustType: this.CustType,
@@ -852,7 +936,7 @@ export default {
           console.log(response);
         });
       axios
-        .post("http://http://127.0.0.1:8000/api/Update/CMCRFItems", {
+        .post("http://127.0.0.1:8000/api/Update/CMCRFItems", {
           cust: this.cust,
           UseExp: this.UseExp,
           UDS: this.UDS,
@@ -867,7 +951,7 @@ export default {
         });
 
       axios
-        .post("http://http://127.0.0.1:8000/api/Update/CmMemo", {
+        .post("http://127.0.0.1:8000/api/Update/CmMemo", {
           cust: this.cust,
           Cmemo: this.Cmemo,
         })
@@ -886,11 +970,15 @@ export default {
   beforeCreate() {
     if (this.$route.params.CNO != "") {
       axios
-        .get("http://http://127.0.0.1:8000/api/search/CM/" + this.$route.params.CNO)
+        .get("http://127.0.0.1:8000/api/search/CM/" + this.$route.params.CNO)
         .then((response) => {
           console.log(response);
           this.cust = response.data[0];
           this.custT = response.data;
+          this.CusAddressC = response.data.CusAddressC;
+          this.CusAddressS = response.data.CusAddressS;
+          this.FittingAddC = response.data.FittingAddC;
+          this.FittingAddS = response.data.FittingAddS;
           if (response.data[0] == null) {
             const message = "此客編不存在";
             this.$router.push({ path: "/CM/sendSearch", params: { message } });
@@ -898,7 +986,7 @@ export default {
         }),
         axios
           .get(
-            "http://http://127.0.0.1:8000/api/search/CMCRFItems/" +
+            "http://127.0.0.1:8000/api/search/CMCRFItems/" +
               this.$route.params.CNO
           )
           .then((response) => {
@@ -914,32 +1002,32 @@ export default {
               this.space[i]["value"] = response.data[3][i];
           }),
         axios
-          .get("http://http://127.0.0.1:8000/api/search/CTD/客來源")
+          .get("http://127.0.0.1:8000/api/search/CTD/客來源")
           .then((response) => {
             console.log(response.data.Cust);
             this.CustType = response.data;
           }),
         axios
-          .get("http://http://127.0.0.1:8000/api/search/CTD/買原因")
+          .get("http://127.0.0.1:8000/api/search/CTD/買原因")
           .then((response) => {
             console.log(response.data);
             this.BuyReason = response.data;
           }),
         axios
-          .get("http://http://127.0.0.1:8000/api/search/CTD/成員組合")
+          .get("http://127.0.0.1:8000/api/search/CTD/成員組合")
           .then((response) => {
             console.log(response.data);
             this.Family = response.data;
           }),
         axios
-          .get("http://http://127.0.0.1:8000/api/search/CTD/屋型")
+          .get("http://127.0.0.1:8000/api/search/CTD/屋型")
           .then((response) => {
             console.log(response.data);
             this.HouseType = response.data;
           });
       axios
         .get(
-          "http://http://127.0.0.1:8000/api/search/CmMemo/" +
+          "http://127.0.0.1:8000/api/search/CmMemo/" +
             this.$route.params.CNO +
             "&&00"
         )

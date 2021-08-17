@@ -48,12 +48,13 @@
           <h4><label class="font-weight-bold">客戶名稱</label></h4>
          
           <table>
-            <th style="width: 90%">
+            <th style="width: 80%">
               <input
                 type="text"
                 class="form-control"
                 v-model="cust[0].CustName"
                 required
+                style="width:300px"
               />
             </th>
             <th style="padding: 5px">
@@ -79,12 +80,14 @@
             type="text"
             class="form-control"
             v-model="cust[0].COMPANY"
+            style="width:300px"
           /><br />
           <h4><label class="font-weight-bold">E-Mail</label></h4>
           <input
             type="text"
             class="form-control"
             v-model="cust[0].email"
+            style="width:300px"
           /><br />
           <h4><label class="font-weight-bold"  style="display:inline">通訊地址</label></h4>
           <input
@@ -122,6 +125,7 @@
             type="text"
             class="form-control"
             v-model="cust[0].BuildName"
+            style="width:300px"
           /><br />
         </div>
         <div class="col-md-3 mb-4" style="top: 50px;">

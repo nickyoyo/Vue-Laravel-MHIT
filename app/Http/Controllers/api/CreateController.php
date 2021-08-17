@@ -77,7 +77,7 @@ class CreateController extends Controller
                 'FavColor' => ($FavColor == NULL) ? '' : $FavColor,
                 'Budget' => ($data['Budget'] == NULL) ? '' : $data['Budget'],
                 'PorductType' => '',
-                'ZipCode' => '00000',
+                'ZipCode' => ($data['ZipCode'] == NULL) ? '' : $data['ZipCode'],
                 'LastUse' => ($data['LastUse'] == NULL) ? '' : $data['LastUse'],
                 'UserId' => $CH_ID,
                 'Designer' => $CH_ID,
