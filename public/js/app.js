@@ -30488,70 +30488,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=script&lang=js":
-/*!**************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=script&lang=js ***!
-  \**************************************************************************************************************************************************************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__, __webpack_require__.d, __webpack_require__.* */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
-/* harmony export */ });
-var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "Login",
-  data: function data() {
-    return {
-      addresschoose: [],
-      addressC: [],
-      addressS: [],
-      zip: [],
-      data: [],
-      street: [{
-        value: "empty"
-      }]
-    };
-  },
-  methods: {
-    send: function send() {
-      var _this = this;
-
-      this.addressC = this.addresschoose.縣市 + this.addresschoose.區鄉鎮市;
-      this.addressS = this.addresschoose.街路;
-      axios.get("http://127.0.0.1:8000/api/search/zip/" + this.addressC).then(function (response) {
-        console.log(response);
-        _this.zip = response.data;
-      });
-    },
-    close: function close() {},
-    getdata: function getdata() {
-      var _this2 = this;
-
-      axios.get("http://127.0.0.1:8000/api/search/zip/" + this.street[0].value).then(function (response) {
-        console.log(response.data);
-        _this2.data = response.data;
-      });
-    },
-    datasearch: function datasearch() {
-      var _this3 = this;
-
-      axios.get("http://127.0.0.1:8000/api/search/zip/" + this.street[0].value).then(function (response) {
-        console.log(response.data);
-        _this3.data = response.data;
-      });
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/About.vue?vue&type=script&lang=js":
 /*!************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/About.vue?vue&type=script&lang=js ***!
@@ -31582,6 +31518,154 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=script&lang=js":
+/*!*****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=script&lang=js ***!
+  \*****************************************************************************************************************************************************************************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "smallwindow",
+  data: function data() {
+    return {
+      addresschoose: [],
+      addressC: [],
+      addressS: [],
+      zip: [],
+      data: [],
+      street: [{
+        value: "empty"
+      }]
+    };
+  },
+  methods: {
+    send: function send() {
+      var _this = this;
+
+      this.addressC = this.addresschoose.縣市 + this.addresschoose.區鄉鎮市;
+      this.addressS = this.addresschoose.街路;
+      axios.get("http://127.0.0.1:8000/api/search/zip/" + this.addressC).then(function (response) {
+        console.log(response);
+        _this.zip = response.data;
+      });
+    },
+    close: function close() {},
+    getdata: function getdata() {
+      var _this2 = this;
+
+      axios.get("http://127.0.0.1:8000/api/search/zip/" + this.street[0].value).then(function (response) {
+        console.log(response.data);
+        _this2.data = response.data;
+      });
+    },
+    datasearch: function datasearch() {
+      var _this3 = this;
+
+      axios.get("http://127.0.0.1:8000/api/search/zip/" + this.street[0].value).then(function (response) {
+        console.log(response.data);
+        _this3.data = response.data;
+      });
+    }
+  },
+  mounted: function mounted() {
+    var _this4 = this;
+
+    axios.get("http://127.0.0.1:8000/api/search/zip/" + this.street[0].value).then(function (response) {
+      console.log(response.data);
+      _this4.data = response.data;
+    });
+    document.getElementById('sss').addEventListener('keydown', function (e) {
+      if (e.shiftKey) {
+        // this.getdata();
+        $("#ooo").modal('show');
+      }
+    }, false);
+    document.getElementById('ddd').addEventListener('keydown', function (e) {
+      if (e.shiftKey) {
+        // this.getdata();
+        $("#XXX").modal('show');
+      }
+    }, false);
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/smallwindow.vue?vue&type=script&lang=js":
+/*!*****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/smallwindow.vue?vue&type=script&lang=js ***!
+  \*****************************************************************************************************************************************************************************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "smallwindow",
+  data: function data() {
+    return {
+      addresschoose: [],
+      addressC: [],
+      addressS: [],
+      zip: [],
+      data: [],
+      street: [{
+        value: "empty"
+      }]
+    };
+  },
+  methods: {
+    send: function send() {
+      var _this = this;
+
+      this.addressC = this.addresschoose.縣市 + this.addresschoose.區鄉鎮市;
+      this.addressS = this.addresschoose.街路;
+      axios.get("http://127.0.0.1:8000/api/search/zip/" + this.addressC).then(function (response) {
+        console.log(response);
+        _this.zip = response.data;
+      });
+    },
+    close: function close() {},
+    getdata: function getdata() {
+      var _this2 = this;
+
+      axios.get("http://127.0.0.1:8000/api/search/zip/" + this.street[0].value).then(function (response) {
+        console.log(response.data);
+        _this2.data = response.data;
+      });
+    },
+    datasearch: function datasearch() {
+      var _this3 = this;
+
+      axios.get("http://127.0.0.1:8000/api/search/zip/" + this.street[0].value).then(function (response) {
+        console.log(response.data);
+        _this3.data = response.data;
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -31627,7 +31711,10 @@ app.use(_store__WEBPACK_IMPORTED_MODULE_1__.default); // Mount the App
 
 app.mount('#app'); // Done.....!
 
-keymaster__WEBPACK_IMPORTED_MODULE_2___default()('a', function () {}); // 回调函数返回 false 以阻止浏览器默认事件行为
+keymaster__WEBPACK_IMPORTED_MODULE_2___default()('a', function () {
+  alert('stopped reload!');
+  return false;
+}); // 回调函数返回 false 以阻止浏览器默认事件行为
 
 keymaster__WEBPACK_IMPORTED_MODULE_2___default()('ctrl+r', function () {
   alert('stopped reload!');
@@ -31662,6 +31749,33 @@ $("#ooo").modal('toggle'); //判斷視窗是否開啟中
 
 if ($("#ooo").hasClass('in')) {
   console.log('視窗目前是開啟的狀態..');
+} //
+
+
+$("#XXX").on("show.bs.modal", function (e) {
+  console.log('顯示視窗前呼叫');
+}); //轉場特效結束，已完全呈現時呼叫
+
+$("#XXX").on("shown.bs.modal", function (e) {
+  console.log('轉場特效結束，已完全呈現時呼叫');
+}); //關閉視窗前呼叫
+
+$("#XXX").on("hide.bs.modal", function (e) {
+  console.log('關閉視窗前呼叫');
+}); //轉場特效結束，已完全隱藏時呼叫
+
+$("#XXX").on("hidden.bs.modal", function (e) {
+  console.log('轉場特效結束，已完全隱藏時呼叫');
+}); //隱藏視窗
+
+$("#XXX").modal('hide'); //開啟視窗
+
+$("#XXX").modal('show'); //切換視窗顯示、不顯示
+
+$("#XXX").modal('toggle'); //判斷視窗是否開啟中
+
+if ($("#XXX").hasClass('in')) {
+  console.log('視窗目前是開啟的狀態..');
 }
 
 /***/ }),
@@ -31685,13 +31799,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_pages_About__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./views/pages/About */ "./resources/js/views/pages/About.vue");
 /* harmony import */ var _views_pages_Contact__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./views/pages/Contact */ "./resources/js/views/pages/Contact.vue");
 /* harmony import */ var _views_pages_Help__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./views/pages/Help */ "./resources/js/views/pages/Help.vue");
-/* harmony import */ var _views_layouts_Login__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./views/layouts/Login */ "./resources/js/views/layouts/Login.vue");
-/* harmony import */ var _views_pages_CM___WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./views/pages/CM接待自評 */ "./resources/js/views/pages/CM接待自評.vue");
-/* harmony import */ var _views_pages_CMcreate__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./views/pages/CMcreate */ "./resources/js/views/pages/CMcreate.vue");
-/* harmony import */ var _views_pages_CMsendSearch__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./views/pages/CMsendSearch */ "./resources/js/views/pages/CMsendSearch.vue");
-/* harmony import */ var _views_pages_CMpage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./views/pages/CMpage */ "./resources/js/views/pages/CMpage.vue");
-/* harmony import */ var _views_pages_PersonalData__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./views/pages/PersonalData */ "./resources/js/views/pages/PersonalData.vue");
+/* harmony import */ var _views_test_smallwindow__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./views/test/smallwindow */ "./resources/js/views/test/smallwindow.vue");
+/* harmony import */ var _views_test_quickButton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./views/test/quickButton */ "./resources/js/views/test/quickButton.vue");
+/* harmony import */ var _views_pages_CM___WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./views/pages/CM接待自評 */ "./resources/js/views/pages/CM接待自評.vue");
+/* harmony import */ var _views_pages_CMcreate__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./views/pages/CMcreate */ "./resources/js/views/pages/CMcreate.vue");
+/* harmony import */ var _views_pages_CMsendSearch__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./views/pages/CMsendSearch */ "./resources/js/views/pages/CMsendSearch.vue");
+/* harmony import */ var _views_pages_CMpage__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./views/pages/CMpage */ "./resources/js/views/pages/CMpage.vue");
+/* harmony import */ var _views_pages_PersonalData__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./views/pages/PersonalData */ "./resources/js/views/pages/PersonalData.vue");
 // Page Components
+
 
 
 
@@ -31720,28 +31836,32 @@ __webpack_require__.r(__webpack_exports__);
   name: 'Help'
 }, {
   path: "/CM/接待自評",
-  component: _views_pages_CM___WEBPACK_IMPORTED_MODULE_5__.default,
+  component: _views_pages_CM___WEBPACK_IMPORTED_MODULE_6__.default,
   name: 'CM接待自評'
 }, {
   path: "/CM/create",
-  component: _views_pages_CMcreate__WEBPACK_IMPORTED_MODULE_6__.default,
+  component: _views_pages_CMcreate__WEBPACK_IMPORTED_MODULE_7__.default,
   name: 'CMcreate'
 }, {
   path: "/CM/sendSearch",
-  component: _views_pages_CMsendSearch__WEBPACK_IMPORTED_MODULE_7__.default,
+  component: _views_pages_CMsendSearch__WEBPACK_IMPORTED_MODULE_8__.default,
   name: 'CMsendSearch'
 }, {
   path: "/CM/page",
-  component: _views_pages_CMpage__WEBPACK_IMPORTED_MODULE_8__.default,
+  component: _views_pages_CMpage__WEBPACK_IMPORTED_MODULE_9__.default,
   name: 'CMpage'
 }, {
   path: "/PersonalData",
-  component: _views_pages_PersonalData__WEBPACK_IMPORTED_MODULE_9__.default,
+  component: _views_pages_PersonalData__WEBPACK_IMPORTED_MODULE_10__.default,
   name: 'PersonalData'
 }, {
-  path: "/Login",
-  component: _views_layouts_Login__WEBPACK_IMPORTED_MODULE_4__.default,
-  name: 'Login'
+  path: "/smallwindow",
+  component: _views_test_smallwindow__WEBPACK_IMPORTED_MODULE_4__.default,
+  name: 'smallwindow'
+}, {
+  path: "/quickButton",
+  component: _views_test_quickButton__WEBPACK_IMPORTED_MODULE_5__.default,
+  name: 'quickButton'
 }]);
 
 /***/ }),
@@ -33224,36 +33344,6 @@ _Header_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__file 
 
 /***/ }),
 
-/***/ "./resources/js/views/layouts/Login.vue":
-/*!**********************************************!*\
-  !*** ./resources/js/views/layouts/Login.vue ***!
-  \**********************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
-/* harmony export */ });
-/* harmony import */ var _Login_vue_vue_type_template_id_a42cef58_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_send_options_close_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Login.vue?vue&type=template&id=a42cef58&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} */ "./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"send\":\"options\",\"close\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}");
-/* harmony import */ var _Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Login.vue?vue&type=script&lang=js */ "./resources/js/views/layouts/Login.vue?vue&type=script&lang=js");
-
-
-
-_Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _Login_vue_vue_type_template_id_a42cef58_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_send_options_close_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__.render
-/* hot reload */
-if (false) {}
-
-_Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__file = "resources/js/views/layouts/Login.vue"
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default);
-
-/***/ }),
-
 /***/ "./resources/js/views/pages/About.vue":
 /*!********************************************!*\
   !*** ./resources/js/views/pages/About.vue ***!
@@ -33539,6 +33629,66 @@ _PersonalData_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default._
 
 /***/ }),
 
+/***/ "./resources/js/views/test/quickButton.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/views/test/quickButton.vue ***!
+  \*************************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _quickButton_vue_vue_type_template_id_96631cfe_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_send_options_close_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./quickButton.vue?vue&type=template&id=96631cfe&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} */ "./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"send\":\"options\",\"close\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}");
+/* harmony import */ var _quickButton_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./quickButton.vue?vue&type=script&lang=js */ "./resources/js/views/test/quickButton.vue?vue&type=script&lang=js");
+
+
+
+_quickButton_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _quickButton_vue_vue_type_template_id_96631cfe_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_send_options_close_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* hot reload */
+if (false) {}
+
+_quickButton_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__file = "resources/js/views/test/quickButton.vue"
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_quickButton_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default);
+
+/***/ }),
+
+/***/ "./resources/js/views/test/smallwindow.vue":
+/*!*************************************************!*\
+  !*** ./resources/js/views/test/smallwindow.vue ***!
+  \*************************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony import */ var _smallwindow_vue_vue_type_template_id_bb14dc8e_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_send_options_close_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./smallwindow.vue?vue&type=template&id=bb14dc8e&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} */ "./resources/js/views/test/smallwindow.vue?vue&type=template&id=bb14dc8e&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"send\":\"options\",\"close\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}");
+/* harmony import */ var _smallwindow_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./smallwindow.vue?vue&type=script&lang=js */ "./resources/js/views/test/smallwindow.vue?vue&type=script&lang=js");
+
+
+
+_smallwindow_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _smallwindow_vue_vue_type_template_id_bb14dc8e_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_send_options_close_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* hot reload */
+if (false) {}
+
+_smallwindow_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__file = "resources/js/views/test/smallwindow.vue"
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_smallwindow_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default);
+
+/***/ }),
+
 /***/ "./resources/js/views/layouts/App.vue?vue&type=script&lang=js":
 /*!********************************************************************!*\
   !*** ./resources/js/views/layouts/App.vue?vue&type=script&lang=js ***!
@@ -33575,26 +33725,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Header_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__.default
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Header_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Header.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Header.vue?vue&type=script&lang=js");
- 
-
-/***/ }),
-
-/***/ "./resources/js/views/layouts/Login.vue?vue&type=script&lang=js":
-/*!**********************************************************************!*\
-  !*** ./resources/js/views/layouts/Login.vue?vue&type=script&lang=js ***!
-  \**********************************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=script&lang=js .default */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__.default
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Login.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=script&lang=js");
  
 
 /***/ }),
@@ -33779,6 +33909,46 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/views/test/quickButton.vue?vue&type=script&lang=js":
+/*!*************************************************************************!*\
+  !*** ./resources/js/views/test/quickButton.vue?vue&type=script&lang=js ***!
+  \*************************************************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=script&lang=js .default */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_quickButton_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__.default
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_quickButton_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./quickButton.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
+/***/ "./resources/js/views/test/smallwindow.vue?vue&type=script&lang=js":
+/*!*************************************************************************!*\
+  !*** ./resources/js/views/test/smallwindow.vue?vue&type=script&lang=js ***!
+  \*************************************************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/smallwindow.vue?vue&type=script&lang=js .default */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_smallwindow_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__.default
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_smallwindow_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./smallwindow.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/smallwindow.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./resources/js/views/layouts/App.vue?vue&type=style&index=0&lang=css":
 /*!****************************************************************************!*\
   !*** ./resources/js/views/layouts/App.vue?vue&type=style&index=0&lang=css ***!
@@ -33911,26 +34081,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Header_vue_vue_type_template_id_201dc39c_bindings_EMData_data_state_data_PD_options_LoginPD_options_LogoutPD_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Header_vue_vue_type_template_id_201dc39c_bindings_EMData_data_state_data_PD_options_LoginPD_options_LogoutPD_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Header.vue?vue&type=template&id=201dc39c&bindings={"EMData":"data","state":"data","PD":"options","LoginPD":"options","LogoutPD":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Header.vue?vue&type=template&id=201dc39c&bindings={\"EMData\":\"data\",\"state\":\"data\",\"PD\":\"options\",\"LoginPD\":\"options\",\"LogoutPD\":\"options\"}");
-
-
-/***/ }),
-
-/***/ "./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"send\":\"options\",\"close\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}":
-/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************/
-/*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} .render */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Login_vue_vue_type_template_id_a42cef58_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_send_options_close_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__.render
-/* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Login_vue_vue_type_template_id_a42cef58_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_send_options_close_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Login.vue?vue&type=template&id=a42cef58&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"send\":\"options\",\"close\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}");
 
 
 /***/ }),
@@ -34115,6 +34265,46 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"send\":\"options\",\"close\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}":
+/*!******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************/
+/*! namespace exports */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} .render */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_quickButton_vue_vue_type_template_id_96631cfe_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_send_options_close_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_quickButton_vue_vue_type_template_id_96631cfe_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_send_options_close_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./quickButton.vue?vue&type=template&id=96631cfe&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"send\":\"options\",\"close\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}");
+
+
+/***/ }),
+
+/***/ "./resources/js/views/test/smallwindow.vue?vue&type=template&id=bb14dc8e&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"send\":\"options\",\"close\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}":
+/*!******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/views/test/smallwindow.vue?vue&type=template&id=bb14dc8e&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************/
+/*! namespace exports */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/smallwindow.vue?vue&type=template&id=bb14dc8e&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} .render */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_smallwindow_vue_vue_type_template_id_bb14dc8e_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_send_options_close_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_smallwindow_vue_vue_type_template_id_bb14dc8e_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_send_options_close_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./smallwindow.vue?vue&type=template&id=bb14dc8e&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/smallwindow.vue?vue&type=template&id=bb14dc8e&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"send\":\"options\",\"close\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}");
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/App.vue?vue&type=template&id=06f98fcc&bindings={\"count\":\"setup\",\"increment\":\"setup\",\"decrement\":\"setup\"}":
 /*!******************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/App.vue?vue&type=template&id=06f98fcc&bindings={"count":"setup","increment":"setup","decrement":"setup"} ***!
@@ -34221,121 +34411,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, "登出", 8 /* PROPS */, ["hidden"])
     ])
   ]))
-}
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"send\":\"options\",\"close\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}":
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/layouts/Login.vue?vue&type=template&id=a42cef58&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* binding */ render
-/* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-
-
-const _hoisted_1 = {
-  id: "ooo",
-  class: "modal inmodal fade",
-  tabindex: "-1",
-  role: "dialog",
-  "aria-hidden": "true",
-  "data-backdrop": "static",
-  "data-keyboard": "true"
-}
-const _hoisted_2 = { class: "modal-dialog modal-lg" }
-const _hoisted_3 = { class: "modal-content" }
-const _hoisted_4 = { class: "modal-header" }
-const _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-  type: "button",
-  class: "close",
-  "data-dismiss": "modal"
-}, [
-  /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", null, "×")
-], -1 /* HOISTED */)
-const _hoisted_6 = { class: "modal-body" }
-const _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 街路: ")
-const _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
-
-function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [
-    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [
-      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [
-        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [
-          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [
-            _hoisted_5,
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [
-              _hoisted_7,
-              (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                type: "text",
-                class: "form-control",
-                style: {"width":"200px","display":"inline"},
-                "onUpdate:modelValue": _cache[1] || (_cache[1] = $event => ($data.street[0].value = $event))
-              }, null, 512 /* NEED_PATCH */), [
-                [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.street[0].value]
-              ]),
-              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-                onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.getdata(...args)), ["prevent"])),
-                style: {"display":"inline"},
-                class: "btn"
-              }, "查詢"),
-              _hoisted_8,
-              (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("select", {
-                "onUpdate:modelValue": _cache[3] || (_cache[3] = $event => ($data.addresschoose = $event))
-              }, [
-                ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.data, (item) => {
-                  return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
-                    value: item,
-                    key: item
-                  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.縣市) + "-" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.區鄉鎮市) + "-" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.街路), 9 /* TEXT, PROPS */, ["value"]))
-                }), 128 /* KEYED_FRAGMENT */))
-              ], 512 /* NEED_PATCH */), [
-                [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.addresschoose]
-              ]),
-              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-                onClick: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.send(...args)), ["prevent"])),
-                class: "btn"
-              }, "送出")
-            ])
-          ])
-        ])
-      ])
-    ]),
-    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 使用按鈕開啟  data-target"),
-    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-      type: "text",
-      class: "form-control",
-      style: {"width":"200px","display":"inline"},
-      "onUpdate:modelValue": _cache[5] || (_cache[5] = $event => ($data.addressC = $event)),
-      readonly: ""
-    }, null, 512 /* NEED_PATCH */), [
-      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.addressC]
-    ]),
-    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-      type: "text",
-      class: "form-control",
-      style: {"width":"200px","display":"inline"},
-      "onUpdate:modelValue": _cache[6] || (_cache[6] = $event => ($data.addressS = $event))
-    }, null, 512 /* NEED_PATCH */), [
-      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.addressS]
-    ]),
-    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-      onClick: _cache[7] || (_cache[7] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.getdata(...args)), ["prevent"])),
-      type: "button",
-      class: "btn btn-primary",
-      "data-toggle": "modal",
-      "data-target": "#ooo"
-    }, "YO")
-  ], 64 /* STABLE_FRAGMENT */))
 }
 
 /***/ }),
@@ -37508,8 +37583,8 @@ const _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)
 const _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("dd", null, null, -1 /* HOISTED */)
 const _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("dt", null, "TEST", -1 /* HOISTED */)
 const _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("員工資料")
-const _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("|功能B-修改特定需求")
-const _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("功能B-顯示剛修改需求")
+const _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("住址額外視窗")
+const _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("快捷鍵")
 const _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
 const _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
 
@@ -37548,7 +37623,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             })
           ]),
           (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("dd", null, [
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, { to: "/Login" }, {
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, { to: "/smallwindow" }, {
               default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
                 _hoisted_12
               ]),
@@ -37556,7 +37631,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             })
           ]),
           (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("dd", null, [
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, { to: "//CM/create" }, {
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, { to: "/quickButton" }, {
               default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
                 _hoisted_13
               ]),
@@ -37624,6 +37699,281 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       ])
     ])
   ]))
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"send\":\"options\",\"close\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! namespace exports */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* binding */ render
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+const _hoisted_1 = {
+  id: "ooo",
+  class: "modal inmodal fade",
+  tabindex: "-1",
+  role: "dialog",
+  "aria-hidden": "true",
+  "data-backdrop": "static",
+  "data-keyboard": "true"
+}
+const _hoisted_2 = { class: "modal-dialog modal-lg" }
+const _hoisted_3 = { class: "modal-content" }
+const _hoisted_4 = { class: "modal-header" }
+const _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+  type: "button",
+  class: "close",
+  "data-dismiss": "modal"
+}, [
+  /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", null, "×")
+], -1 /* HOISTED */)
+const _hoisted_6 = { class: "modal-body" }
+const _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 街路: ")
+const _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
+const _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 123 ")
+const _hoisted_10 = {
+  id: "XXX",
+  class: "modal inmodal fade",
+  tabindex: "-1",
+  role: "dialog",
+  "aria-hidden": "true",
+  "data-backdrop": "static",
+  "data-keyboard": "true"
+}
+const _hoisted_11 = { class: "modal-dialog modal-lg" }
+const _hoisted_12 = { class: "modal-content" }
+const _hoisted_13 = { class: "modal-header" }
+const _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+  type: "button",
+  class: "close",
+  "data-dismiss": "modal"
+}, [
+  /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", null, "×")
+], -1 /* HOISTED */)
+const _hoisted_15 = { class: "modal-body" }
+const _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 街路: ")
+const _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
+const _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 456 ")
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [
+      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [
+          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [
+            _hoisted_5,
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [
+              _hoisted_7,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                type: "text",
+                class: "form-control",
+                style: {"width":"200px","display":"inline"},
+                "onUpdate:modelValue": _cache[1] || (_cache[1] = $event => ($data.street[0].value = $event))
+              }, null, 512 /* NEED_PATCH */), [
+                [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.street[0].value]
+              ]),
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+                onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.getdata(...args)), ["prevent"])),
+                style: {"display":"inline"},
+                class: "btn"
+              }, "查詢"),
+              _hoisted_8,
+              _hoisted_9,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+                onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.send(...args)), ["prevent"])),
+                class: "btn"
+              }, "送出")
+            ])
+          ])
+        ])
+      ])
+    ]),
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [
+      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [
+          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_13, [
+            _hoisted_14,
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_15, [
+              _hoisted_16,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                type: "text",
+                class: "form-control",
+                style: {"width":"200px","display":"inline"},
+                "onUpdate:modelValue": _cache[4] || (_cache[4] = $event => ($data.street[0].value = $event))
+              }, null, 512 /* NEED_PATCH */), [
+                [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.street[0].value]
+              ]),
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+                onClick: _cache[5] || (_cache[5] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.getdata(...args)), ["prevent"])),
+                style: {"display":"inline"},
+                class: "btn"
+              }, "查詢"),
+              _hoisted_17,
+              _hoisted_18,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+                onClick: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.send(...args)), ["prevent"])),
+                class: "btn"
+              }, "送出")
+            ])
+          ])
+        ])
+      ])
+    ]),
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 使用按鈕開啟  data-target"),
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+      type: "text",
+      id: "sss",
+      class: "form-control",
+      style: {"width":"200px","display":"inline"},
+      "onUpdate:modelValue": _cache[7] || (_cache[7] = $event => ($data.addressS = $event))
+    }, null, 512 /* NEED_PATCH */), [
+      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.addressS]
+    ]),
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+      type: "text",
+      id: "ddd",
+      class: "form-control",
+      style: {"width":"200px","display":"inline"},
+      "onUpdate:modelValue": _cache[8] || (_cache[8] = $event => ($data.addressC = $event))
+    }, null, 512 /* NEED_PATCH */), [
+      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.addressC]
+    ]),
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+      onClick: _cache[9] || (_cache[9] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.getdata(...args)), ["prevent"])),
+      type: "button",
+      class: "btn btn-primary",
+      "data-toggle": "modal",
+      "data-target": "#ooo"
+    }, "YO")
+  ], 64 /* STABLE_FRAGMENT */))
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/smallwindow.vue?vue&type=template&id=bb14dc8e&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"send\":\"options\",\"close\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/smallwindow.vue?vue&type=template&id=bb14dc8e&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! namespace exports */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* binding */ render
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+const _hoisted_1 = {
+  id: "ooo",
+  class: "modal inmodal fade",
+  tabindex: "-1",
+  role: "dialog",
+  "aria-hidden": "true",
+  "data-backdrop": "static",
+  "data-keyboard": "true"
+}
+const _hoisted_2 = { class: "modal-dialog modal-lg" }
+const _hoisted_3 = { class: "modal-content" }
+const _hoisted_4 = { class: "modal-header" }
+const _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+  type: "button",
+  class: "close",
+  "data-dismiss": "modal"
+}, [
+  /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", null, "×")
+], -1 /* HOISTED */)
+const _hoisted_6 = { class: "modal-body" }
+const _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 街路: ")
+const _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [
+      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [
+          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [
+            _hoisted_5,
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [
+              _hoisted_7,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                type: "text",
+                class: "form-control",
+                style: {"width":"200px","display":"inline"},
+                "onUpdate:modelValue": _cache[1] || (_cache[1] = $event => ($data.street[0].value = $event))
+              }, null, 512 /* NEED_PATCH */), [
+                [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.street[0].value]
+              ]),
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+                onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.getdata(...args)), ["prevent"])),
+                style: {"display":"inline"},
+                class: "btn"
+              }, "查詢"),
+              _hoisted_8,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("select", {
+                "onUpdate:modelValue": _cache[3] || (_cache[3] = $event => ($data.addresschoose = $event))
+              }, [
+                ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.data, (item) => {
+                  return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
+                    value: item,
+                    key: item
+                  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.縣市) + "-" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.區鄉鎮市) + "-" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.街路), 9 /* TEXT, PROPS */, ["value"]))
+                }), 128 /* KEYED_FRAGMENT */))
+              ], 512 /* NEED_PATCH */), [
+                [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.addresschoose]
+              ]),
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+                onClick: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.send(...args)), ["prevent"])),
+                class: "btn"
+              }, "送出")
+            ])
+          ])
+        ])
+      ])
+    ]),
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" 使用按鈕開啟  data-target"),
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+      type: "text",
+      class: "form-control",
+      style: {"width":"200px","display":"inline"},
+      "onUpdate:modelValue": _cache[5] || (_cache[5] = $event => ($data.addressC = $event)),
+      readonly: ""
+    }, null, 512 /* NEED_PATCH */), [
+      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.addressC]
+    ]),
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+      type: "text",
+      class: "form-control",
+      style: {"width":"200px","display":"inline"},
+      "onUpdate:modelValue": _cache[6] || (_cache[6] = $event => ($data.addressS = $event))
+    }, null, 512 /* NEED_PATCH */), [
+      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.addressS]
+    ]),
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+      onClick: _cache[7] || (_cache[7] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.getdata(...args)), ["prevent"])),
+      type: "button",
+      class: "btn btn-primary",
+      "data-toggle": "modal",
+      "data-target": "#ooo"
+    }, "YO")
+  ], 64 /* STABLE_FRAGMENT */))
 }
 
 /***/ }),

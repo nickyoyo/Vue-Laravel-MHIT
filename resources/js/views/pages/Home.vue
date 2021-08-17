@@ -15,8 +15,8 @@
                     <dl>
 						<dt>TEST</dt> 
 						<dd><router-link to="/PersonalData" >員工資料</router-link></dd>
-                        <dd><router-link to="/Login" >|功能B-修改特定需求</router-link></dd>
-                        <dd><router-link to="//CM/create">功能B-顯示剛修改需求</router-link></dd>
+                        <dd><router-link to="/smallwindow" >住址額外視窗</router-link></dd>
+                        <dd><router-link to="/quickButton">快捷鍵</router-link></dd>
                     </dl>
                 </li> 
             </ul>

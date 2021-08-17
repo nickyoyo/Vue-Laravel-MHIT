@@ -4,7 +4,8 @@ import About from "./views/pages/About";
 import Contact from "./views/pages/Contact";
 import Help from "./views/pages/Help";
 
-import Login from "./views/layouts/Login";
+import smallwindow from "./views/test/smallwindow";
+import quickButton from "./views/test/quickButton";
 
 import CM接待自評 from "./views/pages/CM接待自評";
 import CMcreate from "./views/pages/CMcreate";
@@ -27,6 +28,7 @@ export default [
 
     { path: "/PersonalData", component: PersonalData, name: 'PersonalData' },
 
-    { path: "/Login", component: Login, name: 'Login' },
+    { path: "/smallwindow", component: smallwindow, name: 'smallwindow' },
+    { path: "/quickButton", component: quickButton, name: 'quickButton' },
 
 ];

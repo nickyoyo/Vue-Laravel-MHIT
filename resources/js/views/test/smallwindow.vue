@@ -36,7 +36,7 @@
 <script>
   const axios = require("axios");
 export default {
-  name: "Login",
+  name: "smallwindow",
   data() {
     return {
       addresschoose:[],
