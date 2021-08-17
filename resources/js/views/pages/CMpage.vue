@@ -961,7 +961,7 @@ export default {
         .catch(function (response) {
           console.log(response);
         });
-      this.$router.push({ name: "Home" });
+      this.$router.replace({ name: "Home" });
     },
   },
   props: {

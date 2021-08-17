@@ -31156,7 +31156,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       })["catch"](function (response) {
         console.log(response);
       });
-      this.$router.push({
+      this.$router.replace({
         name: "Home"
       });
     }
@@ -34178,32 +34178,24 @@ const _hoisted_1 = {
   class: "row",
   style: {"height":"60px","padding":"8px 50px 10px 50px"}
 }
-const _hoisted_2 = {
+const _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   class: "col-md-6 mb-4",
   style: {"font-size":"30px"}
-}
-const _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("MHIT")
-const _hoisted_4 = {
+}, [
+  /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
+    href: "/",
+    style: {"color":"white"}
+  }, "MHIT")
+], -1 /* HOISTED */)
+const _hoisted_3 = {
   class: "col-md-6 mb-4",
   style: {"text-align":"right","font-size":"30px"}
 }
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  const _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link")
-
   return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("header", _hoisted_1, [
-    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [
-      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-        to: "/",
-        style: {"color":"white"}
-      }, {
-        default: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(() => [
-          _hoisted_3
-        ]),
-        _: 1
-      })
-    ]),
-    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [
+    _hoisted_2,
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [
       (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
         href: "/auth/google",
         style: {"color":"white"},
