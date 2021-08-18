@@ -85,6 +85,7 @@ export default {
       ],
       addressS:[],
       street:[{value:"empty"}],
+
     };
   },
   methods: {
@@ -105,14 +106,6 @@ export default {
             this.data = response.data;
           });
     },
-    datasearch: function(){
-           axios
-          .get("http://127.0.0.1:8000/api/search/zip/"+this.street[0].value)
-          .then((response) => {
-            console.log(response.data);
-            this.data = response.data;
-          });
-    }
   },
   mounted() {
         axios

@@ -13,15 +13,15 @@
                     class="form-control"
                     style="width: 200px;display:inline"
                     v-model="street[0].value"
-                /><button  @click.prevent="getcusaddress" style="display:inline" class="btn">查詢</button><br>
-                  <select v-model="addresschoose"> 
+                /><button  @click.prevent="getaddress" style="display:inline" class="btn">查詢</button><br>
+                  <select v-model="addresschoose" :hidden="stateA==1"> 
                     <option
                       v-for="item in data" :value="item" :key="item"
                     >
                         {{ item.縣市 }}-{{ item.區鄉鎮市 }}-{{ item.街路}}
                     </option>
                   </select>
-            <button  @click.prevent="sendaddress" class="btn" data-dismiss="modal">送出</button>
+            <button  @click.prevent="sendaddress" class="btn" data-dismiss="modal" :hidden="stateA==1">送出</button>
           </div>
           </div>
         </div>
@@ -861,28 +861,30 @@ export default {
       addresschoose:[],
       data:[],
       zip:[],
-      street:[{value:"empty"}],
-      addressState:true
+      street:[{value:""}],
+      addressState:true,
+      stateA:1
     };
   },
   methods: {
-      getcusaddress: function(){
-        axios
+    getaddress: function(){
+          axios
           .get("http://127.0.0.1:8000/api/search/zip/"+this.street[0].value)
           .then((response) => {
             console.log(response.data);
             this.data = response.data;
           });
+           this.stateA=2;
+    },
+    getcusaddress: function(){
       this.addressState=true;
+      this.stateA=1;
+      this.street[0].value="";
     },
     getfitaddress: function(){
-        axios
-          .get("http://127.0.0.1:8000/api/search/zip/"+this.street[0].value)
-          .then((response) => {
-            console.log(response.data);
-            this.data = response.data;
-          });
         this.addressState=false;
+        this.stateA=1;
+         this.street[0].value="";
     },
     sendaddress: function () {
       if(this.addressState==true){

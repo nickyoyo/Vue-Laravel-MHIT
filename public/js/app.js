@@ -15901,30 +15901,32 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       street: [{
         value: "empty"
       }],
-      addressState: true
+      addressState: true,
+      stateA: 1
     };
   },
   methods: {
-    getcusaddress: function getcusaddress() {
+    getaddress: function getaddress() {
       var _this = this;
 
       axios.get("http://127.0.0.1:8000/api/search/zip/" + this.street[0].value).then(function (response) {
         console.log(response.data);
         _this.data = response.data;
       });
+      this.stateA = 2;
+    },
+    getcusaddress: function getcusaddress() {
       this.addressState = true;
+      this.stateA = 1;
+      this.street[0].value = "";
     },
     getfitaddress: function getfitaddress() {
-      var _this2 = this;
-
-      axios.get("http://127.0.0.1:8000/api/search/zip/" + this.street[0].value).then(function (response) {
-        console.log(response.data);
-        _this2.data = response.data;
-      });
       this.addressState = false;
+      this.stateA = 1;
+      this.street[0].value = "";
     },
     sendaddress: function sendaddress() {
-      var _this3 = this;
+      var _this2 = this;
 
       if (this.addressState == true) {
         this.CusAddressC = this.addresschoose.縣市 + this.addresschoose.區鄉鎮市;
@@ -15932,8 +15934,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         this.cust[0].CusAddress = this.addresschoose.縣市 + this.addresschoose.區鄉鎮市 + this.addresschoose.街路;
         axios.get("http://127.0.0.1:8000/api/search/zip/" + this.CusAddressC).then(function (response) {
           console.log(response.data);
-          _this3.cust[0].ZipCode = response.data;
-          _this3.zip = response.data;
+          _this2.cust[0].ZipCode = response.data;
+          _this2.zip = response.data;
         });
       }
 
@@ -15982,20 +15984,20 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     msg: String
   },
   beforeCreate: function beforeCreate() {
-    var _this4 = this;
+    var _this3 = this;
 
     axios.get("http://127.0.0.1:8000/api/search/CTD/客來源").then(function (response) {
       console.log(response.data.Cust);
-      _this4.CustType = response.data;
+      _this3.CustType = response.data;
     }), axios.get("http://127.0.0.1:8000/api/search/CTD/買原因").then(function (response) {
       console.log(response.data);
-      _this4.BuyReason = response.data;
+      _this3.BuyReason = response.data;
     }), axios.get("http://127.0.0.1:8000/api/search/CTD/成員組合").then(function (response) {
       console.log(response.data);
-      _this4.Family = response.data;
+      _this3.Family = response.data;
     }), axios.get("http://127.0.0.1:8000/api/search/CTD/屋型").then(function (response) {
       console.log(response.data);
-      _this4.HouseType = response.data;
+      _this3.HouseType = response.data;
     });
   }
 });
@@ -16189,32 +16191,34 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       data: [],
       zip: [],
       street: [{
-        value: "empty"
+        value: ""
       }],
-      addressState: true
+      addressState: true,
+      stateA: 1
     };
   },
   methods: {
-    getcusaddress: function getcusaddress() {
+    getaddress: function getaddress() {
       var _this = this;
 
       axios.get("http://127.0.0.1:8000/api/search/zip/" + this.street[0].value).then(function (response) {
         console.log(response.data);
         _this.data = response.data;
       });
+      this.stateA = 2;
+    },
+    getcusaddress: function getcusaddress() {
       this.addressState = true;
+      this.stateA = 1;
+      this.street[0].value = "";
     },
     getfitaddress: function getfitaddress() {
-      var _this2 = this;
-
-      axios.get("http://127.0.0.1:8000/api/search/zip/" + this.street[0].value).then(function (response) {
-        console.log(response.data);
-        _this2.data = response.data;
-      });
       this.addressState = false;
+      this.stateA = 1;
+      this.street[0].value = "";
     },
     sendaddress: function sendaddress() {
-      var _this3 = this;
+      var _this2 = this;
 
       if (this.addressState == true) {
         this.custT.CusAddressC = this.addresschoose.縣市 + this.addresschoose.區鄉鎮市;
@@ -16222,8 +16226,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         this.cust.CusAddress = this.addresschoose.縣市 + this.addresschoose.區鄉鎮市 + this.addresschoose.街路;
         axios.get("http://127.0.0.1:8000/api/search/zip/" + this.CusAddressC).then(function (response) {
           console.log(response.data);
-          _this3.cust.ZipCode = response.data;
-          _this3.zip = response.data;
+          _this2.cust.ZipCode = response.data;
+          _this2.zip = response.data;
         });
       }
 
@@ -16290,22 +16294,22 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     msg: String
   },
   beforeCreate: function beforeCreate() {
-    var _this4 = this;
+    var _this3 = this;
 
     if (this.$route.params.CNO != "") {
       axios.get("http://127.0.0.1:8000/api/search/CM/" + this.$route.params.CNO).then(function (response) {
         console.log(response);
-        _this4.cust = response.data[0];
-        _this4.custT = response.data;
-        _this4.CusAddressC = response.data.CusAddressC;
-        _this4.CusAddressS = response.data.CusAddressS;
-        _this4.FittingAddC = response.data.FittingAddC;
-        _this4.FittingAddS = response.data.FittingAddS;
+        _this3.cust = response.data[0];
+        _this3.custT = response.data;
+        _this3.CusAddressC = response.data.CusAddressC;
+        _this3.CusAddressS = response.data.CusAddressS;
+        _this3.FittingAddC = response.data.FittingAddC;
+        _this3.FittingAddS = response.data.FittingAddS;
 
         if (response.data[0] == null) {
           var message = "此客編不存在";
 
-          _this4.$router.push({
+          _this3.$router.push({
             path: "/CM/sendSearch",
             params: {
               message: message
@@ -16316,36 +16320,36 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         console.log(response.data);
 
         for (var i = 0; i < 4; i++) {
-          _this4.UseExp[i]["value"] = response.data[0][i];
+          _this3.UseExp[i]["value"] = response.data[0][i];
         }
 
         for (var _i = 0; _i < 5; _i++) {
-          _this4.UDS[_i]["value"] = response.data[1][_i];
+          _this3.UDS[_i]["value"] = response.data[1][_i];
         }
 
         for (var _i2 = 0; _i2 < 6; _i2++) {
-          _this4.likeStyle[_i2]["value"] = response.data[2][_i2];
+          _this3.likeStyle[_i2]["value"] = response.data[2][_i2];
         }
 
         for (var _i3 = 0; _i3 < 9; _i3++) {
-          _this4.space[_i3]["value"] = response.data[3][_i3];
+          _this3.space[_i3]["value"] = response.data[3][_i3];
         }
       }), axios.get("http://127.0.0.1:8000/api/search/CTD/客來源").then(function (response) {
         console.log(response.data.Cust);
-        _this4.CustType = response.data;
+        _this3.CustType = response.data;
       }), axios.get("http://127.0.0.1:8000/api/search/CTD/買原因").then(function (response) {
         console.log(response.data);
-        _this4.BuyReason = response.data;
+        _this3.BuyReason = response.data;
       }), axios.get("http://127.0.0.1:8000/api/search/CTD/成員組合").then(function (response) {
         console.log(response.data);
-        _this4.Family = response.data;
+        _this3.Family = response.data;
       }), axios.get("http://127.0.0.1:8000/api/search/CTD/屋型").then(function (response) {
         console.log(response.data);
-        _this4.HouseType = response.data;
+        _this3.HouseType = response.data;
       });
       axios.get("http://127.0.0.1:8000/api/search/CmMemo/" + this.$route.params.CNO + "&&00").then(function (response) {
         console.log(response.data);
-        _this4.Cmemo = response.data;
+        _this3.Cmemo = response.data;
       });
     } else {
       var message = "此客編不存在";
@@ -16707,10 +16711,10 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=script&lang=js":
-/*!*****************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=script&lang=js ***!
-  \*****************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/BVTest.vue?vue&type=script&lang=js":
+/*!************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/BVTest.vue?vue&type=script&lang=js ***!
+  \************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export default [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -16792,6 +16796,83 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=script&lang=js":
+/*!*****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=script&lang=js ***!
+  \*****************************************************************************************************************************************************************************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "smallwindow",
+  data: function data() {
+    return {
+      addressC: [{
+        a: "1",
+        b: "2"
+      }],
+      addressS: [],
+      street: [{
+        value: "empty"
+      }]
+    };
+  },
+  methods: {
+    send: function send() {
+      this.item.a = this.addresschoose.縣市 + this.addresschoose.區鄉鎮市;
+      this.addressS = this.addresschoose.街路;
+      axios;
+    },
+    addArray: function addArray() {
+      var arr = {
+        a: "1",
+        b: "2"
+      };
+      this.addressC.push(arr);
+    },
+    getdata: function getdata() {
+      var _this = this;
+
+      axios.get("http://127.0.0.1:8000/api/search/zip/" + this.street[0].value).then(function (response) {
+        console.log(response.data);
+        _this.data = response.data;
+      });
+    }
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    axios.get("http://127.0.0.1:8000/api/search/zip/" + this.street[0].value).then(function (response) {
+      console.log(response.data);
+      _this2.data = response.data;
+    });
+    document.getElementById('sss').addEventListener('keydown', function (e) {
+      if (e.shiftKey) {
+        // this.getdata();
+        $("#ooo").modal('show');
+      }
+    }, false);
+    document.getElementById('ddd').addEventListener('keydown', function (e) {
+      if (e.shiftKey) {
+        // this.getdata();
+        $("#XXX").modal('show');
+      }
+    }, false);
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/smallwindow.vue?vue&type=script&lang=js":
 /*!*****************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/smallwindow.vue?vue&type=script&lang=js ***!
@@ -16819,8 +16900,9 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       zip: [],
       data: [],
       street: [{
-        value: "empty"
-      }]
+        value: ""
+      }],
+      state: 1
     };
   },
   methods: {
@@ -16834,21 +16916,13 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         _this.zip = response.data;
       });
     },
-    close: function close() {},
-    getdata: function getdata() {
+    searchdata: function searchdata() {
       var _this2 = this;
 
+      this.state = 2;
       axios.get("http://127.0.0.1:8000/api/search/zip/" + this.street[0].value).then(function (response) {
         console.log(response.data);
         _this2.data = response.data;
-      });
-    },
-    datasearch: function datasearch() {
-      var _this3 = this;
-
-      axios.get("http://127.0.0.1:8000/api/search/zip/" + this.street[0].value).then(function (response) {
-        console.log(response.data);
-        _this3.data = response.data;
       });
     }
   }
@@ -18323,7 +18397,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _CMcreate_vue_vue_type_template_id_067ad3e0_bindings_isdisable_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_test_data_addresschoose_data_CusAddressC_data_CusAddressS_data_FittingAddC_data_FittingAddS_data_data_data_zip_data_street_data_addressState_data_getcusaddress_options_getfitaddress_options_sendaddress_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CMcreate.vue?vue&type=template&id=067ad3e0&bindings={"isdisable":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","test":"data","addresschoose":"data","CusAddressC":"data","CusAddressS":"data","FittingAddC":"data","FittingAddS":"data","data":"data","zip":"data","street":"data","addressState":"data","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","save":"options","msg":"props"} */ "./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={\"isdisable\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"test\":\"data\",\"addresschoose\":\"data\",\"CusAddressC\":\"data\",\"CusAddressS\":\"data\",\"FittingAddC\":\"data\",\"FittingAddS\":\"data\",\"data\":\"data\",\"zip\":\"data\",\"street\":\"data\",\"addressState\":\"data\",\"getcusaddress\":\"options\",\"getfitaddress\":\"options\",\"sendaddress\":\"options\",\"save\":\"options\",\"msg\":\"props\"}");
+/* harmony import */ var _CMcreate_vue_vue_type_template_id_067ad3e0_bindings_isdisable_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_test_data_addresschoose_data_CusAddressC_data_CusAddressS_data_FittingAddC_data_FittingAddS_data_data_data_zip_data_street_data_addressState_data_stateA_data_getaddress_options_getcusaddress_options_getfitaddress_options_sendaddress_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CMcreate.vue?vue&type=template&id=067ad3e0&bindings={"isdisable":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","test":"data","addresschoose":"data","CusAddressC":"data","CusAddressS":"data","FittingAddC":"data","FittingAddS":"data","data":"data","zip":"data","street":"data","addressState":"data","stateA":"data","getaddress":"options","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","save":"options","msg":"props"} */ "./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={\"isdisable\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"test\":\"data\",\"addresschoose\":\"data\",\"CusAddressC\":\"data\",\"CusAddressS\":\"data\",\"FittingAddC\":\"data\",\"FittingAddS\":\"data\",\"data\":\"data\",\"zip\":\"data\",\"street\":\"data\",\"addressState\":\"data\",\"stateA\":\"data\",\"getaddress\":\"options\",\"getcusaddress\":\"options\",\"getfitaddress\":\"options\",\"sendaddress\":\"options\",\"save\":\"options\",\"msg\":\"props\"}");
 /* harmony import */ var _CMcreate_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CMcreate.vue?vue&type=script&lang=js */ "./resources/js/views/pages/CMcreate.vue?vue&type=script&lang=js");
 /* harmony import */ var _CMcreate_vue_vue_type_style_index_0_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CMcreate.vue?vue&type=style&index=0&lang=css */ "./resources/js/views/pages/CMcreate.vue?vue&type=style&index=0&lang=css");
 
@@ -18331,7 +18405,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-_CMcreate_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _CMcreate_vue_vue_type_template_id_067ad3e0_bindings_isdisable_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_test_data_addresschoose_data_CusAddressC_data_CusAddressS_data_FittingAddC_data_FittingAddS_data_data_data_zip_data_street_data_addressState_data_getcusaddress_options_getfitaddress_options_sendaddress_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__.render
+_CMcreate_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _CMcreate_vue_vue_type_template_id_067ad3e0_bindings_isdisable_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_test_data_addresschoose_data_CusAddressC_data_CusAddressS_data_FittingAddC_data_FittingAddS_data_data_data_zip_data_street_data_addressState_data_stateA_data_getaddress_options_getcusaddress_options_getfitaddress_options_sendaddress_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__.render
 /* hot reload */
 if (false) {}
 
@@ -18356,7 +18430,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _CMpage_vue_vue_type_template_id_79664523_bindings_state_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_custT_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_addresschoose_data_data_data_zip_data_street_data_addressState_data_getcusaddress_options_getfitaddress_options_sendaddress_options_Modify_options_FClear_options_LClear_options_WClear_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CMpage.vue?vue&type=template&id=79664523&bindings={"state":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","custT":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","addresschoose":"data","data":"data","zip":"data","street":"data","addressState":"data","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","Modify":"options","FClear":"options","LClear":"options","WClear":"options","save":"options","msg":"props"} */ "./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={\"state\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"custT\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"addresschoose\":\"data\",\"data\":\"data\",\"zip\":\"data\",\"street\":\"data\",\"addressState\":\"data\",\"getcusaddress\":\"options\",\"getfitaddress\":\"options\",\"sendaddress\":\"options\",\"Modify\":\"options\",\"FClear\":\"options\",\"LClear\":\"options\",\"WClear\":\"options\",\"save\":\"options\",\"msg\":\"props\"}");
+/* harmony import */ var _CMpage_vue_vue_type_template_id_79664523_bindings_state_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_custT_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_addresschoose_data_data_data_zip_data_street_data_addressState_data_stateA_data_getaddress_options_getcusaddress_options_getfitaddress_options_sendaddress_options_Modify_options_FClear_options_LClear_options_WClear_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CMpage.vue?vue&type=template&id=79664523&bindings={"state":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","custT":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","addresschoose":"data","data":"data","zip":"data","street":"data","addressState":"data","stateA":"data","getaddress":"options","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","Modify":"options","FClear":"options","LClear":"options","WClear":"options","save":"options","msg":"props"} */ "./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={\"state\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"custT\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"addresschoose\":\"data\",\"data\":\"data\",\"zip\":\"data\",\"street\":\"data\",\"addressState\":\"data\",\"stateA\":\"data\",\"getaddress\":\"options\",\"getcusaddress\":\"options\",\"getfitaddress\":\"options\",\"sendaddress\":\"options\",\"Modify\":\"options\",\"FClear\":\"options\",\"LClear\":\"options\",\"WClear\":\"options\",\"save\":\"options\",\"msg\":\"props\"}");
 /* harmony import */ var _CMpage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CMpage.vue?vue&type=script&lang=js */ "./resources/js/views/pages/CMpage.vue?vue&type=script&lang=js");
 /* harmony import */ var _CMpage_vue_vue_type_style_index_0_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CMpage.vue?vue&type=style&index=0&lang=css */ "./resources/js/views/pages/CMpage.vue?vue&type=style&index=0&lang=css");
 
@@ -18364,7 +18438,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-_CMpage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _CMpage_vue_vue_type_template_id_79664523_bindings_state_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_custT_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_addresschoose_data_data_data_zip_data_street_data_addressState_data_getcusaddress_options_getfitaddress_options_sendaddress_options_Modify_options_FClear_options_LClear_options_WClear_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__.render
+_CMpage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _CMpage_vue_vue_type_template_id_79664523_bindings_state_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_custT_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_addresschoose_data_data_data_zip_data_street_data_addressState_data_stateA_data_getaddress_options_getcusaddress_options_getfitaddress_options_sendaddress_options_Modify_options_FClear_options_LClear_options_WClear_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__.render
 /* hot reload */
 if (false) {}
 
@@ -18570,7 +18644,7 @@ _PersonalData_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default._
 /*! namespace exports */
 /*! export default [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
+/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -18578,10 +18652,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-const script = {}
-script.__file = "resources/js/views/test/BVTest.vue"
+/* harmony import */ var _BVTest_vue_vue_type_template_id_2d534974_bindings_addressC_data_addressS_data_street_data_send_options_addArray_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BVTest.vue?vue&type=template&id=2d534974&bindings={"addressC":"data","addressS":"data","street":"data","send":"options","addArray":"options","getdata":"options","datasearch":"options"} */ "./resources/js/views/test/BVTest.vue?vue&type=template&id=2d534974&bindings={\"addressC\":\"data\",\"addressS\":\"data\",\"street\":\"data\",\"send\":\"options\",\"addArray\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}");
+/* harmony import */ var _BVTest_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BVTest.vue?vue&type=script&lang=js */ "./resources/js/views/test/BVTest.vue?vue&type=script&lang=js");
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (script);
+
+
+_BVTest_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _BVTest_vue_vue_type_template_id_2d534974_bindings_addressC_data_addressS_data_street_data_send_options_addArray_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* hot reload */
+if (false) {}
+
+_BVTest_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__file = "resources/js/views/test/BVTest.vue"
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_BVTest_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default);
 
 /***/ }),
 
@@ -18600,12 +18682,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _quickButton_vue_vue_type_template_id_96631cfe_bindings_addressC_data_addressS_data_street_data_send_options_addArray_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./quickButton.vue?vue&type=template&id=96631cfe&bindings={"addressC":"data","addressS":"data","street":"data","send":"options","addArray":"options","getdata":"options","datasearch":"options"} */ "./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={\"addressC\":\"data\",\"addressS\":\"data\",\"street\":\"data\",\"send\":\"options\",\"addArray\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}");
+/* harmony import */ var _quickButton_vue_vue_type_template_id_96631cfe_bindings_addressC_data_addressS_data_street_data_send_options_addArray_options_getdata_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./quickButton.vue?vue&type=template&id=96631cfe&bindings={"addressC":"data","addressS":"data","street":"data","send":"options","addArray":"options","getdata":"options"} */ "./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={\"addressC\":\"data\",\"addressS\":\"data\",\"street\":\"data\",\"send\":\"options\",\"addArray\":\"options\",\"getdata\":\"options\"}");
 /* harmony import */ var _quickButton_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./quickButton.vue?vue&type=script&lang=js */ "./resources/js/views/test/quickButton.vue?vue&type=script&lang=js");
 
 
 
-_quickButton_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _quickButton_vue_vue_type_template_id_96631cfe_bindings_addressC_data_addressS_data_street_data_send_options_addArray_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__.render
+_quickButton_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _quickButton_vue_vue_type_template_id_96631cfe_bindings_addressC_data_addressS_data_street_data_send_options_addArray_options_getdata_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* hot reload */
 if (false) {}
 
@@ -18630,12 +18712,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _smallwindow_vue_vue_type_template_id_bb14dc8e_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_send_options_close_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./smallwindow.vue?vue&type=template&id=bb14dc8e&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} */ "./resources/js/views/test/smallwindow.vue?vue&type=template&id=bb14dc8e&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"send\":\"options\",\"close\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}");
+/* harmony import */ var _smallwindow_vue_vue_type_template_id_bb14dc8e_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_state_data_send_options_searchdata_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./smallwindow.vue?vue&type=template&id=bb14dc8e&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","state":"data","send":"options","searchdata":"options"} */ "./resources/js/views/test/smallwindow.vue?vue&type=template&id=bb14dc8e&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"state\":\"data\",\"send\":\"options\",\"searchdata\":\"options\"}");
 /* harmony import */ var _smallwindow_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./smallwindow.vue?vue&type=script&lang=js */ "./resources/js/views/test/smallwindow.vue?vue&type=script&lang=js");
 
 
 
-_smallwindow_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _smallwindow_vue_vue_type_template_id_bb14dc8e_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_send_options_close_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__.render
+_smallwindow_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _smallwindow_vue_vue_type_template_id_bb14dc8e_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_state_data_send_options_searchdata_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* hot reload */
 if (false) {}
 
@@ -18865,6 +18947,26 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/views/test/BVTest.vue?vue&type=script&lang=js":
+/*!********************************************************************!*\
+  !*** ./resources/js/views/test/BVTest.vue?vue&type=script&lang=js ***!
+  \********************************************************************/
+/*! namespace exports */
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/BVTest.vue?vue&type=script&lang=js .default */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => /* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BVTest_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__.default
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BVTest_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./BVTest.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/BVTest.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./resources/js/views/test/quickButton.vue?vue&type=script&lang=js":
 /*!*************************************************************************!*\
   !*** ./resources/js/views/test/quickButton.vue?vue&type=script&lang=js ***!
@@ -19061,12 +19163,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={\"isdisable\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"test\":\"data\",\"addresschoose\":\"data\",\"CusAddressC\":\"data\",\"CusAddressS\":\"data\",\"FittingAddC\":\"data\",\"FittingAddS\":\"data\",\"data\":\"data\",\"zip\":\"data\",\"street\":\"data\",\"addressState\":\"data\",\"getcusaddress\":\"options\",\"getfitaddress\":\"options\",\"sendaddress\":\"options\",\"save\":\"options\",\"msg\":\"props\"}":
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={"isdisable":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","test":"data","addresschoose":"data","CusAddressC":"data","CusAddressS":"data","FittingAddC":"data","FittingAddS":"data","data":"data","zip":"data","street":"data","addressState":"data","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","save":"options","msg":"props"} ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={\"isdisable\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"test\":\"data\",\"addresschoose\":\"data\",\"CusAddressC\":\"data\",\"CusAddressS\":\"data\",\"FittingAddC\":\"data\",\"FittingAddS\":\"data\",\"data\":\"data\",\"zip\":\"data\",\"street\":\"data\",\"addressState\":\"data\",\"stateA\":\"data\",\"getaddress\":\"options\",\"getcusaddress\":\"options\",\"getfitaddress\":\"options\",\"sendaddress\":\"options\",\"save\":\"options\",\"msg\":\"props\"}":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={"isdisable":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","test":"data","addresschoose":"data","CusAddressC":"data","CusAddressS":"data","FittingAddC":"data","FittingAddS":"data","data":"data","zip":"data","street":"data","addressState":"data","stateA":"data","getaddress":"options","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","save":"options","msg":"props"} ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={"isdisable":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","test":"data","addresschoose":"data","CusAddressC":"data","CusAddressS":"data","FittingAddC":"data","FittingAddS":"data","data":"data","zip":"data","street":"data","addressState":"data","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","save":"options","msg":"props"} .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={"isdisable":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","test":"data","addresschoose":"data","CusAddressC":"data","CusAddressS":"data","FittingAddC":"data","FittingAddS":"data","data":"data","zip":"data","street":"data","addressState":"data","stateA":"data","getaddress":"options","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","save":"options","msg":"props"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -19074,19 +19176,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CMcreate_vue_vue_type_template_id_067ad3e0_bindings_isdisable_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_test_data_addresschoose_data_CusAddressC_data_CusAddressS_data_FittingAddC_data_FittingAddS_data_data_data_zip_data_street_data_addressState_data_getcusaddress_options_getfitaddress_options_sendaddress_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CMcreate_vue_vue_type_template_id_067ad3e0_bindings_isdisable_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_test_data_addresschoose_data_CusAddressC_data_CusAddressS_data_FittingAddC_data_FittingAddS_data_data_data_zip_data_street_data_addressState_data_stateA_data_getaddress_options_getcusaddress_options_getfitaddress_options_sendaddress_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CMcreate_vue_vue_type_template_id_067ad3e0_bindings_isdisable_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_test_data_addresschoose_data_CusAddressC_data_CusAddressS_data_FittingAddC_data_FittingAddS_data_data_data_zip_data_street_data_addressState_data_getcusaddress_options_getfitaddress_options_sendaddress_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./CMcreate.vue?vue&type=template&id=067ad3e0&bindings={"isdisable":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","test":"data","addresschoose":"data","CusAddressC":"data","CusAddressS":"data","FittingAddC":"data","FittingAddS":"data","data":"data","zip":"data","street":"data","addressState":"data","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","save":"options","msg":"props"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={\"isdisable\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"test\":\"data\",\"addresschoose\":\"data\",\"CusAddressC\":\"data\",\"CusAddressS\":\"data\",\"FittingAddC\":\"data\",\"FittingAddS\":\"data\",\"data\":\"data\",\"zip\":\"data\",\"street\":\"data\",\"addressState\":\"data\",\"getcusaddress\":\"options\",\"getfitaddress\":\"options\",\"sendaddress\":\"options\",\"save\":\"options\",\"msg\":\"props\"}");
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CMcreate_vue_vue_type_template_id_067ad3e0_bindings_isdisable_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_test_data_addresschoose_data_CusAddressC_data_CusAddressS_data_FittingAddC_data_FittingAddS_data_data_data_zip_data_street_data_addressState_data_stateA_data_getaddress_options_getcusaddress_options_getfitaddress_options_sendaddress_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./CMcreate.vue?vue&type=template&id=067ad3e0&bindings={"isdisable":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","test":"data","addresschoose":"data","CusAddressC":"data","CusAddressS":"data","FittingAddC":"data","FittingAddS":"data","data":"data","zip":"data","street":"data","addressState":"data","stateA":"data","getaddress":"options","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","save":"options","msg":"props"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={\"isdisable\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"test\":\"data\",\"addresschoose\":\"data\",\"CusAddressC\":\"data\",\"CusAddressS\":\"data\",\"FittingAddC\":\"data\",\"FittingAddS\":\"data\",\"data\":\"data\",\"zip\":\"data\",\"street\":\"data\",\"addressState\":\"data\",\"stateA\":\"data\",\"getaddress\":\"options\",\"getcusaddress\":\"options\",\"getfitaddress\":\"options\",\"sendaddress\":\"options\",\"save\":\"options\",\"msg\":\"props\"}");
 
 
 /***/ }),
 
-/***/ "./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={\"state\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"custT\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"addresschoose\":\"data\",\"data\":\"data\",\"zip\":\"data\",\"street\":\"data\",\"addressState\":\"data\",\"getcusaddress\":\"options\",\"getfitaddress\":\"options\",\"sendaddress\":\"options\",\"Modify\":\"options\",\"FClear\":\"options\",\"LClear\":\"options\",\"WClear\":\"options\",\"save\":\"options\",\"msg\":\"props\"}":
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={"state":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","custT":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","addresschoose":"data","data":"data","zip":"data","street":"data","addressState":"data","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","Modify":"options","FClear":"options","LClear":"options","WClear":"options","save":"options","msg":"props"} ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={\"state\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"custT\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"addresschoose\":\"data\",\"data\":\"data\",\"zip\":\"data\",\"street\":\"data\",\"addressState\":\"data\",\"stateA\":\"data\",\"getaddress\":\"options\",\"getcusaddress\":\"options\",\"getfitaddress\":\"options\",\"sendaddress\":\"options\",\"Modify\":\"options\",\"FClear\":\"options\",\"LClear\":\"options\",\"WClear\":\"options\",\"save\":\"options\",\"msg\":\"props\"}":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={"state":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","custT":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","addresschoose":"data","data":"data","zip":"data","street":"data","addressState":"data","stateA":"data","getaddress":"options","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","Modify":"options","FClear":"options","LClear":"options","WClear":"options","save":"options","msg":"props"} ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={"state":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","custT":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","addresschoose":"data","data":"data","zip":"data","street":"data","addressState":"data","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","Modify":"options","FClear":"options","LClear":"options","WClear":"options","save":"options","msg":"props"} .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={"state":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","custT":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","addresschoose":"data","data":"data","zip":"data","street":"data","addressState":"data","stateA":"data","getaddress":"options","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","Modify":"options","FClear":"options","LClear":"options","WClear":"options","save":"options","msg":"props"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -19094,9 +19196,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CMpage_vue_vue_type_template_id_79664523_bindings_state_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_custT_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_addresschoose_data_data_data_zip_data_street_data_addressState_data_getcusaddress_options_getfitaddress_options_sendaddress_options_Modify_options_FClear_options_LClear_options_WClear_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CMpage_vue_vue_type_template_id_79664523_bindings_state_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_custT_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_addresschoose_data_data_data_zip_data_street_data_addressState_data_stateA_data_getaddress_options_getcusaddress_options_getfitaddress_options_sendaddress_options_Modify_options_FClear_options_LClear_options_WClear_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CMpage_vue_vue_type_template_id_79664523_bindings_state_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_custT_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_addresschoose_data_data_data_zip_data_street_data_addressState_data_getcusaddress_options_getfitaddress_options_sendaddress_options_Modify_options_FClear_options_LClear_options_WClear_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./CMpage.vue?vue&type=template&id=79664523&bindings={"state":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","custT":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","addresschoose":"data","data":"data","zip":"data","street":"data","addressState":"data","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","Modify":"options","FClear":"options","LClear":"options","WClear":"options","save":"options","msg":"props"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={\"state\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"custT\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"addresschoose\":\"data\",\"data\":\"data\",\"zip\":\"data\",\"street\":\"data\",\"addressState\":\"data\",\"getcusaddress\":\"options\",\"getfitaddress\":\"options\",\"sendaddress\":\"options\",\"Modify\":\"options\",\"FClear\":\"options\",\"LClear\":\"options\",\"WClear\":\"options\",\"save\":\"options\",\"msg\":\"props\"}");
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CMpage_vue_vue_type_template_id_79664523_bindings_state_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_custT_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_addresschoose_data_data_data_zip_data_street_data_addressState_data_stateA_data_getaddress_options_getcusaddress_options_getfitaddress_options_sendaddress_options_Modify_options_FClear_options_LClear_options_WClear_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./CMpage.vue?vue&type=template&id=79664523&bindings={"state":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","custT":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","addresschoose":"data","data":"data","zip":"data","street":"data","addressState":"data","stateA":"data","getaddress":"options","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","Modify":"options","FClear":"options","LClear":"options","WClear":"options","save":"options","msg":"props"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={\"state\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"custT\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"addresschoose\":\"data\",\"data\":\"data\",\"zip\":\"data\",\"street\":\"data\",\"addressState\":\"data\",\"stateA\":\"data\",\"getaddress\":\"options\",\"getcusaddress\":\"options\",\"getfitaddress\":\"options\",\"sendaddress\":\"options\",\"Modify\":\"options\",\"FClear\":\"options\",\"LClear\":\"options\",\"WClear\":\"options\",\"save\":\"options\",\"msg\":\"props\"}");
 
 
 /***/ }),
@@ -19221,12 +19323,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={\"addressC\":\"data\",\"addressS\":\"data\",\"street\":\"data\",\"send\":\"options\",\"addArray\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}":
-/*!*******************************************************************************************************************************************************************************************************************************!*\
-  !*** ./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={"addressC":"data","addressS":"data","street":"data","send":"options","addArray":"options","getdata":"options","datasearch":"options"} ***!
-  \*******************************************************************************************************************************************************************************************************************************/
+/***/ "./resources/js/views/test/BVTest.vue?vue&type=template&id=2d534974&bindings={\"addressC\":\"data\",\"addressS\":\"data\",\"street\":\"data\",\"send\":\"options\",\"addArray\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/views/test/BVTest.vue?vue&type=template&id=2d534974&bindings={"addressC":"data","addressS":"data","street":"data","send":"options","addArray":"options","getdata":"options","datasearch":"options"} ***!
+  \**************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={"addressC":"data","addressS":"data","street":"data","send":"options","addArray":"options","getdata":"options","datasearch":"options"} .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/BVTest.vue?vue&type=template&id=2d534974&bindings={"addressC":"data","addressS":"data","street":"data","send":"options","addArray":"options","getdata":"options","datasearch":"options"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -19234,19 +19336,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_quickButton_vue_vue_type_template_id_96631cfe_bindings_addressC_data_addressS_data_street_data_send_options_addArray_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BVTest_vue_vue_type_template_id_2d534974_bindings_addressC_data_addressS_data_street_data_send_options_addArray_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_quickButton_vue_vue_type_template_id_96631cfe_bindings_addressC_data_addressS_data_street_data_send_options_addArray_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./quickButton.vue?vue&type=template&id=96631cfe&bindings={"addressC":"data","addressS":"data","street":"data","send":"options","addArray":"options","getdata":"options","datasearch":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={\"addressC\":\"data\",\"addressS\":\"data\",\"street\":\"data\",\"send\":\"options\",\"addArray\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}");
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BVTest_vue_vue_type_template_id_2d534974_bindings_addressC_data_addressS_data_street_data_send_options_addArray_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./BVTest.vue?vue&type=template&id=2d534974&bindings={"addressC":"data","addressS":"data","street":"data","send":"options","addArray":"options","getdata":"options","datasearch":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/BVTest.vue?vue&type=template&id=2d534974&bindings={\"addressC\":\"data\",\"addressS\":\"data\",\"street\":\"data\",\"send\":\"options\",\"addArray\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}");
 
 
 /***/ }),
 
-/***/ "./resources/js/views/test/smallwindow.vue?vue&type=template&id=bb14dc8e&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"send\":\"options\",\"close\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}":
-/*!******************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./resources/js/views/test/smallwindow.vue?vue&type=template&id=bb14dc8e&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={\"addressC\":\"data\",\"addressS\":\"data\",\"street\":\"data\",\"send\":\"options\",\"addArray\":\"options\",\"getdata\":\"options\"}":
+/*!********************************************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={"addressC":"data","addressS":"data","street":"data","send":"options","addArray":"options","getdata":"options"} ***!
+  \********************************************************************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/smallwindow.vue?vue&type=template&id=bb14dc8e&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={"addressC":"data","addressS":"data","street":"data","send":"options","addArray":"options","getdata":"options"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -19254,9 +19356,29 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_smallwindow_vue_vue_type_template_id_bb14dc8e_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_send_options_close_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_quickButton_vue_vue_type_template_id_96631cfe_bindings_addressC_data_addressS_data_street_data_send_options_addArray_options_getdata_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_smallwindow_vue_vue_type_template_id_bb14dc8e_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_send_options_close_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./smallwindow.vue?vue&type=template&id=bb14dc8e&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/smallwindow.vue?vue&type=template&id=bb14dc8e&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"send\":\"options\",\"close\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}");
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_quickButton_vue_vue_type_template_id_96631cfe_bindings_addressC_data_addressS_data_street_data_send_options_addArray_options_getdata_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./quickButton.vue?vue&type=template&id=96631cfe&bindings={"addressC":"data","addressS":"data","street":"data","send":"options","addArray":"options","getdata":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={\"addressC\":\"data\",\"addressS\":\"data\",\"street\":\"data\",\"send\":\"options\",\"addArray\":\"options\",\"getdata\":\"options\"}");
+
+
+/***/ }),
+
+/***/ "./resources/js/views/test/smallwindow.vue?vue&type=template&id=bb14dc8e&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"state\":\"data\",\"send\":\"options\",\"searchdata\":\"options\"}":
+/*!*******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/views/test/smallwindow.vue?vue&type=template&id=bb14dc8e&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","state":"data","send":"options","searchdata":"options"} ***!
+  \*******************************************************************************************************************************************************************************************************************************************************/
+/*! namespace exports */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/smallwindow.vue?vue&type=template&id=bb14dc8e&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","state":"data","send":"options","searchdata":"options"} .render */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_smallwindow_vue_vue_type_template_id_bb14dc8e_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_state_data_send_options_searchdata_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_smallwindow_vue_vue_type_template_id_bb14dc8e_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_state_data_send_options_searchdata_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./smallwindow.vue?vue&type=template&id=bb14dc8e&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","state":"data","send":"options","searchdata":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/smallwindow.vue?vue&type=template&id=bb14dc8e&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"state\":\"data\",\"send\":\"options\",\"searchdata\":\"options\"}");
 
 
 /***/ }),
@@ -19399,10 +19521,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={\"isdisable\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"test\":\"data\",\"addresschoose\":\"data\",\"CusAddressC\":\"data\",\"CusAddressS\":\"data\",\"FittingAddC\":\"data\",\"FittingAddS\":\"data\",\"data\":\"data\",\"zip\":\"data\",\"street\":\"data\",\"addressState\":\"data\",\"getcusaddress\":\"options\",\"getfitaddress\":\"options\",\"sendaddress\":\"options\",\"save\":\"options\",\"msg\":\"props\"}":
-/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={"isdisable":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","test":"data","addresschoose":"data","CusAddressC":"data","CusAddressS":"data","FittingAddC":"data","FittingAddS":"data","data":"data","zip":"data","street":"data","addressState":"data","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","save":"options","msg":"props"} ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={\"isdisable\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"test\":\"data\",\"addresschoose\":\"data\",\"CusAddressC\":\"data\",\"CusAddressS\":\"data\",\"FittingAddC\":\"data\",\"FittingAddS\":\"data\",\"data\":\"data\",\"zip\":\"data\",\"street\":\"data\",\"addressState\":\"data\",\"stateA\":\"data\",\"getaddress\":\"options\",\"getcusaddress\":\"options\",\"getfitaddress\":\"options\",\"sendaddress\":\"options\",\"save\":\"options\",\"msg\":\"props\"}":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={"isdisable":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","test":"data","addresschoose":"data","CusAddressC":"data","CusAddressS":"data","FittingAddC":"data","FittingAddS":"data","data":"data","zip":"data","street":"data","addressState":"data","stateA":"data","getaddress":"options","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","save":"options","msg":"props"} ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -19742,13 +19864,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.street[0].value]
               ]),
               (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-                onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.getcusaddress(...args)), ["prevent"])),
+                onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.getaddress(...args)), ["prevent"])),
                 style: {"display":"inline"},
                 class: "btn"
               }, "查詢"),
               _hoisted_8,
               (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("select", {
-                "onUpdate:modelValue": _cache[3] || (_cache[3] = $event => ($data.addresschoose = $event))
+                "onUpdate:modelValue": _cache[3] || (_cache[3] = $event => ($data.addresschoose = $event)),
+                hidden: $data.stateA==1
               }, [
                 ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.data, (item) => {
                   return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
@@ -19756,14 +19879,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     key: item
                   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.縣市) + "-" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.區鄉鎮市) + "-" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.街路), 9 /* TEXT, PROPS */, ["value"]))
                 }), 128 /* KEYED_FRAGMENT */))
-              ], 512 /* NEED_PATCH */), [
+              ], 8 /* PROPS */, ["hidden"]), [
                 [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.addresschoose]
               ]),
               (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
                 onClick: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.sendaddress(...args)), ["prevent"])),
                 class: "btn",
-                "data-dismiss": "modal"
-              }, "送出")
+                "data-dismiss": "modal",
+                hidden: $data.stateA==1
+              }, "送出", 8 /* PROPS */, ["hidden"])
             ])
           ])
         ])
@@ -20524,10 +20648,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={\"state\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"custT\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"addresschoose\":\"data\",\"data\":\"data\",\"zip\":\"data\",\"street\":\"data\",\"addressState\":\"data\",\"getcusaddress\":\"options\",\"getfitaddress\":\"options\",\"sendaddress\":\"options\",\"Modify\":\"options\",\"FClear\":\"options\",\"LClear\":\"options\",\"WClear\":\"options\",\"save\":\"options\",\"msg\":\"props\"}":
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={"state":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","custT":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","addresschoose":"data","data":"data","zip":"data","street":"data","addressState":"data","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","Modify":"options","FClear":"options","LClear":"options","WClear":"options","save":"options","msg":"props"} ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={\"state\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"custT\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"addresschoose\":\"data\",\"data\":\"data\",\"zip\":\"data\",\"street\":\"data\",\"addressState\":\"data\",\"stateA\":\"data\",\"getaddress\":\"options\",\"getcusaddress\":\"options\",\"getfitaddress\":\"options\",\"sendaddress\":\"options\",\"Modify\":\"options\",\"FClear\":\"options\",\"LClear\":\"options\",\"WClear\":\"options\",\"save\":\"options\",\"msg\":\"props\"}":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMpage.vue?vue&type=template&id=79664523&bindings={"state":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","custT":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","addresschoose":"data","data":"data","zip":"data","street":"data","addressState":"data","stateA":"data","getaddress":"options","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","Modify":"options","FClear":"options","LClear":"options","WClear":"options","save":"options","msg":"props"} ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -20904,13 +21028,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.street[0].value]
               ]),
               (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-                onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.getcusaddress(...args)), ["prevent"])),
+                onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.getaddress(...args)), ["prevent"])),
                 style: {"display":"inline"},
                 class: "btn"
               }, "查詢"),
               _hoisted_8,
               (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("select", {
-                "onUpdate:modelValue": _cache[3] || (_cache[3] = $event => ($data.addresschoose = $event))
+                "onUpdate:modelValue": _cache[3] || (_cache[3] = $event => ($data.addresschoose = $event)),
+                hidden: $data.stateA==1
               }, [
                 ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.data, (item) => {
                   return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
@@ -20918,14 +21043,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     key: item
                   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.縣市) + "-" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.區鄉鎮市) + "-" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.街路), 9 /* TEXT, PROPS */, ["value"]))
                 }), 128 /* KEYED_FRAGMENT */))
-              ], 512 /* NEED_PATCH */), [
+              ], 8 /* PROPS */, ["hidden"]), [
                 [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.addresschoose]
               ]),
               (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
                 onClick: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.sendaddress(...args)), ["prevent"])),
                 class: "btn",
-                "data-dismiss": "modal"
-              }, "送出")
+                "data-dismiss": "modal",
+                hidden: $data.stateA==1
+              }, "送出", 8 /* PROPS */, ["hidden"])
             ])
           ])
         ])
@@ -22668,10 +22794,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={\"addressC\":\"data\",\"addressS\":\"data\",\"street\":\"data\",\"send\":\"options\",\"addArray\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}":
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={"addressC":"data","addressS":"data","street":"data","send":"options","addArray":"options","getdata":"options","datasearch":"options"} ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/BVTest.vue?vue&type=template&id=2d534974&bindings={\"addressC\":\"data\",\"addressS\":\"data\",\"street\":\"data\",\"send\":\"options\",\"addArray\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/BVTest.vue?vue&type=template&id=2d534974&bindings={"addressC":"data","addressS":"data","street":"data","send":"options","addArray":"options","getdata":"options","datasearch":"options"} ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -22871,10 +22997,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/smallwindow.vue?vue&type=template&id=bb14dc8e&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"send\":\"options\",\"close\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}":
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/smallwindow.vue?vue&type=template&id=bb14dc8e&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={\"addressC\":\"data\",\"addressS\":\"data\",\"street\":\"data\",\"send\":\"options\",\"addArray\":\"options\",\"getdata\":\"options\"}":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={"addressC":"data","addressS":"data","street":"data","send":"options","addArray":"options","getdata":"options"} ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -22911,6 +23037,38 @@ const _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)
 const _hoisted_6 = { class: "modal-body" }
 const _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 街路: ")
 const _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
+const _hoisted_9 = {
+  id: "XXX",
+  class: "modal inmodal fade",
+  tabindex: "-1",
+  role: "dialog",
+  "aria-hidden": "true",
+  "data-backdrop": "static",
+  "data-keyboard": "true"
+}
+const _hoisted_10 = { class: "modal-dialog modal-lg" }
+const _hoisted_11 = { class: "modal-content" }
+const _hoisted_12 = { class: "modal-header" }
+const _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+  type: "button",
+  class: "close",
+  "data-dismiss": "modal"
+}, [
+  /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", null, "×")
+], -1 /* HOISTED */)
+const _hoisted_14 = { class: "modal-body" }
+const _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 街路: ")
+const _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
+const _hoisted_17 = {
+  class: "container text-center",
+  style: {"padding":"50px"}
+}
+const _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", null, "表格到底新增功能", -1 /* HOISTED */)
+const _hoisted_19 = { class: "PDtableborder" }
+const _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
+  /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "DDD"),
+  /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "SSS")
+], -1 /* HOISTED */)
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [
@@ -22936,7 +23094,185 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               }, "查詢"),
               _hoisted_8,
               (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("select", {
-                "onUpdate:modelValue": _cache[3] || (_cache[3] = $event => ($data.addresschoose = $event))
+                "onUpdate:modelValue": _cache[3] || (_cache[3] = $event => (_ctx.addresschoose = $event))
+              }, [
+                ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.data, (item) => {
+                  return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
+                    value: item,
+                    key: item
+                  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.縣市) + "-" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.區鄉鎮市) + "-" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.街路), 9 /* TEXT, PROPS */, ["value"]))
+                }), 128 /* KEYED_FRAGMENT */))
+              ], 512 /* NEED_PATCH */), [
+                [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.addresschoose]
+              ]),
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+                onClick: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.send(...args)), ["prevent"])),
+                class: "btn"
+              }, "送出")
+            ])
+          ])
+        ])
+      ])
+    ]),
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [
+      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [
+          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [
+            _hoisted_13,
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_14, [
+              _hoisted_15,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                type: "text",
+                class: "form-control",
+                style: {"width":"200px","display":"inline"},
+                "onUpdate:modelValue": _cache[5] || (_cache[5] = $event => ($data.street[0].value = $event))
+              }, null, 512 /* NEED_PATCH */), [
+                [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.street[0].value]
+              ]),
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+                onClick: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.getdata(...args)), ["prevent"])),
+                style: {"display":"inline"},
+                class: "btn"
+              }, "查詢"),
+              _hoisted_16,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("select", {
+                "onUpdate:modelValue": _cache[7] || (_cache[7] = $event => (_ctx.addresschoose = $event))
+              }, [
+                ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.data, (item) => {
+                  return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
+                    value: item,
+                    key: item
+                  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.縣市) + "-" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.區鄉鎮市) + "-" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.街路), 9 /* TEXT, PROPS */, ["value"]))
+                }), 128 /* KEYED_FRAGMENT */))
+              ], 512 /* NEED_PATCH */), [
+                [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.addresschoose]
+              ]),
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+                onClick: _cache[8] || (_cache[8] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.send(...args)), ["prevent"])),
+                class: "btn"
+              }, "送出")
+            ])
+          ])
+        ])
+      ])
+    ]),
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_17, [
+      _hoisted_18,
+      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_19, [
+        _hoisted_20,
+        ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.addressC, (item) => {
+          return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("tr", {
+            value: item.a,
+            key: item.a
+          }, [
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, [
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                type: "text",
+                id: "sss",
+                class: "form-control",
+                style: {"width":"200px","display":"inline"},
+                "onUpdate:modelValue": $event => (item.a = $event)
+              }, null, 8 /* PROPS */, ["onUpdate:modelValue"]), [
+                [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, item.a]
+              ])
+            ]),
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, [
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                type: "text",
+                id: "ddd",
+                class: "form-control",
+                style: {"width":"200px","display":"inline"},
+                "onUpdate:modelValue": $event => (item.b = $event)
+              }, null, 8 /* PROPS */, ["onUpdate:modelValue"]), [
+                [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, item.b]
+              ])
+            ])
+          ], 8 /* PROPS */, ["value"]))
+        }), 128 /* KEYED_FRAGMENT */))
+      ])
+    ]),
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+      onClick: _cache[9] || (_cache[9] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.addArray(...args)), ["prevent"])),
+      class: "btn"
+    }, "ADD")
+  ], 64 /* STABLE_FRAGMENT */))
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/smallwindow.vue?vue&type=template&id=bb14dc8e&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"state\":\"data\",\"send\":\"options\",\"searchdata\":\"options\"}":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/smallwindow.vue?vue&type=template&id=bb14dc8e&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","state":"data","send":"options","searchdata":"options"} ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! namespace exports */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => /* binding */ render
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+const _hoisted_1 = {
+  id: "ooo",
+  class: "modal inmodal fade",
+  tabindex: "-1",
+  role: "dialog",
+  "aria-hidden": "true",
+  "data-backdrop": "static",
+  "data-keyboard": "true"
+}
+const _hoisted_2 = { class: "modal-dialog modal-lg" }
+const _hoisted_3 = { class: "modal-content" }
+const _hoisted_4 = { class: "modal-header" }
+const _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+  type: "button",
+  class: "close",
+  "data-dismiss": "modal"
+}, [
+  /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", null, "×")
+], -1 /* HOISTED */)
+const _hoisted_6 = { class: "modal-body" }
+const _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 街路: ")
+const _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
+const _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+  type: "button",
+  class: "btn btn-primary",
+  "data-toggle": "modal",
+  "data-target": "#ooo"
+}, "YO", -1 /* HOISTED */)
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [
+      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [
+          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [
+            _hoisted_5,
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [
+              _hoisted_7,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                type: "text",
+                class: "form-control",
+                style: {"width":"200px","display":"inline"},
+                "onUpdate:modelValue": _cache[1] || (_cache[1] = $event => ($data.street[0].value = $event))
+              }, null, 512 /* NEED_PATCH */), [
+                [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.street[0].value]
+              ]),
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+                onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.searchdata(...args)), ["prevent"])),
+                style: {"display":"inline"},
+                class: "btn"
+              }, "查詢"),
+              _hoisted_8,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("select", {
+                "onUpdate:modelValue": _cache[3] || (_cache[3] = $event => ($data.addresschoose = $event)),
+                hidden: $data.state==1
               }, [
                 ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.data, (item) => {
                   return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
@@ -22944,13 +23280,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     key: item
                   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.縣市) + "-" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.區鄉鎮市) + "-" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.街路), 9 /* TEXT, PROPS */, ["value"]))
                 }), 128 /* KEYED_FRAGMENT */))
-              ], 512 /* NEED_PATCH */), [
+              ], 8 /* PROPS */, ["hidden"]), [
                 [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.addresschoose]
               ]),
               (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
                 onClick: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.send(...args)), ["prevent"])),
-                class: "btn"
-              }, "送出")
+                class: "btn",
+                hidden: $data.state==1
+              }, "送出", 8 /* PROPS */, ["hidden"])
             ])
           ])
         ])
@@ -22974,13 +23311,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, null, 512 /* NEED_PATCH */), [
       [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.addressS]
     ]),
-    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-      onClick: _cache[7] || (_cache[7] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.getdata(...args)), ["prevent"])),
-      type: "button",
-      class: "btn btn-primary",
-      "data-toggle": "modal",
-      "data-target": "#ooo"
-    }, "YO")
+    _hoisted_9
   ], 64 /* STABLE_FRAGMENT */))
 }
 
