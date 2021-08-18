@@ -1,8 +1,8 @@
 //-------------- IMPORT ALL LIBRARY MODULES ------------------//
 import { createApp } from 'vue';
-import {createRouter, createWebHistory} from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router';
 import store from './store';
-import key from 'keymaster'
+import key from 'keymaster';
 //--------------- END ALL LIBRARY MODULES ------------------//
 
 // Routes
@@ -22,11 +22,13 @@ const router = createRouter({
 })
 
 // Init App
+
 const app = createApp(App)
 
 // Init router into app
 app.use(router)
 app.use(store)
+
 
 
 // Mount the App

@@ -6,6 +6,7 @@ import Help from "./views/pages/Help";
 
 import smallwindow from "./views/test/smallwindow";
 import quickButton from "./views/test/quickButton";
+import BVTest from "./views/test/BVTest";
 
 import CM接待自評 from "./views/pages/CM接待自評";
 import CMcreate from "./views/pages/CMcreate";
@@ -30,5 +31,7 @@ export default [
 
     { path: "/smallwindow", component: smallwindow, name: 'smallwindow' },
     { path: "/quickButton", component: quickButton, name: 'quickButton' },
-
+    { path: "/BVTest", component: BVTest, name: 'BVTest' },
+   // { path: "/quickButton", component: quickButton, name: 'quickButton' },
+    
 ];
