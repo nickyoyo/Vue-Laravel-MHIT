@@ -16729,29 +16729,52 @@ __webpack_require__.r(__webpack_exports__);
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "smallwindow",
+  name: "BVTest",
   data: function data() {
     return {
       addressC: [{
-        a: "1",
-        b: "2"
+        a: "",
+        b: "",
+        index: "0"
       }],
-      addressS: [],
       street: [{
-        value: "empty"
-      }]
+        value: ""
+      }],
+      stateA: 1,
+      data: [],
+      arrayCount: [],
+      addresschoose: [],
+      index: -1
     };
   },
   methods: {
-    send: function send() {
-      this.item.a = this.addresschoose.縣市 + this.addresschoose.區鄉鎮市;
-      this.addressS = this.addresschoose.街路;
-      axios;
+    addressF: function addressF() {
+      var elem = document.getElementsByName('sss');
+      alert(elem.length);
+    },
+    Arraych: function Arraych(index) {
+      console.log(index);
+      this.index = index;
+    },
+    senda: function senda() {
+      this.addressC[this.index].a = this.addresschoose.縣市 + this.addresschoose.區鄉鎮市 + this.addresschoose.街路;
+      this.street[0].value = "";
+      this.stateA = 1;
+      $("#ooo").modal('toggle');
+    },
+    sendb: function sendb() {
+      this.addressC[this.index].b = this.addresschoose.縣市 + this.addresschoose.區鄉鎮市;
+      +this.addresschoose.街路;
+      this.street[0].value = "";
+      this.stateA = 1;
+      $("#XXX").modal('toggle');
     },
     addArray: function addArray() {
+      this.street[0].value = "";
       var arr = {
-        a: "1",
-        b: "2"
+        a: "",
+        b: "",
+        index: this.addressC.length
       };
       this.addressC.push(arr);
     },
@@ -16762,22 +16785,15 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         console.log(response.data);
         _this.data = response.data;
       });
-    },
-    datasearch: function datasearch() {
-      var _this2 = this;
-
-      axios.get("http://127.0.0.1:8000/api/search/zip/" + this.street[0].value).then(function (response) {
-        console.log(response.data);
-        _this2.data = response.data;
-      });
+      this.stateA = 2;
     }
   },
   mounted: function mounted() {
-    var _this3 = this;
+    var _this2 = this;
 
     axios.get("http://127.0.0.1:8000/api/search/zip/" + this.street[0].value).then(function (response) {
       console.log(response.data);
-      _this3.data = response.data;
+      _this2.data = response.data;
     });
     document.getElementById('sss').addEventListener('keydown', function (e) {
       if (e.shiftKey) {
@@ -16817,11 +16833,11 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   name: "smallwindow",
   data: function data() {
     return {
-      addressC: [{
-        a: "1",
-        b: "2"
-      }],
+      addresschoose: [],
+      addressC: [],
       addressS: [],
+      zip: [],
+      data: [],
       street: [{
         value: "empty"
       }]
@@ -16829,32 +16845,39 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   },
   methods: {
     send: function send() {
-      this.item.a = this.addresschoose.縣市 + this.addresschoose.區鄉鎮市;
-      this.addressS = this.addresschoose.街路;
-      axios;
-    },
-    addArray: function addArray() {
-      var arr = {
-        a: "1",
-        b: "2"
-      };
-      this.addressC.push(arr);
-    },
-    getdata: function getdata() {
       var _this = this;
+
+      this.addressC = this.addresschoose.縣市 + this.addresschoose.區鄉鎮市;
+      this.addressS = this.addresschoose.街路;
+      axios.get("http://127.0.0.1:8000/api/search/zip/" + this.addressC).then(function (response) {
+        console.log(response);
+        _this.zip = response.data;
+      });
+    },
+    close: function close() {},
+    getdata: function getdata() {
+      var _this2 = this;
 
       axios.get("http://127.0.0.1:8000/api/search/zip/" + this.street[0].value).then(function (response) {
         console.log(response.data);
-        _this.data = response.data;
+        _this2.data = response.data;
+      });
+    },
+    datasearch: function datasearch() {
+      var _this3 = this;
+
+      axios.get("http://127.0.0.1:8000/api/search/zip/" + this.street[0].value).then(function (response) {
+        console.log(response.data);
+        _this3.data = response.data;
       });
     }
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this4 = this;
 
     axios.get("http://127.0.0.1:8000/api/search/zip/" + this.street[0].value).then(function (response) {
       console.log(response.data);
-      _this2.data = response.data;
+      _this4.data = response.data;
     });
     document.getElementById('sss').addEventListener('keydown', function (e) {
       if (e.shiftKey) {
@@ -18652,12 +18675,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _BVTest_vue_vue_type_template_id_2d534974_bindings_addressC_data_addressS_data_street_data_send_options_addArray_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BVTest.vue?vue&type=template&id=2d534974&bindings={"addressC":"data","addressS":"data","street":"data","send":"options","addArray":"options","getdata":"options","datasearch":"options"} */ "./resources/js/views/test/BVTest.vue?vue&type=template&id=2d534974&bindings={\"addressC\":\"data\",\"addressS\":\"data\",\"street\":\"data\",\"send\":\"options\",\"addArray\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}");
+/* harmony import */ var _BVTest_vue_vue_type_template_id_2d534974_bindings_addressC_data_street_data_stateA_data_data_data_arrayCount_data_addresschoose_data_index_data_addressF_options_Arraych_options_senda_options_sendb_options_addArray_options_getdata_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BVTest.vue?vue&type=template&id=2d534974&bindings={"addressC":"data","street":"data","stateA":"data","data":"data","arrayCount":"data","addresschoose":"data","index":"data","addressF":"options","Arraych":"options","senda":"options","sendb":"options","addArray":"options","getdata":"options"} */ "./resources/js/views/test/BVTest.vue?vue&type=template&id=2d534974&bindings={\"addressC\":\"data\",\"street\":\"data\",\"stateA\":\"data\",\"data\":\"data\",\"arrayCount\":\"data\",\"addresschoose\":\"data\",\"index\":\"data\",\"addressF\":\"options\",\"Arraych\":\"options\",\"senda\":\"options\",\"sendb\":\"options\",\"addArray\":\"options\",\"getdata\":\"options\"}");
 /* harmony import */ var _BVTest_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BVTest.vue?vue&type=script&lang=js */ "./resources/js/views/test/BVTest.vue?vue&type=script&lang=js");
 
 
 
-_BVTest_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _BVTest_vue_vue_type_template_id_2d534974_bindings_addressC_data_addressS_data_street_data_send_options_addArray_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__.render
+_BVTest_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _BVTest_vue_vue_type_template_id_2d534974_bindings_addressC_data_street_data_stateA_data_data_data_arrayCount_data_addresschoose_data_index_data_addressF_options_Arraych_options_senda_options_sendb_options_addArray_options_getdata_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* hot reload */
 if (false) {}
 
@@ -18682,12 +18705,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _quickButton_vue_vue_type_template_id_96631cfe_bindings_addressC_data_addressS_data_street_data_send_options_addArray_options_getdata_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./quickButton.vue?vue&type=template&id=96631cfe&bindings={"addressC":"data","addressS":"data","street":"data","send":"options","addArray":"options","getdata":"options"} */ "./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={\"addressC\":\"data\",\"addressS\":\"data\",\"street\":\"data\",\"send\":\"options\",\"addArray\":\"options\",\"getdata\":\"options\"}");
+/* harmony import */ var _quickButton_vue_vue_type_template_id_96631cfe_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_send_options_close_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./quickButton.vue?vue&type=template&id=96631cfe&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} */ "./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"send\":\"options\",\"close\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}");
 /* harmony import */ var _quickButton_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./quickButton.vue?vue&type=script&lang=js */ "./resources/js/views/test/quickButton.vue?vue&type=script&lang=js");
 
 
 
-_quickButton_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _quickButton_vue_vue_type_template_id_96631cfe_bindings_addressC_data_addressS_data_street_data_send_options_addArray_options_getdata_options___WEBPACK_IMPORTED_MODULE_0__.render
+_quickButton_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _quickButton_vue_vue_type_template_id_96631cfe_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_send_options_close_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* hot reload */
 if (false) {}
 
@@ -19323,12 +19346,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/test/BVTest.vue?vue&type=template&id=2d534974&bindings={\"addressC\":\"data\",\"addressS\":\"data\",\"street\":\"data\",\"send\":\"options\",\"addArray\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}":
-/*!**************************************************************************************************************************************************************************************************************************!*\
-  !*** ./resources/js/views/test/BVTest.vue?vue&type=template&id=2d534974&bindings={"addressC":"data","addressS":"data","street":"data","send":"options","addArray":"options","getdata":"options","datasearch":"options"} ***!
-  \**************************************************************************************************************************************************************************************************************************/
+/***/ "./resources/js/views/test/BVTest.vue?vue&type=template&id=2d534974&bindings={\"addressC\":\"data\",\"street\":\"data\",\"stateA\":\"data\",\"data\":\"data\",\"arrayCount\":\"data\",\"addresschoose\":\"data\",\"index\":\"data\",\"addressF\":\"options\",\"Arraych\":\"options\",\"senda\":\"options\",\"sendb\":\"options\",\"addArray\":\"options\",\"getdata\":\"options\"}":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/views/test/BVTest.vue?vue&type=template&id=2d534974&bindings={"addressC":"data","street":"data","stateA":"data","data":"data","arrayCount":"data","addresschoose":"data","index":"data","addressF":"options","Arraych":"options","senda":"options","sendb":"options","addArray":"options","getdata":"options"} ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/BVTest.vue?vue&type=template&id=2d534974&bindings={"addressC":"data","addressS":"data","street":"data","send":"options","addArray":"options","getdata":"options","datasearch":"options"} .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/BVTest.vue?vue&type=template&id=2d534974&bindings={"addressC":"data","street":"data","stateA":"data","data":"data","arrayCount":"data","addresschoose":"data","index":"data","addressF":"options","Arraych":"options","senda":"options","sendb":"options","addArray":"options","getdata":"options"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -19336,19 +19359,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BVTest_vue_vue_type_template_id_2d534974_bindings_addressC_data_addressS_data_street_data_send_options_addArray_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BVTest_vue_vue_type_template_id_2d534974_bindings_addressC_data_street_data_stateA_data_data_data_arrayCount_data_addresschoose_data_index_data_addressF_options_Arraych_options_senda_options_sendb_options_addArray_options_getdata_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BVTest_vue_vue_type_template_id_2d534974_bindings_addressC_data_addressS_data_street_data_send_options_addArray_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./BVTest.vue?vue&type=template&id=2d534974&bindings={"addressC":"data","addressS":"data","street":"data","send":"options","addArray":"options","getdata":"options","datasearch":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/BVTest.vue?vue&type=template&id=2d534974&bindings={\"addressC\":\"data\",\"addressS\":\"data\",\"street\":\"data\",\"send\":\"options\",\"addArray\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}");
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_BVTest_vue_vue_type_template_id_2d534974_bindings_addressC_data_street_data_stateA_data_data_data_arrayCount_data_addresschoose_data_index_data_addressF_options_Arraych_options_senda_options_sendb_options_addArray_options_getdata_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./BVTest.vue?vue&type=template&id=2d534974&bindings={"addressC":"data","street":"data","stateA":"data","data":"data","arrayCount":"data","addresschoose":"data","index":"data","addressF":"options","Arraych":"options","senda":"options","sendb":"options","addArray":"options","getdata":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/BVTest.vue?vue&type=template&id=2d534974&bindings={\"addressC\":\"data\",\"street\":\"data\",\"stateA\":\"data\",\"data\":\"data\",\"arrayCount\":\"data\",\"addresschoose\":\"data\",\"index\":\"data\",\"addressF\":\"options\",\"Arraych\":\"options\",\"senda\":\"options\",\"sendb\":\"options\",\"addArray\":\"options\",\"getdata\":\"options\"}");
 
 
 /***/ }),
 
-/***/ "./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={\"addressC\":\"data\",\"addressS\":\"data\",\"street\":\"data\",\"send\":\"options\",\"addArray\":\"options\",\"getdata\":\"options\"}":
-/*!********************************************************************************************************************************************************************************************************!*\
-  !*** ./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={"addressC":"data","addressS":"data","street":"data","send":"options","addArray":"options","getdata":"options"} ***!
-  \********************************************************************************************************************************************************************************************************/
+/***/ "./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"send\":\"options\",\"close\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}":
+/*!******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={"addressC":"data","addressS":"data","street":"data","send":"options","addArray":"options","getdata":"options"} .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -19356,9 +19379,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_quickButton_vue_vue_type_template_id_96631cfe_bindings_addressC_data_addressS_data_street_data_send_options_addArray_options_getdata_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_quickButton_vue_vue_type_template_id_96631cfe_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_send_options_close_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_quickButton_vue_vue_type_template_id_96631cfe_bindings_addressC_data_addressS_data_street_data_send_options_addArray_options_getdata_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./quickButton.vue?vue&type=template&id=96631cfe&bindings={"addressC":"data","addressS":"data","street":"data","send":"options","addArray":"options","getdata":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={\"addressC\":\"data\",\"addressS\":\"data\",\"street\":\"data\",\"send\":\"options\",\"addArray\":\"options\",\"getdata\":\"options\"}");
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_quickButton_vue_vue_type_template_id_96631cfe_bindings_addresschoose_data_addressC_data_addressS_data_zip_data_data_data_street_data_send_options_close_options_getdata_options_datasearch_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./quickButton.vue?vue&type=template&id=96631cfe&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"send\":\"options\",\"close\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}");
 
 
 /***/ }),
@@ -22794,10 +22817,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/BVTest.vue?vue&type=template&id=2d534974&bindings={\"addressC\":\"data\",\"addressS\":\"data\",\"street\":\"data\",\"send\":\"options\",\"addArray\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/BVTest.vue?vue&type=template&id=2d534974&bindings={"addressC":"data","addressS":"data","street":"data","send":"options","addArray":"options","getdata":"options","datasearch":"options"} ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/BVTest.vue?vue&type=template&id=2d534974&bindings={\"addressC\":\"data\",\"street\":\"data\",\"stateA\":\"data\",\"data\":\"data\",\"arrayCount\":\"data\",\"addresschoose\":\"data\",\"index\":\"data\",\"addressF\":\"options\",\"Arraych\":\"options\",\"senda\":\"options\",\"sendb\":\"options\",\"addArray\":\"options\",\"getdata\":\"options\"}":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/BVTest.vue?vue&type=template&id=2d534974&bindings={"addressC":"data","street":"data","stateA":"data","data":"data","arrayCount":"data","addresschoose":"data","index":"data","addressF":"options","Arraych":"options","senda":"options","sendb":"options","addArray":"options","getdata":"options"} ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -22858,11 +22881,16 @@ const _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextV
 const _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
 const _hoisted_17 = {
   class: "container text-center",
-  style: {"padding":"50px"}
+  style: {"position":"relative","top":"100px"}
 }
 const _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", null, "表格到底新增功能", -1 /* HOISTED */)
-const _hoisted_19 = { class: "PDtableborder" }
-const _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
+const _hoisted_19 = {
+  class: "container text-center",
+  style: {"overflow-y":"scroll","height":"300px","width":"800px"}
+}
+const _hoisted_20 = { class: "container" }
+const _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
+  /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "NO"),
   /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "DDD"),
   /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "SSS")
 ], -1 /* HOISTED */)
@@ -22891,21 +22919,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               }, "查詢"),
               _hoisted_8,
               (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("select", {
-                "onUpdate:modelValue": _cache[3] || (_cache[3] = $event => (_ctx.addresschoose = $event))
+                "onUpdate:modelValue": _cache[3] || (_cache[3] = $event => ($data.addresschoose = $event)),
+                hidden: $data.stateA==1
               }, [
-                ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.data, (item) => {
+                ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.data, (item) => {
                   return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
                     value: item,
                     key: item
                   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.縣市) + "-" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.區鄉鎮市) + "-" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.街路), 9 /* TEXT, PROPS */, ["value"]))
                 }), 128 /* KEYED_FRAGMENT */))
-              ], 512 /* NEED_PATCH */), [
-                [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.addresschoose]
+              ], 8 /* PROPS */, ["hidden"]), [
+                [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.addresschoose]
               ]),
               (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-                onClick: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.send(...args)), ["prevent"])),
-                class: "btn"
-              }, "送出")
+                onClick: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.senda(...args)), ["prevent"])),
+                class: "btn",
+                hidden: $data.stateA==1
+              }, "送出", 8 /* PROPS */, ["hidden"])
             ])
           ])
         ])
@@ -22933,21 +22963,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               }, "查詢"),
               _hoisted_16,
               (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("select", {
-                "onUpdate:modelValue": _cache[7] || (_cache[7] = $event => (_ctx.addresschoose = $event))
+                "onUpdate:modelValue": _cache[7] || (_cache[7] = $event => ($data.addresschoose = $event)),
+                hidden: $data.stateA==1
               }, [
-                ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.data, (item) => {
+                ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.data, (item) => {
                   return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
                     value: item,
                     key: item
                   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.縣市) + "-" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.區鄉鎮市) + "-" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.街路), 9 /* TEXT, PROPS */, ["value"]))
                 }), 128 /* KEYED_FRAGMENT */))
-              ], 512 /* NEED_PATCH */), [
-                [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.addresschoose]
+              ], 8 /* PROPS */, ["hidden"]), [
+                [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.addresschoose]
               ]),
               (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-                onClick: _cache[8] || (_cache[8] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.send(...args)), ["prevent"])),
-                class: "btn"
-              }, "送出")
+                onClick: _cache[8] || (_cache[8] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.sendb(...args)), ["prevent"])),
+                class: "btn",
+                hidden: $data.stateA==1
+              }, "送出", 8 /* PROPS */, ["hidden"])
             ])
           ])
         ])
@@ -22955,37 +22987,43 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     ]),
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_17, [
       _hoisted_18,
-      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_19, [
-        _hoisted_20,
-        ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.addressC, (item) => {
-          return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("tr", {
-            value: item.a,
-            key: item.a
-          }, [
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, [
-              (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                type: "text",
-                id: "sss",
-                class: "form-control",
-                style: {"width":"200px","display":"inline"},
-                "onUpdate:modelValue": $event => (item.a = $event)
-              }, null, 8 /* PROPS */, ["onUpdate:modelValue"]), [
-                [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, item.a]
+      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_19, [
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_20, [
+          _hoisted_21,
+          ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.addressC, (item, index) => {
+            return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("tr", {
+              value: item,
+              key: index
+            }, [
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(index+1), 1 /* TEXT */),
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, [
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                  onClick: $event => ($options.Arraych(index)),
+                  type: "text",
+                  id: "sss",
+                  name: "sss",
+                  class: "form-control",
+                  style: {"width":"200px","display":"inline"},
+                  "onUpdate:modelValue": $event => (item.a = $event)
+                }, null, 8 /* PROPS */, ["onClick", "onUpdate:modelValue"]), [
+                  [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, item.a]
+                ])
+              ]),
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, [
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                  onClick: $event => ($options.Arraych(index)),
+                  type: "text",
+                  id: "ddd",
+                  class: "form-control",
+                  style: {"width":"200px","display":"inline"},
+                  "onUpdate:modelValue": $event => (item.b = $event)
+                }, null, 8 /* PROPS */, ["onClick", "onUpdate:modelValue"]), [
+                  [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, item.b]
+                ])
               ])
-            ]),
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, [
-              (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                type: "text",
-                id: "ddd",
-                class: "form-control",
-                style: {"width":"200px","display":"inline"},
-                "onUpdate:modelValue": $event => (item.b = $event)
-              }, null, 8 /* PROPS */, ["onUpdate:modelValue"]), [
-                [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, item.b]
-              ])
-            ])
-          ], 8 /* PROPS */, ["value"]))
-        }), 128 /* KEYED_FRAGMENT */))
+            ], 8 /* PROPS */, ["value"]))
+          }), 128 /* KEYED_FRAGMENT */))
+        ])
       ])
     ]),
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
@@ -22997,10 +23035,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={\"addressC\":\"data\",\"addressS\":\"data\",\"street\":\"data\",\"send\":\"options\",\"addArray\":\"options\",\"getdata\":\"options\"}":
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={"addressC":"data","addressS":"data","street":"data","send":"options","addArray":"options","getdata":"options"} ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={\"addresschoose\":\"data\",\"addressC\":\"data\",\"addressS\":\"data\",\"zip\":\"data\",\"data\":\"data\",\"street\":\"data\",\"send\":\"options\",\"close\":\"options\",\"getdata\":\"options\",\"datasearch\":\"options\"}":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/test/quickButton.vue?vue&type=template&id=96631cfe&bindings={"addresschoose":"data","addressC":"data","addressS":"data","zip":"data","data":"data","street":"data","send":"options","close":"options","getdata":"options","datasearch":"options"} ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -23037,7 +23075,8 @@ const _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)
 const _hoisted_6 = { class: "modal-body" }
 const _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 街路: ")
 const _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
-const _hoisted_9 = {
+const _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 123 ")
+const _hoisted_10 = {
   id: "XXX",
   class: "modal inmodal fade",
   tabindex: "-1",
@@ -23046,26 +23085,27 @@ const _hoisted_9 = {
   "data-backdrop": "static",
   "data-keyboard": "true"
 }
-const _hoisted_10 = { class: "modal-dialog modal-lg" }
-const _hoisted_11 = { class: "modal-content" }
-const _hoisted_12 = { class: "modal-header" }
-const _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+const _hoisted_11 = { class: "modal-dialog modal-lg" }
+const _hoisted_12 = { class: "modal-content" }
+const _hoisted_13 = { class: "modal-header" }
+const _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
   type: "button",
   class: "close",
   "data-dismiss": "modal"
 }, [
   /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", null, "×")
 ], -1 /* HOISTED */)
-const _hoisted_14 = { class: "modal-body" }
-const _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 街路: ")
-const _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
-const _hoisted_17 = {
+const _hoisted_15 = { class: "modal-body" }
+const _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 街路: ")
+const _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
+const _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 456 ")
+const _hoisted_19 = {
   class: "container text-center",
   style: {"padding":"50px"}
 }
-const _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", null, "表格到底新增功能", -1 /* HOISTED */)
-const _hoisted_19 = { class: "PDtableborder" }
-const _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
+const _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", null, "表格到底新增功能", -1 /* HOISTED */)
+const _hoisted_21 = { class: "PDtableborder" }
+const _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
   /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "DDD"),
   /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "SSS")
 ], -1 /* HOISTED */)
@@ -23093,20 +23133,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 class: "btn"
               }, "查詢"),
               _hoisted_8,
-              (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("select", {
-                "onUpdate:modelValue": _cache[3] || (_cache[3] = $event => (_ctx.addresschoose = $event))
-              }, [
-                ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.data, (item) => {
-                  return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
-                    value: item,
-                    key: item
-                  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.縣市) + "-" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.區鄉鎮市) + "-" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.街路), 9 /* TEXT, PROPS */, ["value"]))
-                }), 128 /* KEYED_FRAGMENT */))
-              ], 512 /* NEED_PATCH */), [
-                [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.addresschoose]
-              ]),
+              _hoisted_9,
               (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-                onClick: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.send(...args)), ["prevent"])),
+                onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.send(...args)), ["prevent"])),
                 class: "btn"
               }, "送出")
             ])
@@ -23114,41 +23143,30 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         ])
       ])
     ]),
-    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [
-      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [
-        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [
-          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [
-            _hoisted_13,
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_14, [
-              _hoisted_15,
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [
+      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [
+          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_13, [
+            _hoisted_14,
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_15, [
+              _hoisted_16,
               (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
                 type: "text",
                 class: "form-control",
                 style: {"width":"200px","display":"inline"},
-                "onUpdate:modelValue": _cache[5] || (_cache[5] = $event => ($data.street[0].value = $event))
+                "onUpdate:modelValue": _cache[4] || (_cache[4] = $event => ($data.street[0].value = $event))
               }, null, 512 /* NEED_PATCH */), [
                 [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.street[0].value]
               ]),
               (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-                onClick: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.getdata(...args)), ["prevent"])),
+                onClick: _cache[5] || (_cache[5] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.getdata(...args)), ["prevent"])),
                 style: {"display":"inline"},
                 class: "btn"
               }, "查詢"),
-              _hoisted_16,
-              (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("select", {
-                "onUpdate:modelValue": _cache[7] || (_cache[7] = $event => (_ctx.addresschoose = $event))
-              }, [
-                ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.data, (item) => {
-                  return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
-                    value: item,
-                    key: item
-                  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.縣市) + "-" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.區鄉鎮市) + "-" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.街路), 9 /* TEXT, PROPS */, ["value"]))
-                }), 128 /* KEYED_FRAGMENT */))
-              ], 512 /* NEED_PATCH */), [
-                [vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.addresschoose]
-              ]),
+              _hoisted_17,
+              _hoisted_18,
               (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-                onClick: _cache[8] || (_cache[8] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.send(...args)), ["prevent"])),
+                onClick: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.send(...args)), ["prevent"])),
                 class: "btn"
               }, "送出")
             ])
@@ -23156,45 +23174,36 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         ])
       ])
     ]),
-    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_17, [
-      _hoisted_18,
-      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_19, [
-        _hoisted_20,
-        ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.addressC, (item) => {
-          return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("tr", {
-            value: item.a,
-            key: item.a
-          }, [
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, [
-              (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                type: "text",
-                id: "sss",
-                class: "form-control",
-                style: {"width":"200px","display":"inline"},
-                "onUpdate:modelValue": $event => (item.a = $event)
-              }, null, 8 /* PROPS */, ["onUpdate:modelValue"]), [
-                [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, item.a]
-              ])
-            ]),
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, [
-              (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                type: "text",
-                id: "ddd",
-                class: "form-control",
-                style: {"width":"200px","display":"inline"},
-                "onUpdate:modelValue": $event => (item.b = $event)
-              }, null, 8 /* PROPS */, ["onUpdate:modelValue"]), [
-                [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, item.b]
-              ])
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_19, [
+      _hoisted_20,
+      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_21, [
+        _hoisted_22,
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
+          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, [
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+              type: "text",
+              id: "ddd",
+              class: "form-control",
+              style: {"width":"200px","display":"inline"},
+              "onUpdate:modelValue": _cache[7] || (_cache[7] = $event => ($data.addressC = $event))
+            }, null, 512 /* NEED_PATCH */), [
+              [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.addressC]
             ])
-          ], 8 /* PROPS */, ["value"]))
-        }), 128 /* KEYED_FRAGMENT */))
+          ]),
+          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, [
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+              type: "text",
+              id: "sss",
+              class: "form-control",
+              style: {"width":"200px","display":"inline"},
+              "onUpdate:modelValue": _cache[8] || (_cache[8] = $event => ($data.addressS = $event))
+            }, null, 512 /* NEED_PATCH */), [
+              [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.addressS]
+            ])
+          ])
+        ])
       ])
-    ]),
-    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-      onClick: _cache[9] || (_cache[9] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.addArray(...args)), ["prevent"])),
-      class: "btn"
-    }, "ADD")
+    ])
   ], 64 /* STABLE_FRAGMENT */))
 }
 

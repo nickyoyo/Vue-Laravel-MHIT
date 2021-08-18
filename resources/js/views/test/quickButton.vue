@@ -6,20 +6,14 @@
         <button type="button" class="close" data-dismiss="modal">
           <span>&times;</span>
         </button>
-         <div class="modal-body" >
+        <div class="modal-body" >
         街路: <input
                 type="text"
                 class="form-control"
                 style="width: 200px;display:inline"
                 v-model="street[0].value"
             /><button  @click.prevent="getdata" style="display:inline" class="btn">查詢</button><br>
-               <select v-model="addresschoose"> 
-                <option
-                  v-for="item in data" :value="item" :key="item"
-                >
-                    {{ item.縣市 }}-{{ item.區鄉鎮市 }}-{{ item.街路}}
-                </option>
-              </select>
+               123
         <button  @click.prevent="send" class="btn">送出</button>
       </div>
       </div>
@@ -34,20 +28,14 @@
         <button type="button" class="close" data-dismiss="modal">
           <span>&times;</span>
         </button>
-         <div class="modal-body" >
+        <div class="modal-body" >
         街路: <input
                 type="text"
                 class="form-control"
                 style="width: 200px;display:inline"
                 v-model="street[0].value"
             /><button  @click.prevent="getdata" style="display:inline" class="btn">查詢</button><br>
-               <select v-model="addresschoose"> 
-                <option
-                  v-for="item in data" :value="item" :key="item"
-                >
-                    {{ item.縣市 }}-{{ item.區鄉鎮市 }}-{{ item.街路}}
-                </option>
-              </select>
+              456
         <button  @click.prevent="send" class="btn">送出</button>
       </div>
       </div>
@@ -62,16 +50,14 @@
         <th>DDD</th>
         <th>SSS</th>
       </tr>
-        <tr   v-for="item in addressC"
-                  :value="item.a"
-                  :key="item.a">
-            <td><input type="text" id="sss" class="form-control" style="width: 200px;display:inline" v-model="item.a"/></td>
-            <td><input type="text" id="ddd" class="form-control" style="width: 200px;display:inline" v-model="item.b"/></td>
+        <tr>
+            <td><input type="text" id="ddd" class="form-control" style="width: 200px;display:inline" v-model="addressC"/></td>
+            <td><input type="text" id="sss" class="form-control" style="width: 200px;display:inline" v-model="addressS"/></td>
         </tr>
     </table>
 </div>
 
-   <button  @click.prevent="addArray" class="btn">ADD</button>
+
 </template>
 
 <script>
@@ -80,23 +66,27 @@ export default {
   name: "smallwindow",
   data() {
     return {
-      addressC:[
-          {a:"1",b:"2"}
-      ],
+      addresschoose:[],
+      addressC:[],
       addressS:[],
+      zip:[],
+      data:[],
       street:[{value:"empty"}],
-
     };
   },
   methods: {
     send: function () {
-       this.item.a = this.addresschoose.縣市+this.addresschoose.區鄉鎮市;
+       this.addressC = this.addresschoose.縣市+this.addresschoose.區鄉鎮市;
        this.addressS = this.addresschoose.街路;
          axios
+          .get("http://127.0.0.1:8000/api/search/zip/"+this.addressC)
+          .then((response) => {
+            console.log(response);
+            this.zip = response.data;
+          });
     },
-    addArray: function () {
-        var arr =  {a:"1",b:"2"}
-        this.addressC.push(arr);
+     close: function () {
+    
     },
     getdata: function(){
            axios
@@ -106,6 +96,14 @@ export default {
             this.data = response.data;
           });
     },
+    datasearch: function(){
+           axios
+          .get("http://127.0.0.1:8000/api/search/zip/"+this.street[0].value)
+          .then((response) => {
+            console.log(response.data);
+            this.data = response.data;
+          });
+    }
   },
   mounted() {
         axios
