@@ -61,16 +61,16 @@
     <table class="container">
       <tr>
         <th>NO</th>
-        <th>DDD</th>
-        <th>SSS</th>
+        <th>sss</th>
+        <th>ddd</th>
       </tr>
         <tr   v-for="(item,index) in addressC"
                   :value="item"
                   :key="index">
             <td>{{index+1}}</td>
             <td><input @click="Arraych(index)" type="text" id="sss" name="sss" class="form-control" style="width: 200px;display:inline" v-model="item.a"/></td>
-            <td><input @click="Arraych(index)" type="text" id="ddd" class="form-control" style="width: 200px;display:inline" v-model="item.b"/></td>
-        </tr>
+            <td><input @keydown.tab="addArray()" type="text" name="ddd" class="form-control" style="width: 200px;display:inline" v-model="item.b"/></td>
+        </tr> 
     </table>
 </div>
 </div> 
@@ -115,8 +115,7 @@ export default {
         this.stateA=1;
        $("#XXX").modal('toggle');
     },
-    addArray: function () {
-      
+    addArray() {
         this.street[0].value="";
         var arr =  {a:"",b:"",index:this.addressC.length}
         this.addressC.push(arr);
@@ -130,27 +129,14 @@ export default {
           });
           this.stateA=2;
     },
-  },
-  mounted() {
+},      
+  mounted(){
         axios
           .get("http://127.0.0.1:8000/api/search/zip/"+this.street[0].value)
           .then((response) => {
             console.log(response.data);
             this.data = response.data;
           });
-               document.getElementById('sss').addEventListener('keydown',function(e){
-            if (e.shiftKey) {
-                // this.getdata();
-                  $("#ooo").modal('show');              
-            }
-                },false);
-        document.getElementById('ddd').addEventListener('keydown',function(e){
-            if (e.shiftKey) {
-                // this.getdata();
-                  $("#XXX").modal('show');              
-            }
-                },false);
-
     },
 };
 </script>

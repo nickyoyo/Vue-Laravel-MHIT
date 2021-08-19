@@ -35,11 +35,6 @@ app.use(store)
 app.mount('#app')
 
 // Done.....!
-
-
-
-
-
 key('a', function(){ alert('stopped reload!'); return false });
 
 // 回调函数返回 false 以阻止浏览器默认事件行为
@@ -82,6 +77,7 @@ $("#ooo").on("show.bs.modal",function(e){
     console.log('視窗目前是開啟的狀態..');
   }
 
+  
   //
 
   $("#XXX").on("show.bs.modal",function(e){

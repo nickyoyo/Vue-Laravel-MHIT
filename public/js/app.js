@@ -16795,18 +16795,6 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       console.log(response.data);
       _this2.data = response.data;
     });
-    document.getElementById('sss').addEventListener('keydown', function (e) {
-      if (e.shiftKey) {
-        // this.getdata();
-        $("#ooo").modal('show');
-      }
-    }, false);
-    document.getElementById('ddd').addEventListener('keydown', function (e) {
-      if (e.shiftKey) {
-        // this.getdata();
-        $("#XXX").modal('show');
-      }
-    }, false);
   }
 });
 
@@ -22891,8 +22879,8 @@ const _hoisted_19 = {
 const _hoisted_20 = { class: "container" }
 const _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
   /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "NO"),
-  /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "DDD"),
-  /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "SSS")
+  /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "sss"),
+  /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, "ddd")
 ], -1 /* HOISTED */)
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -23011,13 +22999,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               ]),
               (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, [
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                  onClick: $event => ($options.Arraych(index)),
+                  onKeydown: _cache[9] || (_cache[9] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)($event => ($options.addArray()), ["tab"])),
                   type: "text",
-                  id: "ddd",
+                  name: "ddd",
                   class: "form-control",
                   style: {"width":"200px","display":"inline"},
                   "onUpdate:modelValue": $event => (item.b = $event)
-                }, null, 8 /* PROPS */, ["onClick", "onUpdate:modelValue"]), [
+                }, null, 40 /* PROPS, HYDRATE_EVENTS */, ["onUpdate:modelValue"]), [
                   [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, item.b]
                 ])
               ])
@@ -23027,7 +23015,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       ])
     ]),
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-      onClick: _cache[9] || (_cache[9] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.addArray(...args)), ["prevent"])),
+      onClick: _cache[10] || (_cache[10] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.addArray(...args)), ["prevent"])),
       class: "btn"
     }, "ADD")
   ], 64 /* STABLE_FRAGMENT */))
