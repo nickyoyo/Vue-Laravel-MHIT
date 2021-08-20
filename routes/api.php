@@ -32,6 +32,8 @@ Route::get('/search/CmMemo/{CNO}&&{MemoType}',[SearchController::class,'searchCm
 Route::get('/search/CMCRFItems/{CNO}',[SearchController::class,'searchCMCRFItems']);
 Route::get('/search/PD',[SearchController::class,'searchPD']);
 Route::get('/search/zip/{street}',[SearchController::class,'searchaddress']);
+Route::get('/search/chk/{CNO}',[SearchController::class,'searchCHK']);
+Route::get('/search/UserDept/{DVID}',[SearchController::class,'searchUserDeptMember']);//搜尋方式待修改
 
 Route::post('/Update/CM',[UpdateController::class,'UpdateCM']);
 Route::post('/Update/CmMemo',[UpdateController::class,'UpdateCmMemo']);
@@ -41,3 +43,4 @@ Route::post('/Create/CM',[CreateController::class,'CreateCM']);
 Route::post('/Create/CmMemo',[CreateController::class,'CreateCmMemo']);
 Route::post('/Create/CMCRFItems',[CreateController::class,'CreateCMCRFItems']);
 Route::post('/Create/self-evaluation',[CreateController::class,'CreateCMself']);
+Route::post('/Create/CreateMeasure',[CreateController::class,'CreateMeasure']);

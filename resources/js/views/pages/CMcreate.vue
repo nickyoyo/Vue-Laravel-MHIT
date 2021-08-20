@@ -767,7 +767,7 @@ export default {
   methods: {
       getaddress: function(){
           axios
-          .get("http://127.0.0.1:8000/api/search/zip/"+this.street[0].value)
+          .get("/api/search/zip/"+this.street[0].value)
           .then((response) => {
             console.log(response.data);
             this.data = response.data;
@@ -790,7 +790,7 @@ export default {
        this.CusAddressS = this.addresschoose.街路;
        this.cust[0].CusAddress = this.addresschoose.縣市+this.addresschoose.區鄉鎮市+this.addresschoose.街路;
          axios
-          .get("http://127.0.0.1:8000/api/search/zip/"+this.CusAddressC)
+          .get("/api/search/zip/"+this.CusAddressC)
           .then((response) => {
             console.log(response.data);
             this.cust[0].ZipCode = response.data;
@@ -807,7 +807,7 @@ export default {
       this.cust[0]["CusAddress"] = this.CusAddressC + this.CusAddressS;
        this.cust[0]["FittingAdd"] = this.FittingAddC + this.FittingAddS;
       axios
-        .post("http://127.0.0.1:8000/api/Create/CMCRFItems", {
+        .post("/api/Create/CMCRFItems", {
           UseExp: this.UseExp,
           UDS: this.UDS,
           likeStyle: this.likeStyle,
@@ -821,7 +821,7 @@ export default {
         });
 
       axios
-        .post("http://127.0.0.1:8000/api/Create/CmMemo", {
+        .post("/api/Create/CmMemo", {
           Cmemo: this.Cmemo,
         })
         .then(function (response) {
@@ -831,7 +831,7 @@ export default {
           console.log(response);
         });
      axios
-        .post("http://127.0.0.1:8000/api/Create/CM", {
+        .post("/api/Create/CM", {
           cust: this.cust,
           CustType: this.CustType,
           BuyReason: this.BuyReason,
@@ -853,25 +853,25 @@ export default {
   },
   beforeCreate() {
     axios
-      .get("http://127.0.0.1:8000/api/search/CTD/客來源")
+      .get("/api/search/CTD/客來源")
       .then((response) => {
         console.log(response.data.Cust);
         this.CustType = response.data;
       }),
       axios
-        .get("http://127.0.0.1:8000/api/search/CTD/買原因")
+        .get("/api/search/CTD/買原因")
         .then((response) => {
           console.log(response.data);
           this.BuyReason = response.data;
         }),
       axios
-        .get("http://127.0.0.1:8000/api/search/CTD/成員組合")
+        .get("/api/search/CTD/成員組合")
         .then((response) => {
           console.log(response.data);
           this.Family = response.data;
         }),
       axios
-        .get("http://127.0.0.1:8000/api/search/CTD/屋型")
+        .get("/api/search/CTD/屋型")
         .then((response) => {
           console.log(response.data);
           this.HouseType = response.data;

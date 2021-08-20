@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 use Session;
 use Illuminate\Support\Facades\DB;
 
+date_default_timezone_set("Asia/Taipei");
+
 class UpdateController extends Controller
 {
     public function UpdateCM(Request $request)          //CM

@@ -8,15 +8,18 @@ use App\Models\CMCRFItems;
 use App\Models\CM_接待自評;
 use App\Models\CmMemo;
 use App\Models\CTD;
+use App\Models\chk;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Session;
 use Illuminate\Support\Facades\DB;
 
+date_default_timezone_set("Asia/Taipei");
 
 class CreateController extends Controller
 {
+    
     public function CreateCM(Request $request)          //CM
     {
          $data = $request->all();
@@ -105,7 +108,7 @@ class CreateController extends Controller
                 'HouseType' => ($data['HouseType'] == NULL) ? '' : $data['HouseType'],
                 'Family' => ($data['Family'] == NULL) ? '' : $data['Family'],
             ]);
-        return response()->json(['message' => '123123'], 200);
+        return response()->json($CNO, 200);
     }
     public function CreateCmMemo(Request $request)        //CmMemo
     {
@@ -433,4 +436,87 @@ class CreateController extends Controller
             return response()->json("", 200);
         }      
       }
+
+      public function CreateMeasure(request $request){
+        $data = $request->all();
+        
+        if($data['type']=="J"){
+            $data = $data['Data'][0];
+            //return response()->json($data, 200);
+            $days = date('z')+1;
+            $days = sprintf("%03d", $days);
+            $datanumber = DB::table('chk')->where('單號','LIKE', 'J'.'%')->where('Date_add',date('Ymd'))->where('門市別_StoreNo',$data['Dept'])->get();
+            $datanumber = count($datanumber)+1;
+            $datanumber = sprintf("%02d", $datanumber);
+                //dd($datanumber,date('Ymd'));
+                $CNO = 'J'.substr($data['Dept'], 2, 2).substr(date('Ym'), 2, 2).$days.$datanumber;  //C.部門後兩碼.年2碼.今年第幾天.當天流水號(2碼)
+             //   return response()->json($data , 200);
+            chk::create([
+                '單號' => $CNO,
+                '客戶號' => ($data['CustNo'] == NULL) ? '' : $data['CustNo'],
+                '預定日期' => ($data['ReserveDate'] == NULL) ? '' :  str_replace("-", "", $data['ReserveDate']),
+                '時間' => ($data['Time'] == NULL) ? '' : str_replace(":", "", $data['Time'].'00'),
+                '完工日期' => '000000',
+                '處理碼' => '',
+                '丈量人員' => ($data['MeasureMember'] == NULL) ? '' : $data['MeasureMember'],
+                '丈量地址' => '',
+                'Memo' => ($data['Memo'] == NULL) ? '' : $data['Memo'],
+                'Date_add' => date('Ymd'),
+                'UserID' => ($data['MeasureMember'] == NULL) ? '' : $data['MeasureMember'],
+                '門市別_StoreNo' => ($data['Dept'] == NULL) ? '' : $data['Dept'],
+                'Date_modi' => date('Ymd'),
+                '臥室數' => 0,
+                '廚房數' => 0,
+                'bathroom' => 0,
+                '狀態' => 0,
+                'time_add' => date('His'),
+                '預計成交日' => ($data['EstimateDealDate'] == NULL) ? '' : $data['EstimateDealDate'],
+                '預計成交率' => ($data['EstimateDealRate'] == NULL) ? '' : $data['EstimateDealRate'],
+                ]); 
+                CmMemo::create([
+                   'CustNo' => ($data['CustNo'] == NULL) ? '' : $data['CustNo'],
+                   'Type_' => '01',
+                   'OrderNo' => $CNO,
+                   'code_' => 0,
+                   '備註' => '',
+                   'Date_' => date('Ymd'),
+                   'UserId' => ($data['MeasureMember'] == NULL) ? '' : $data['MeasureMember'],
+                ]); 
+        }     
+        else if($data['type']=="K"){
+            $data = $data['Data'][0];
+            //return response()->json($data, 200);
+            $days = date('z')+1;
+            $days = sprintf("%03d", $days);
+            $datanumber = DB::table('chk')->where('單號','LIKE', 'K'.'%')->where('Date_add',date('Ymd'))->where('門市別_StoreNo',$data['Dept'])->get();
+            $datanumber = count($datanumber)+1;
+            $datanumber = sprintf("%02d", $datanumber);
+                //dd($datanumber,date('Ymd'));
+                $CNO = 'K'.substr($data['Dept'], 2, 2).substr(date('Ym'), 2, 2).$days.$datanumber;  //C.部門後兩碼.年2碼.今年第幾天.當天流水號(2碼)
+             //   return response()->json($data , 200);
+            chk::create([
+                '單號' => $CNO,
+                '客戶號' => ($data['CustNo'] == NULL) ? '' : $data['CustNo'],
+                '預定日期' => ($data['ReserveDate'] == NULL) ? '' :  str_replace("-", "", $data['ReserveDate']),
+                '時間' => ($data['Time'] == NULL) ? '' : str_replace(":", "", $data['Time'].'00'),
+                '完工日期' => '000000',
+                '處理碼' => '',
+                '丈量人員' => ($data['MeasureMember'] == NULL) ? '' : $data['MeasureMember'],
+                '丈量地址' => '',
+                'Memo' => ($data['Memo'] == NULL) ? '' : $data['Memo'],
+                'Date_add' => date('Ymd'),
+                'UserID' => ($data['MeasureMember'] == NULL) ? '' : $data['MeasureMember'],
+                '門市別_StoreNo' => ($data['Dept'] == NULL) ? '' : $data['Dept'],
+                'Date_modi' => date('Ymd'),
+                '臥室數' => 0,
+                '廚房數' => 0,
+                'bathroom' => 0,
+                '狀態' => 0,
+                'time_add' => date('His'),
+                '預計成交日' => ($data['EstimateDealDate'] == NULL) ? '' : $data['EstimateDealDate'],
+                '預計成交率' => ($data['EstimateDealRate'] == NULL) ? '' : $data['EstimateDealRate'],
+                ]);   
+        }    
+        return response()->json($CNO , 200); 
+    }
 }

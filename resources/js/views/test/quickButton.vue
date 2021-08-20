@@ -79,7 +79,7 @@ export default {
        this.addressC = this.addresschoose.縣市+this.addresschoose.區鄉鎮市;
        this.addressS = this.addresschoose.街路;
          axios
-          .get("http://127.0.0.1:8000/api/search/zip/"+this.addressC)
+          .get("/api/search/zip/"+this.addressC)
           .then((response) => {
             console.log(response);
             this.zip = response.data;
@@ -90,7 +90,7 @@ export default {
     },
     getdata: function(){
            axios
-          .get("http://127.0.0.1:8000/api/search/zip/"+this.street[0].value)
+          .get("/api/search/zip/"+this.street[0].value)
           .then((response) => {
             console.log(response.data);
             this.data = response.data;
@@ -98,7 +98,7 @@ export default {
     },
     datasearch: function(){
            axios
-          .get("http://127.0.0.1:8000/api/search/zip/"+this.street[0].value)
+          .get("/api/search/zip/"+this.street[0].value)
           .then((response) => {
             console.log(response.data);
             this.data = response.data;
@@ -107,7 +107,7 @@ export default {
   },
   mounted() {
         axios
-          .get("http://127.0.0.1:8000/api/search/zip/"+this.street[0].value)
+          .get("/api/search/zip/"+this.street[0].value)
           .then((response) => {
             console.log(response.data);
             this.data = response.data;

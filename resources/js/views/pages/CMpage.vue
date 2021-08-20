@@ -28,7 +28,10 @@
       </div>
     </div>
 
-
+<a v-if="choose" style="position:relative;left:595px;top:360px;">
+      <CMpageDaymanage @my-event="DaymanageB"></CMpageDaymanage>
+</a>
+ <a v-else style="position:relative;left:300px;">
   <div
     style="
       position: relative;
@@ -43,11 +46,7 @@
     </div>
     <br />
     <div class="AF2topic">
-      <input
-        type="button"
-        onclick="location.href='/AFeature1'"
-        value="貴賓卷"
-      />&nbsp;
+     <button @click.prevent="Daymanage" type="submit">日程管理</button>&nbsp;
       <input type="button" onclick="location.href='/AFeature1'" value="團購" />
       &nbsp;
       <button @click.prevent="Modify" type="submit">資料修改</button>&nbsp;
@@ -756,11 +755,14 @@
       </button>
     </form>
   </div>
+  </a>
 </template>
 
 <script>
+import CMpageDaymanage from "./CM日程管理";
 const axios = require("axios");
 export default {
+  components: { CMpageDaymanage },
   name: "CMpage",
   data() {
     return {
@@ -863,13 +865,15 @@ export default {
       zip:[],
       street:[{value:""}],
       addressState:true,
-      stateA:1
+      stateA:1,
+
+      choose: false,
     };
   },
   methods: {
     getaddress: function(){
           axios
-          .get("http://127.0.0.1:8000/api/search/zip/"+this.street[0].value)
+          .get("/api/search/zip/"+this.street[0].value)
           .then((response) => {
             console.log(response.data);
             this.data = response.data;
@@ -892,7 +896,7 @@ export default {
        this.custT.CusAddressS = this.addresschoose.街路;
        this.cust.CusAddress = this.addresschoose.縣市+this.addresschoose.區鄉鎮市+this.addresschoose.街路;
          axios
-          .get("http://127.0.0.1:8000/api/search/zip/"+this.CusAddressC)
+          .get("/api/search/zip/"+this.CusAddressC)
           .then((response) => {
             console.log(response.data);
             this.cust.ZipCode = response.data;
@@ -921,7 +925,7 @@ export default {
       this.cust.CusAddress = this.custT.CusAddressC + this.custT.CusAddressS;
        this.cust.FittingAdd = this.custT.FittingAddC + this.custT.FittingAddS;
       axios
-        .post("http://127.0.0.1:8000/api/Update/CM", {
+        .post("/api/Update/CM", {
           cust: this.cust,
           custT: this.custT,
           CustType: this.CustType,
@@ -938,7 +942,7 @@ export default {
           console.log(response);
         });
       axios
-        .post("http://127.0.0.1:8000/api/Update/CMCRFItems", {
+        .post("/api/Update/CMCRFItems", {
           cust: this.cust,
           UseExp: this.UseExp,
           UDS: this.UDS,
@@ -953,7 +957,7 @@ export default {
         });
 
       axios
-        .post("http://127.0.0.1:8000/api/Update/CmMemo", {
+        .post("/api/Update/CmMemo", {
           cust: this.cust,
           Cmemo: this.Cmemo,
         })
@@ -965,6 +969,12 @@ export default {
         });
       this.$router.replace({ name: "Home" });
     },
+    Daymanage: function(){
+         this.choose = true;
+    },
+    DaymanageB: function(){
+          this.$router.replace({ name: 'Home' })
+    },
   },
   props: {
     msg: String,
@@ -972,7 +982,7 @@ export default {
   beforeCreate() {
     if (this.$route.params.CNO != "") {
       axios
-        .get("http://127.0.0.1:8000/api/search/CM/" + this.$route.params.CNO)
+        .get("/api/search/CM/" + this.$route.params.CNO)
         .then((response) => {
           console.log(response);
           this.cust = response.data[0];
@@ -988,7 +998,7 @@ export default {
         }),
         axios
           .get(
-            "http://127.0.0.1:8000/api/search/CMCRFItems/" +
+            "/api/search/CMCRFItems/" +
               this.$route.params.CNO
           )
           .then((response) => {
@@ -1004,32 +1014,32 @@ export default {
               this.space[i]["value"] = response.data[3][i];
           }),
         axios
-          .get("http://127.0.0.1:8000/api/search/CTD/客來源")
+          .get("/api/search/CTD/客來源")
           .then((response) => {
             console.log(response.data.Cust);
             this.CustType = response.data;
           }),
         axios
-          .get("http://127.0.0.1:8000/api/search/CTD/買原因")
+          .get("/api/search/CTD/買原因")
           .then((response) => {
             console.log(response.data);
             this.BuyReason = response.data;
           }),
         axios
-          .get("http://127.0.0.1:8000/api/search/CTD/成員組合")
+          .get("/api/search/CTD/成員組合")
           .then((response) => {
             console.log(response.data);
             this.Family = response.data;
           }),
         axios
-          .get("http://127.0.0.1:8000/api/search/CTD/屋型")
+          .get("/api/search/CTD/屋型")
           .then((response) => {
             console.log(response.data);
             this.HouseType = response.data;
           });
       axios
         .get(
-          "http://127.0.0.1:8000/api/search/CmMemo/" +
+          "/api/search/CmMemo/" +
             this.$route.params.CNO +
             "&&00"
         )

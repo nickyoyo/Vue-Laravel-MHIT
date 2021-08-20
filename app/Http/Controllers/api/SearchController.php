@@ -9,6 +9,7 @@ use App\Models\CM_接待自評;
 use App\Models\CmMemo;
 use App\Models\CTD;
 use App\Models\zip;
+use App\Models\chk;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
@@ -233,7 +234,6 @@ class SearchController extends Controller
        // $EM13 = EM13::where('EMID','=', $EMID)->where('OFDT','=','00000000')->first();
         return response()->json(['YA' => Auth::user()],200);
     }
-
     public function searchaddress($street)
     {
         //找Zip
@@ -265,5 +265,38 @@ class SearchController extends Controller
             }
             return response()->json($address,200);
         } 
+    }
+    public function searchCHK($CNO)
+    {
+        //$data = chk::where('客戶號',$CNO)->orderby('狀態','asc')->get();
+        $dataJ = chk::where('客戶號',$CNO)->where('單號','LIKE', 'J'.'%')->where('狀態', '<', 3)->orderby('Date_add','asc')->get(['chk.*','Memo as result']);
+        $Jstate = 0;
+        foreach($dataJ as $data){
+            $Memo = CmMemo::where('OrderNo',trim($data->單號))->where('Type_','01')->where('code_',$data->狀態)->first();     
+            $data->result =  ($Memo == NULL) ? '' : $Memo['備註'];
+            $YMD = $data->預定日期;
+            $HMS = $data->時間;
+            $data->預定日期 = substr($YMD, 0, 4)."/".substr($YMD, 4, 2)."-".substr($YMD, 6, 2);
+            $data->時間 = substr($HMS, 0, 2).":".substr($HMS, 2, 2);
+            if($data->狀態==0)$Jstate=1;
+        }
+        $dataK = chk::where('客戶號',$CNO)->where('單號','LIKE', 'K'.'%')->where('狀態', '<', 7)->orderby('Date_add','asc')->get(['chk.*','Memo as result']);
+        $Kstate = 0;
+          foreach($dataK as $data){
+            $Memo = CmMemo::where('OrderNo',trim($data->單號))->where('Type_','84')->where('code_',$data->狀態)->first();
+            $data->result= ($Memo == NULL) ? '' : $Memo['備註'];
+            $YMD = $data->預定日期;
+            $HMS = $data->時間;
+            $data->預定日期 = substr($YMD, 0, 4)."/".substr($YMD, 4, 2)."-".substr($YMD, 6, 2);
+            $data->時間 = substr($HMS, 0, 2).":".substr($HMS, 2, 2);
+            if($data->狀態==0)$Kstate=1;
+        } 
+        return response()->json([$dataJ,$dataK,$Jstate,$Kstate],200);
+    }
+
+    public function searchUserDeptMember($DVID)
+    {
+        $UserDept = EM13::where('DVID','=', $DVID)->where('OFDT','=','00000000')->get();
+        return response()->json($UserDept,200);
     }
 }
