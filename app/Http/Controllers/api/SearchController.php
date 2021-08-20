@@ -289,7 +289,7 @@ class SearchController extends Controller
             $HMS = $data->時間;
             $data->預定日期 = substr($YMD, 0, 4)."/".substr($YMD, 4, 2)."-".substr($YMD, 6, 2);
             $data->時間 = substr($HMS, 0, 2).":".substr($HMS, 2, 2);
-            if($data->狀態==0)$Kstate=1;
+            if($data->狀態==3)$Kstate=1;
         } 
         return response()->json([$dataJ,$dataK,$Jstate,$Kstate],200);
     }

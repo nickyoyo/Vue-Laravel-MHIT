@@ -3,7 +3,7 @@
       <div class="modal-dialog modal-sm" >
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">
+            <button type="button" class="close" data-dismiss="modal"  @click.prevent="cleanDate">
               <span>&times;</span>
             </button>
           </div>
@@ -37,7 +37,7 @@
 				  </div>
 				  <div style="text-align: center;height:50px;">
 				  <button  @click.prevent="saveJ" data-dismiss="modal" style="display:inline;border: 1px black solid;" class="btn">確定</button>&nbsp;
-				  <button data-dismiss="modal" style="display:inline;border: 1px black solid;"  class="btn">取消</button>
+				  <button data-dismiss="modal" style="display:inline;border: 1px black solid;"  class="btn"  @click.prevent="cleanDate">取消</button>
           		</div>
         </div>
       </div>
@@ -47,7 +47,7 @@
       <div class="modal-dialog modal-lg" >
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">
+            <button type="button" class="close" data-dismiss="modal" @click.prevent="cleanDate">
               <span>&times;</span>
             </button>
           </div>
@@ -116,17 +116,18 @@
 
 				  <div style="text-align: center;height:50px;">
 						<button  @click.prevent="saveJ" data-dismiss="modal" style="display:inline;border: 1px black solid;" class="btn">確定</button>&nbsp;
-						<button data-dismiss="modal" style="display:inline;border: 1px black solid;"  class="btn">取消</button>
+						<button data-dismiss="modal" style="display:inline;border: 1px black solid;"  class="btn"  @click.prevent="cleanDate">取消</button>
 				 </div>
 				  </div>
         </div>
       </div>
     </div>
+
  <div id="MK" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
       <div class="modal-dialog modal-sm" >
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">
+            <button type="button" class="close" data-dismiss="modal"  @click.prevent="cleanDate">
               <span>&times;</span>
             </button>
           </div>
@@ -166,6 +167,7 @@
 						class="form-control"
 						style="display: inline; width: 80px"
 						v-model="Data[0].EstimateDealRate"
+						min = 0
 						:readonly="state == 1"
 					/>%<br /><br />
 				  看圖準備方向與重點<br />
@@ -173,13 +175,76 @@
 				  </div>
 				  <div style="text-align: center;height:50px;">
 				  <button  @click.prevent="saveK" data-dismiss="modal" style="display:inline;border: 1px black solid;" class="btn">確定</button>&nbsp;
-				  <button data-dismiss="modal" style="display:inline;border: 1px black solid;"  class="btn">取消</button>
+				  <button @click.prevent="cleanDate" data-dismiss="modal" style="display:inline;border: 1px black solid;"  class="btn">取消</button>
           		</div>
         </div>
       </div>
     </div>
 
+<div id="MKFinish" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
+      <div class="modal-dialog modal-lg" >
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" @click.prevent="cleanDate">
+              <span>&times;</span>
+            </button>
+          </div>
+		 		<div class="modal-body" >
+				  看圖取消原因/看圖取得資訊<br />
+				  <textarea class="form-control" style="height:200px;display:inline"></textarea><br /><br />
+				  <input type="radio" name="MJstate" value=0 v-model="MJstate"/>看圖取消
+				  <input type="radio" name="MJstate" value=1 v-model="MJstate" :disabled="this.Data[0]['state']==0"/>看圖完成
+				  </div>
 
+				 <div class="modal-body" >
+				 <input type="checkbox" name="nextK" v-model="nextK"/>下次有預約談圖&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				 </div>
+				<div class="modal-body" :hidden="nextK==false">
+				 	<input
+						type="date"
+						class="form-control"
+						style="display: inline; width: 180px"
+						v-model="Data[0].ReserveDate"		
+					/>
+					<input
+						type="date"
+						class="form-control"
+						style="display: inline; width: 180px"
+						v-model="Data[0].Time"
+					/>	
+				預約丈量日 : &nbsp;&nbsp;
+					<input
+						type="date"
+						class="form-control"
+						style="display: inline; width: 180px"
+						v-model="Data[0].ReserveDate"
+					/><br /><br />
+				預約丈量時間 :
+				<input
+						type="time"
+						class="form-control"
+						style="display: inline; width: 180px"
+						v-model="Data[0].Time"
+					/><br /><br />
+				丈量人員 :
+				 <select v-model="Data[0].MeasureMember"> 
+                    <option
+                      v-for="item in UserData" :value="item.EMID" :key="item"
+                    >
+                        {{ item.EMID }}|{{ item.EMME }}
+                    </option>
+                  </select><br /><br /><br />
+				  丈量準備方向與重點<br />
+				  <textarea class="form-control" style="height:200px;display:inline" v-model="Data[0].Memo"></textarea><br />
+
+				  <div style="text-align: center;height:50px;">
+						<button  @click.prevent="saveJ" data-dismiss="modal" style="display:inline;border: 1px black solid;" class="btn">確定</button>&nbsp;
+						<button data-dismiss="modal" style="display:inline;border: 1px black solid;"  class="btn"  @click.prevent="cleanDate">取消</button>
+				 </div>
+				  </div>
+        </div>
+      </div>
+    </div>
 
 <a style="position:relative;left:300px;top:300px;">
   <div class="topic" style="text-align: center">
@@ -240,7 +305,7 @@
 			<br /><br /><br />
 			看圖統計<br />
             <button @click.prevent="addMeasureK" type="submit" :hidden="Pstate == 1" style="height:30px;width:150px;" data-toggle="modal" data-target="#MK"  v-show="Kstate==0">新增看圖</button>
-            <button @click.prevent="finishMeasureK" type="submit" :hidden="Pstate == 0" style="height:30px;width:150px;"  v-show="Kstate==1">最新看圖結案</button>
+            <button @click.prevent="finishMeasureK" type="submit" :hidden="Pstate == 0" style="height:30px;width:150px;" data-toggle="modal" data-target="#MKFinish" v-show="Kstate==1">最新看圖結案</button>
 			<br /><br />
 			結案內容<br />
 			<input type="text" class="form-control" style="height:350px;width:300px;display:inline" />
@@ -289,6 +354,24 @@
     };
   },
   methods: {
+	cleanDate: function () {
+		this.Data=[								//存取要上傳chk資料
+        {
+          OrderNo: "",
+          CustNo: "C002122801",
+          ReserveDate: "",
+          Time: "",
+          FinishDate: "",
+          MeasureMember: "",
+          MeasureAddress: "",
+          Memo: "",
+		  Dept:"",
+          state: "",
+          EstimateDealDate: "",
+          EstimateDealRate: "",
+        },
+      ]
+	},
 	addMeasureJ: function () {
 		$("#MJ").modal('toggle');
 		this.Data[0].Dept=5000;

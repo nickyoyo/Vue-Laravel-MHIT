@@ -511,11 +511,20 @@ class CreateController extends Controller
                 '臥室數' => 0,
                 '廚房數' => 0,
                 'bathroom' => 0,
-                '狀態' => 0,
+                '狀態' => 3,
                 'time_add' => date('His'),
-                '預計成交日' => ($data['EstimateDealDate'] == NULL) ? '' : $data['EstimateDealDate'],
-                '預計成交率' => ($data['EstimateDealRate'] == NULL) ? '' : $data['EstimateDealRate'],
-                ]);   
+                '預計成交日' => ($data['EstimateDealDate'] == NULL) ? '' :  str_replace("-", "", $data['EstimateDealDate']),
+                '預計成交率' => ($data['EstimateDealRate'] == NULL) ? 0 : $data['EstimateDealRate'],
+                ]); 
+                CmMemo::create([
+                   'CustNo' => ($data['CustNo'] == NULL) ? '' : $data['CustNo'],
+                   'Type_' => '84',
+                   'OrderNo' => $CNO,
+                   'code_' => 0,
+                   '備註' => '',
+                   'Date_' => date('Ymd'),
+                   'UserId' => ($data['MeasureMember'] == NULL) ? '' : $data['MeasureMember'],
+                ]); 
         }    
         return response()->json($CNO , 200); 
     }
