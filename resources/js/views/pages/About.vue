@@ -173,6 +173,22 @@
       </div>
     </div>
 
+<div id="MKModify" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
+      <div class="modal-dialog modal-lg" >
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" @click.prevent="cleanData">
+              <span>&times;</span>
+            </button>
+          </div>
+		 		<div class="modal-body" >
+					 <ModifyK v-bind:DataN="Data"></ModifyK>
+				  </div>
+
+        </div>
+      </div>
+</div>
+
 <a style="position:relative;left:300px;top:300px;">
   <div class="topic" style="text-align: center">
       <h1>日程管理</h1>
@@ -197,8 +213,8 @@
 						<label v-show="item.狀態=='1'">第{{index+1}}次丈量取消</label>
 						<label v-show ="item.狀態=='2'">第{{index+1}}次丈量完成</label>
 						{{item.預定日期}}<br />{{item.時間}}<br />
-						<button  @click.prevent="ModifyJ" style="display:inline;border: 1px black solid;" class="btn">修改</button>
-						<button  @click.prevent="DeleteJ" style="display:inline;border: 1px black solid;" class="btn" v-show="item.狀態=='0'">刪除</button><br>
+						<button  @click.prevent="ModifyJ(index)" style="display:inline;border: 1px black solid;" class="btn">修改</button>
+						<button  @click.prevent="Delete" style="display:inline;border: 1px black solid;" class="btn" v-show="item.狀態=='0'">刪除</button><br>
 					</td>
 					<td><textarea class="form-control" style="height:150px;width:300px;display:inline" v-model="item.Memo" readonly></textarea></td>
 					<td><textarea class="form-control" style="height:150px;width:300px;display:inline" v-model="item.result" readonly></textarea></td>
@@ -213,8 +229,8 @@
 						<label v-show="item.狀態=='4'">第{{index+1}}次看圖取消</label>
 						<label v-show ="item.狀態=='5'">第{{index+1}}次看圖完成</label>
 						{{item.預定日期}}<br />{{item.時間}}<br />
-						<button  @click.prevent="ModifyK" style="display:inline;border: 1px black solid;" class="btn">修改</button>
-						<button  @click.prevent="DeleteK" style="display:inline;border: 1px black solid;" class="btn" v-show="item.狀態=='3'">刪除</button><br>
+						<button  @click.prevent="ModifyK(index)" style="display:inline;border: 1px black solid;" class="btn">修改</button>
+						<button  @click.prevent="Delete" style="display:inline;border: 1px black solid;" class="btn" v-show="item.狀態=='3'">刪除</button><br>
 					</td>
 					<td><textarea class="form-control" style="height:150px;width:300px;display:inline" v-model="item.Memo" readonly></textarea></td>
 					<td><textarea class="form-control" style="height:150px;width:300px;display:inline" v-model="item.result" readonly></textarea></td>
@@ -227,12 +243,12 @@
 
             <h2>目前客戶狀態</h2>
             丈量統計<br />
-            <button @click.prevent="addMeasureJ" type="submit" :hidden="Mstate == 1" style="height:30px;width:150px;" data-toggle="modal" data-target="#MJ" v-show="Jstate==0">新增丈量</button>
-            <button @click.prevent="finishMeasureJ" type="submit" :hidden="Mstate == 0" style="height:30px;width:150px;" data-toggle="modal" data-target="#MJFinish" v-show="Jstate==1">最新丈量結案</button>
+            <button @click.prevent="addMeasureJ" type="submit" :hidden="Mstate == 1" style="height:30px;width:150px;" v-show="Jstate==0">新增丈量</button>
+            <button @click.prevent="finishMeasureJ" type="submit" :hidden="Mstate == 0" style="height:30px;width:150px;" v-show="Jstate==1">最新丈量結案</button>
 			<br /><br /><br />
 			看圖統計<br />
-            <button @click.prevent="addMeasureK" type="submit" :hidden="Pstate == 1" style="height:30px;width:150px;" data-toggle="modal" data-target="#MK"  v-show="Kstate==0">新增看圖</button>
-            <button @click.prevent="finishMeasureK" type="submit" :hidden="Pstate == 0" style="height:30px;width:150px;" data-toggle="modal" data-target="#MKFinish" v-show="Kstate==1">最新看圖結案</button>
+            <button @click.prevent="addMeasureK" type="submit" :hidden="Pstate == 1" style="height:30px;width:150px;" v-show="Kstate==0">新增看圖</button>
+            <button @click.prevent="finishMeasureK" type="submit" :hidden="Pstate == 0" style="height:30px;width:150px;" v-show="Kstate==1">最新看圖結案</button>
 			<br /><br />
 			結案內容<br />
 			<input type="text" class="form-control" style="height:350px;width:300px;display:inline" />
@@ -248,10 +264,14 @@
 
 <script>
 	import ReservePicture from "../dropwindow/ReservePicture.vue";
+	import ModifyJ from "../dropwindow/ModifyJ日程.vue";
+	import ModifyK from "../dropwindow/ModifyK日程.vue";
   const axios = require("axios");
 	export default {
 		 components: {
       ReservePicture,
+	  ModifyJ,
+	  ModifyK,
     },
   name: "日程web",
   data() {
@@ -281,6 +301,8 @@
 	Kstate:0,							//判斷新增看圖或是最新看圖結案
 	MJstate:0,							//判斷丈量取消或是丈量完成
 	MKstate:0,							//判斷看圖取消或是看圖完成
+	ModifyJstate:0,						//紀錄修改丈量資料是取消或是完成
+	ModifyKstate:0,						//紀錄修改談圖資料是取消或是完成
 	MeasureEarly:false,					//提前之判定
 	nextJ:false,						//有預約下次談圖判定
 	nextK:false						    //有預約下次談圖判定
@@ -326,6 +348,21 @@
 		this.Data[0]['EstimateDealDate'] = this.DataJ[this.DataJ.length-1]['預計成交日'];
 		this.Data[0]['EstimateDealRate'] = this.DataJ[this.DataJ.length-1]['預計成交率'];
 	},
+	 ModifyJ: function (index) {
+		$("#MJModify").modal('toggle');
+		this.Data[0]['OrderNo'] = this.DataJ[index]['單號'];
+		this.Data[0]['CustNo'] = this.DataJ[index]['客戶號'];
+		this.Data[0]['ReserveDate'] = this.DataJ[index]['預定日期'];
+		this.Data[0]['Time'] = this.DataJ[index]['時間'];
+		this.Data[0]['FinishDate'] = this.DataJ[index]['完工日期'];
+		this.Data[0]['MeasureMember'] = this.DataJ[index]['丈量人員'];
+		this.Data[0]['MeasureAddress'] = this.DataJ[index]['丈量地址'];
+		this.Data[0]['Memo'] = this.DataJ[index]['Memo'];
+		this.Data[0]['Dept'] = this.DataJ[index]['門市別_StoreNo'];
+		this.Data[0]['state'] = this.DataJ[index]['狀態'];
+		this.Data[0]['EstimateDealDate'] = this.DataJ[index]['預計成交日'];
+		this.Data[0]['EstimateDealRate'] = this.DataJ[index]['預計成交率'];
+	},
 	finishMeasureK: function () {
 		$("#MKFinish").modal('toggle');
 		this.Data[0]['OrderNo'] = this.DataK[this.DataK.length-1]['單號'];
@@ -343,6 +380,21 @@
 	},
 	addMeasureK: function () {
 		$("#MK").modal('toggle');
+	},
+	ModifyK: function (index) {
+		$("#MKModify").modal('toggle');
+		this.Data[0]['OrderNo'] = this.DataK[index]['單號'];
+		this.Data[0]['CustNo'] = this.DataK[index]['客戶號'];
+		this.Data[0]['ReserveDate'] = this.DataK[index]['預定日期'];
+		this.Data[0]['Time'] = this.DataK[index]['時間'];
+		this.Data[0]['FinishDate'] = this.DataK[index]['完工日期'];
+		this.Data[0]['MeasureMember'] = this.DataK[index]['丈量人員'];
+		this.Data[0]['MeasureAddress'] = this.DataK[index]['丈量地址'];
+		this.Data[0]['Memo'] = this.DataK[index]['Memo'];
+		this.Data[0]['Dept'] = this.DataK[index]['門市別_StoreNo'];
+		this.Data[0]['state'] = this.DataK[index]['狀態']-4;
+		this.Data[0]['EstimateDealDate'] = this.DataK[index]['預計成交日'];
+		this.Data[0]['EstimateDealRate'] = this.DataK[index]['預計成交率'];
 	},
 	saveJ: function () {
 		 axios
@@ -405,7 +457,7 @@
         });
 		this.cleanData();
 	},
-},      
+},     
   mounted(){
       axios
       .get("/api/search/chk/C002122801")

@@ -315,14 +315,20 @@ class UpdateController extends Controller
            else if($state==1){
             $state = 2;
            }
+           else if($state==2){
+            $state = 6;
+           }
            $type='01';
         }
         else{
             if($state==0){
                 $state = 4;
                }
-               else if($state==1){
+            else if($state==1){
                 $state = 5;
+               }
+            else if($state==2){
+                $state = 7;
                }
             $type='84';
         }

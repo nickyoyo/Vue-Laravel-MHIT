@@ -9,8 +9,6 @@ import quickButton from "./views/test/quickButton";
 import BVTest from "./views/test/BVTest";
 import 日程web from "./views/test/日程web";
 
-import ReservePicture from "./views/dropwindow/ReservePicture";
-
 import CM接待自評 from "./views/pages/CM接待自評";
 import CMcreate from "./views/pages/CMcreate";
 import CMsendSearch from "./views/pages/CMsendSearch";
@@ -38,7 +36,6 @@ export default [
     { path: "/quickButton", component: quickButton, name: 'quickButton' },
     { path: "/BVTest", component: BVTest, name: 'BVTest' },
     { path: "/日程web", component: 日程web, name: '日程web' },
-    { path: "/ReservePicture", component: ReservePicture, name: 'ReservePicture' },
    // { path: "/quickButton", component: quickButton, name: 'quickButton' },
     
 ];
