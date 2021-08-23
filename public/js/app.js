@@ -15579,7 +15579,7 @@ module.exports = {
 /*! namespace exports */
 /*! export default [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
+/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__, __webpack_require__.d, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -15587,22 +15587,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
+var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["Data"],
+  props: ["DataN", "S"],
   name: "ReservePicture",
   data: function data() {
     return {
-      DataN: [//存取要上傳chk資料
+      Data: [//存取要上傳chk資料
       {
         OrderNo: "",
-        CustNo: this.Data[0].CustNo,
+        CustNo: this.DataN[0].CustNo,
         ReserveDate: "",
         Time: "",
         FinishDate: "",
-        MeasureMember: "",
-        MeasureAddress: "",
+        MeasureMember: this.DataN[0].MeasureMember,
+        MeasureAddress: this.DataN[0].MeasureAddress,
         Memo: "",
-        Dept: this.Data[0].Dept,
+        Dept: this.DataN[0].Dept,
         state: "",
         EstimateDealDate: "",
         EstimateDealRate: ""
@@ -15611,10 +15613,22 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     save: function save() {
-      axios.post("/api/Create/CreateMeasure", {
-        Data: this.DataN,
+      axios.post("/api/Create/Measure", {
+        Data: this.Data,
         type: "K",
-        state: 0
+        S: 0
+      }).then(function (response) {
+        console.log(response);
+      })["catch"](function (response) {
+        console.log(response);
+      });
+      this.$emit('my-data');
+    },
+    saveK: function saveK() {
+      axios.post("/api/Create/Measure", {
+        Data: this.Data,
+        type: "K",
+        S: 1
       }).then(function (response) {
         console.log(response);
       })["catch"](function (response) {
@@ -15783,6 +15797,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         EstimateDealRate: ""
       }],
       Memo: [],
+      //丈量&看圖各自結案的MEMO
       Jstate: 0,
       //判斷新增丈量或是最新丈量結案
       Kstate: 0,
@@ -15863,16 +15878,19 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       })["catch"](function (response) {
         console.log(response);
       });
+      this.cleanData();
     },
     saveK: function saveK() {
       axios.post("/api/Create/Measure", {
         Data: this.Data,
-        type: "K"
+        type: "K",
+        S: 0
       }).then(function (response) {
         console.log(response);
       })["catch"](function (response) {
         console.log(response);
       });
+      this.cleanData();
     },
     saveJC: function saveJC() {
       axios.post("/api/Update/Measurestate", {
@@ -15885,6 +15903,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       })["catch"](function (response) {
         console.log(response);
       });
+      this.cleanData();
     },
     saveKC: function saveKC() {
       axios.post("/api/Update/Measurestate", {
@@ -15897,6 +15916,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       })["catch"](function (response) {
         console.log(response);
       });
+      this.cleanData();
     }
   },
   mounted: function mounted() {
@@ -18825,12 +18845,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _ReservePicture_vue_vue_type_template_id_ac00b77a_bindings_Data_props_save_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={"Data":"props","save":"options"} */ "./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={\"Data\":\"props\",\"save\":\"options\"}");
+/* harmony import */ var _ReservePicture_vue_vue_type_template_id_ac00b77a_bindings_DataN_props_S_props_save_options_saveK_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={"DataN":"props","S":"props","save":"options","saveK":"options"} */ "./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={\"DataN\":\"props\",\"S\":\"props\",\"save\":\"options\",\"saveK\":\"options\"}");
 /* harmony import */ var _ReservePicture_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ReservePicture.vue?vue&type=script&lang=js */ "./resources/js/views/dropwindow/ReservePicture.vue?vue&type=script&lang=js");
 
 
 
-_ReservePicture_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _ReservePicture_vue_vue_type_template_id_ac00b77a_bindings_Data_props_save_options___WEBPACK_IMPORTED_MODULE_0__.render
+_ReservePicture_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _ReservePicture_vue_vue_type_template_id_ac00b77a_bindings_DataN_props_S_props_save_options_saveK_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* hot reload */
 if (false) {}
 
@@ -19746,12 +19766,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={\"Data\":\"props\",\"save\":\"options\"}":
-/*!***********************************************************************************************************************************!*\
-  !*** ./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={"Data":"props","save":"options"} ***!
-  \***********************************************************************************************************************************/
+/***/ "./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={\"DataN\":\"props\",\"S\":\"props\",\"save\":\"options\",\"saveK\":\"options\"}":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={"DataN":"props","S":"props","save":"options","saveK":"options"} ***!
+  \******************************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={"Data":"props","save":"options"} .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={"DataN":"props","S":"props","save":"options","saveK":"options"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -19759,9 +19779,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ReservePicture_vue_vue_type_template_id_ac00b77a_bindings_Data_props_save_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ReservePicture_vue_vue_type_template_id_ac00b77a_bindings_DataN_props_S_props_save_options_saveK_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ReservePicture_vue_vue_type_template_id_ac00b77a_bindings_Data_props_save_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={"Data":"props","save":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={\"Data\":\"props\",\"save\":\"options\"}");
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ReservePicture_vue_vue_type_template_id_ac00b77a_bindings_DataN_props_S_props_save_options_saveK_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={"DataN":"props","S":"props","save":"options","saveK":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={\"DataN\":\"props\",\"S\":\"props\",\"save\":\"options\",\"saveK\":\"options\"}");
 
 
 /***/ }),
@@ -20066,10 +20086,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={\"Data\":\"props\",\"save\":\"options\"}":
-/*!********************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={"Data":"props","save":"options"} ***!
-  \********************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={\"DataN\":\"props\",\"S\":\"props\",\"save\":\"options\",\"saveK\":\"options\"}":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={"DataN":"props","S":"props","save":"options","saveK":"options"} ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -20097,6 +20117,7 @@ const _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode
 const _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
 const _hoisted_12 = { style: {"text-align":"center","height":"50px"} }
 const _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("  ")
+const _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("  ")
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [
@@ -20105,18 +20126,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       type: "date",
       class: "form-control",
       style: {"display":"inline","width":"180px"},
-      "onUpdate:modelValue": _cache[1] || (_cache[1] = $event => (_ctx.DataN[0].ReserveDate = $event))
+      "onUpdate:modelValue": _cache[1] || (_cache[1] = $event => (_ctx.Data[0].ReserveDate = $event))
     }, null, 512 /* NEED_PATCH */), [
-      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.DataN[0].ReserveDate]
+      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.Data[0].ReserveDate]
     ]),
     _hoisted_2,
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
       type: "time",
       class: "form-control",
       style: {"display":"inline","width":"180px"},
-      "onUpdate:modelValue": _cache[2] || (_cache[2] = $event => (_ctx.DataN[0].Time = $event))
+      "onUpdate:modelValue": _cache[2] || (_cache[2] = $event => (_ctx.Data[0].Time = $event))
     }, null, 512 /* NEED_PATCH */), [
-      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.DataN[0].Time]
+      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.Data[0].Time]
     ]),
     _hoisted_3,
     _hoisted_4,
@@ -20125,18 +20146,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       type: "date",
       class: "form-control",
       style: {"display":"inline","width":"180px"},
-      "onUpdate:modelValue": _cache[3] || (_cache[3] = $event => (_ctx.DataN[0].EstimateDealDate = $event))
+      "onUpdate:modelValue": _cache[3] || (_cache[3] = $event => (_ctx.Data[0].EstimateDealDate = $event))
     }, null, 512 /* NEED_PATCH */), [
-      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.DataN[0].EstimateDealDate]
+      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.Data[0].EstimateDealDate]
     ]),
     _hoisted_6,
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-      type: "date",
+      type: "number",
       class: "form-control",
-      style: {"display":"inline","width":"180px"},
-      "onUpdate:modelValue": _cache[4] || (_cache[4] = $event => (_ctx.DataN[0].EstimateDealDate = $event))
+      style: {"display":"inline","width":"80px"},
+      min: "0",
+      "onUpdate:modelValue": _cache[4] || (_cache[4] = $event => (_ctx.Data[0].EstimateDealRate = $event))
     }, null, 512 /* NEED_PATCH */), [
-      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.DataN[0].EstimateDealDate]
+      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.Data[0].EstimateDealRate]
     ]),
     _hoisted_7,
     _hoisted_8,
@@ -20145,9 +20167,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("textarea", {
       class: "form-control",
       style: {"height":"200px","display":"inline"},
-      "onUpdate:modelValue": _cache[5] || (_cache[5] = $event => (_ctx.DataN[0].Memo = $event))
+      "onUpdate:modelValue": _cache[5] || (_cache[5] = $event => (_ctx.Data[0].Memo = $event))
     }, null, 512 /* NEED_PATCH */), [
-      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.DataN[0].Memo]
+      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.Data[0].Memo]
     ]),
     _hoisted_11,
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [
@@ -20155,14 +20177,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.save(...args)), ["prevent"])),
         "data-dismiss": "modal",
         style: {"display":"inline","border":"1px black solid"},
-        class: "btn"
-      }, " 確定"),
+        class: "btn",
+        hidden: $props.S==1
+      }, "確定", 8 /* PROPS */, ["hidden"]),
       _hoisted_13,
+      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+        onClick: _cache[7] || (_cache[7] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.saveK(...args)), ["prevent"])),
+        "data-dismiss": "modal",
+        style: {"display":"inline","border":"1px black solid"},
+        class: "btn",
+        hidden: $props.S==0
+      }, " 確定", 8 /* PROPS */, ["hidden"]),
+      _hoisted_14,
       (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
         "data-dismiss": "modal",
         style: {"display":"inline","border":"1px black solid"},
         class: "btn",
-        onClick: _cache[7] || (_cache[7] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => (_ctx.cleanDate(...args)), ["prevent"]))
+        onClick: _cache[8] || (_cache[8] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => (_ctx.cleanDate(...args)), ["prevent"]))
       }, " 取消 ")
     ])
   ], 64 /* STABLE_FRAGMENT */))
@@ -20658,8 +20689,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }, [
             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ReservePicture, {
               onMyData: $options.saveJC,
-              Data: $data.Data
-            }, null, 8 /* PROPS */, ["onMyData", "Data"])
+              DataN: $data.Data,
+              S: 0
+            }, null, 8 /* PROPS */, ["onMyData", "DataN"])
           ], 8 /* PROPS */, ["hidden"])
         ])
       ])
@@ -20745,9 +20777,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("textarea", {
               class: "form-control",
               style: {"height":"200px","display":"inline"},
-              "onUpdate:modelValue": _cache[24] || (_cache[24] = $event => ($data.Memo = $event))
+              "onUpdate:modelValue": _cache[24] || (_cache[24] = $event => ($data.Data[0].Memo = $event))
             }, null, 512 /* NEED_PATCH */), [
-              [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.Memo]
+              [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.Data[0].Memo]
             ]),
             _hoisted_64
           ]),
@@ -20788,9 +20820,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("textarea", {
               class: "form-control",
               style: {"height":"200px","display":"inline"},
-              "onUpdate:modelValue": _cache[28] || (_cache[28] = $event => ($data.Data[0].Memo = $event))
+              "onUpdate:modelValue": _cache[28] || (_cache[28] = $event => ($data.Memo = $event))
             }, null, 512 /* NEED_PATCH */), [
-              [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.Data[0].Memo]
+              [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.Memo]
             ]),
             _hoisted_75,
             _hoisted_76,
@@ -20815,7 +20847,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             _hoisted_79,
             _hoisted_80,
             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-              onClick: _cache[31] || (_cache[31] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.saveK(...args)), ["prevent"])),
+              onClick: _cache[31] || (_cache[31] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.saveKC(...args)), ["prevent"])),
               "data-dismiss": "modal",
               style: {"display":"inline","border":"1px black solid"},
               class: "btn",
@@ -20846,8 +20878,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }, [
             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ReservePicture, {
               onMyData: $options.saveKC,
-              Data: $data.Data
-            }, null, 8 /* PROPS */, ["onMyData", "Data"])
+              DataN: $data.Data,
+              S: 1
+            }, null, 8 /* PROPS */, ["onMyData", "DataN"])
           ], 8 /* PROPS */, ["hidden"])
         ])
       ])
@@ -20885,12 +20918,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                       style: {"display":"inline","border":"1px black solid"},
                       class: "btn"
                     }, "修改"),
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
                       onClick: _cache[35] || (_cache[35] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => (_ctx.DeleteJ(...args)), ["prevent"])),
                       style: {"display":"inline","border":"1px black solid"},
-                      class: "btn",
-                      hidden: item.狀態=='2'
-                    }, "刪除", 8 /* PROPS */, ["hidden"]),
+                      class: "btn"
+                    }, "刪除", 512 /* NEED_PATCH */), [
+                      [vue__WEBPACK_IMPORTED_MODULE_0__.vShow, item.狀態=='0']
+                    ]),
                     _hoisted_94
                   ]),
                   (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, [
@@ -20940,12 +20974,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                       style: {"display":"inline","border":"1px black solid"},
                       class: "btn"
                     }, "修改"),
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
                       onClick: _cache[37] || (_cache[37] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => (_ctx.DeleteK(...args)), ["prevent"])),
                       style: {"display":"inline","border":"1px black solid"},
-                      class: "btn",
-                      hidden: item.狀態=='5'
-                    }, "刪除", 8 /* PROPS */, ["hidden"]),
+                      class: "btn"
+                    }, "刪除", 512 /* NEED_PATCH */), [
+                      [vue__WEBPACK_IMPORTED_MODULE_0__.vShow, item.狀態=='3']
+                    ]),
                     _hoisted_97
                   ]),
                   (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, [

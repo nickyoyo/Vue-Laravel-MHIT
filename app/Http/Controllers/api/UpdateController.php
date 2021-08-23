@@ -339,10 +339,10 @@ class UpdateController extends Controller
         ->where('Type_', $type)
         ->update([
             'code_' => $state,
-            '備註' => $Memo,
+            '備註' => ($Memo == NULL) ? '' : $Memo,
             'Date_' => date('Ymd'),
             'Time_' => date('His'),
         ]);
-        return response()->json([$OrderNo], 200);
+        return response()->json($OrderNo, 200);
     }
 }

@@ -81,13 +81,13 @@
 				 <input type="checkbox" name="nextJ" v-model="nextJ"/>下次有預約談圖&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				</div>
 				<div class="modal-body" :hidden="nextJ==false">
-				  <ReservePicture @my-data="saveJC" v-bind:Data="Data"></ReservePicture>
+				  <ReservePicture @my-data="saveJC" v-bind:DataN="Data" v-bind:S=0></ReservePicture>
 				  </div>
           </div>
 	  </div>
     </div>
 
- <div id="MK" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
+<div id="MK" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
       <div class="modal-dialog modal-sm" >
         <div class="modal-content">
           <div class="modal-header">
@@ -135,7 +135,7 @@
 						:readonly="state == 1"
 					/>%<br /><br />
 				  看圖準備方向與重點<br />
-				  <textarea class="form-control" style="height:200px;display:inline" v-model="Memo"></textarea><br />
+				  <textarea class="form-control" style="height:200px;display:inline" v-model="Data[0].Memo"></textarea><br />
 				  </div>
 				  <div style="text-align: center;height:50px;">
 				  <button  @click.prevent="saveK" data-dismiss="modal" style="display:inline;border: 1px black solid;" class="btn">確定</button>&nbsp;
@@ -155,11 +155,11 @@
           </div>
 		 		<div class="modal-body" >
 				  看圖取消原因/看圖取得資訊<br />
-				  <textarea class="form-control" style="height:200px;display:inline"  v-model="Data[0].Memo"></textarea><br /><br />
+				  <textarea class="form-control" style="height:200px;display:inline"  v-model="Memo"></textarea><br /><br />
 				  <input type="radio" name="MKstate" value=0 v-model="MKstate"/>看圖取消
 				  <input type="radio" name="MKstate" value=1 v-model="MKstate"/>看圖完成
 					<br /><br />
-				  <button  @click.prevent="saveK" data-dismiss="modal" style="display:inline;border: 1px black solid;" class="btn" :hidden="nextK==true">確定</button>&nbsp;
+				  <button  @click.prevent="saveKC" data-dismiss="modal" style="display:inline;border: 1px black solid;" class="btn" :hidden="nextK==true">確定</button>&nbsp;
 				  <button @click.prevent="cleanData" data-dismiss="modal" style="display:inline;border: 1px black solid;"  class="btn" :hidden="nextK==true">取消</button>
 				  </div>
 
@@ -167,7 +167,7 @@
 				 <input type="checkbox" name="nextK" v-model="nextK"/>下次有預約談圖&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				 </div>
 				<div class="modal-body" :hidden="nextK==false">
-				 <ReservePicture @my-data="saveKC" v-bind:Data="Data"></ReservePicture>
+				 <ReservePicture @my-data="saveKC" v-bind:DataN="Data" v-bind:S=1></ReservePicture>
 				</div>
         </div>
       </div>
@@ -198,7 +198,7 @@
 						<label v-show ="item.狀態=='2'">第{{index+1}}次丈量完成</label>
 						{{item.預定日期}}<br />{{item.時間}}<br />
 						<button  @click.prevent="ModifyJ" style="display:inline;border: 1px black solid;" class="btn">修改</button>
-						<button  @click.prevent="DeleteJ" style="display:inline;border: 1px black solid;" class="btn" :hidden="item.狀態=='2'">刪除</button><br>
+						<button  @click.prevent="DeleteJ" style="display:inline;border: 1px black solid;" class="btn" v-show="item.狀態=='0'">刪除</button><br>
 					</td>
 					<td><textarea class="form-control" style="height:150px;width:300px;display:inline" v-model="item.Memo" readonly></textarea></td>
 					<td><textarea class="form-control" style="height:150px;width:300px;display:inline" v-model="item.result" readonly></textarea></td>
@@ -214,7 +214,7 @@
 						<label v-show ="item.狀態=='5'">第{{index+1}}次看圖完成</label>
 						{{item.預定日期}}<br />{{item.時間}}<br />
 						<button  @click.prevent="ModifyK" style="display:inline;border: 1px black solid;" class="btn">修改</button>
-						<button  @click.prevent="DeleteK" style="display:inline;border: 1px black solid;" class="btn" :hidden="item.狀態=='5'">刪除</button><br>
+						<button  @click.prevent="DeleteK" style="display:inline;border: 1px black solid;" class="btn" v-show="item.狀態=='3'">刪除</button><br>
 					</td>
 					<td><textarea class="form-control" style="height:150px;width:300px;display:inline" v-model="item.Memo" readonly></textarea></td>
 					<td><textarea class="form-control" style="height:150px;width:300px;display:inline" v-model="item.result" readonly></textarea></td>
@@ -276,7 +276,7 @@
           EstimateDealRate: "",
         },
       ],
-	Memo:[],
+	Memo:[],							//丈量&看圖各自結案的MEMO
 	Jstate:0,							//判斷新增丈量或是最新丈量結案
 	Kstate:0,							//判斷新增看圖或是最新看圖結案
 	MJstate:0,							//判斷丈量取消或是丈量完成
@@ -356,12 +356,14 @@
         .catch(function (response) {
           console.log(response);
         });
+		this.cleanData();
 	},
 	saveK: function () {
 		 axios
         .post("/api/Create/Measure", {
           Data: this.Data,
           type: "K",
+		  S: 0,
         })
         .then(function (response) {
           console.log(response);
@@ -369,6 +371,7 @@
         .catch(function (response) {
           console.log(response);
         });
+		this.cleanData();
 	},
 	saveJC: function () {
 		 axios
@@ -384,6 +387,7 @@
         .catch(function (response) {
           console.log(response);
         });
+		this.cleanData();
 	},
 	saveKC: function () {
 	 axios
@@ -399,6 +403,7 @@
         .catch(function (response) {
           console.log(response);
         });
+		this.cleanData();
 	},
 },      
   mounted(){
