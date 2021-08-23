@@ -8,6 +8,7 @@ use App\Models\CMCRFItems;
 use App\Models\CM_接待自評;
 use App\Models\CmMemo;
 use App\Models\CTD;
+use App\Models\chk;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
@@ -302,5 +303,46 @@ class UpdateController extends Controller
             ]);
         }
         return response()->json([789789], 200);
+    }
+    public function UpdateMeasurestate(request $request){
+        $data = $request->all();
+        $state = $data['state'];
+        $type = $data['type'];
+        if($type=="J"){
+           if($state==0){
+            $state = 1;
+           }
+           else if($state==1){
+            $state = 2;
+           }
+           $type='01';
+        }
+        else{
+            if($state==0){
+                $state = 4;
+               }
+               else if($state==1){
+                $state = 5;
+               }
+            $type='84';
+        }
+        $Memo = $data['Memo'];
+        $data = $data['Data'][0];
+        $OrderNo = trim($data['OrderNo']);
+        
+        chk::where('單號', $OrderNo)
+            ->update([
+                '狀態' => $state,
+                'Date_modi' => date('Ymd'),
+            ]);
+        CmMemo::where('OrderNo', $OrderNo)
+        ->where('Type_', $type)
+        ->update([
+            'code_' => $state,
+            '備註' => $Memo,
+            'Date_' => date('Ymd'),
+            'Time_' => date('His'),
+        ]);
+        return response()->json([$OrderNo], 200);
     }
 }

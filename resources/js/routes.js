@@ -15,7 +15,7 @@ import CM接待自評 from "./views/pages/CM接待自評";
 import CMcreate from "./views/pages/CMcreate";
 import CMsendSearch from "./views/pages/CMsendSearch";
 import CMpage from "./views/pages/CMpage";
-import CMpageDaymanage from "./views/pages/CM日程管理";
+import CM日程管理 from "./views/pages/CM日程管理";
 
 import PersonalData from "./views/pages/PersonalData";
 
@@ -30,7 +30,7 @@ export default [
     { path: "/CM/sendSearch", component: CMsendSearch, name: 'CMsendSearch' },
 
     { path: "/CM/page", component: CMpage, name: 'CMpage' },
-    { path: "/CM/page/日程管理", component: CMpageDaymanage, name: 'CMpageDaymanage' },
+    { path: "/CM/page/日程管理", component: CM日程管理, name: 'CM日程管理' },
 
     { path: "/PersonalData", component: PersonalData, name: 'PersonalData' },
 
