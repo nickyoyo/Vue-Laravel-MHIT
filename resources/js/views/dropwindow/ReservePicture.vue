@@ -57,7 +57,7 @@
       data-dismiss="modal"
       style="display: inline; border: 1px black solid"
       class="btn"
-      @click.prevent="cleanDate"
+      @click.prevent="cleanData"
     >
       取消
     </button>
@@ -70,26 +70,29 @@ export default {
   name: "ReservePicture",
   data: function () {
     return {
-      Data: [
-        //存取要上傳chk資料
+      Data:[								//存取要上傳chk資料
         {
           OrderNo: "",
           CustNo: this.DataN[0].CustNo,
           ReserveDate: "",
           Time: "",
           FinishDate: "",
-          MeasureMember: this.DataN[0].MeasureMember,
-          MeasureAddress: this.DataN[0].MeasureAddress,
+          MeasureMember: "",
+          MeasureAddress: "",
           Memo: "",
-          Dept: this.DataN[0].Dept,
+		      Dept: this.DataN[0].Dept,
           state: "",
           EstimateDealDate: "",
           EstimateDealRate: "",
+		      result:"",
         },
       ],
     };
   },
   methods:{
+    cleanData: function () {
+      this.$emit('my-clean');
+	},
 	  save: function () {
 		 axios
         .post("/api/Create/Measure", {
@@ -120,6 +123,11 @@ export default {
         });
 		this.$emit('my-data');
 	},
-  }
+  },
+  mounted(){
+    this.Data[0].EstimateDealDate="";
+    this.Data[0].EstimateDealRate="";
+    this.Data[0].Memo="";
+  },
 };
 </script>

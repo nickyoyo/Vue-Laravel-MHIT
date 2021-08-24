@@ -536,6 +536,8 @@ class CreateController extends Controller
                         '時間' => ($data['Time'] == NULL) ? '' : str_replace(":", "", $data['Time'].'00'),
                         'Memo' => ($data['Memo'] == NULL) ? '' : $data['Memo'],
                         'Date_modi' => date('Ymd'),
+                        '丈量人員' => ($data['MeasureMember'] == NULL) ? '' : $data['MeasureMember'],
+                        'UserID' => ($data['MeasureMember'] == NULL) ? '' : $data['MeasureMember'],
                         'time_add' => date('His'),
                         '預計成交日' => ($data['EstimateDealDate'] == NULL) ? '' :  str_replace("-", "", $data['EstimateDealDate']),
                         '預計成交率' => ($data['EstimateDealRate'] == NULL) ? 0 : $data['EstimateDealRate'],

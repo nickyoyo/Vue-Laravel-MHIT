@@ -3,31 +3,20 @@
   <textarea
     class="form-control"
     style="height: 200px; display: inline"
+    v-model="Data[0].Memo"
   ></textarea
   >
   獲得資訊或取消原因 :<br />
   <textarea
     class="form-control"
     style="height: 200px; display: inline"
+      v-model="Data[0].result"
   ></textarea
   ><br />
-   <input type="radio" name="state" value=0 v-model="state"/>談圖取消
+   <input type="radio" name="stateJ" value=0 v-model="Data[0].state" :checked="Data[0].state==0"/>丈量取消
    &nbsp;&nbsp;&nbsp;
-	 <input type="radio" name="state" value=1 v-model="state"/>談圖完成
+	<input type="radio" name="stateJ" value=1 v-model="Data[0].state" :checked="Data[0].state==1"/>丈量完成
    <br />
-  預計成交日 : &nbsp;&nbsp;
-  <input
-    type="date"
-    class="form-control"
-    style="display: inline; width: 180px"
-  />
-  &nbsp;&nbsp; 預計成交率 : &nbsp;&nbsp;
-  <input
-    type="number"
-    class="form-control"
-    style="display: inline; width: 80px"
-	min = 0
-  /><br /><br />
   <div style="text-align: center; height: 50px">
     <button
       @click.prevent="save"
@@ -35,14 +24,6 @@
       style="display: inline; border: 1px black solid"
       class="btn"
     >確定</button
-    >&nbsp;
-	<button
-      @click.prevent="saveK"
-      data-dismiss="modal"
-      style="display: inline; border: 1px black solid"
-      class="btn"
-    >
-      確定</button
     >&nbsp;
     <button
       data-dismiss="modal"
@@ -56,30 +37,29 @@
 <script>
 const axios = require("axios");
 export default {
-  props: [],
+  props: ["DataN"],
   name: "ModifyJ日程",
   data: function () {
     return {
-      Data: [
-        //存取要上傳chk資料
-        {
-          OrderNo: "",
-          CustNo: this.DataN[0].CustNo,
-          ReserveDate: "",
-          Time: "",
-          FinishDate: "",
-          MeasureMember: this.DataN[0].MeasureMember,
-          MeasureAddress: this.DataN[0].MeasureAddress,
-          Memo: "",
-          Dept: this.DataN[0].Dept,
-          state: "",
-          EstimateDealDate: "",
-          EstimateDealRate: "",
-        },
-      ],
+      Data:this.DataN,
     };
   },
   methods:{
-  }
+    save: function () {
+		 axios
+        .post("/api/Update/Measurestate", {
+          Data: this.Data,
+          state:this.Data[0].state,
+          type: "J",
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (response) {
+          console.log(response);
+        });
+	},
+  },
+  
 };
 </script>

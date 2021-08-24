@@ -275,8 +275,10 @@ class SearchController extends Controller
             $Memo = CmMemo::where('OrderNo',trim($data->單號))->where('Type_','01')->where('code_',$data->狀態)->first();     
             $data->result =  ($Memo == NULL) ? '' : $Memo['備註'];
             $YMD = $data->預定日期;
+            $YMDE = $data->預計成交日;
             $HMS = $data->時間;
-            $data->預定日期 = substr($YMD, 0, 4)."/".substr($YMD, 4, 2)."-".substr($YMD, 6, 2);
+            $data->預定日期 = substr($YMD, 0, 4)."/".substr($YMD, 4, 2)."/".substr($YMD, 6, 2);
+            $data->預計成交日 = substr($YMDE, 0, 4)."-".substr($YMDE, 4, 2)."-".substr($YMDE, 6, 2);
             $data->時間 = substr($HMS, 0, 2).":".substr($HMS, 2, 2);
             if($data->狀態==0)$Jstate=1;
         }
@@ -286,8 +288,10 @@ class SearchController extends Controller
             $Memo = CmMemo::where('OrderNo',trim($data->單號))->where('Type_','84')->where('code_',$data->狀態)->first();
             $data->result= ($Memo == NULL) ? '' : $Memo['備註'];
             $YMD = $data->預定日期;
+            $YMDE = $data->預計成交日;
             $HMS = $data->時間;
-            $data->預定日期 = substr($YMD, 0, 4)."/".substr($YMD, 4, 2)."-".substr($YMD, 6, 2);
+            $data->預定日期 = substr($YMD, 0, 4)."/".substr($YMD, 4, 2)."/".substr($YMD, 6, 2);
+            $data->預計成交日 = substr($YMDE, 0, 4)."-".substr($YMDE, 4, 2)."-".substr($YMDE, 6, 2);
             $data->時間 = substr($HMS, 0, 2).":".substr($HMS, 2, 2);
             if($data->狀態==3)$Kstate=1;
         } 

@@ -329,23 +329,52 @@ class UpdateController extends Controller
                }
             else if($state==2){
                 $state = 7;
-               }
+            }
             $type='84';
         }
-        $Memo = $data['Memo'];
         $data = $data['Data'][0];
+        $Memo = $data['result'];
         $OrderNo = trim($data['OrderNo']);
         
         chk::where('單號', $OrderNo)
             ->update([
                 '狀態' => $state,
+                'Memo' =>  $data['Memo'],
                 'Date_modi' => date('Ymd'),
+                '預計成交日' => ($data['EstimateDealDate'] == NULL) ? '' :  str_replace("-", "", $data['EstimateDealDate']),
+                '預計成交率' => ($data['EstimateDealRate'] == NULL) ? 0 : $data['EstimateDealRate'],
             ]);
         CmMemo::where('OrderNo', $OrderNo)
         ->where('Type_', $type)
         ->update([
             'code_' => $state,
             '備註' => ($Memo == NULL) ? '' : $Memo,
+            'Date_' => date('Ymd'),
+            'Time_' => date('His'),
+        ]);
+        return response()->json($OrderNo, 200);
+    }
+    public function UpdateDeleteMeasureJK(request $request){
+        $data = $request->all();
+       // return response()->json($data, 200);
+        $type = $data['type'];
+        $OrderNo = $data['OrderNo'];
+        if($type=="J"){
+            $state = 6;
+            $type='01';
+         }
+         else{
+            $state = 7;
+            $type='84';
+         }
+         chk::where('單號', $OrderNo)
+         ->update([
+             '狀態' => $state,
+         ]);
+        CmMemo::where('OrderNo', $OrderNo)
+        ->where('Type_', $type)
+        ->update([
+            'code_' => $state,
             'Date_' => date('Ymd'),
             'Time_' => date('His'),
         ]);

@@ -47,13 +47,13 @@
       <div class="modal-dialog modal-lg" >
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" @click.prevent="cleanData">
+            <button type="button" class="close" data-dismiss="modal" @click.prevent="cleanstate">
               <span>&times;</span>
             </button>
           </div>
 		 		<div class="modal-body" >
 				  丈量取消原因/丈量取得資訊<br />
-				  <textarea class="form-control" style="height:200px;display:inline"  v-model="Memo"></textarea><br /><br />
+				  <textarea class="form-control" style="height:200px;display:inline"  v-model="Data[0].result"></textarea><br /><br />
 				  <input type="radio" name="MJstate" value=0 v-model="MJstate"/>丈量取消
 				  <input type="radio" name="MJstate" value=1 v-model="MJstate"/>丈量完成
 				  <input type="checkbox" name="endch" v-model="MeasureEarly"/>提前&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -73,7 +73,7 @@
 					/>
 				  	<br /><br />
 				  <button  @click.prevent="saveJC" data-dismiss="modal" style="display:inline;border: 1px black solid;" class="btn" :hidden="nextJ==true">確定</button>&nbsp;
-				  <button @click.prevent="cleanData" data-dismiss="modal" style="display:inline;border: 1px black solid;"  class="btn" :hidden="nextJ==true">取消</button>
+				  <button @click.prevent="cleanstate" data-dismiss="modal" style="display:inline;border: 1px black solid;"  class="btn" :hidden="nextJ==true">取消</button>
 				  </div>
 				
 
@@ -81,11 +81,27 @@
 				 <input type="checkbox" name="nextJ" v-model="nextJ"/>下次有預約談圖&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				</div>
 				<div class="modal-body" :hidden="nextJ==false">
-				  <ReservePicture @my-data="saveJC" v-bind:DataN="Data" v-bind:S=0></ReservePicture>
+				  <ReservePicture @my-data="saveJC" @my-clean="cleanstate" v-bind:DataN="Data" v-bind:S=0></ReservePicture>
 				  </div>
           </div>
 	  </div>
     </div>
+
+<div id="MJModify" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
+      <div class="modal-dialog modal-lg" >
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+          </div>
+		 		<div class="modal-body" >
+					 <ModifyJ v-bind:DataN="Data"></ModifyJ>
+				  </div>
+
+        </div>
+      </div>
+</div>
 
 <div id="MK" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
       <div class="modal-dialog modal-sm" >
@@ -149,25 +165,25 @@
       <div class="modal-dialog modal-lg" >
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" @click.prevent="cleanData">
+            <button type="button" class="close" data-dismiss="modal" @click.prevent="cleanstate">
               <span>&times;</span>
             </button>
           </div>
 		 		<div class="modal-body" >
 				  看圖取消原因/看圖取得資訊<br />
-				  <textarea class="form-control" style="height:200px;display:inline"  v-model="Memo"></textarea><br /><br />
+				  <textarea class="form-control" style="height:200px;display:inline"  v-model="Data[0].result"></textarea><br /><br />
 				  <input type="radio" name="MKstate" value=0 v-model="MKstate"/>看圖取消
 				  <input type="radio" name="MKstate" value=1 v-model="MKstate"/>看圖完成
 					<br /><br />
 				  <button  @click.prevent="saveKC" data-dismiss="modal" style="display:inline;border: 1px black solid;" class="btn" :hidden="nextK==true">確定</button>&nbsp;
-				  <button @click.prevent="cleanData" data-dismiss="modal" style="display:inline;border: 1px black solid;"  class="btn" :hidden="nextK==true">取消</button>
+				  <button @click.prevent="cleanstate" data-dismiss="modal" style="display:inline;border: 1px black solid;"  class="btn" :hidden="nextK==true">取消</button>
 				  </div>
 
 				 <div class="modal-body" >
 				 <input type="checkbox" name="nextK" v-model="nextK"/>下次有預約談圖&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				 </div>
 				<div class="modal-body" :hidden="nextK==false">
-				 <ReservePicture @my-data="saveKC" v-bind:DataN="Data" v-bind:S=1></ReservePicture>
+				 <ReservePicture @my-data="saveKC" @my-clean="cleanstate" v-bind:DataN="Data" v-bind:S=1></ReservePicture>
 				</div>
         </div>
       </div>
@@ -177,7 +193,7 @@
       <div class="modal-dialog modal-lg" >
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" @click.prevent="cleanData">
+            <button type="button" class="close" data-dismiss="modal">
               <span>&times;</span>
             </button>
           </div>
@@ -213,8 +229,8 @@
 						<label v-show="item.狀態=='1'">第{{index+1}}次丈量取消</label>
 						<label v-show ="item.狀態=='2'">第{{index+1}}次丈量完成</label>
 						{{item.預定日期}}<br />{{item.時間}}<br />
-						<button  @click.prevent="ModifyJ(index)" style="display:inline;border: 1px black solid;" class="btn">修改</button>
-						<button  @click.prevent="Delete" style="display:inline;border: 1px black solid;" class="btn" v-show="item.狀態=='0'">刪除</button><br>
+						<button  @click.prevent="ModifyJ(index)" style="display:inline;border: 1px black solid;" class="btn">修改</button>&nbsp;
+						<button  @click.prevent="DeleteJ(index)" style="display:inline;border: 1px black solid;" class="btn" v-show="item.狀態=='0'">刪除</button><br>
 					</td>
 					<td><textarea class="form-control" style="height:150px;width:300px;display:inline" v-model="item.Memo" readonly></textarea></td>
 					<td><textarea class="form-control" style="height:150px;width:300px;display:inline" v-model="item.result" readonly></textarea></td>
@@ -229,8 +245,8 @@
 						<label v-show="item.狀態=='4'">第{{index+1}}次看圖取消</label>
 						<label v-show ="item.狀態=='5'">第{{index+1}}次看圖完成</label>
 						{{item.預定日期}}<br />{{item.時間}}<br />
-						<button  @click.prevent="ModifyK(index)" style="display:inline;border: 1px black solid;" class="btn">修改</button>
-						<button  @click.prevent="Delete" style="display:inline;border: 1px black solid;" class="btn" v-show="item.狀態=='3'">刪除</button><br>
+						<button  @click.prevent="ModifyK(index)" style="display:inline;border: 1px black solid;" class="btn">修改</button>&nbsp;
+						<button  @click.prevent="DeleteK(index)" style="display:inline;border: 1px black solid;" class="btn" v-show="item.狀態=='3'">刪除</button><br>
 					</td>
 					<td><textarea class="form-control" style="height:150px;width:300px;display:inline" v-model="item.Memo" readonly></textarea></td>
 					<td><textarea class="form-control" style="height:150px;width:300px;display:inline" v-model="item.result" readonly></textarea></td>
@@ -294,9 +310,9 @@
           state: "",
           EstimateDealDate: "",
           EstimateDealRate: "",
+		  result:"",						//丈量&看圖各自結案的MEMO
         },
-      ],
-	Memo:[],							//丈量&看圖各自結案的MEMO
+      ],							
 	Jstate:0,							//判斷新增丈量或是最新丈量結案
 	Kstate:0,							//判斷新增看圖或是最新看圖結案
 	MJstate:0,							//判斷丈量取消或是丈量完成
@@ -327,8 +343,42 @@
           state: "",
           EstimateDealDate: "",
           EstimateDealRate: "",
+		   result:"",
         },
       ]
+	},
+	cleanstate: function () {
+		this.MeasureEarly=false,
+		this.nextJ=false,						//有預約下次談圖判定
+		this.nextK=false	
+	},
+	DeleteJ:function (index) {
+		 axios
+        .post("/api/Update/DeleteMeasureJK", {
+          OrderNo: this.DataJ[index]['單號'],
+		  type: "J",
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (response) {
+          console.log(response);
+        });
+		this.cleanData();
+	},
+	DeleteK:function (index) {
+		 axios
+        .post("/api/Update/DeleteMeasureJK", {
+          OrderNo: this.DataK[index]['單號'],
+		  type: "K",
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (response) {
+          console.log(response);
+        });
+		this.cleanData();
 	},
 	addMeasureJ: function () {
 		$("#MJ").modal('toggle');
@@ -347,8 +397,9 @@
 		this.Data[0]['state'] = this.DataJ[this.DataJ.length-1]['狀態'];
 		this.Data[0]['EstimateDealDate'] = this.DataJ[this.DataJ.length-1]['預計成交日'];
 		this.Data[0]['EstimateDealRate'] = this.DataJ[this.DataJ.length-1]['預計成交率'];
+		this.Data[0]['result'] = this.DataJ[this.DataJ.length-1]['result'];
 	},
-	 ModifyJ: function (index) {
+	ModifyJ: function (index) {
 		$("#MJModify").modal('toggle');
 		this.Data[0]['OrderNo'] = this.DataJ[index]['單號'];
 		this.Data[0]['CustNo'] = this.DataJ[index]['客戶號'];
@@ -359,9 +410,10 @@
 		this.Data[0]['MeasureAddress'] = this.DataJ[index]['丈量地址'];
 		this.Data[0]['Memo'] = this.DataJ[index]['Memo'];
 		this.Data[0]['Dept'] = this.DataJ[index]['門市別_StoreNo'];
-		this.Data[0]['state'] = this.DataJ[index]['狀態'];
+		this.Data[0]['state'] = this.DataJ[index]['狀態']-1;
 		this.Data[0]['EstimateDealDate'] = this.DataJ[index]['預計成交日'];
 		this.Data[0]['EstimateDealRate'] = this.DataJ[index]['預計成交率'];
+		this.Data[0]['result'] = this.DataJ[index]['result'];
 	},
 	finishMeasureK: function () {
 		$("#MKFinish").modal('toggle');
@@ -377,6 +429,7 @@
 		this.Data[0]['state'] = this.DataK[this.DataK.length-1]['狀態'];
 		this.Data[0]['EstimateDealDate'] = this.DataK[this.DataK.length-1]['預計成交日'];
 		this.Data[0]['EstimateDealRate'] = this.DataK[this.DataK.length-1]['預計成交率'];
+		this.Data[0]['result'] = this.DataK[this.DataK.length-1]['result'];
 	},
 	addMeasureK: function () {
 		$("#MK").modal('toggle');
@@ -395,6 +448,7 @@
 		this.Data[0]['state'] = this.DataK[index]['狀態']-4;
 		this.Data[0]['EstimateDealDate'] = this.DataK[index]['預計成交日'];
 		this.Data[0]['EstimateDealRate'] = this.DataK[index]['預計成交率'];
+		this.Data[0]['result'] = this.DataK[index]['result'];
 	},
 	saveJ: function () {
 		 axios
@@ -429,7 +483,6 @@
 		 axios
         .post("/api/Update/Measurestate", {
           Data: this.Data,
-		  Memo: this.Memo,
 		  type: "J",
 		  state: this.MJstate,
         })
@@ -445,7 +498,6 @@
 	 axios
         .post("/api/Update/Measurestate", {
          Data: this.Data,
-		  Memo: this.Memo,
 		  type: "K",
 		  state: this.MKstate,	
         })
