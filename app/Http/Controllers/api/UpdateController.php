@@ -309,26 +309,17 @@ class UpdateController extends Controller
         $state = $data['state'];
         $type = $data['type'];
         if($type=="J"){
-           if($state==0){
-            $state = 1;
-           }
-           else if($state==1){
-            $state = 2;
-           }
-           else if($state==2){
-            $state = 6;
-           }
            $type='01';
         }
         else{
             if($state==0){
-                $state = 4;
+                $state = 3;
                }
             else if($state==1){
-                $state = 5;
+                $state = 4;
                }
             else if($state==2){
-                $state = 7;
+                $state = 5;
             }
             $type='84';
         }
@@ -380,4 +371,19 @@ class UpdateController extends Controller
         ]);
         return response()->json($OrderNo, 200);
     }
+    public function UpdateMeasureEnd(request $request){
+        $data = $request->all();
+        $Data = $data['Data'][0];
+
+        CmMemo::where('CustNo', $data['CustNo'])
+        ->where('Type_', 85)
+        ->update([
+            'Type_' => 101,
+            'Date_' => date('Ymd'),
+            'code_' => $Data['code_'],
+            'Time_' => date('His'),
+        ]);
+         return response()->json($data['CustNo'], 200);
+    }
+
 }

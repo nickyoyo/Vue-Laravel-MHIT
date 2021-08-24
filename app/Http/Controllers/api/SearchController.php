@@ -113,6 +113,14 @@ class SearchController extends Controller
     }
     public function searchCmMemo($CNO,$MemoType)        //CmMemo
     {
+        if($MemoType=='85'){
+            $data = CmMemo::where('CustNo',trim($CNO))->where('Type_',$MemoType)->first(['CmMemo.*','備註 as memo']);
+            if($data != NULL){
+                $data->code_ = trim($data->code_);
+                $data->Type_ = trim($data->Type_);
+            }         
+            return response()->json($data,200);
+        }
         $MemoType = $MemoType." ";
         $memonum =array('0','0','0','0','0','0');
         $useCM = cm::where('CustNo',trim($CNO))->first();
@@ -297,7 +305,7 @@ class SearchController extends Controller
         } 
         return response()->json([$dataJ,$dataK,$Jstate,$Kstate],200);
     }
-
+    
     public function searchUserDeptMember($DVID)
     {
         $UserDept = EM13::where('DVID','=', $DVID)->where('OFDT','=','00000000')->get();

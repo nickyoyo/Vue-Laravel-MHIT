@@ -11,11 +11,14 @@
     class="form-control"
     style="height: 200px; display: inline"
       v-model="Data[0].result"
+    :readonly="Data[0].state==0"
   ></textarea
   ><br />
-   <input type="radio" name="stateJ" value=0 v-model="Data[0].state" :checked="Data[0].state==0"/>丈量取消
+   <input type="radio" name="stateJ" value=1 v-model="Data[0].state" :checked="Data[0].state==1"/>丈量取消
    &nbsp;&nbsp;&nbsp;
-	<input type="radio" name="stateJ" value=1 v-model="Data[0].state" :checked="Data[0].state==1"/>丈量完成
+	<input type="radio" name="stateJ" value=2 v-model="Data[0].state" :checked="Data[0].state==2"/>丈量完成
+   &nbsp;&nbsp;&nbsp;
+	<input type="radio" name="stateJ" value=0 v-model="Data[0].state" :checked="Data[0].state==0" :v-show="Data[0].state==0"/>尚未丈量
    <br />
   <div style="text-align: center; height: 50px">
     <button

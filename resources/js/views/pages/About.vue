@@ -230,7 +230,7 @@
 						<label v-show ="item.狀態=='2'">第{{index+1}}次丈量完成</label>
 						{{item.預定日期}}<br />{{item.時間}}<br />
 						<button  @click.prevent="ModifyJ(index)" style="display:inline;border: 1px black solid;" class="btn">修改</button>&nbsp;
-						<button  @click.prevent="DeleteJ(index)" style="display:inline;border: 1px black solid;" class="btn" v-show="item.狀態=='0'">刪除</button><br>
+						<button  @click.prevent="DeleteJ(index)" style="display:inline;border: 1px black solid;" class="btn" v-show="item.狀態=='2'">刪除</button><br>
 					</td>
 					<td><textarea class="form-control" style="height:150px;width:300px;display:inline" v-model="item.Memo" readonly></textarea></td>
 					<td><textarea class="form-control" style="height:150px;width:300px;display:inline" v-model="item.result" readonly></textarea></td>
@@ -246,7 +246,7 @@
 						<label v-show ="item.狀態=='5'">第{{index+1}}次看圖完成</label>
 						{{item.預定日期}}<br />{{item.時間}}<br />
 						<button  @click.prevent="ModifyK(index)" style="display:inline;border: 1px black solid;" class="btn">修改</button>&nbsp;
-						<button  @click.prevent="DeleteK(index)" style="display:inline;border: 1px black solid;" class="btn" v-show="item.狀態=='3'">刪除</button><br>
+						<button  @click.prevent="DeleteK(index)" style="display:inline;border: 1px black solid;" class="btn" v-show="item.狀態=='2'">刪除</button><br>
 					</td>
 					<td><textarea class="form-control" style="height:150px;width:300px;display:inline" v-model="item.Memo" readonly></textarea></td>
 					<td><textarea class="form-control" style="height:150px;width:300px;display:inline" v-model="item.result" readonly></textarea></td>
@@ -267,12 +267,13 @@
             <button @click.prevent="finishMeasureK" type="submit" :hidden="Pstate == 0" style="height:30px;width:150px;" v-show="Kstate==1">最新看圖結案</button>
 			<br /><br />
 			結案內容<br />
-			<input type="text" class="form-control" style="height:350px;width:300px;display:inline" />
+			<textarea class="form-control" style="height:350px;width:300px;display:inline" v-model="CHKendData[0].memo"></textarea>
 			<br />
-			<input type="radio" name="endch" value=0 v-model="endch"/>轉購單品待追蹤
+			<input type="radio" name="endch" value=0 v-model="CHKendData[0].code_" :checked="CHKendData[0].code_== 0"/>轉購單品待追蹤
 			<br />
-			<input type="radio" name="endch" value=1 v-model="endch"/>已簽約或是無購買意願&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<button @click.prevent="CancelEnd" type="saveendch" style="height:30px;width:80px;">取消結案</button>
+			<input type="radio" name="endch" value=1 v-model="CHKendData[0].code_" :checked="CHKendData[0].code_== 1"/>已簽約或是無購買意願&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<button @click.prevent="CancelEnd" type="Cancelendch" style="height:30px;width:80px;" :hidden="CHKendData[0].Type_ != 85">取消結案</button>
+			<button @click.prevent="SendEnd" type="saveendch" style="height:30px;width:80px;" :hidden="CHKendData[0].Type_ == 85">結案報告</button>
         </div>
     </div>
 </a>
@@ -317,11 +318,16 @@
 	Kstate:0,							//判斷新增看圖或是最新看圖結案
 	MJstate:0,							//判斷丈量取消或是丈量完成
 	MKstate:0,							//判斷看圖取消或是看圖完成
-	ModifyJstate:0,						//紀錄修改丈量資料是取消或是完成
-	ModifyKstate:0,						//紀錄修改談圖資料是取消或是完成
+
 	MeasureEarly:false,					//提前之判定
 	nextJ:false,						//有預約下次談圖判定
-	nextK:false						    //有預約下次談圖判定
+	nextK:false,						    //有預約下次談圖判定
+
+	CHKendData:[{
+		Type_:"",
+		code_:"",
+		memo:"",
+	}],
     };
   },
   methods: {
@@ -410,7 +416,7 @@
 		this.Data[0]['MeasureAddress'] = this.DataJ[index]['丈量地址'];
 		this.Data[0]['Memo'] = this.DataJ[index]['Memo'];
 		this.Data[0]['Dept'] = this.DataJ[index]['門市別_StoreNo'];
-		this.Data[0]['state'] = this.DataJ[index]['狀態']-1;
+		this.Data[0]['state'] = this.DataJ[index]['狀態'];
 		this.Data[0]['EstimateDealDate'] = this.DataJ[index]['預計成交日'];
 		this.Data[0]['EstimateDealRate'] = this.DataJ[index]['預計成交率'];
 		this.Data[0]['result'] = this.DataJ[index]['result'];
@@ -445,7 +451,7 @@
 		this.Data[0]['MeasureAddress'] = this.DataK[index]['丈量地址'];
 		this.Data[0]['Memo'] = this.DataK[index]['Memo'];
 		this.Data[0]['Dept'] = this.DataK[index]['門市別_StoreNo'];
-		this.Data[0]['state'] = this.DataK[index]['狀態']-4;
+		this.Data[0]['state'] = this.DataK[index]['狀態']-3;
 		this.Data[0]['EstimateDealDate'] = this.DataK[index]['預計成交日'];
 		this.Data[0]['EstimateDealRate'] = this.DataK[index]['預計成交率'];
 		this.Data[0]['result'] = this.DataK[index]['result'];
@@ -509,6 +515,34 @@
         });
 		this.cleanData();
 	},
+	CancelEnd: function () {
+	 axios
+        .post("/api/Update/MeasureEnd", {
+		CustNo: this.Data[0].CustNo,
+        Data: this.CHKendData,
+		  type: 101,	
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (response) {
+          console.log(response);
+        });
+	},
+	SendEnd: function () {
+	 axios
+        .post("/api/Create/MeasureEnd", {
+         Data: this.CHKendData,
+		 CustNo: this.Data[0].CustNo,
+		  type: 85,
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (response) {
+          console.log(response);
+        });
+	},
 },     
   mounted(){
       axios
@@ -526,6 +560,12 @@
 			console.log(response.data);
 			this.UserData = response.data;
 		});
+	axios
+      .get("/api/search/CmMemo/C002122801&&85")
+      .then((response) => {
+        console.log(response.data);
+        this.CHKendData[0] = response.data;
+      });
     }
 };
 </script>

@@ -344,7 +344,8 @@ class CreateController extends Controller
         }
         return response()->json([789789], 200);
     }
-    public function CreateCMself(request $request){
+    public function CreateCMself(request $request)
+    {
         $data = $request->all();
         //return $data['AF1'];
         $EMID='21072177';
@@ -437,7 +438,8 @@ class CreateController extends Controller
         }      
       }
 
-      public function CreateMeasure(request $request){
+    public function CreateMeasure(request $request)
+    {
         $data = $request->all();
         if($data['type']=="J"){
             $data = $data['Data'][0];
@@ -546,5 +548,21 @@ class CreateController extends Controller
                
         }    
         return response()->json($CNO , 200); 
+    }
+    public function CreateMeasureEnd(request $request)
+    {
+        $data = $request->all();
+        $Data = $data['Data'][0];
+        //return response()->json($data, 200);
+        CmMemo::create([
+            'CustNo' => ($data['CustNo'] == NULL) ? '' : $data['CustNo'],
+            'Type_' => '85',
+            'code_' => $Data['code_'],
+            '備註' => $Data['memo'],
+            'Date_' => date('Ymd'),
+            'UserId' => '21072177',
+         ]); 
+
+         return response()->json($data['CustNo'], 200);
     }
 }
