@@ -70,6 +70,7 @@ export default {
   name: "ReservePicture",
   data: function () {
     return {
+      DataA:this.DataN,
       Data:[								//存取要上傳chk資料
         {
           OrderNo: "",
@@ -87,6 +88,7 @@ export default {
 		      result:"",
         },
       ],
+      
     };
   },
   methods:{
@@ -94,6 +96,7 @@ export default {
       this.$emit('my-clean');
 	},
 	  save: function () {
+      this.Data[0].MeasureMember = this.DataA[0].MeasureMember;
 		 axios
         .post("/api/Create/Measure", {
           Data: this.Data,

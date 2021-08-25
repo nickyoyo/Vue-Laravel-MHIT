@@ -483,6 +483,8 @@ class CreateController extends Controller
                    'Date_' => date('Ymd'),
                    'UserId' => ($data['MeasureMember'] == NULL) ? '' : $data['MeasureMember'],
                 ]); 
+                $newData = DB::table('chk')->where('單號',$CNO)->where('Date_add',date('Ymd'))->where('門市別_StoreNo',$data['Dept'])->first();
+                return response()->json($newData , 200); 
         }     
         else if($data['type']=="K"){
                 $S = $data['S']==1;
@@ -543,6 +545,13 @@ class CreateController extends Controller
                         'time_add' => date('His'),
                         '預計成交日' => ($data['EstimateDealDate'] == NULL) ? '' :  str_replace("-", "", $data['EstimateDealDate']),
                         '預計成交率' => ($data['EstimateDealRate'] == NULL) ? 0 : $data['EstimateDealRate'],
+                    ]);
+                    CmMemo::where('OrderNo', $CNO)
+                    ->where('Type_', '84')
+                    ->update([
+                        'UserId' => ($data['MeasureMember'] == NULL) ? '' : $data['MeasureMember'],
+                        'Date_' => date('Ymd'),
+                        'Time_' => date('His'),
                     ]);
                 }
                

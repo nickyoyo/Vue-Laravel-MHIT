@@ -11,11 +11,14 @@
     class="form-control"
     style="height: 100px; display: inline"
     v-model="Data[0].result"
+     :readonly="Data[0].state==0"
   ></textarea
   ><br /><br />
-   <input type="radio" name="state" value=0 v-model="Data[0].state" :checked="Data[0].state==0"/>談圖取消
+   <input type="radio" name="stateK" value=1 v-model="Data[0].state" :checked="Data[0].state==1"/>談圖取消
    &nbsp;&nbsp;&nbsp;
-	<input type="radio" name="state" value=1 v-model="Data[0].state" :checked="Data[0].state==1"/>談圖完成
+	<input type="radio" name="stateK" value=2 v-model="Data[0].state" :checked="Data[0].state==2"/>談圖完成
+ &nbsp;&nbsp;&nbsp;
+  <input type="radio" name="stateK" value=0 v-model="Data[0].state" v-show="Data[0].state==0" checked/><a v-show="Data[0].state==0">尚未商談</a>
    <br /><br />
   預計成交日 : &nbsp;&nbsp;
   <input
@@ -53,11 +56,11 @@
 <script>
 const axios = require("axios");
 export default {
-  props: ["DataN"],
+  props: ["Data"],
   name: "ModifyK日程",
   data: function () {
     return {
-     Data:this.DataN,
+     Data:this.Data,
     };
   },
   methods:{
@@ -74,6 +77,7 @@ export default {
         .catch(function (response) {
           console.log(response);
         });
+        this.$emit('my-refresh');
 	},
   }
 };

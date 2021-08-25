@@ -2,14 +2,14 @@
   準備方向與重點 :<br />
   <textarea
     class="form-control"
-    style="height: 200px; display: inline"
+    style="height: 100px; display: inline"
     v-model="Data[0].Memo"
   ></textarea
   >
   獲得資訊或取消原因 :<br />
   <textarea
     class="form-control"
-    style="height: 200px; display: inline"
+    style="height: 100px; display: inline"
       v-model="Data[0].result"
     :readonly="Data[0].state==0"
   ></textarea
@@ -18,7 +18,7 @@
    &nbsp;&nbsp;&nbsp;
 	<input type="radio" name="stateJ" value=2 v-model="Data[0].state" :checked="Data[0].state==2"/>丈量完成
    &nbsp;&nbsp;&nbsp;
-	<input type="radio" name="stateJ" value=0 v-model="Data[0].state" :checked="Data[0].state==0" :v-show="Data[0].state==0"/>尚未丈量
+	<input type="radio" name="stateJ" value=0 v-model="Data[0].state" v-show="Data[0].state==0" checked/><a v-show="Data[0].state==0">尚未丈量</a>
    <br />
   <div style="text-align: center; height: 50px">
     <button
@@ -40,11 +40,11 @@
 <script>
 const axios = require("axios");
 export default {
-  props: ["DataN"],
+  props: ["Data"],
   name: "ModifyJ日程",
   data: function () {
     return {
-      Data:this.DataN,
+      Data:this.Data,
     };
   },
   methods:{
@@ -61,7 +61,9 @@ export default {
         .catch(function (response) {
           console.log(response);
         });
-	},
+        this.Data=[];
+         this.$emit('my-refresh');
+	 },
   },
   
 };

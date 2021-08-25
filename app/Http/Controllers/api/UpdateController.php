@@ -309,6 +309,7 @@ class UpdateController extends Controller
         $state = $data['state'];
         $type = $data['type'];
         if($type=="J"){
+            
            $type='01';
         }
         else{

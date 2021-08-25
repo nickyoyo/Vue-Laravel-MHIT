@@ -91,12 +91,12 @@
       <div class="modal-dialog modal-lg" >
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">
+            <button type="button" class="close" data-dismiss="modal" @click.prevent="cleanData">
               <span>&times;</span>
             </button>
           </div>
 		 		<div class="modal-body" >
-					 <ModifyJ v-bind:DataN="Data"></ModifyJ>
+					 <ModifyJ @my-refresh="cleanData" v-bind:Data="Data"></ModifyJ>
 				  </div>
 
         </div>
@@ -165,7 +165,7 @@
       <div class="modal-dialog modal-lg" >
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" @click.prevent="cleanstate">
+            <button type="button" class="close" data-dismiss="modal" @click.prevent="cleanData">
               <span>&times;</span>
             </button>
           </div>
@@ -183,7 +183,7 @@
 				 <input type="checkbox" name="nextK" v-model="nextK"/>下次有預約談圖&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				 </div>
 				<div class="modal-body" :hidden="nextK==false">
-				 <ReservePicture @my-data="saveKC" @my-clean="cleanstate" v-bind:DataN="Data" v-bind:S=1></ReservePicture>
+				 <ReservePicture @my-data="saveKC" @my-clean="cleanData" v-bind:DataN="Data" v-bind:S=1></ReservePicture>
 				</div>
         </div>
       </div>
@@ -193,12 +193,12 @@
       <div class="modal-dialog modal-lg" >
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">
+            <button type="button" class="close" data-dismiss="modal"  @click.prevent="cleanData">
               <span>&times;</span>
             </button>
           </div>
 		 		<div class="modal-body" >
-					 <ModifyK v-bind:DataN="Data"></ModifyK>
+					 <ModifyK @my-refresh="cleanData" v-bind:Data="Data"></ModifyK>
 				  </div>
 
         </div>
@@ -230,7 +230,7 @@
 						<label v-show ="item.狀態=='2'">第{{index+1}}次丈量完成</label>
 						{{item.預定日期}}<br />{{item.時間}}<br />
 						<button  @click.prevent="ModifyJ(index)" style="display:inline;border: 1px black solid;" class="btn">修改</button>&nbsp;
-						<button  @click.prevent="DeleteJ(index)" style="display:inline;border: 1px black solid;" class="btn" v-show="item.狀態=='2'">刪除</button><br>
+						<button  @click.prevent="DeleteJ(index)" style="display:inline;border: 1px black solid;" class="btn" v-show="item.狀態=='0'">刪除</button><br>
 					</td>
 					<td><textarea class="form-control" style="height:150px;width:300px;display:inline" v-model="item.Memo" readonly></textarea></td>
 					<td><textarea class="form-control" style="height:150px;width:300px;display:inline" v-model="item.result" readonly></textarea></td>
@@ -246,7 +246,7 @@
 						<label v-show ="item.狀態=='5'">第{{index+1}}次看圖完成</label>
 						{{item.預定日期}}<br />{{item.時間}}<br />
 						<button  @click.prevent="ModifyK(index)" style="display:inline;border: 1px black solid;" class="btn">修改</button>&nbsp;
-						<button  @click.prevent="DeleteK(index)" style="display:inline;border: 1px black solid;" class="btn" v-show="item.狀態=='2'">刪除</button><br>
+						<button  @click.prevent="DeleteK(index)" style="display:inline;border: 1px black solid;" class="btn" v-show="item.狀態=='3'">刪除</button><br>
 					</td>
 					<td><textarea class="form-control" style="height:150px;width:300px;display:inline" v-model="item.Memo" readonly></textarea></td>
 					<td><textarea class="form-control" style="height:150px;width:300px;display:inline" v-model="item.result" readonly></textarea></td>
@@ -300,7 +300,7 @@
 	 Data:[								//存取要上傳chk資料
         {
           OrderNo: "",
-          CustNo: "C002122801",
+          CustNo: "C002123201",
           ReserveDate: "",
           Time: "",
           FinishDate: "",
@@ -328,17 +328,38 @@
 		code_:"",
 		memo:"",
 	}],
+
+	newData:[],
     };
   },
   methods: {
+	refresh: function(){
+			 axios
+      .get("/api/search/chk/C002123201")
+      .then((response) => {
+        console.log(response.data);
+        this.DataJ = response.data[0];
+		this.DataK = response.data[1];
+		this.Jstate = response.data[2];
+		this.Kstate = response.data[3];
+      });
+	  	axios
+      .get("/api/search/CmMemo/C002123201&&85")
+      .then((response) => {
+        console.log(response.data);
+        this.CHKendData[0] = response.data;
+      });
+	},
 	cleanData: function () {
 		this.MeasureEarly=false,
 		this.nextJ=false,						//有預約下次談圖判定
-		this.nextK=false	
+		this.nextK=false,	
+		this.MJstate=0,							//判斷丈量取消或是丈量完成
+		this.MKstate=0,
 		this.Data=[							
         {
           OrderNo: "",
-          CustNo: "C002122801",
+          CustNo: "C002123201",
           ReserveDate: "",
           Time: "",
           FinishDate: "",
@@ -351,12 +372,14 @@
           EstimateDealRate: "",
 		   result:"",
         },
-      ]
+      ],
+	  this.refresh();
 	},
 	cleanstate: function () {
 		this.MeasureEarly=false,
 		this.nextJ=false,						//有預約下次談圖判定
 		this.nextK=false	
+		this.refresh();
 	},
 	DeleteJ:function (index) {
 		 axios
@@ -370,6 +393,7 @@
         .catch(function (response) {
           console.log(response);
         });
+		this.refresh();
 		this.cleanData();
 	},
 	DeleteK:function (index) {
@@ -384,6 +408,7 @@
         .catch(function (response) {
           console.log(response);
         });
+		this.refresh();
 		this.cleanData();
 	},
 	addMeasureJ: function () {
@@ -468,6 +493,7 @@
         .catch(function (response) {
           console.log(response);
         });
+		this.refresh();
 		this.cleanData();
 	},
 	saveK: function () {
@@ -483,6 +509,7 @@
         .catch(function (response) {
           console.log(response);
         });
+		this.refresh();
 		this.cleanData();
 	},
 	saveJC: function () {
@@ -498,6 +525,7 @@
         .catch(function (response) {
           console.log(response);
         });
+		this.refresh();
 		this.cleanData();
 	},
 	saveKC: function () {
@@ -513,6 +541,7 @@
         .catch(function (response) {
           console.log(response);
         });
+		this.refresh();
 		this.cleanData();
 	},
 	CancelEnd: function () {
@@ -528,6 +557,7 @@
         .catch(function (response) {
           console.log(response);
         });
+		this.refresh();
 	},
 	SendEnd: function () {
 	 axios
@@ -542,11 +572,12 @@
         .catch(function (response) {
           console.log(response);
         });
+		this.refresh();
 	},
 },     
   mounted(){
       axios
-      .get("/api/search/chk/C002122801")
+      .get("/api/search/chk/C002123201")
       .then((response) => {
         console.log(response.data);
         this.DataJ = response.data[0];
@@ -561,7 +592,7 @@
 			this.UserData = response.data;
 		});
 	axios
-      .get("/api/search/CmMemo/C002122801&&85")
+      .get("/api/search/CmMemo/C002123201&&85")
       .then((response) => {
         console.log(response.data);
         this.CHKendData[0] = response.data;
