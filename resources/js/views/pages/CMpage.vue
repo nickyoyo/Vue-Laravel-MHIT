@@ -426,8 +426,8 @@
             <div
               class="col-4"
               v-for="item in likeStyle"
-              :value="item"
-              :key="item"
+              :value="item.value"
+              :key="item.data"
               style="height: 25px"
             >
               <input
@@ -929,12 +929,6 @@ export default {
         .post("/api/Update/CM", {
           cust: this.cust,
           custT: this.custT,
-          CustType: this.CustType,
-          BuyReason: this.BuyReason,
-          Family: this.Family,
-          HouseType: this.HouseType,
-          Cmemo: this.Cmemo,
-          Gender: this.Gender,
         })
         .then(function (response) {
           console.log(response);
@@ -977,8 +971,9 @@ export default {
           this.choose = false;
     },
     refresh: function(){
-           axios
-        .get("/api/search/CM/" + this.$route.params.CNO)
+      this.state=1,
+        axios
+        .get("/api/search/CM/" + this.CNO)
         .then((response) => {
           console.log(response);
           this.cust = response.data[0];
@@ -987,15 +982,11 @@ export default {
           this.CusAddressS = response.data.CusAddressS;
           this.FittingAddC = response.data.FittingAddC;
           this.FittingAddS = response.data.FittingAddS;
-          if (response.data[0] == null) {
-            const message = "此客編不存在";
-            this.$router.push({ path: "/CM/sendSearch", params: { message } });
-          }
         }),
         axios
           .get(
             "/api/search/CMCRFItems/" +
-              this.$route.params.CNO
+              this.CNO
           )
           .then((response) => {
             console.log(response.data);
@@ -1036,7 +1027,7 @@ export default {
       axios
         .get(
           "/api/search/CmMemo/" +
-            this.$route.params.CNO +
+            this.CNO +
             "&&00"
         )
         .then((response) => {

@@ -84,7 +84,7 @@ class CreateController extends Controller
                 'LastUse' => ($data['LastUse'] == NULL) ? '' : $data['LastUse'],
                 'UserId' => $CH_ID,
                 'Designer' => $CH_ID,
-                'LastModify' => ($HouseDate == NULL) ? '' : $LastModify,
+                'LastModify' => ($LastModify == NULL) ? '' : $LastModify,
                 'DataCreate' => $DATE,
                 'Meno' => '',
                 'Birthday' => ($data['Birthday'] == NULL) ? '' : $data['Birthday'],

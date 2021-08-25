@@ -40,7 +40,14 @@ class UpdateController extends Controller
         } else {
             $CustSname = '';
         }
+        $CC = $DAY['CusAddressC'];
+        $CS = $DAY['CusAddressS'];
+        $CusAddress = $CC.$CS;
 
+        $FC = $DAY['FittingAddC'];
+        $FS = $DAY['FittingAddS'];
+        $FittingAdd = $FC.$FS;
+        
         cm::where('CustNo', $CNO)
             ->update([
                 'LastModify' => ($LastModify == NULL) ? '' : $LastModify,
@@ -55,10 +62,10 @@ class UpdateController extends Controller
                 'Mobil' => ($data['Mobil'] == NULL) ? '' : $data['Mobil'],
                 'Fax' => ($data['Fax'] == NULL) ? '' : $data['Fax'],
                 'TelNight' => ($data['TelNight'] == NULL) ? '' : $data['TelNight'],
-                'CusAddress' => ($data['CusAddress'] == NULL) ? '' : $data['CusAddress'],
-                'FittingAdd' => ($data['FittingAdd'] == NULL) ? '' : $data['FittingAdd'],
                 'CustType' => ($data['CustType'] == NULL) ? '' : $data['CustType'],
                 'Gender' => ($data['Gender'] == NULL) ? '' : $data['Gender'],
+                'CusAddress' => $CusAddress,
+                'FittingAdd' => $FittingAdd,
                 //'Married',
                 //'Kids',
                 'HouseSize' => ($data['HouseSize'] == NULL) ? '' : $data['HouseSize'],
@@ -70,7 +77,7 @@ class UpdateController extends Controller
                 'LastUse' => ($data['LastUse'] == NULL) ? '' : $data['LastUse'],
                 //'UserId',
                 //'Designer',
-                'LastModify' => ($HouseDate == NULL) ? '' : $LastModify,
+                'LastModify' => ($LastModify == NULL) ? '' : $LastModify,
                 //'DataCreate',
                 //'Meno',
                 'Birthday' => ($data['Birthday'] == NULL) ? '' : $data['Birthday'],

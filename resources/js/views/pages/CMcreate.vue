@@ -262,7 +262,7 @@
             <label class="font-weight-bold"
               >坪數<br />
               <input
-                type="text"
+                type="number"
                 class="form-control"
                 style="width: 50px"
                 v-model="cust[0].TelNight"
@@ -274,7 +274,7 @@
             <label class="font-weight-bold"
               >屋齡<br />
               <input
-                type="text"
+                type="number"
                 class="form-control"
                 style="width: 100px"
                 v-model="cust[0].Birthday"

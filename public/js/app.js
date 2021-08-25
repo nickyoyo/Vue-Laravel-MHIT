@@ -16723,13 +16723,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       this.cust.FittingAdd = this.custT.FittingAddC + this.custT.FittingAddS;
       axios.post("/api/Update/CM", {
         cust: this.cust,
-        custT: this.custT,
-        CustType: this.CustType,
-        BuyReason: this.BuyReason,
-        Family: this.Family,
-        HouseType: this.HouseType,
-        Cmemo: this.Cmemo,
-        Gender: this.Gender
+        custT: this.custT
       }).then(function (response) {
         console.log(response);
       })["catch"](function (response) {
@@ -16765,7 +16759,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     refresh: function refresh() {
       var _this3 = this;
 
-      axios.get("/api/search/CM/" + this.$route.params.CNO).then(function (response) {
+      this.state = 1, axios.get("/api/search/CM/" + this.CNO).then(function (response) {
         console.log(response);
         _this3.cust = response.data[0];
         _this3.custT = response.data;
@@ -16773,18 +16767,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         _this3.CusAddressS = response.data.CusAddressS;
         _this3.FittingAddC = response.data.FittingAddC;
         _this3.FittingAddS = response.data.FittingAddS;
-
-        if (response.data[0] == null) {
-          var message = "此客編不存在";
-
-          _this3.$router.push({
-            path: "/CM/sendSearch",
-            params: {
-              message: message
-            }
-          });
-        }
-      }), axios.get("/api/search/CMCRFItems/" + this.$route.params.CNO).then(function (response) {
+      }), axios.get("/api/search/CMCRFItems/" + this.CNO).then(function (response) {
         console.log(response.data);
 
         for (var i = 0; i < 4; i++) {
@@ -16815,7 +16798,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         console.log(response.data);
         _this3.HouseType = response.data;
       });
-      axios.get("/api/search/CmMemo/" + this.$route.params.CNO + "&&00").then(function (response) {
+      axios.get("/api/search/CmMemo/" + this.CNO + "&&00").then(function (response) {
         console.log(response.data);
         _this3.Cmemo = response.data;
       });
@@ -22651,7 +22634,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 _hoisted_64,
                 _hoisted_65,
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                  type: "text",
+                  type: "number",
                   class: "form-control",
                   style: {"width":"50px"},
                   "onUpdate:modelValue": _cache[23] || (_cache[23] = $event => ($data.cust[0].TelNight = $event)),
@@ -22667,7 +22650,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 _hoisted_68,
                 _hoisted_69,
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                  type: "text",
+                  type: "number",
                   class: "form-control",
                   style: {"width":"100px"},
                   "onUpdate:modelValue": _cache[24] || (_cache[24] = $event => ($data.cust[0].Birthday = $event)),
@@ -23995,8 +23978,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.likeStyle, (item) => {
                       return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
                         class: "col-4",
-                        value: item,
-                        key: item,
+                        value: item.value,
+                        key: item.data,
                         style: {"height":"25px"}
                       }, [
                         (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
