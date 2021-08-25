@@ -28,8 +28,8 @@
       </div>
     </div>
 
-<a v-if="choose" style="position:relative;left:595px;top:360px;">
-      <CMpageDaymanage @my-event="DaymanageB"></CMpageDaymanage>
+<a v-if="choose" style="position:relative;left:520px;top:300px;">
+      <CMpageDaymanage @my-event="DaymanageB" v-bind:CNO="CNO"></CMpageDaymanage>
 </a>
  <a v-else style="position:relative;left:300px;">
   <div
@@ -868,6 +868,7 @@ export default {
       stateA:1,
 
       choose: false,
+      CNO:this.$route.params.CNO,
     };
   },
   methods: {
@@ -967,14 +968,82 @@ export default {
         .catch(function (response) {
           console.log(response);
         });
-      this.$router.replace({ name: "Home" });
+      this.refresh();
     },
     Daymanage: function(){
          this.choose = true;
     },
     DaymanageB: function(){
-          this.$router.replace({ name: 'Home' })
+          this.choose = false;
     },
+    refresh: function(){
+           axios
+        .get("/api/search/CM/" + this.$route.params.CNO)
+        .then((response) => {
+          console.log(response);
+          this.cust = response.data[0];
+          this.custT = response.data;
+          this.CusAddressC = response.data.CusAddressC;
+          this.CusAddressS = response.data.CusAddressS;
+          this.FittingAddC = response.data.FittingAddC;
+          this.FittingAddS = response.data.FittingAddS;
+          if (response.data[0] == null) {
+            const message = "此客編不存在";
+            this.$router.push({ path: "/CM/sendSearch", params: { message } });
+          }
+        }),
+        axios
+          .get(
+            "/api/search/CMCRFItems/" +
+              this.$route.params.CNO
+          )
+          .then((response) => {
+            console.log(response.data);
+
+            for (let i = 0; i < 4; i++)
+              this.UseExp[i]["value"] = response.data[0][i];
+            for (let i = 0; i < 5; i++)
+              this.UDS[i]["value"] = response.data[1][i];
+            for (let i = 0; i < 6; i++)
+              this.likeStyle[i]["value"] = response.data[2][i];
+            for (let i = 0; i < 9; i++)
+              this.space[i]["value"] = response.data[3][i];
+          }),
+        axios
+          .get("/api/search/CTD/客來源")
+          .then((response) => {
+            console.log(response.data.Cust);
+            this.CustType = response.data;
+          }),
+        axios
+          .get("/api/search/CTD/買原因")
+          .then((response) => {
+            console.log(response.data);
+            this.BuyReason = response.data;
+          }),
+        axios
+          .get("/api/search/CTD/成員組合")
+          .then((response) => {
+            console.log(response.data);
+            this.Family = response.data;
+          }),
+        axios
+          .get("/api/search/CTD/屋型")
+          .then((response) => {
+            console.log(response.data);
+            this.HouseType = response.data;
+          });
+      axios
+        .get(
+          "/api/search/CmMemo/" +
+            this.$route.params.CNO +
+            "&&00"
+        )
+        .then((response) => {
+          console.log(response.data);
+          this.Cmemo = response.data;
+        });
+    }
   },
   props: {
     msg: String,
