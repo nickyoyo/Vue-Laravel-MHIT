@@ -29,7 +29,7 @@
     </div>
 
 <a v-if="choose" style="position:relative;left:520px;top:300px;">
-      <CMpageDaymanage @my-event="DaymanageB" v-bind:CNO="CNO"></CMpageDaymanage>
+      <CMpageDaymanage @my-event="DaymanageB" v-bind:CNO="CNO" v-bind:Dept="Dept"></CMpageDaymanage>
 </a>
  <a v-else style="position:relative;left:300px;">
   <div
@@ -869,6 +869,7 @@ export default {
 
       choose: false,
       CNO:this.$route.params.CNO,
+      Dept:[],
     };
   },
   methods: {
@@ -1046,6 +1047,7 @@ export default {
         .then((response) => {
           console.log(response);
           this.cust = response.data[0];
+          this.Dept = response.data[0].門市別;
           this.custT = response.data;
           this.CusAddressC = response.data.CusAddressC;
           this.CusAddressS = response.data.CusAddressS;

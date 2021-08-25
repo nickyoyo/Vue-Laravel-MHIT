@@ -487,10 +487,12 @@ class CreateController extends Controller
                 return response()->json($newData , 200); 
         }     
         else if($data['type']=="K"){
-                $S = $data['S']==1;
+                $S = $data['S'];
                 $data = $data['Data'][0];
                 $CountK=DB::table('chk')->where('單號','LIKE', 'K'.'%')->where('客戶號',$data['CustNo'])->where('狀態',3)->where('門市別_StoreNo',$data['Dept'])->first();
-
+                if($S==0){
+                    
+                }
                 if($CountK==NULL||$S==1){          //無看圖未完成
                     $days = date('z')+1;
                     $days = sprintf("%03d", $days);

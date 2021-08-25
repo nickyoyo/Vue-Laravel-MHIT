@@ -101,10 +101,10 @@ export default {
         .post("/api/Create/Measure", {
           Data: this.Data,
           type: "K",
-		  S: 0,
+		      S: 0,
         })
         .then(function (response) {
-          console.log(response);
+            console.log(response);
         })
         .catch(function (response) {
           console.log(response);
@@ -112,25 +112,28 @@ export default {
 		this.$emit('my-data');
 	},
 	 saveK: function () {
+     this.Data[0].MeasureMember = this.DataA[0].MeasureMember;
 		 axios
         .post("/api/Create/Measure", {
           Data: this.Data,
           type: "K",
-		  S: 1,
+		      S: 1,
         })
         .then(function (response) {
           console.log(response);
         })
         .catch(function (response) {
-          console.log(response);
+          console.log(response);  
         });
-		this.$emit('my-data');
+		   this.$emit('my-data');
 	},
-  },
-  mounted(){
-    this.Data[0].EstimateDealDate="";
-    this.Data[0].EstimateDealRate="";
-    this.Data[0].Memo="";
+  refresh: function(){
+		  this.Data[0].EstimateDealDate="";
+      this.Data[0].EstimateDealRate="";
+      this.Data[0].ReserveDate="";
+      this.Data[0].Memo="";
+      this.Data[0].Time="";
+	  },
   },
 };
 </script>

@@ -81,7 +81,7 @@
 				 <input type="checkbox" name="nextJ" v-model="nextJ"/>下次有預約談圖&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				</div>
 				<div class="modal-body" :hidden="nextJ==false">
-				  <ReservePicture @my-data="saveJC" @my-clean="cleanstate" v-bind:DataN="Data" v-bind:S=0></ReservePicture>
+				  <ReservePicture @my-data="saveJC" @my-clean="cleanstate" v-bind:DataN="Data" v-bind:S=0 v-if="ref"></ReservePicture>
 				  </div>
           </div>
 	  </div>
@@ -165,7 +165,7 @@
       <div class="modal-dialog modal-lg" >
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" @click.prevent="cleanData">
+            <button type="button" class="close" data-dismiss="modal" @click.prevent="cleanstate">
               <span>&times;</span>
             </button>
           </div>
@@ -183,7 +183,7 @@
 				 <input type="checkbox" name="nextK" v-model="nextK"/>下次有預約談圖&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				 </div>
 				<div class="modal-body" :hidden="nextK==false">
-				 <ReservePicture @my-data="saveKC" @my-clean="cleanData" v-bind:DataN="Data" v-bind:S=1></ReservePicture>
+				 <ReservePicture @my-data="saveKC" @my-clean="cleanstate" v-bind:DataN="Data" v-bind:S=1 v-if="ref"></ReservePicture>
 				</div>
         </div>
       </div>
@@ -285,7 +285,7 @@
 	import ModifyK from "../dropwindow/ModifyK日程.vue";
   const axios = require("axios");
 	export default {
-		 props: ["Data","CNO"],
+		 props: ["Data","CNO","Dept"],
 		 components: {
       ReservePicture,
 	  ModifyJ,
@@ -294,6 +294,7 @@
   name: "CM日程管理",
   data() {
     return {
+	 ref:false,
 	 endch:"0",							//轉購單品待追蹤、已簽約或是無購買意願
 	 DataJ:[],							//存取丈量之chk資料
 	 DataK:[],							//存取看圖之chk資料
@@ -308,7 +309,7 @@
           MeasureMember: "",
           MeasureAddress: "",
           Memo: "",
-		  Dept: 5000,
+		  Dept: this.Dept ,
           state: "",
           EstimateDealDate: "",
           EstimateDealRate: "",
@@ -353,6 +354,7 @@
         console.log(response.data);
         this.CHKendData[0] = response.data;
       });
+	  this.ref = true;
 	},
 	cleanData: function () {
 		this.MeasureEarly=false,
@@ -433,6 +435,7 @@
 		this.Data[0]['EstimateDealDate'] = this.DataJ[this.DataJ.length-1]['預計成交日'];
 		this.Data[0]['EstimateDealRate'] = this.DataJ[this.DataJ.length-1]['預計成交率'];
 		this.Data[0]['result'] = this.DataJ[this.DataJ.length-1]['result'];
+		this.ref=true;
 	},
 	ModifyJ: function (index) {
 		$("#MJModify").modal('toggle');
@@ -454,17 +457,18 @@
 		$("#MKFinish").modal('toggle');
 		this.Data[0]['OrderNo'] = this.DataK[this.DataK.length-1]['單號'];
 		this.Data[0]['CustNo'] = this.DataK[this.DataK.length-1]['客戶號'];
-		this.Data[0]['ReserveDate'] = this.DataK[this.DataK.length-1]['預定日期'];
-		this.Data[0]['Time'] = this.DataK[this.DataK.length-1]['時間'];
+		this.Data[0]['ReserveDate'] = "";
+		this.Data[0]['Time'] = "";
 		this.Data[0]['FinishDate'] = this.DataK[this.DataK.length-1]['完工日期'];
 		this.Data[0]['MeasureMember'] = this.DataK[this.DataK.length-1]['丈量人員'];
 		this.Data[0]['MeasureAddress'] = this.DataK[this.DataK.length-1]['丈量地址'];
 		this.Data[0]['Memo'] = this.DataK[this.DataK.length-1]['Memo'];
 		this.Data[0]['Dept'] = this.DataK[this.DataK.length-1]['門市別_StoreNo'];
 		this.Data[0]['state'] = this.DataK[this.DataK.length-1]['狀態'];
-		this.Data[0]['EstimateDealDate'] = this.DataK[this.DataK.length-1]['預計成交日'];
-		this.Data[0]['EstimateDealRate'] = this.DataK[this.DataK.length-1]['預計成交率'];
+		this.Data[0]['EstimateDealDate'] = "";
+		this.Data[0]['EstimateDealRate'] = "";
 		this.Data[0]['result'] = this.DataK[this.DataK.length-1]['result'];
+		this.ref=true;
 	},
 	addMeasureK: function () {
 		$("#MK").modal('toggle');
@@ -513,6 +517,7 @@
         .catch(function (response) {
           console.log(response);
         });
+		
 		this.refresh();
 		this.cleanData();
 	},
@@ -531,6 +536,7 @@
         });
 		this.refresh();
 		this.cleanData();
+		
 	},
 	saveKC: function () {
 	 axios
@@ -545,6 +551,7 @@
         .catch(function (response) {
           console.log(response);
         });
+		this.ref=false;
 		this.refresh();
 		this.cleanData();
 	},
