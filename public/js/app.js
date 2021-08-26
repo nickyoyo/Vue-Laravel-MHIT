@@ -24399,7 +24399,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
       type: "text",
       "onUpdate:modelValue": _cache[1] || (_cache[1] = $event => ($data.PID = $event)),
-      id: "PID"
+      id: "PID",
+      onkeyup: "value=value.replace(/[\\W]/g,'') ",
+      onbeforepaste: "clipboardData.setData('text',clipboardData.getData('text').replace(/[^\\d]/g,''))"
     }, null, 512 /* NEED_PATCH */), [
       [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.PID]
     ]),
