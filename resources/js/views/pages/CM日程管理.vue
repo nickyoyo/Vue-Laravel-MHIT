@@ -15,6 +15,7 @@
 						style="display: inline; width: 180px"
 						v-model="Data[0].ReserveDate"
 						:readonly="state == 1"
+						:min="newdate"
 					/><br /><br />
 				預約丈量時間 :
 				<input
@@ -118,6 +119,7 @@
 						class="form-control"
 						style="display: inline; width: 180px"
 						v-model="Data[0].ReserveDate"
+						:min="newdate"
 					/><br /><br />
 				預約看圖時間 :
 				<input
@@ -304,6 +306,7 @@
     return {
 	 refnew:false,
 	 show:0,
+	 newdate:new Date(Date.now()).toISOString().slice(0,10),
 
 	 endch:"0",							//轉購單品待追蹤、已簽約或是無購買意願
 	 DataJ:[],							//存取丈量之chk資料

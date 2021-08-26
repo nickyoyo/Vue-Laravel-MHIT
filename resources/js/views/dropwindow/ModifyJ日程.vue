@@ -44,6 +44,7 @@ export default {
   name: "ModifyJ日程",
   data: function () {
     return {
+      newdate:new Date(Date.now()).toISOString().slice(0,10),
       Data:this.Data,
     };
   },

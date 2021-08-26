@@ -5,6 +5,7 @@
     class="form-control"
     style="display: inline; width: 180px"
     v-model="Data[0].ReserveDate"
+    :min="newdate"
   />
   &nbsp;&nbsp;
   <input
@@ -19,6 +20,7 @@
     class="form-control"
     style="display: inline; width: 180px"
     v-model="Data[0].EstimateDealDate"
+    :min="newdate"
   />
   &nbsp;&nbsp; 預計成交率 : &nbsp;&nbsp;
   <input
@@ -70,6 +72,7 @@ export default {
   name: "ReservePicture",
   data: function () {
     return {
+      newdate:new Date(Date.now()).toISOString().slice(0,10),
       DataA:this.DataN,
       Data:[								//存取要上傳chk資料
         {
