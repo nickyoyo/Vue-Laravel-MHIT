@@ -183,7 +183,7 @@
 				 <input type="checkbox" name="nextK" v-model="nextK"/>下次有預約談圖&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				 </div>
 				<div class="modal-body" :hidden="nextK==false">
-				 <ReservePicture @my-data="saveKC" @my-clean="cleanstate" v-bind:DataN="Data" v-bind:S=1 v-if="ref"></ReservePicture>
+				 <ReservePicture @my-data="saveKC" @my-clean="cleanstate" v-bind:DataN="Data" v-bind:S=1 :key="refnew"></ReservePicture>
 				</div>
         </div>
       </div>
@@ -294,7 +294,8 @@
   name: "CM日程管理",
   data() {
     return {
-	 ref:false,
+	 refnew:false,
+
 	 endch:"0",							//轉購單品待追蹤、已簽約或是無購買意願
 	 DataJ:[],							//存取丈量之chk資料
 	 DataK:[],							//存取看圖之chk資料
@@ -354,7 +355,8 @@
         console.log(response.data);
         this.CHKendData[0] = response.data;
       });
-	  this.ref = true;
+	  this.refnew = false;
+	  $("#MKFinish").modal('hide');
 	},
 	cleanData: function () {
 		this.MeasureEarly=false,
@@ -435,7 +437,6 @@
 		this.Data[0]['EstimateDealDate'] = this.DataJ[this.DataJ.length-1]['預計成交日'];
 		this.Data[0]['EstimateDealRate'] = this.DataJ[this.DataJ.length-1]['預計成交率'];
 		this.Data[0]['result'] = this.DataJ[this.DataJ.length-1]['result'];
-		this.ref=true;
 	},
 	ModifyJ: function (index) {
 		$("#MJModify").modal('toggle');
@@ -468,7 +469,7 @@
 		this.Data[0]['EstimateDealDate'] = "";
 		this.Data[0]['EstimateDealRate'] = "";
 		this.Data[0]['result'] = this.DataK[this.DataK.length-1]['result'];
-		this.ref=true;
+		this.refnew = true;
 	},
 	addMeasureK: function () {
 		$("#MK").modal('toggle');
@@ -534,7 +535,6 @@
         .catch(function (response) {
           console.log(response);
         });
-		this.refresh();
 		this.cleanData();
 		
 	},
@@ -551,8 +551,6 @@
         .catch(function (response) {
           console.log(response);
         });
-		this.ref=false;
-		this.refresh();
 		this.cleanData();
 	},
 	CancelEnd: function () {
