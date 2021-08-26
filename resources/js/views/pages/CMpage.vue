@@ -390,7 +390,6 @@
           <input
             type="checkbox"
             v-model="cust.needChk"
-            checked
             :disabled="state == 1"
           />有丈量需求 <br /><br />
           <h4>

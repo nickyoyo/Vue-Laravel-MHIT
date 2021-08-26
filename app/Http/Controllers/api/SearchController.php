@@ -45,6 +45,7 @@ class SearchController extends Controller
     public function searchCM($CNO)          //CM-Data、月曆格式轉換、CTD
     {
         $useCM = cm::where('CustNo',trim($CNO))->first();
+        if($useCM->needChk == '1')$useCM->needChk=true;
         $FinishDate='';$CheckInDate='';$HouseDate='';$FavColor='';$Woodwork='';$LastModify='';
         $CusAddressC='';$CusAddressS='';$FittingAddC='';$FittingAddS='';
         if($useCM == NULL){

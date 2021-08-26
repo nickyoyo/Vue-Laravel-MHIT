@@ -23941,7 +23941,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                   (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
                     type: "checkbox",
                     "onUpdate:modelValue": _cache[29] || (_cache[29] = $event => ($data.cust.needChk = $event)),
-                    checked: "",
                     disabled: $data.state == 1
                   }, null, 8 /* PROPS */, ["disabled"]), [
                     [vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.cust.needChk]

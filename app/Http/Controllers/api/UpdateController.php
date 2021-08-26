@@ -97,7 +97,7 @@ class UpdateController extends Controller
                 'budgetSofa' => ($data['budgetSofa'] == NULL) ? '' : $data['budgetSofa'],
                 'BuildName' => ($data['BuildName'] == NULL) ? '' : $data['BuildName'],
                 'Woodwork' => ($Woodwork == NULL) ? '' : $Woodwork,
-                //'needChk',
+                'needChk' => ($data['needChk'] == NULL) ? '' : $data['needChk'],
                 'HouseType' => ($data['HouseType'] == NULL) ? '' : $data['HouseType'],
                 'Family' => ($data['Family'] == NULL) ? '' : $data['Family'],
             ]);
