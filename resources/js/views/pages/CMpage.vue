@@ -270,7 +270,6 @@
                   type="checkbox"
                   v-model="item.value"
                   :disabled="state == 1"
-                  :checked="item.value == 1"
                 />{{ item.data }}
               </div>
             </div>
@@ -291,7 +290,6 @@
                   type="checkbox"
                   v-model="item.value"
                   :disabled="state == 1"
-                  :checked="item.value == 1"
                 />{{ item.data }}
               </div>
             </div>
@@ -434,7 +432,6 @@
                 type="checkbox"
                 v-model="item.value"
                 :disabled="state == 1"
-                :checked="item.value == 1"
               />{{ item.data }}
             </div>
           </div>
@@ -473,7 +470,6 @@
                 type="checkbox"
                 v-model="item.value"
                 :disabled="state == 1"
-                :checked="item.value == 1"
               />{{ item.data }}
             </div>
           </div>

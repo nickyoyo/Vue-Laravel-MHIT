@@ -23795,9 +23795,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                           (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
                             type: "checkbox",
                             "onUpdate:modelValue": $event => (item.value = $event),
-                            disabled: $data.state == 1,
-                            checked: item.value == 1
-                          }, null, 8 /* PROPS */, ["onUpdate:modelValue", "disabled", "checked"]), [
+                            disabled: $data.state == 1
+                          }, null, 8 /* PROPS */, ["onUpdate:modelValue", "disabled"]), [
                             [vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, item.value]
                           ]),
                           (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.data), 1 /* TEXT */)
@@ -23817,9 +23816,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                           (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
                             type: "checkbox",
                             "onUpdate:modelValue": $event => (item.value = $event),
-                            disabled: $data.state == 1,
-                            checked: item.value == 1
-                          }, null, 8 /* PROPS */, ["onUpdate:modelValue", "disabled", "checked"]), [
+                            disabled: $data.state == 1
+                          }, null, 8 /* PROPS */, ["onUpdate:modelValue", "disabled"]), [
                             [vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, item.value]
                           ]),
                           (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.data), 1 /* TEXT */)
@@ -23995,9 +23993,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                         (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
                           type: "checkbox",
                           "onUpdate:modelValue": $event => (item.value = $event),
-                          disabled: $data.state == 1,
-                          checked: item.value == 1
-                        }, null, 8 /* PROPS */, ["onUpdate:modelValue", "disabled", "checked"]), [
+                          disabled: $data.state == 1
+                        }, null, 8 /* PROPS */, ["onUpdate:modelValue", "disabled"]), [
                           [vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, item.value]
                         ]),
                         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.data), 1 /* TEXT */)
@@ -24037,9 +24034,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                         (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
                           type: "checkbox",
                           "onUpdate:modelValue": $event => (item.value = $event),
-                          disabled: $data.state == 1,
-                          checked: item.value == 1
-                        }, null, 8 /* PROPS */, ["onUpdate:modelValue", "disabled", "checked"]), [
+                          disabled: $data.state == 1
+                        }, null, 8 /* PROPS */, ["onUpdate:modelValue", "disabled"]), [
                           [vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, item.value]
                         ]),
                         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.data), 1 /* TEXT */)

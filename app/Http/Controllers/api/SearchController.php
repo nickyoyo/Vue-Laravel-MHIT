@@ -161,76 +161,76 @@ class SearchController extends Controller
         foreach($CItems as $Items){
             if($Items->Items!=NULL){
                 if($Items->Items == '使用過系統家具|使用經驗'){
-                    $UseExp[0] = 1;
+                    $UseExp[0] = true;
                 }
                 if($Items->Items == '曾有裝修經驗|使用經驗'){
-                    $UseExp[1] = 1;
+                    $UseExp[1] = true;
                 }
                 if($Items->Items == '使用過木地板|使用經驗'){
-                    $UseExp[2] = 1;
+                    $UseExp[2] = true;
                 }
                 if($Items->Items == '購買過沙發|使用經驗'){
-                    $UseExp[3] = 1;
+                    $UseExp[3] = true;
                 }
                 if($Items->Items == '歐德|同業了解'){
-                    $UDS[0] = 1;
+                    $UDS[0] = true;
                 }
                 if($Items->Items == '綠的傢俱|同業了解'){
-                    $UDS[1] = 1;
+                    $UDS[1] = true;
                 }
                 if($Items->Items == '艾菲爾|同業了解'){
-                    $UDS[2] = 1;
+                    $UDS[2] = true;
                 }
                 if($Items->Items == '室內設計師|同業了解'){
-                    $UDS[3] = 1;
+                    $UDS[3] = true;
                 }
                 if($Items->Items == '其他|同業了解'){
-                    $UDS[4] = 1;
+                    $UDS[4] = true;
                 }
                 if($Items->Items == '鄉村風|喜好風格'){
-                    $likeStyle[0] = 1;
+                    $likeStyle[0] = true;
                 }
                 if($Items->Items == '現代風|喜好風格'){
-                    $likeStyle[1] = 1;
+                    $likeStyle[1] = true;
                 }
                 if($Items->Items == '工業風|喜好風格'){
-                    $likeStyle[2] = 1;
+                    $likeStyle[2] = true;
                 }
                 if($Items->Items == '北歐風|喜好風格'){
-                    $likeStyle[3] = 1;
+                    $likeStyle[3] = true;
                 }
                 if($Items->Items == '古典風|喜好風格'){
-                    $likeStyle[4] = 1;
+                    $likeStyle[4] = true;
                 }
                 if($Items->Items == '其他|喜好風格'){
-                    $likeStyle[5] = 1;
+                    $likeStyle[5] = true;
                 }
                 if($Items->Items == '全室|規劃空間'){
-                    $space[0] = 1;
+                    $space[0] = true;
                 }
                 if($Items->Items == '客廳|規劃空間'){
-                    $space[1] = 1;
+                    $space[1] = true;
                 }
                 if($Items->Items == '更衣室|規劃空間'){
-                    $space[2] = 1;
+                    $space[2] = true;
                 }
                 if($Items->Items == '廚房|規劃空間'){
-                    $space[3] = 1;
+                    $space[3] = true;
                 }
                 if($Items->Items == '餐廳|規劃空間'){
-                    $space[4] = 1;
+                    $space[4] = true;
                 }
                 if($Items->Items == '書房|規劃空間'){
-                    $space[5] = 1;
+                    $space[5] = true;
                 }
                 if($Items->Items == '玄關|規劃空間'){
-                    $space[6] = 1;
+                    $space[6] = true;
                 }
                 if($Items->Items == '臥室|規劃空間'){
-                    $space[7] = 1;
+                    $space[7] = true;
                 }
                 if($Items->Items == '其他|規劃空間'){
-                    $space[8] = 1;
+                    $space[8] = true;
                 }
             }
         }
