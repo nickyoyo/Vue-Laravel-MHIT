@@ -8,6 +8,7 @@ import smallwindow from "./views/test/smallwindow";
 import quickButton from "./views/test/quickButton";
 import BVTest from "./views/test/BVTest";
 import 日程web from "./views/test/日程web";
+import require from "./views/test/require";
 
 import CM接待自評 from "./views/pages/CM接待自評";
 import CMcreate from "./views/pages/CMcreate";
@@ -36,6 +37,6 @@ export default [
     { path: "/quickButton", component: quickButton, name: 'quickButton' },
     { path: "/BVTest", component: BVTest, name: 'BVTest' },
     { path: "/日程web", component: 日程web, name: '日程web' },
-   // { path: "/quickButton", component: quickButton, name: 'quickButton' },
+    { path: "/require", component: require, name: 'require' },
     
 ];

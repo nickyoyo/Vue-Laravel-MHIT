@@ -395,13 +395,13 @@
           <h4>
             <label class="font-weight-bold"
               >預計完工日<br />
-              <input
-                type="date"
+              <el-date-picker
                 class="form-control"
                 style="width: 200px"
                 v-model="custT.FinishDate"
                 :readonly="state == 1"
-            /></label>
+                :picker-options="pickerOptions0">
+            </el-date-picker></label>
           </h4>
           <br />
           <h4>
@@ -761,6 +761,11 @@ export default {
   name: "CMpage",
   data() {
     return {
+       pickerOptions0: {
+          disabledDate(time) {
+            return time.getTime() < Date.now();
+          }
+        },  
       state: this.$route.params.state,
       space: [
         { type: "|規劃空間", value: "false", data: "全室" },

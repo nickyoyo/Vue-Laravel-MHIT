@@ -373,17 +373,17 @@ class CreateController extends Controller
                 'UserId'=> $doc->EMID,
                 'CustNo'=> $CNO,
                 '品牌力'=> $AF[1],
-                '迎賓加分點'=> $data['AF1'][3]['value'],
+                '迎賓加分點'=> ($data['AF1'][3]['value'] == NULL) ? '' :  $data['AF1'][3]['value'],
                 '商品力'=> $AF[2],
-                '門市展演加分點'=> $data['AF2'][3]['value'],
+                '門市展演加分點'=> ($data['AF2'][3]['value'] == NULL) ? '' :  $data['AF2'][3]['value'],
                 '經驗力'=> $AF[3],
-                '案例對焦加分點'=> $data['AF3'][3]['value'],
+                '案例對焦加分點'=>  ($data['AF3'][3]['value'] == NULL) ? '' :  $data['AF3'][3]['value'],
                 '預算對焦'=> $AF[4],
-                '服務流程對焦點'=> $data['AF4'][3]['value'],
+                '服務流程對焦點'=>  ($data['AF4'][3]['value'] == NULL) ? '' :  $data['AF4'][3]['value'],
                 '促銷活動'=> $AF[5],
-                '促銷活動對焦點'=> $data['AF5'][3]['value'],
+                '促銷活動對焦點'=>  ($data['AF5'][3]['value'] == NULL) ? '' :  $data['AF5'][3]['value'],
                 '異議排除'=> $AF[6],
-                '異議排除對焦點'=> $data['AF6'][3]['value'],
+                '異議排除對焦點'=>  ($data['AF6'][3]['value'] == NULL) ? '' :  $data['AF6'][3]['value'],
                 '店長協助'=> $data['AF7'][0]['value'],
                 'LINE'=> $data['AF8'][0]['value'],
                 'Google'=> $data['AF9'][0]['value'],
@@ -491,7 +491,7 @@ class CreateController extends Controller
                 $data = $data['Data'][0];
                 $CountK=DB::table('chk')->where('單號','LIKE', 'K'.'%')->where('客戶號',$data['CustNo'])->where('狀態',3)->where('門市別_StoreNo',$data['Dept'])->first();
                 if($S==0){
-                    
+
                 }
                 if($CountK==NULL||$S==1){          //無看圖未完成
                     $days = date('z')+1;

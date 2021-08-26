@@ -45,13 +45,15 @@ class SearchController extends Controller
     public function searchCM($CNO)          //CM-Data、月曆格式轉換、CTD
     {
         $useCM = cm::where('CustNo',trim($CNO))->first();
-        if($useCM->needChk == '1')$useCM->needChk=true;
+       
         $FinishDate='';$CheckInDate='';$HouseDate='';$FavColor='';$Woodwork='';$LastModify='';
-        $CusAddressC='';$CusAddressS='';$FittingAddC='';$FittingAddS='';
+        $CusAddressC='';$CusAddressS='';$FittingAddC='';$FittingAddS='';$msg ='';
         if($useCM == NULL){
             $useCM = new cm;
+            return response()->json(['msg' => '此客編號不存在'],200);
         }  
         else{
+            if($useCM->needChk == '1')$useCM->needChk=true;
             if($useCM->CusAddress != NULL){
                 $length = mb_strlen($useCM->CusAddress,"utf-8");
                 $CusAddressC= mb_substr($useCM->CusAddress,0,6,"utf-8");
@@ -89,7 +91,7 @@ class SearchController extends Controller
         return response()->json([
              $useCM,
             'LastModify' => $LastModify , 'Woodwork' => $Woodwork , 'FavColor' => $FavColor ,'FinishDate' => $FinishDate , 'CheckInDate'=> $CheckInDate ,'HouseDate' =>$HouseDate,
-            'CusAddressC' => $CusAddressC,'CusAddressS'=>$CusAddressS,'FittingAddC'=>$FittingAddC,'FittingAddS'=>$FittingAddS],200);
+            'CusAddressC' => $CusAddressC,'CusAddressS'=>$CusAddressS,'FittingAddC'=>$FittingAddC,'FittingAddS'=>$FittingAddS,'msg' => ''],200);
     }
     public function searchCTD($codename)        //CTD
     {
