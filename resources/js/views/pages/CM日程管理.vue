@@ -81,7 +81,7 @@
 				 <input type="checkbox" name="nextJ" v-model="nextJ"/>下次有預約談圖&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				</div>
 				<div class="modal-body" :hidden="nextJ==false">
-				  <ReservePicture @my-data="saveJC" @my-clean="cleanstate" v-bind:DataN="Data" v-bind:S=0 v-if="ref"></ReservePicture>
+				  <ReservePicture @my-data="saveJC" @my-clean="cleanstate" v-bind:DataN="Data" v-bind:S=0 :key="refnew"></ReservePicture>
 				  </div>
           </div>
 	  </div>
@@ -356,6 +356,7 @@
         this.CHKendData[0] = response.data;
       });
 	  this.refnew = false;
+	  $("#MJFinish").modal('hide');
 	  $("#MKFinish").modal('hide');
 	},
 	cleanData: function () {
@@ -437,6 +438,7 @@
 		this.Data[0]['EstimateDealDate'] = this.DataJ[this.DataJ.length-1]['預計成交日'];
 		this.Data[0]['EstimateDealRate'] = this.DataJ[this.DataJ.length-1]['預計成交率'];
 		this.Data[0]['result'] = this.DataJ[this.DataJ.length-1]['result'];
+		this.refnew = true;
 	},
 	ModifyJ: function (index) {
 		$("#MJModify").modal('toggle');

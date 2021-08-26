@@ -17232,6 +17232,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         _this.CHKendData[0] = response.data;
       });
       this.refnew = false;
+      $("#MJFinish").modal('hide');
       $("#MKFinish").modal('hide');
     },
     cleanData: function cleanData() {
@@ -17300,6 +17301,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       this.Data[0]['EstimateDealDate'] = this.DataJ[this.DataJ.length - 1]['預計成交日'];
       this.Data[0]['EstimateDealRate'] = this.DataJ[this.DataJ.length - 1]['預計成交率'];
       this.Data[0]['result'] = this.DataJ[this.DataJ.length - 1]['result'];
+      this.refnew = true;
     },
     ModifyJ: function ModifyJ(index) {
       $("#MJModify").modal('toggle');
@@ -25450,15 +25452,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             class: "modal-body",
             hidden: $data.nextJ==false
           }, [
-            (_ctx.ref)
-              ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_ReservePicture, {
-                  key: 0,
-                  onMyData: $options.saveJC,
-                  onMyClean: $options.cleanstate,
-                  DataN: $data.Data,
-                  S: 0
-                }, null, 8 /* PROPS */, ["onMyData", "onMyClean", "DataN"]))
-              : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ReservePicture, {
+              onMyData: $options.saveJC,
+              onMyClean: $options.cleanstate,
+              DataN: $data.Data,
+              S: 0,
+              key: $data.refnew
+            }, null, 8 /* PROPS */, ["onMyData", "onMyClean", "DataN"])
           ], 8 /* PROPS */, ["hidden"])
         ])
       ])

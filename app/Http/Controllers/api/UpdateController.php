@@ -317,25 +317,25 @@ class UpdateController extends Controller
         $type = $data['type'];
         if($type=="J"){
             if($state==0){
-                $state = 1;
+                $state = 0;
                }
             else if($state==1){
-                $state = 2;
+                $state = 1;
                }
             else if($state==2){
-                $state = 6;
+                $state = 2;
             }
            $type='01';
         }
         else{
             if($state==0){
-                $state = 4;
+                $state = 3;
                }
             else if($state==1){
-                $state = 5;
+                $state = 4;
                }
             else if($state==2){
-                $state = 7;
+                $state = 5;
             }
             $type='84';
         }
