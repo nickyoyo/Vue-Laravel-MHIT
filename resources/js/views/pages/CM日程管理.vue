@@ -215,6 +215,12 @@
         <div class="col-md-7 mb-4">
 			<div class="container text-center" style="overflow-y:scroll;height:700px;width:800px;">   
 			<table class="container" style="border: 1px  black solid;">
+			<tr>	
+				<th colspan="3" style="text-align: left">&nbsp;
+				<button style="border-radius: 8px;" @click.prevent="ShowAll" type="submit">顯示全部</button>&nbsp;&nbsp;
+				<button style="border-radius: 8px;" @click.prevent="ShowJ" type="submit">顯示丈量</button>&nbsp;&nbsp;
+				<button style="border-radius: 8px;" @click.prevent="ShowK" type="submit">顯示看圖</button></th>
+			</tr>
 			<tr style="border: 1px black solid;">
 				<th style="width:20%">次數/類別/狀態</th>
 				<th style="width:40%;border: 1px black solid;">準備方向</th>
@@ -224,6 +230,7 @@
 						:value="item"
 						:key="index"
 						style="border: 1px black solid;"
+						:hidden="show==1"
 						>
 					<td>
 						<label v-show="item.狀態=='0'">第{{index+1}}次丈量未完成</label>
@@ -240,6 +247,7 @@
 						:value="item"
 						:key="index"
 						style="border: 1px black solid;"
+						:hidden="show==2"
 						>
 					<td>
 						<label v-show="item.狀態=='3'">第{{index+1}}次看圖未完成</label>
@@ -295,6 +303,7 @@
   data() {
     return {
 	 refnew:false,
+	 show:0,
 
 	 endch:"0",							//轉購單品待追蹤、已簽約或是無購買意願
 	 DataJ:[],							//存取丈量之chk資料
@@ -336,6 +345,15 @@
     };
   },
   methods: {
+	ShowAll: function(){
+		this.show=0;
+	},
+	ShowJ: function(){
+		this.show=2;
+	},
+	ShowK: function(){
+		this.show=1;
+	},
 	backpage: function(){
 		this.$emit('my-event');
 	},
