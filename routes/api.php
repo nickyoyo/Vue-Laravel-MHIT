@@ -34,6 +34,8 @@ Route::get('/search/PD',[SearchController::class,'searchPD']);
 Route::get('/search/zip/{street}',[SearchController::class,'searchaddress']);
 Route::get('/search/chk/{CNO}',[SearchController::class,'searchCHK']);
 Route::get('/search/UserDept/{DVID}',[SearchController::class,'searchUserDeptMember']);//搜尋方式待修改
+Route::get('/search/Order/{CNO}',[SearchController::class,'searchOrder']);
+Route::get('/search/OrderDetail/{QNO}',[SearchController::class,'searchOrderDetail']);
 
 Route::post('/Update/CM',[UpdateController::class,'UpdateCM']);
 Route::post('/Update/CmMemo',[UpdateController::class,'UpdateCmMemo']);

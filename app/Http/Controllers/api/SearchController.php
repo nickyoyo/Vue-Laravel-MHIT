@@ -10,6 +10,8 @@ use App\Models\CmMemo;
 use App\Models\CTD;
 use App\Models\zip;
 use App\Models\chk;
+use App\Models\SO;
+use App\Models\sod;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
@@ -313,5 +315,25 @@ class SearchController extends Controller
     {
         $UserDept = EM13::where('DVID','=', $DVID)->where('OFDT','=','00000000')->get();
         return response()->json($UserDept,200);
+    }
+
+    public function searchOrder($CNO)       
+    {
+        $data = SO::where('CusNo',trim($CNO))->where('QuotNo','LIKE', 'S'.'%')->where('OrderDate','>','00000000')->orderby('QuotNo','asc')->get();
+        if($data == NULL){
+            return response()->json(['msg' => '此客編號不存在'],200);
+        }  
+        foreach($data as $list){
+            $list->TotalValue=(int)$list->TotalValue;
+        }
+      
+        return response()->json([$data,'msg' => ''],200);
+    }
+
+    public function searchOrderDetail($QNO)        
+    {
+        $data = sod::where('QuotNo',trim($QNO))->get();
+
+        return response()->json($data,200);
     }
 }

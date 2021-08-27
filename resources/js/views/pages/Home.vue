@@ -7,6 +7,7 @@
                     <dl>
                         <dt>門市作業</dt> 
                         <dd><router-link to="/CM/sendSearch" >客戶資料</router-link></dd>
+						<dd><router-link to="/Order/sendSearch" >訂單資料</router-link></dd>
                         <dd></dd>
                         <dd></dd>
                     </dl>
