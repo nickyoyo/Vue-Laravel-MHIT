@@ -27046,7 +27046,7 @@ const _hoisted_22 = { class: "orderth4" }
 const _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", { class: "col-md-6 mb-4" }, null, -1 /* HOISTED */)
 const _hoisted_24 = {
   class: "row",
-  style: {"height":"400px"}
+  style: {"height":"450px"}
 }
 const _hoisted_25 = { class: "col-md-11 mb-4" }
 const _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", null, [
@@ -27055,7 +27055,7 @@ const _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode
     style: {"color":"#ff5151"}
   }, "報價訂單明細")
 ], -1 /* HOISTED */)
-const _hoisted_27 = { style: {"overflow-y":"scroll","height":"250px","width":"1600px","border":"1px black solid"} }
+const _hoisted_27 = { style: {"overflow-y":"scroll","height":"400px","width":"1600px","border":"1px black solid"} }
 const _hoisted_28 = { style: {"border":"1px black solid","width":"1580px"} }
 const _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("thead", null, [
   /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", { style: {"border":"1px black solid"} }, [
@@ -27171,9 +27171,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                           (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_loader)
                         ]))
                       : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-                    ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.OrderList, (item, index) => {
+                    ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.OrderDetail, (itemD, index) => {
                       return (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("tr", {
-                        value: item,
+                        value: itemD,
                         key: index,
                         style: {"border":"1px black solid"},
                         hidden: _ctx.show == 1
@@ -27181,18 +27181,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(index+1), 1 /* TEXT */),
                         _hoisted_32,
                         _hoisted_33,
-                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.UnitPrice), 1 /* TEXT */),
-                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.Qty), 1 /* TEXT */),
-                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.DiscountRate), 1 /* TEXT */),
-                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.OrderValue), 1 /* TEXT */),
+                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.UnitPrice), 1 /* TEXT */),
+                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.Qty), 1 /* TEXT */),
+                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.DiscountRate), 1 /* TEXT */),
+                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.OrderValue), 1 /* TEXT */),
                         _hoisted_38,
                         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_39, [
-                          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.OrderDate), 1 /* TEXT */),
+                          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.OrderDate), 1 /* TEXT */),
                           _hoisted_40,
-                          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.Ordermember), 1 /* TEXT */)
+                          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.Ordermember), 1 /* TEXT */)
                         ])
                       ], 8 /* PROPS */, ["value", "hidden"])), [
-                        [vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.loadin == false]
+                        [vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.loadinD == false]
                       ])
                     }), 128 /* KEYED_FRAGMENT */))
                   ])

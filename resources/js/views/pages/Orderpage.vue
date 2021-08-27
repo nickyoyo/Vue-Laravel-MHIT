@@ -72,7 +72,7 @@
           <div class="col-md-6 mb-4"></div>
         </div>
 
-        <div class="row" style="height: 400px">
+        <div class="row" style="height: 450px">
            <div class="col-md-11 mb-4">
             <h2>
               <label class="font-weight-bold" style="color: #ff5151"
@@ -80,7 +80,7 @@
               >
             </h2>
              <div
-              style="overflow-y: scroll; height: 250px; width: 1600px; border: 1px black solid;"
+              style="overflow-y: scroll; height: 400px; width: 1600px; border: 1px black solid;"
             >
               <table style="border: 1px black solid;width: 1580px;">
                 <thead>
@@ -100,9 +100,9 @@
                   <loader></loader>
                 </tr>
                 <tr
-                  v-show="loadin == false"
-                  v-for="(item, index) in OrderList"
-                  :value="item"
+                  v-show="loadinD == false"
+                  v-for="(itemD, index) in OrderDetail"
+                  :value="itemD"
                   :key="index"
                   style="border: 1px black solid"
                   :hidden="show == 1"
@@ -110,12 +110,12 @@
                   <th class="Dorderth1">{{index+1}}</th>
                   <th class="Dorderth2"></th>
                   <th class="Dorderth3"></th>
-                  <th class="Dorderth4">{{item.UnitPrice}}</th>
-                  <th class="Dorderth5">{{item.Qty}}</th>
-                  <th class="Dorderth6">{{item.DiscountRate}}</th>
-                  <th class="Dorderth7">{{item.OrderValue}}</th>
+                  <th class="Dorderth4">{{itemD.UnitPrice}}</th>
+                  <th class="Dorderth5">{{itemD.Qty}}</th>
+                  <th class="Dorderth6">{{itemD.DiscountRate}}</th>
+                  <th class="Dorderth7">{{itemD.OrderValue}}</th>
                   <th class="Dorderth8"></th>
-                  <th class="Dorderth9">{{item.OrderDate}}<br>{{item.Ordermember}}</th>
+                  <th class="Dorderth9">{{itemD.OrderDate}}<br/>{{itemD.Ordermember}}</th>
                 </tr>
               </table>
             </div>

@@ -332,7 +332,12 @@ class SearchController extends Controller
 
     public function searchOrderDetail($QNO)        
     {
-        $data = sod::where('QuotNo',trim($QNO))->get();
+        $data = sod::where('QuotNo',trim($QNO))->get(['sod.*','UserID as Ordermember']);
+
+        foreach($data as $list){
+            $member = EM13::where('EMID','=', $list->UserID)->where('OFDT','=','00000000')->first();
+            $list->Ordermember= $member->EMME;
+        }
 
         return response()->json($data,200);
     }
