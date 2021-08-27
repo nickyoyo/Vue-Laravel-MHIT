@@ -13752,7 +13752,6 @@ module.exports = __webpack_require__(/*! ./lib/axios */ "./node_modules/axios/li
   \************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 11:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -13946,7 +13945,6 @@ module.exports = function xhrAdapter(config) {
   \*****************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 50:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -14013,7 +14011,6 @@ module.exports.default = axios;
   \*************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 19:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -14046,7 +14043,6 @@ module.exports = Cancel;
   \******************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 57:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -14117,7 +14113,6 @@ module.exports = CancelToken;
   \***************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 3:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -14136,7 +14131,6 @@ module.exports = function isCancel(value) {
   \**********************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 94:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -14244,7 +14238,6 @@ module.exports = Axios;
   \***********************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 52:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -14310,7 +14303,6 @@ module.exports = InterceptorManager;
   \******************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 15:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -14344,7 +14336,6 @@ module.exports = function buildFullPath(baseURL, requestedURL) {
   \****************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 15:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -14376,7 +14367,6 @@ module.exports = function createError(message, config, code, request, response) 
   \********************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 23:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -14469,7 +14459,6 @@ module.exports = function dispatchRequest(config) {
   \*****************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 13:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -14525,7 +14514,6 @@ module.exports = function enhanceError(error, config, code, request, response) {
   \****************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 13:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -14612,7 +14600,6 @@ module.exports = function mergeConfig(config1, config2) {
   \***********************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 12:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -14651,7 +14638,6 @@ module.exports = function settle(resolve, reject, response) {
   \******************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 13:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -14685,7 +14671,6 @@ module.exports = function transformData(data, headers, fns) {
   \********************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 97:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -14796,7 +14781,6 @@ module.exports = defaults;
   \************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 3:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -14821,7 +14805,6 @@ module.exports = function bind(fn, thisArg) {
   \****************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 23:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -14906,7 +14889,6 @@ module.exports = function buildURL(url, params, paramsSerializer) {
   \*******************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 10:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -14934,7 +14916,6 @@ module.exports = function combineURLs(baseURL, relativeURL) {
   \***************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 5:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -15001,7 +14982,6 @@ module.exports = (
   \*********************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 9:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -15029,7 +15009,6 @@ module.exports = function isAbsoluteURL(url) {
   \***********************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 5:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -15111,7 +15090,6 @@ module.exports = (
   \***************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 5:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -15137,7 +15115,6 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
   \********************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 27:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -15204,7 +15181,6 @@ module.exports = function parseHeaders(headers) {
   \**************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 23:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -15245,7 +15221,6 @@ module.exports = function spread(callback) {
   \*****************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 322:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -15624,6 +15599,9 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     };
   },
   methods: {
+    cleanData: function cleanData() {
+      this.$emit('my-refresh');
+    },
     save: function save() {
       axios.post("/api/Update/Measurestate", {
         Data: this.Data,
@@ -15669,6 +15647,9 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     };
   },
   methods: {
+    cleanData: function cleanData() {
+      this.$emit('my-refresh');
+    },
     save: function save() {
       axios.post("/api/Update/Measurestate", {
         Data: this.Data,
@@ -17256,7 +17237,9 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         code_: "",
         memo: ""
       }],
-      newData: []
+      newData: [],
+      checkrepeat: 0 //檢查日期是否重複	
+
     };
   },
   methods: {
@@ -17293,7 +17276,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     cleanData: function cleanData() {
       this.MeasureEarly = false, this.nextJ = false, //有預約下次談圖判定
       this.nextK = false, this.MJstate = 0, //判斷丈量取消或是丈量完成
-      this.MKstate = 0, this.Data = [{
+      this.MKstate = 0, this.checkrepeat = 0, this.Data = [{
         OrderNo: "",
         CustNo: this.CNO,
         ReserveDate: "",
@@ -17310,33 +17293,35 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       }], this.refresh();
     },
     cleanstate: function cleanstate() {
-      this.MeasureEarly = false, this.nextJ = false, //有預約下次談圖判定
+      this.MeasureEarly = false, this.checkrepeat = 0, this.nextJ = false, //有預約下次談圖判定
       this.nextK = false;
       this.refresh();
     },
     DeleteJ: function DeleteJ(index) {
+      var that = this;
       axios.post("/api/Update/DeleteMeasureJK", {
         OrderNo: this.DataJ[index]['單號'],
         type: "J"
       }).then(function (response) {
         console.log(response);
+        that.refresh();
+        that.cleanData();
       })["catch"](function (response) {
         console.log(response);
       });
-      this.refresh();
-      this.cleanData();
     },
     DeleteK: function DeleteK(index) {
+      var that = this;
       axios.post("/api/Update/DeleteMeasureJK", {
         OrderNo: this.DataK[index]['單號'],
         type: "K"
       }).then(function (response) {
         console.log(response);
+        that.refresh();
+        that.cleanData();
       })["catch"](function (response) {
         console.log(response);
       });
-      this.refresh();
-      this.cleanData();
     },
     addMeasureJ: function addMeasureJ() {
       $("#MJ").modal('toggle');
@@ -17411,77 +17396,97 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       this.Data[0]['result'] = this.DataK[index]['result'];
     },
     saveJ: function saveJ() {
-      axios.post("/api/Create/Measure", {
-        Data: this.Data,
-        type: "J"
+      var that = this;
+      axios.post("/api/Create/MeasureCheckJ", {
+        Data: this.Data
       }).then(function (response) {
-        console.log(response);
+        console.log(response.data);
+
+        if (response.data == 'O') {
+          axios.post("/api/Create/Measure", {
+            Data: that.Data,
+            type: "J"
+          }).then(function (response) {
+            console.log(response);
+            $("#MJ").modal('hide');
+            that.refresh();
+            that.cleanData();
+          })["catch"](function (response) {
+            console.log(response);
+          });
+        } else {
+          that.Data.ReserveDate = "";
+          alert('此時段已經有丈量，同一天只能設定一次丈量');
+        }
       })["catch"](function (response) {
         console.log(response);
       });
-      this.refresh();
-      this.cleanData();
     },
     saveK: function saveK() {
+      var that = this;
       axios.post("/api/Create/Measure", {
         Data: this.Data,
         type: "K",
         S: 0
       }).then(function (response) {
         console.log(response);
+        that.refresh();
+        that.cleanData();
       })["catch"](function (response) {
         console.log(response);
       });
-      this.refresh();
-      this.cleanData();
     },
     saveJC: function saveJC() {
+      var that = this;
       axios.post("/api/Update/Measurestate", {
         Data: this.Data,
         type: "J",
         state: this.MJstate
       }).then(function (response) {
         console.log(response);
+        that.cleanData();
       })["catch"](function (response) {
         console.log(response);
       });
-      this.cleanData();
     },
     saveKC: function saveKC() {
+      var that = this;
       axios.post("/api/Update/Measurestate", {
         Data: this.Data,
         type: "K",
         state: this.MKstate
       }).then(function (response) {
         console.log(response);
+        that.cleanData();
       })["catch"](function (response) {
         console.log(response);
       });
-      this.cleanData();
     },
     CancelEnd: function CancelEnd() {
+      var that = this;
       axios.post("/api/Update/MeasureEnd", {
         CustNo: this.Data[0].CustNo,
         Data: this.CHKendData,
         type: 101
       }).then(function (response) {
         console.log(response);
+        that.refresh();
       })["catch"](function (response) {
         console.log(response);
       });
-      this.refresh();
     },
     SendEnd: function SendEnd() {
+      var that = this;
       axios.post("/api/Create/MeasureEnd", {
         Data: this.CHKendData,
         CustNo: this.Data[0].CustNo,
         type: 85
       }).then(function (response) {
         console.log(response);
+        that.refresh();
       })["catch"](function (response) {
         console.log(response);
       });
-      this.refresh();
     }
   },
   mounted: function mounted() {
@@ -18539,7 +18544,6 @@ ___CSS_LOADER_EXPORT___.push([module.id, "\n.tableborder {\r\n  width: 950px;\r\
   \*****************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module */
-/*! CommonJS bailout: module.exports is used directly at 9:0-14 */
 /***/ ((module) => {
 
 "use strict";
@@ -18618,8 +18622,6 @@ module.exports = function (cssWithMappingToString) {
   \*********************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, top-level-this-exports */
-/*! CommonJS bailout: this is used directly at 296:3-7 */
-/*! CommonJS bailout: module.exports is used directly at 294:36-50 */
 /***/ (function(module) {
 
 //     keymaster.js
@@ -19216,7 +19218,6 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
   \****************************************************************************/
 /*! unknown exports (runtime-defined) */
 /*! runtime requirements: module, __webpack_require__.nc, __webpack_require__.* */
-/*! CommonJS bailout: module.exports is used directly at 230:0-14 */
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 "use strict";
@@ -19507,12 +19508,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _ModifyJ_vue_vue_type_template_id_6cfddb85_bindings_Data_props_save_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ModifyJ日程.vue?vue&type=template&id=6cfddb85&bindings={"Data":"props","save":"options"} */ "./resources/js/views/dropwindow/ModifyJ日程.vue?vue&type=template&id=6cfddb85&bindings={\"Data\":\"props\",\"save\":\"options\"}");
+/* harmony import */ var _ModifyJ_vue_vue_type_template_id_6cfddb85_bindings_Data_props_cleanData_options_save_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ModifyJ日程.vue?vue&type=template&id=6cfddb85&bindings={"Data":"props","cleanData":"options","save":"options"} */ "./resources/js/views/dropwindow/ModifyJ日程.vue?vue&type=template&id=6cfddb85&bindings={\"Data\":\"props\",\"cleanData\":\"options\",\"save\":\"options\"}");
 /* harmony import */ var _ModifyJ_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ModifyJ日程.vue?vue&type=script&lang=js */ "./resources/js/views/dropwindow/ModifyJ日程.vue?vue&type=script&lang=js");
 
 
 
-_ModifyJ_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _ModifyJ_vue_vue_type_template_id_6cfddb85_bindings_Data_props_save_options___WEBPACK_IMPORTED_MODULE_0__.render
+_ModifyJ_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _ModifyJ_vue_vue_type_template_id_6cfddb85_bindings_Data_props_cleanData_options_save_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* hot reload */
 if (false) {}
 
@@ -19537,12 +19538,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _ModifyK_vue_vue_type_template_id_bc37d274_bindings_Data_props_save_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ModifyK日程.vue?vue&type=template&id=bc37d274&bindings={"Data":"props","save":"options"} */ "./resources/js/views/dropwindow/ModifyK日程.vue?vue&type=template&id=bc37d274&bindings={\"Data\":\"props\",\"save\":\"options\"}");
+/* harmony import */ var _ModifyK_vue_vue_type_template_id_bc37d274_bindings_Data_props_cleanData_options_save_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ModifyK日程.vue?vue&type=template&id=bc37d274&bindings={"Data":"props","cleanData":"options","save":"options"} */ "./resources/js/views/dropwindow/ModifyK日程.vue?vue&type=template&id=bc37d274&bindings={\"Data\":\"props\",\"cleanData\":\"options\",\"save\":\"options\"}");
 /* harmony import */ var _ModifyK_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ModifyK日程.vue?vue&type=script&lang=js */ "./resources/js/views/dropwindow/ModifyK日程.vue?vue&type=script&lang=js");
 
 
 
-_ModifyK_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _ModifyK_vue_vue_type_template_id_bc37d274_bindings_Data_props_save_options___WEBPACK_IMPORTED_MODULE_0__.render
+_ModifyK_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _ModifyK_vue_vue_type_template_id_bc37d274_bindings_Data_props_cleanData_options_save_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* hot reload */
 if (false) {}
 
@@ -19819,12 +19820,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _CM_vue_vue_type_template_id_6162085f_bindings_Data_data_CNO_props_Dept_props_refnew_data_show_data_newdate_data_endch_data_DataJ_data_DataK_data_UserData_data_Jstate_data_Kstate_data_MJstate_data_MKstate_data_MeasureEarly_data_nextJ_data_nextK_data_CHKendData_data_newData_data_ShowAll_options_ShowJ_options_ShowK_options_backpage_options_refresh_options_cleanData_options_cleanstate_options_DeleteJ_options_DeleteK_options_addMeasureJ_options_finishMeasureJ_options_ModifyJ_options_finishMeasureK_options_addMeasureK_options_ModifyK_options_saveJ_options_saveK_options_saveJC_options_saveKC_options_CancelEnd_options_SendEnd_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CM日程管理.vue?vue&type=template&id=6162085f&bindings={"Data":"data","CNO":"props","Dept":"props","refnew":"data","show":"data","newdate":"data","endch":"data","DataJ":"data","DataK":"data","UserData":"data","Jstate":"data","Kstate":"data","MJstate":"data","MKstate":"data","MeasureEarly":"data","nextJ":"data","nextK":"data","CHKendData":"data","newData":"data","ShowAll":"options","ShowJ":"options","ShowK":"options","backpage":"options","refresh":"options","cleanData":"options","cleanstate":"options","DeleteJ":"options","DeleteK":"options","addMeasureJ":"options","finishMeasureJ":"options","ModifyJ":"options","finishMeasureK":"options","addMeasureK":"options","ModifyK":"options","saveJ":"options","saveK":"options","saveJC":"options","saveKC":"options","CancelEnd":"options","SendEnd":"options"} */ "./resources/js/views/pages/CM日程管理.vue?vue&type=template&id=6162085f&bindings={\"Data\":\"data\",\"CNO\":\"props\",\"Dept\":\"props\",\"refnew\":\"data\",\"show\":\"data\",\"newdate\":\"data\",\"endch\":\"data\",\"DataJ\":\"data\",\"DataK\":\"data\",\"UserData\":\"data\",\"Jstate\":\"data\",\"Kstate\":\"data\",\"MJstate\":\"data\",\"MKstate\":\"data\",\"MeasureEarly\":\"data\",\"nextJ\":\"data\",\"nextK\":\"data\",\"CHKendData\":\"data\",\"newData\":\"data\",\"ShowAll\":\"options\",\"ShowJ\":\"options\",\"ShowK\":\"options\",\"backpage\":\"options\",\"refresh\":\"options\",\"cleanData\":\"options\",\"cleanstate\":\"options\",\"DeleteJ\":\"options\",\"DeleteK\":\"options\",\"addMeasureJ\":\"options\",\"finishMeasureJ\":\"options\",\"ModifyJ\":\"options\",\"finishMeasureK\":\"options\",\"addMeasureK\":\"options\",\"ModifyK\":\"options\",\"saveJ\":\"options\",\"saveK\":\"options\",\"saveJC\":\"options\",\"saveKC\":\"options\",\"CancelEnd\":\"options\",\"SendEnd\":\"options\"}");
+/* harmony import */ var _CM_vue_vue_type_template_id_6162085f_bindings_Data_data_CNO_props_Dept_props_refnew_data_show_data_newdate_data_endch_data_DataJ_data_DataK_data_UserData_data_Jstate_data_Kstate_data_MJstate_data_MKstate_data_MeasureEarly_data_nextJ_data_nextK_data_CHKendData_data_newData_data_checkrepeat_data_ShowAll_options_ShowJ_options_ShowK_options_backpage_options_refresh_options_cleanData_options_cleanstate_options_DeleteJ_options_DeleteK_options_addMeasureJ_options_finishMeasureJ_options_ModifyJ_options_finishMeasureK_options_addMeasureK_options_ModifyK_options_saveJ_options_saveK_options_saveJC_options_saveKC_options_CancelEnd_options_SendEnd_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CM日程管理.vue?vue&type=template&id=6162085f&bindings={"Data":"data","CNO":"props","Dept":"props","refnew":"data","show":"data","newdate":"data","endch":"data","DataJ":"data","DataK":"data","UserData":"data","Jstate":"data","Kstate":"data","MJstate":"data","MKstate":"data","MeasureEarly":"data","nextJ":"data","nextK":"data","CHKendData":"data","newData":"data","checkrepeat":"data","ShowAll":"options","ShowJ":"options","ShowK":"options","backpage":"options","refresh":"options","cleanData":"options","cleanstate":"options","DeleteJ":"options","DeleteK":"options","addMeasureJ":"options","finishMeasureJ":"options","ModifyJ":"options","finishMeasureK":"options","addMeasureK":"options","ModifyK":"options","saveJ":"options","saveK":"options","saveJC":"options","saveKC":"options","CancelEnd":"options","SendEnd":"options"} */ "./resources/js/views/pages/CM日程管理.vue?vue&type=template&id=6162085f&bindings={\"Data\":\"data\",\"CNO\":\"props\",\"Dept\":\"props\",\"refnew\":\"data\",\"show\":\"data\",\"newdate\":\"data\",\"endch\":\"data\",\"DataJ\":\"data\",\"DataK\":\"data\",\"UserData\":\"data\",\"Jstate\":\"data\",\"Kstate\":\"data\",\"MJstate\":\"data\",\"MKstate\":\"data\",\"MeasureEarly\":\"data\",\"nextJ\":\"data\",\"nextK\":\"data\",\"CHKendData\":\"data\",\"newData\":\"data\",\"checkrepeat\":\"data\",\"ShowAll\":\"options\",\"ShowJ\":\"options\",\"ShowK\":\"options\",\"backpage\":\"options\",\"refresh\":\"options\",\"cleanData\":\"options\",\"cleanstate\":\"options\",\"DeleteJ\":\"options\",\"DeleteK\":\"options\",\"addMeasureJ\":\"options\",\"finishMeasureJ\":\"options\",\"ModifyJ\":\"options\",\"finishMeasureK\":\"options\",\"addMeasureK\":\"options\",\"ModifyK\":\"options\",\"saveJ\":\"options\",\"saveK\":\"options\",\"saveJC\":\"options\",\"saveKC\":\"options\",\"CancelEnd\":\"options\",\"SendEnd\":\"options\"}");
 /* harmony import */ var _CM_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CM日程管理.vue?vue&type=script&lang=js */ "./resources/js/views/pages/CM日程管理.vue?vue&type=script&lang=js");
 
 
 
-_CM_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _CM_vue_vue_type_template_id_6162085f_bindings_Data_data_CNO_props_Dept_props_refnew_data_show_data_newdate_data_endch_data_DataJ_data_DataK_data_UserData_data_Jstate_data_Kstate_data_MJstate_data_MKstate_data_MeasureEarly_data_nextJ_data_nextK_data_CHKendData_data_newData_data_ShowAll_options_ShowJ_options_ShowK_options_backpage_options_refresh_options_cleanData_options_cleanstate_options_DeleteJ_options_DeleteK_options_addMeasureJ_options_finishMeasureJ_options_ModifyJ_options_finishMeasureK_options_addMeasureK_options_ModifyK_options_saveJ_options_saveK_options_saveJC_options_saveKC_options_CancelEnd_options_SendEnd_options___WEBPACK_IMPORTED_MODULE_0__.render
+_CM_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _CM_vue_vue_type_template_id_6162085f_bindings_Data_data_CNO_props_Dept_props_refnew_data_show_data_newdate_data_endch_data_DataJ_data_DataK_data_UserData_data_Jstate_data_Kstate_data_MJstate_data_MKstate_data_MeasureEarly_data_nextJ_data_nextK_data_CHKendData_data_newData_data_checkrepeat_data_ShowAll_options_ShowJ_options_ShowK_options_backpage_options_refresh_options_cleanData_options_cleanstate_options_DeleteJ_options_DeleteK_options_addMeasureJ_options_finishMeasureJ_options_ModifyJ_options_finishMeasureK_options_addMeasureK_options_ModifyK_options_saveJ_options_saveK_options_saveJC_options_saveKC_options_CancelEnd_options_SendEnd_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* hot reload */
 if (false) {}
 
@@ -20597,12 +20598,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/dropwindow/ModifyJ日程.vue?vue&type=template&id=6cfddb85&bindings={\"Data\":\"props\",\"save\":\"options\"}":
-/*!******************************************************************************************************************************!*\
-  !*** ./resources/js/views/dropwindow/ModifyJ日程.vue?vue&type=template&id=6cfddb85&bindings={"Data":"props","save":"options"} ***!
-  \******************************************************************************************************************************/
+/***/ "./resources/js/views/dropwindow/ModifyJ日程.vue?vue&type=template&id=6cfddb85&bindings={\"Data\":\"props\",\"cleanData\":\"options\",\"save\":\"options\"}":
+/*!****************************************************************************************************************************************************!*\
+  !*** ./resources/js/views/dropwindow/ModifyJ日程.vue?vue&type=template&id=6cfddb85&bindings={"Data":"props","cleanData":"options","save":"options"} ***!
+  \****************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyJ日程.vue?vue&type=template&id=6cfddb85&bindings={"Data":"props","save":"options"} .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyJ日程.vue?vue&type=template&id=6cfddb85&bindings={"Data":"props","cleanData":"options","save":"options"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -20610,19 +20611,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModifyJ_vue_vue_type_template_id_6cfddb85_bindings_Data_props_save_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModifyJ_vue_vue_type_template_id_6cfddb85_bindings_Data_props_cleanData_options_save_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModifyJ_vue_vue_type_template_id_6cfddb85_bindings_Data_props_save_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ModifyJ日程.vue?vue&type=template&id=6cfddb85&bindings={"Data":"props","save":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyJ日程.vue?vue&type=template&id=6cfddb85&bindings={\"Data\":\"props\",\"save\":\"options\"}");
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModifyJ_vue_vue_type_template_id_6cfddb85_bindings_Data_props_cleanData_options_save_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ModifyJ日程.vue?vue&type=template&id=6cfddb85&bindings={"Data":"props","cleanData":"options","save":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyJ日程.vue?vue&type=template&id=6cfddb85&bindings={\"Data\":\"props\",\"cleanData\":\"options\",\"save\":\"options\"}");
 
 
 /***/ }),
 
-/***/ "./resources/js/views/dropwindow/ModifyK日程.vue?vue&type=template&id=bc37d274&bindings={\"Data\":\"props\",\"save\":\"options\"}":
-/*!******************************************************************************************************************************!*\
-  !*** ./resources/js/views/dropwindow/ModifyK日程.vue?vue&type=template&id=bc37d274&bindings={"Data":"props","save":"options"} ***!
-  \******************************************************************************************************************************/
+/***/ "./resources/js/views/dropwindow/ModifyK日程.vue?vue&type=template&id=bc37d274&bindings={\"Data\":\"props\",\"cleanData\":\"options\",\"save\":\"options\"}":
+/*!****************************************************************************************************************************************************!*\
+  !*** ./resources/js/views/dropwindow/ModifyK日程.vue?vue&type=template&id=bc37d274&bindings={"Data":"props","cleanData":"options","save":"options"} ***!
+  \****************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyK日程.vue?vue&type=template&id=bc37d274&bindings={"Data":"props","save":"options"} .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyK日程.vue?vue&type=template&id=bc37d274&bindings={"Data":"props","cleanData":"options","save":"options"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -20630,9 +20631,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModifyK_vue_vue_type_template_id_bc37d274_bindings_Data_props_save_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModifyK_vue_vue_type_template_id_bc37d274_bindings_Data_props_cleanData_options_save_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModifyK_vue_vue_type_template_id_bc37d274_bindings_Data_props_save_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ModifyK日程.vue?vue&type=template&id=bc37d274&bindings={"Data":"props","save":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyK日程.vue?vue&type=template&id=bc37d274&bindings={\"Data\":\"props\",\"save\":\"options\"}");
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModifyK_vue_vue_type_template_id_bc37d274_bindings_Data_props_cleanData_options_save_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ModifyK日程.vue?vue&type=template&id=bc37d274&bindings={"Data":"props","cleanData":"options","save":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyK日程.vue?vue&type=template&id=bc37d274&bindings={\"Data\":\"props\",\"cleanData\":\"options\",\"save\":\"options\"}");
 
 
 /***/ }),
@@ -20797,12 +20798,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/pages/CM日程管理.vue?vue&type=template&id=6162085f&bindings={\"Data\":\"data\",\"CNO\":\"props\",\"Dept\":\"props\",\"refnew\":\"data\",\"show\":\"data\",\"newdate\":\"data\",\"endch\":\"data\",\"DataJ\":\"data\",\"DataK\":\"data\",\"UserData\":\"data\",\"Jstate\":\"data\",\"Kstate\":\"data\",\"MJstate\":\"data\",\"MKstate\":\"data\",\"MeasureEarly\":\"data\",\"nextJ\":\"data\",\"nextK\":\"data\",\"CHKendData\":\"data\",\"newData\":\"data\",\"ShowAll\":\"options\",\"ShowJ\":\"options\",\"ShowK\":\"options\",\"backpage\":\"options\",\"refresh\":\"options\",\"cleanData\":\"options\",\"cleanstate\":\"options\",\"DeleteJ\":\"options\",\"DeleteK\":\"options\",\"addMeasureJ\":\"options\",\"finishMeasureJ\":\"options\",\"ModifyJ\":\"options\",\"finishMeasureK\":\"options\",\"addMeasureK\":\"options\",\"ModifyK\":\"options\",\"saveJ\":\"options\",\"saveK\":\"options\",\"saveJC\":\"options\",\"saveKC\":\"options\",\"CancelEnd\":\"options\",\"SendEnd\":\"options\"}":
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./resources/js/views/pages/CM日程管理.vue?vue&type=template&id=6162085f&bindings={"Data":"data","CNO":"props","Dept":"props","refnew":"data","show":"data","newdate":"data","endch":"data","DataJ":"data","DataK":"data","UserData":"data","Jstate":"data","Kstate":"data","MJstate":"data","MKstate":"data","MeasureEarly":"data","nextJ":"data","nextK":"data","CHKendData":"data","newData":"data","ShowAll":"options","ShowJ":"options","ShowK":"options","backpage":"options","refresh":"options","cleanData":"options","cleanstate":"options","DeleteJ":"options","DeleteK":"options","addMeasureJ":"options","finishMeasureJ":"options","ModifyJ":"options","finishMeasureK":"options","addMeasureK":"options","ModifyK":"options","saveJ":"options","saveK":"options","saveJC":"options","saveKC":"options","CancelEnd":"options","SendEnd":"options"} ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./resources/js/views/pages/CM日程管理.vue?vue&type=template&id=6162085f&bindings={\"Data\":\"data\",\"CNO\":\"props\",\"Dept\":\"props\",\"refnew\":\"data\",\"show\":\"data\",\"newdate\":\"data\",\"endch\":\"data\",\"DataJ\":\"data\",\"DataK\":\"data\",\"UserData\":\"data\",\"Jstate\":\"data\",\"Kstate\":\"data\",\"MJstate\":\"data\",\"MKstate\":\"data\",\"MeasureEarly\":\"data\",\"nextJ\":\"data\",\"nextK\":\"data\",\"CHKendData\":\"data\",\"newData\":\"data\",\"checkrepeat\":\"data\",\"ShowAll\":\"options\",\"ShowJ\":\"options\",\"ShowK\":\"options\",\"backpage\":\"options\",\"refresh\":\"options\",\"cleanData\":\"options\",\"cleanstate\":\"options\",\"DeleteJ\":\"options\",\"DeleteK\":\"options\",\"addMeasureJ\":\"options\",\"finishMeasureJ\":\"options\",\"ModifyJ\":\"options\",\"finishMeasureK\":\"options\",\"addMeasureK\":\"options\",\"ModifyK\":\"options\",\"saveJ\":\"options\",\"saveK\":\"options\",\"saveJC\":\"options\",\"saveKC\":\"options\",\"CancelEnd\":\"options\",\"SendEnd\":\"options\"}":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/views/pages/CM日程管理.vue?vue&type=template&id=6162085f&bindings={"Data":"data","CNO":"props","Dept":"props","refnew":"data","show":"data","newdate":"data","endch":"data","DataJ":"data","DataK":"data","UserData":"data","Jstate":"data","Kstate":"data","MJstate":"data","MKstate":"data","MeasureEarly":"data","nextJ":"data","nextK":"data","CHKendData":"data","newData":"data","checkrepeat":"data","ShowAll":"options","ShowJ":"options","ShowK":"options","backpage":"options","refresh":"options","cleanData":"options","cleanstate":"options","DeleteJ":"options","DeleteK":"options","addMeasureJ":"options","finishMeasureJ":"options","ModifyJ":"options","finishMeasureK":"options","addMeasureK":"options","ModifyK":"options","saveJ":"options","saveK":"options","saveJC":"options","saveKC":"options","CancelEnd":"options","SendEnd":"options"} ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CM日程管理.vue?vue&type=template&id=6162085f&bindings={"Data":"data","CNO":"props","Dept":"props","refnew":"data","show":"data","newdate":"data","endch":"data","DataJ":"data","DataK":"data","UserData":"data","Jstate":"data","Kstate":"data","MJstate":"data","MKstate":"data","MeasureEarly":"data","nextJ":"data","nextK":"data","CHKendData":"data","newData":"data","ShowAll":"options","ShowJ":"options","ShowK":"options","backpage":"options","refresh":"options","cleanData":"options","cleanstate":"options","DeleteJ":"options","DeleteK":"options","addMeasureJ":"options","finishMeasureJ":"options","ModifyJ":"options","finishMeasureK":"options","addMeasureK":"options","ModifyK":"options","saveJ":"options","saveK":"options","saveJC":"options","saveKC":"options","CancelEnd":"options","SendEnd":"options"} .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CM日程管理.vue?vue&type=template&id=6162085f&bindings={"Data":"data","CNO":"props","Dept":"props","refnew":"data","show":"data","newdate":"data","endch":"data","DataJ":"data","DataK":"data","UserData":"data","Jstate":"data","Kstate":"data","MJstate":"data","MKstate":"data","MeasureEarly":"data","nextJ":"data","nextK":"data","CHKendData":"data","newData":"data","checkrepeat":"data","ShowAll":"options","ShowJ":"options","ShowK":"options","backpage":"options","refresh":"options","cleanData":"options","cleanstate":"options","DeleteJ":"options","DeleteK":"options","addMeasureJ":"options","finishMeasureJ":"options","ModifyJ":"options","finishMeasureK":"options","addMeasureK":"options","ModifyK":"options","saveJ":"options","saveK":"options","saveJC":"options","saveKC":"options","CancelEnd":"options","SendEnd":"options"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -20810,9 +20811,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CM_vue_vue_type_template_id_6162085f_bindings_Data_data_CNO_props_Dept_props_refnew_data_show_data_newdate_data_endch_data_DataJ_data_DataK_data_UserData_data_Jstate_data_Kstate_data_MJstate_data_MKstate_data_MeasureEarly_data_nextJ_data_nextK_data_CHKendData_data_newData_data_ShowAll_options_ShowJ_options_ShowK_options_backpage_options_refresh_options_cleanData_options_cleanstate_options_DeleteJ_options_DeleteK_options_addMeasureJ_options_finishMeasureJ_options_ModifyJ_options_finishMeasureK_options_addMeasureK_options_ModifyK_options_saveJ_options_saveK_options_saveJC_options_saveKC_options_CancelEnd_options_SendEnd_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CM_vue_vue_type_template_id_6162085f_bindings_Data_data_CNO_props_Dept_props_refnew_data_show_data_newdate_data_endch_data_DataJ_data_DataK_data_UserData_data_Jstate_data_Kstate_data_MJstate_data_MKstate_data_MeasureEarly_data_nextJ_data_nextK_data_CHKendData_data_newData_data_checkrepeat_data_ShowAll_options_ShowJ_options_ShowK_options_backpage_options_refresh_options_cleanData_options_cleanstate_options_DeleteJ_options_DeleteK_options_addMeasureJ_options_finishMeasureJ_options_ModifyJ_options_finishMeasureK_options_addMeasureK_options_ModifyK_options_saveJ_options_saveK_options_saveJC_options_saveKC_options_CancelEnd_options_SendEnd_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CM_vue_vue_type_template_id_6162085f_bindings_Data_data_CNO_props_Dept_props_refnew_data_show_data_newdate_data_endch_data_DataJ_data_DataK_data_UserData_data_Jstate_data_Kstate_data_MJstate_data_MKstate_data_MeasureEarly_data_nextJ_data_nextK_data_CHKendData_data_newData_data_ShowAll_options_ShowJ_options_ShowK_options_backpage_options_refresh_options_cleanData_options_cleanstate_options_DeleteJ_options_DeleteK_options_addMeasureJ_options_finishMeasureJ_options_ModifyJ_options_finishMeasureK_options_addMeasureK_options_ModifyK_options_saveJ_options_saveK_options_saveJC_options_saveKC_options_CancelEnd_options_SendEnd_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./CM日程管理.vue?vue&type=template&id=6162085f&bindings={"Data":"data","CNO":"props","Dept":"props","refnew":"data","show":"data","newdate":"data","endch":"data","DataJ":"data","DataK":"data","UserData":"data","Jstate":"data","Kstate":"data","MJstate":"data","MKstate":"data","MeasureEarly":"data","nextJ":"data","nextK":"data","CHKendData":"data","newData":"data","ShowAll":"options","ShowJ":"options","ShowK":"options","backpage":"options","refresh":"options","cleanData":"options","cleanstate":"options","DeleteJ":"options","DeleteK":"options","addMeasureJ":"options","finishMeasureJ":"options","ModifyJ":"options","finishMeasureK":"options","addMeasureK":"options","ModifyK":"options","saveJ":"options","saveK":"options","saveJC":"options","saveKC":"options","CancelEnd":"options","SendEnd":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CM日程管理.vue?vue&type=template&id=6162085f&bindings={\"Data\":\"data\",\"CNO\":\"props\",\"Dept\":\"props\",\"refnew\":\"data\",\"show\":\"data\",\"newdate\":\"data\",\"endch\":\"data\",\"DataJ\":\"data\",\"DataK\":\"data\",\"UserData\":\"data\",\"Jstate\":\"data\",\"Kstate\":\"data\",\"MJstate\":\"data\",\"MKstate\":\"data\",\"MeasureEarly\":\"data\",\"nextJ\":\"data\",\"nextK\":\"data\",\"CHKendData\":\"data\",\"newData\":\"data\",\"ShowAll\":\"options\",\"ShowJ\":\"options\",\"ShowK\":\"options\",\"backpage\":\"options\",\"refresh\":\"options\",\"cleanData\":\"options\",\"cleanstate\":\"options\",\"DeleteJ\":\"options\",\"DeleteK\":\"options\",\"addMeasureJ\":\"options\",\"finishMeasureJ\":\"options\",\"ModifyJ\":\"options\",\"finishMeasureK\":\"options\",\"addMeasureK\":\"options\",\"ModifyK\":\"options\",\"saveJ\":\"options\",\"saveK\":\"options\",\"saveJC\":\"options\",\"saveKC\":\"options\",\"CancelEnd\":\"options\",\"SendEnd\":\"options\"}");
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CM_vue_vue_type_template_id_6162085f_bindings_Data_data_CNO_props_Dept_props_refnew_data_show_data_newdate_data_endch_data_DataJ_data_DataK_data_UserData_data_Jstate_data_Kstate_data_MJstate_data_MKstate_data_MeasureEarly_data_nextJ_data_nextK_data_CHKendData_data_newData_data_checkrepeat_data_ShowAll_options_ShowJ_options_ShowK_options_backpage_options_refresh_options_cleanData_options_cleanstate_options_DeleteJ_options_DeleteK_options_addMeasureJ_options_finishMeasureJ_options_ModifyJ_options_finishMeasureK_options_addMeasureK_options_ModifyK_options_saveJ_options_saveK_options_saveJC_options_saveKC_options_CancelEnd_options_SendEnd_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./CM日程管理.vue?vue&type=template&id=6162085f&bindings={"Data":"data","CNO":"props","Dept":"props","refnew":"data","show":"data","newdate":"data","endch":"data","DataJ":"data","DataK":"data","UserData":"data","Jstate":"data","Kstate":"data","MJstate":"data","MKstate":"data","MeasureEarly":"data","nextJ":"data","nextK":"data","CHKendData":"data","newData":"data","checkrepeat":"data","ShowAll":"options","ShowJ":"options","ShowK":"options","backpage":"options","refresh":"options","cleanData":"options","cleanstate":"options","DeleteJ":"options","DeleteK":"options","addMeasureJ":"options","finishMeasureJ":"options","ModifyJ":"options","finishMeasureK":"options","addMeasureK":"options","ModifyK":"options","saveJ":"options","saveK":"options","saveJC":"options","saveKC":"options","CancelEnd":"options","SendEnd":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CM日程管理.vue?vue&type=template&id=6162085f&bindings={\"Data\":\"data\",\"CNO\":\"props\",\"Dept\":\"props\",\"refnew\":\"data\",\"show\":\"data\",\"newdate\":\"data\",\"endch\":\"data\",\"DataJ\":\"data\",\"DataK\":\"data\",\"UserData\":\"data\",\"Jstate\":\"data\",\"Kstate\":\"data\",\"MJstate\":\"data\",\"MKstate\":\"data\",\"MeasureEarly\":\"data\",\"nextJ\":\"data\",\"nextK\":\"data\",\"CHKendData\":\"data\",\"newData\":\"data\",\"checkrepeat\":\"data\",\"ShowAll\":\"options\",\"ShowJ\":\"options\",\"ShowK\":\"options\",\"backpage\":\"options\",\"refresh\":\"options\",\"cleanData\":\"options\",\"cleanstate\":\"options\",\"DeleteJ\":\"options\",\"DeleteK\":\"options\",\"addMeasureJ\":\"options\",\"finishMeasureJ\":\"options\",\"ModifyJ\":\"options\",\"finishMeasureK\":\"options\",\"addMeasureK\":\"options\",\"ModifyK\":\"options\",\"saveJ\":\"options\",\"saveK\":\"options\",\"saveJC\":\"options\",\"saveKC\":\"options\",\"CancelEnd\":\"options\",\"SendEnd\":\"options\"}");
 
 
 /***/ }),
@@ -20977,10 +20978,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyJ日程.vue?vue&type=template&id=6cfddb85&bindings={\"Data\":\"props\",\"save\":\"options\"}":
-/*!***************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyJ日程.vue?vue&type=template&id=6cfddb85&bindings={"Data":"props","save":"options"} ***!
-  \***************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyJ日程.vue?vue&type=template&id=6cfddb85&bindings={\"Data\":\"props\",\"cleanData\":\"options\",\"save\":\"options\"}":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyJ日程.vue?vue&type=template&id=6cfddb85&bindings={"Data":"props","cleanData":"options","save":"options"} ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -21005,11 +21006,6 @@ const _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVN
 const _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
 const _hoisted_9 = { style: {"text-align":"center","height":"50px"} }
 const _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("  ")
-const _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-  "data-dismiss": "modal",
-  style: {"display":"inline","border":"1px black solid"},
-  class: "btn"
-}, " 取消 ", -1 /* HOISTED */)
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [
@@ -21075,17 +21071,22 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         class: "btn"
       }, "確定"),
       _hoisted_10,
-      _hoisted_11
+      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+        "data-dismiss": "modal",
+        style: {"display":"inline","border":"1px black solid"},
+        class: "btn",
+        onClick: _cache[7] || (_cache[7] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.cleanData(...args)), ["prevent"]))
+      }, " 取消 ")
     ])
   ], 64 /* STABLE_FRAGMENT */))
 }
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyK日程.vue?vue&type=template&id=bc37d274&bindings={\"Data\":\"props\",\"save\":\"options\"}":
-/*!***************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyK日程.vue?vue&type=template&id=bc37d274&bindings={"Data":"props","save":"options"} ***!
-  \***************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyK日程.vue?vue&type=template&id=bc37d274&bindings={\"Data\":\"props\",\"cleanData\":\"options\",\"save\":\"options\"}":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyK日程.vue?vue&type=template&id=bc37d274&bindings={"Data":"props","cleanData":"options","save":"options"} ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -21118,11 +21119,6 @@ const _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode
 const _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
 const _hoisted_17 = { style: {"text-align":"center","height":"50px"} }
 const _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("   ")
-const _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-  "data-dismiss": "modal",
-  style: {"display":"inline","border":"1px black solid"},
-  class: "btn"
-}, " 取消 ", -1 /* HOISTED */)
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [
@@ -21214,7 +21210,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         class: "btn"
       }, "確定 "),
       _hoisted_18,
-      _hoisted_19
+      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+        "data-dismiss": "modal",
+        style: {"display":"inline","border":"1px black solid"},
+        class: "btn",
+        onClick: _cache[9] || (_cache[9] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.cleanData(...args)), ["prevent"]))
+      }, " 取消 ")
     ])
   ], 64 /* STABLE_FRAGMENT */))
 }
@@ -25389,10 +25390,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CM日程管理.vue?vue&type=template&id=6162085f&bindings={\"Data\":\"data\",\"CNO\":\"props\",\"Dept\":\"props\",\"refnew\":\"data\",\"show\":\"data\",\"newdate\":\"data\",\"endch\":\"data\",\"DataJ\":\"data\",\"DataK\":\"data\",\"UserData\":\"data\",\"Jstate\":\"data\",\"Kstate\":\"data\",\"MJstate\":\"data\",\"MKstate\":\"data\",\"MeasureEarly\":\"data\",\"nextJ\":\"data\",\"nextK\":\"data\",\"CHKendData\":\"data\",\"newData\":\"data\",\"ShowAll\":\"options\",\"ShowJ\":\"options\",\"ShowK\":\"options\",\"backpage\":\"options\",\"refresh\":\"options\",\"cleanData\":\"options\",\"cleanstate\":\"options\",\"DeleteJ\":\"options\",\"DeleteK\":\"options\",\"addMeasureJ\":\"options\",\"finishMeasureJ\":\"options\",\"ModifyJ\":\"options\",\"finishMeasureK\":\"options\",\"addMeasureK\":\"options\",\"ModifyK\":\"options\",\"saveJ\":\"options\",\"saveK\":\"options\",\"saveJC\":\"options\",\"saveKC\":\"options\",\"CancelEnd\":\"options\",\"SendEnd\":\"options\"}":
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CM日程管理.vue?vue&type=template&id=6162085f&bindings={"Data":"data","CNO":"props","Dept":"props","refnew":"data","show":"data","newdate":"data","endch":"data","DataJ":"data","DataK":"data","UserData":"data","Jstate":"data","Kstate":"data","MJstate":"data","MKstate":"data","MeasureEarly":"data","nextJ":"data","nextK":"data","CHKendData":"data","newData":"data","ShowAll":"options","ShowJ":"options","ShowK":"options","backpage":"options","refresh":"options","cleanData":"options","cleanstate":"options","DeleteJ":"options","DeleteK":"options","addMeasureJ":"options","finishMeasureJ":"options","ModifyJ":"options","finishMeasureK":"options","addMeasureK":"options","ModifyK":"options","saveJ":"options","saveK":"options","saveJC":"options","saveKC":"options","CancelEnd":"options","SendEnd":"options"} ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CM日程管理.vue?vue&type=template&id=6162085f&bindings={\"Data\":\"data\",\"CNO\":\"props\",\"Dept\":\"props\",\"refnew\":\"data\",\"show\":\"data\",\"newdate\":\"data\",\"endch\":\"data\",\"DataJ\":\"data\",\"DataK\":\"data\",\"UserData\":\"data\",\"Jstate\":\"data\",\"Kstate\":\"data\",\"MJstate\":\"data\",\"MKstate\":\"data\",\"MeasureEarly\":\"data\",\"nextJ\":\"data\",\"nextK\":\"data\",\"CHKendData\":\"data\",\"newData\":\"data\",\"checkrepeat\":\"data\",\"ShowAll\":\"options\",\"ShowJ\":\"options\",\"ShowK\":\"options\",\"backpage\":\"options\",\"refresh\":\"options\",\"cleanData\":\"options\",\"cleanstate\":\"options\",\"DeleteJ\":\"options\",\"DeleteK\":\"options\",\"addMeasureJ\":\"options\",\"finishMeasureJ\":\"options\",\"ModifyJ\":\"options\",\"finishMeasureK\":\"options\",\"addMeasureK\":\"options\",\"ModifyK\":\"options\",\"saveJ\":\"options\",\"saveK\":\"options\",\"saveJC\":\"options\",\"saveKC\":\"options\",\"CancelEnd\":\"options\",\"SendEnd\":\"options\"}":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CM日程管理.vue?vue&type=template&id=6162085f&bindings={"Data":"data","CNO":"props","Dept":"props","refnew":"data","show":"data","newdate":"data","endch":"data","DataJ":"data","DataK":"data","UserData":"data","Jstate":"data","Kstate":"data","MJstate":"data","MKstate":"data","MeasureEarly":"data","nextJ":"data","nextK":"data","CHKendData":"data","newData":"data","checkrepeat":"data","ShowAll":"options","ShowJ":"options","ShowK":"options","backpage":"options","refresh":"options","cleanData":"options","cleanstate":"options","DeleteJ":"options","DeleteK":"options","addMeasureJ":"options","finishMeasureJ":"options","ModifyJ":"options","finishMeasureK":"options","addMeasureK":"options","ModifyK":"options","saveJ":"options","saveK":"options","saveJC":"options","saveKC":"options","CancelEnd":"options","SendEnd":"options"} ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -25683,7 +25684,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_20, [
             (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
               onClick: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.saveJ(...args)), ["prevent"])),
-              "data-dismiss": "modal",
               style: {"display":"inline","border":"1px black solid"},
               class: "btn"
             }, "確定"),

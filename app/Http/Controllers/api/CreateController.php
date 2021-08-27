@@ -576,4 +576,22 @@ class CreateController extends Controller
 
          return response()->json($data['CustNo'], 200);
     }
+
+    public function CreateMeasureCheckJ(request $request){
+        $data = $request->all();  
+        $data = $data['Data'][0];
+        $ReserveDate =  str_replace("-", "", $data['ReserveDate']);
+        $CustNo = $data['CustNo'];
+
+        $datacheck0 = DB::table('chk')->where('客戶號',$CustNo)->where('單號','LIKE', 'J'.'%')->where('預定日期',$ReserveDate)->where('狀態', 0)->first();
+        $datacheck2 = DB::table('chk')->where('客戶號',$CustNo)->where('單號','LIKE', 'J'.'%')->where('預定日期',$ReserveDate)->where('狀態', 2)->first();
+        
+        if($datacheck0==NULL && $datacheck2==NULL){
+            return response()->json('O' , 200); 
+        }
+        else{
+            return response()->json('X' , 200); 
+        }
+
+    }
 }

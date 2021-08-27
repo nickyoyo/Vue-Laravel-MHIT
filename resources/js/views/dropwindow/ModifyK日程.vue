@@ -49,6 +49,7 @@
       data-dismiss="modal"
       style="display: inline; border: 1px black solid"
       class="btn"
+      @click.prevent="cleanData"
     >
       取消
     </button>
@@ -66,6 +67,9 @@ export default {
     };
   },
   methods:{
+    cleanData: function () {
+       this.$emit('my-refresh');
+	  },
      save: function () {
 		 axios
         .post("/api/Update/Measurestate", {

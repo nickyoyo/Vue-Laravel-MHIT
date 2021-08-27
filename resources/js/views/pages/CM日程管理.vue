@@ -37,7 +37,7 @@
 				  <textarea class="form-control" style="height:200px;display:inline" v-model="Data[0].Memo"></textarea><br />
 				  </div>
 				  <div style="text-align: center;height:50px;">
-				  <button  @click.prevent="saveJ" data-dismiss="modal" style="display:inline;border: 1px black solid;" class="btn">確定</button>&nbsp;
+				  <button  @click.prevent="saveJ" style="display:inline;border: 1px black solid;" class="btn">確定</button>&nbsp;
 				  <button data-dismiss="modal" style="display:inline;border: 1px black solid;"  class="btn"  @click.prevent="cleanData">取消</button>
           		</div>
         </div>
@@ -345,6 +345,7 @@
 	}],
 
 	newData:[],
+	checkrepeat:0,			//檢查日期是否重複	
     };
   },
   methods: {
@@ -386,6 +387,7 @@
 		this.nextK=false,	
 		this.MJstate=0,							//判斷丈量取消或是丈量完成
 		this.MKstate=0,
+		this.checkrepeat=0,
 		this.Data=[							
         {
           OrderNo: "",
@@ -407,11 +409,13 @@
 	},
 	cleanstate: function () {
 		this.MeasureEarly=false,
+		this.checkrepeat=0,
 		this.nextJ=false,						//有預約下次談圖判定
 		this.nextK=false	
 		this.refresh();
 	},
 	DeleteJ:function (index) {
+		let that = this;
 		 axios
         .post("/api/Update/DeleteMeasureJK", {
           OrderNo: this.DataJ[index]['單號'],
@@ -419,14 +423,15 @@
         })
         .then(function (response) {
           console.log(response);
+		    that.refresh();
+		  that.cleanData();
         })
         .catch(function (response) {
           console.log(response);
         });
-		this.refresh();
-		this.cleanData();
 	},
 	DeleteK:function (index) {
+		let that = this;
 		 axios
         .post("/api/Update/DeleteMeasureJK", {
           OrderNo: this.DataK[index]['單號'],
@@ -434,12 +439,12 @@
         })
         .then(function (response) {
           console.log(response);
+		  that.refresh();
+		  that.cleanData();
         })
         .catch(function (response) {
           console.log(response);
         });
-		this.refresh();
-		this.cleanData();
 	},
 	addMeasureJ: function () {
 		$("#MJ").modal('toggle');
@@ -514,21 +519,40 @@
 		this.Data[0]['result'] = this.DataK[index]['result'];
 	},
 	saveJ: function () {
-		 axios
-        .post("/api/Create/Measure", {
+		let that = this;	
+		axios
+        .post("/api/Create/MeasureCheckJ", {
           Data: this.Data,
-          type: "J",
         })
         .then(function (response) {
-          console.log(response);
+          console.log(response.data);
+		  if(response.data=='O'){
+			axios
+			.post("/api/Create/Measure", {
+				Data: that.Data,
+				type: "J",
+			})
+			.then(function (response) {
+				console.log(response);
+				$("#MJ").modal('hide');
+				that.refresh();
+				that.cleanData();
+			})
+			.catch(function (response) {
+				console.log(response);
+			});
+		  }
+		  else{
+			  that.Data.ReserveDate="";
+			  alert('此時段已經有丈量，同一天只能設定一次丈量');
+		  }
         })
         .catch(function (response) {
           console.log(response);
         });
-		this.refresh();
-		this.cleanData();
 	},
 	saveK: function () {
+		let that = this;
 		 axios
         .post("/api/Create/Measure", {
           Data: this.Data,
@@ -537,15 +561,15 @@
         })
         .then(function (response) {
           console.log(response);
+		   that.refresh();
+		  that.cleanData();
         })
         .catch(function (response) {
           console.log(response);
         });
-		
-		this.refresh();
-		this.cleanData();
 	},
 	saveJC: function () {
+		let that = this;
 		 axios
         .post("/api/Update/Measurestate", {
           Data: this.Data,
@@ -554,14 +578,14 @@
         })
         .then(function (response) {
           console.log(response);
+		  that.cleanData();
         })
         .catch(function (response) {
           console.log(response);
-        });
-		this.cleanData();
-		
+        });		
 	},
 	saveKC: function () {
+		let that = this;
 	 axios
         .post("/api/Update/Measurestate", {
          Data: this.Data,
@@ -570,13 +594,14 @@
         })
         .then(function (response) {
           console.log(response);
+		  that.cleanData();
         })
         .catch(function (response) {
           console.log(response);
         });
-		this.cleanData();
 	},
 	CancelEnd: function () {
+		let that = this;
 	 axios
         .post("/api/Update/MeasureEnd", {
 		CustNo: this.Data[0].CustNo,
@@ -585,13 +610,14 @@
         })
         .then(function (response) {
           console.log(response);
+		  that.refresh();
         })
         .catch(function (response) {
           console.log(response);
-        });
-		this.refresh();
+        });	
 	},
 	SendEnd: function () {
+		let that = this;
 	 axios
         .post("/api/Create/MeasureEnd", {
          Data: this.CHKendData,
@@ -600,11 +626,11 @@
         })
         .then(function (response) {
           console.log(response);
+		    that.refresh();
         })
         .catch(function (response) {
           console.log(response);
         });
-		this.refresh();
 	},
 },     
   mounted(){
