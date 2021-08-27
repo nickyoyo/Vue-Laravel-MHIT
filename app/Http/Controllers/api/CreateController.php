@@ -491,7 +491,7 @@ class CreateController extends Controller
                 $data = $data['Data'][0];
                 $CountK=DB::table('chk')->where('單號','LIKE', 'K'.'%')->where('客戶號',$data['CustNo'])->where('狀態',3)->where('門市別_StoreNo',$data['Dept'])->first();
                 if($S==0){
-
+                    
                 }
                 if($CountK==NULL||$S==1){          //無看圖未完成
                     $days = date('z')+1;
@@ -587,6 +587,23 @@ class CreateController extends Controller
         $datacheck2 = DB::table('chk')->where('客戶號',$CustNo)->where('單號','LIKE', 'J'.'%')->where('預定日期',$ReserveDate)->where('狀態', 2)->first();
         
         if($datacheck0==NULL && $datacheck2==NULL){
+            return response()->json('O' , 200); 
+        }
+        else{
+            return response()->json('X' , 200); 
+        }
+
+    }
+    public function CreateMeasureCheckK(request $request){
+        $data = $request->all();  
+        $data = $data['Data'][0];
+        $ReserveDate =  str_replace("-", "", $data['ReserveDate']);
+        $CustNo = $data['CustNo'];
+
+        $datacheck3 = DB::table('chk')->where('客戶號',$CustNo)->where('單號','LIKE', 'K'.'%')->where('預定日期',$ReserveDate)->where('狀態', 3)->first();
+        $datacheck5 = DB::table('chk')->where('客戶號',$CustNo)->where('單號','LIKE', 'K'.'%')->where('預定日期',$ReserveDate)->where('狀態', 5)->first();
+       
+        if($datacheck3==NULL && $datacheck5==NULL){
             return response()->json('O' , 200); 
         }
         else{

@@ -3,7 +3,7 @@
       <div class="modal-dialog modal-sm" >
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"  @click.prevent="cleanData">
+            <button type="button" class="close" data-dismiss="modal"  @click.prevent="cleanCancel">
               <span>&times;</span>
             </button>
           </div>
@@ -38,7 +38,7 @@
 				  </div>
 				  <div style="text-align: center;height:50px;">
 				  <button  @click.prevent="saveJ" style="display:inline;border: 1px black solid;" class="btn">確定</button>&nbsp;
-				  <button data-dismiss="modal" style="display:inline;border: 1px black solid;"  class="btn"  @click.prevent="cleanData">取消</button>
+				  <button data-dismiss="modal" style="display:inline;border: 1px black solid;"  class="btn"  @click.prevent="cleanCancel">取消</button>
           		</div>
         </div>
       </div>
@@ -48,7 +48,7 @@
       <div class="modal-dialog modal-lg" >
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" @click.prevent="cleanstate">
+            <button type="button" class="close" data-dismiss="modal" @click.prevent="cleanCancel">
               <span>&times;</span>
             </button>
           </div>
@@ -74,7 +74,7 @@
 					/>
 				  	<br /><br />
 				  <button  @click.prevent="saveJC" data-dismiss="modal" style="display:inline;border: 1px black solid;" class="btn" :hidden="nextJ==true">確定</button>&nbsp;
-				  <button @click.prevent="cleanstate" data-dismiss="modal" style="display:inline;border: 1px black solid;"  class="btn" :hidden="nextJ==true">取消</button>
+				  <button @click.prevent="cleanCancel" data-dismiss="modal" style="display:inline;border: 1px black solid;"  class="btn" :hidden="nextJ==true">取消</button>
 				  </div>
 				
 
@@ -82,7 +82,7 @@
 				 <input type="checkbox" name="nextJ" v-model="nextJ"/>下次有預約談圖&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				</div>
 				<div class="modal-body" :hidden="nextJ==false">
-				  <ReservePicture @my-data="saveJC" @my-clean="cleanstate" v-bind:DataN="Data" v-bind:S=0 :key="refnew"></ReservePicture>
+				  <ReservePicture @my-data="saveJC" @my-clean="cleanData" v-bind:DataN="Data" v-bind:S=0 :key="refnew"></ReservePicture>
 				  </div>
           </div>
 	  </div>
@@ -92,7 +92,7 @@
       <div class="modal-dialog modal-lg" >
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" @click.prevent="cleanData">
+            <button type="button" class="close" data-dismiss="modal" @click.prevent="cleanCancel">
               <span>&times;</span>
             </button>
           </div>
@@ -108,7 +108,7 @@
       <div class="modal-dialog modal-sm" >
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"  @click.prevent="cleanData">
+            <button type="button" class="close" data-dismiss="modal"  @click.prevent="cleanCancel">
               <span>&times;</span>
             </button>
           </div>
@@ -142,6 +142,7 @@
 						class="form-control"
 						style="display: inline; width: 180px"
 						v-model="Data[0].EstimateDealDate"
+						:min="newdate"
 					/><br /><br />
 				 預約成交率 :
 				   <input
@@ -156,8 +157,8 @@
 				  <textarea class="form-control" style="height:200px;display:inline" v-model="Data[0].Memo"></textarea><br />
 				  </div>
 				  <div style="text-align: center;height:50px;">
-				  <button  @click.prevent="saveK" data-dismiss="modal" style="display:inline;border: 1px black solid;" class="btn">確定</button>&nbsp;
-				  <button @click.prevent="cleanData" data-dismiss="modal" style="display:inline;border: 1px black solid;"  class="btn">取消</button>
+				  <button  @click.prevent="saveK" style="display:inline;border: 1px black solid;" class="btn">確定</button>&nbsp;
+				  <button @click.prevent="cleanCancel" data-dismiss="modal" style="display:inline;border: 1px black solid;"  class="btn">取消</button>
           		</div>
         </div>
       </div>
@@ -167,7 +168,7 @@
       <div class="modal-dialog modal-lg" >
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" @click.prevent="cleanstate">
+            <button type="button" class="close" data-dismiss="modal" @click.prevent="cleanCancel">
               <span>&times;</span>
             </button>
           </div>
@@ -178,14 +179,14 @@
 				  <input type="radio" name="MKstate" value=1 v-model="MKstate"/>看圖完成
 					<br /><br />
 				  <button  @click.prevent="saveKC" data-dismiss="modal" style="display:inline;border: 1px black solid;" class="btn" :hidden="nextK==true">確定</button>&nbsp;
-				  <button @click.prevent="cleanstate" data-dismiss="modal" style="display:inline;border: 1px black solid;"  class="btn" :hidden="nextK==true">取消</button>
+				  <button @click.prevent="cleanCancel" data-dismiss="modal" style="display:inline;border: 1px black solid;"  class="btn" :hidden="nextK==true">取消</button>
 				  </div>
 
 				 <div class="modal-body" >
 				 <input type="checkbox" name="nextK" v-model="nextK"/>下次有預約談圖&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				 </div>
 				<div class="modal-body" :hidden="nextK==false">
-				 <ReservePicture @my-data="saveKC" @my-clean="cleanstate" v-bind:DataN="Data" v-bind:S=1 :key="refnew"></ReservePicture>
+				 <ReservePicture @my-data="saveKC" @my-clean="cleanData" v-bind:DataN="Data" v-bind:S=1 :key="refnew"></ReservePicture>
 				</div>
         </div>
       </div>
@@ -195,7 +196,7 @@
       <div class="modal-dialog modal-lg" >
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"  @click.prevent="cleanData">
+            <button type="button" class="close" data-dismiss="modal"  @click.prevent="cleanCancel">
               <span>&times;</span>
             </button>
           </div>
@@ -228,7 +229,11 @@
 				<th style="width:40%;border: 1px black solid;">準備方向</th>
 				<th style="width:40%">結果</th>
 			</tr>
-				<tr   v-for="(item,index) in DataJ" 
+			<tr v-if="loadin">
+				<loader></loader>
+			</tr>
+				<tr v-show="loadin==false"
+					 v-for="(item,index) in DataJ" 
 						:value="item"
 						:key="index"
 						style="border: 1px black solid;"
@@ -245,7 +250,8 @@
 					<td><textarea class="form-control" style="height:150px;width:300px;display:inline" v-model="item.Memo" readonly></textarea></td>
 					<td><textarea class="form-control" style="height:150px;width:300px;display:inline" v-model="item.result" readonly></textarea></td>
 				</tr> 
-			<tr   v-for="(item,index) in DataK" 
+			<tr		v-show="loadin==false"
+					v-for="(item,index) in DataK" 
 						:value="item"
 						:key="index"
 						style="border: 1px black solid;"
@@ -284,12 +290,13 @@
 			<input type="radio" name="endch" value=1 v-model="CHKendData[0].code_" :checked="CHKendData[0].code_== 1"/>已簽約或是無購買意願&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<button @click.prevent="CancelEnd" type="Cancelendch" style="height:30px;width:80px;" :hidden="CHKendData[0].Type_ != 85">取消結案</button>
 			<button @click.prevent="SendEnd" type="saveendch" style="height:30px;width:80px;" :hidden="CHKendData[0].Type_ == 85">結案報告</button>
-        </div>
+        </div>	
     </div>
-</a>
+	</a>
 </template>
 
 <script>
+	import loader from "../test/Loader.vue";
 	import ReservePicture from "../dropwindow/ReservePicture.vue";
 	import ModifyJ from "../dropwindow/ModifyJ日程.vue";
 	import ModifyK from "../dropwindow/ModifyK日程.vue";
@@ -300,6 +307,7 @@
       ReservePicture,
 	  ModifyJ,
 	  ModifyK,
+	  loader,
     },
   name: "CM日程管理",
   data() {
@@ -346,6 +354,7 @@
 
 	newData:[],
 	checkrepeat:0,			//檢查日期是否重複	
+	loadin:true,
     };
   },
   methods: {
@@ -362,6 +371,8 @@
 		this.$emit('my-event');
 	},
 	refresh: function(){
+		let that = this;
+		this.loadin=true;
 			 axios
       .get("/api/search/chk/"+this.CNO)
       .then((response) => {
@@ -370,6 +381,7 @@
 		this.DataK = response.data[1];
 		this.Jstate = response.data[2];
 		this.Kstate = response.data[3];
+		that.loadin=false;
       });
 	  	axios
       .get("/api/search/CmMemo/"+this.CNO+"&&85")
@@ -407,12 +419,33 @@
       ],
 	  this.refresh();
 	},
-	cleanstate: function () {
+	cleanCancel: function () {
 		this.MeasureEarly=false,
-		this.checkrepeat=0,
 		this.nextJ=false,						//有預約下次談圖判定
-		this.nextK=false	
-		this.refresh();
+		this.nextK=false,	
+		this.MJstate=0,							//判斷丈量取消或是丈量完成
+		this.MKstate=0,
+		this.checkrepeat=0,
+		this.Data=[							
+        {
+          OrderNo: "",
+          CustNo: this.CNO,
+          ReserveDate: "",
+          Time: "",
+          FinishDate: "",
+          MeasureMember: "",
+          MeasureAddress: "",
+          Memo: "",
+		  Dept:5000,
+          state: "",
+          EstimateDealDate: "",
+          EstimateDealRate: "",
+		   result:"",
+        },
+      ],
+		 this.refnew = false;
+	  $("#MJFinish").modal('hide');
+	  $("#MKFinish").modal('hide');
 	},
 	DeleteJ:function (index) {
 		let that = this;
@@ -544,7 +577,7 @@
 		  }
 		  else{
 			  that.Data.ReserveDate="";
-			  alert('此時段已經有丈量，同一天只能設定一次丈量');
+			  alert('此日期已經有丈量，同一天只能設定一次丈量');
 		  }
         })
         .catch(function (response) {
@@ -552,21 +585,38 @@
         });
 	},
 	saveK: function () {
-		let that = this;
-		 axios
-        .post("/api/Create/Measure", {
-          Data: this.Data,
-          type: "K",
-		  S: 0,
-        })
-        .then(function (response) {
-          console.log(response);
-		   that.refresh();
-		  that.cleanData();
-        })
-        .catch(function (response) {
-          console.log(response);
-        });
+		let that = this;	
+			axios
+			.post("/api/Create/MeasureCheckK", {
+				Data: this.Data,
+				})
+			.then(function (response) {
+				console.log(response.data);
+					if(response.data=='O'){
+						axios
+							.post("/api/Create/Measure", {
+							Data: that.Data,
+							type: "K",
+							S: 0,
+						})
+						.then(function (response) {
+							console.log(response);
+							$("#MK").modal('hide');
+							that.refresh();
+							that.cleanData();
+						})
+						.catch(function (response) {
+							console.log(response);
+						});
+					}
+					else{
+						that.Data.ReserveDate="";
+						alert('此日期已經有看圖，同一天只能設定一次看圖');
+					}
+				})
+			.catch(function (response) {
+				console.log(response);
+			});
 	},
 	saveJC: function () {
 		let that = this;
@@ -634,6 +684,7 @@
 	},
 },     
   mounted(){
+	  let that = this;
       axios
       .get("/api/search/chk/"+this.CNO)
       .then((response) => {
@@ -642,6 +693,7 @@
 		this.DataK = response.data[1];
 		this.Jstate = response.data[2];
 		this.Kstate = response.data[3];
+		that.loadin=false;
       });
 		 axios
 		.get("/api/search/UserDept/"+this.Data[0].Dept)

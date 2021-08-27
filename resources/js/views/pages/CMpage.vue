@@ -28,6 +28,10 @@
       </div>
     </div>
 
+<a style="position:relative;left:800px;" v-if="loadin">
+  <loader></loader>
+</a>
+<a v-else>
 <a v-if="choose" style="position:relative;left:520px;top:300px;">
       <CMpageDaymanage @my-event="DaymanageB" v-bind:CNO="CNO" v-bind:Dept="Dept"></CMpageDaymanage>
 </a>
@@ -751,13 +755,15 @@
     </form>
   </div>
   </a>
+  </a>
 </template>
 
 <script>
 import CMpageDaymanage from "./CM日程管理";
+import loader from "../test/Loader.vue";
 const axios = require("axios");
 export default {
-  components: { CMpageDaymanage },
+  components: { CMpageDaymanage,loader },
   name: "CMpage",
   data() {
     return {
@@ -870,6 +876,7 @@ export default {
       choose: false,
       CNO:this.$route.params.CNO,
       Dept:[],
+      loadin:true,
     };
   },
   methods: {
@@ -972,6 +979,8 @@ export default {
           this.choose = false;
     },
     refresh: function(){
+      let that = this;
+      this.loadin = true;
       this.state=1,
         axios
         .get("/api/search/CM/" + this.CNO)
@@ -983,6 +992,7 @@ export default {
           this.CusAddressS = response.data.CusAddressS;
           this.FittingAddC = response.data.FittingAddC;
           this.FittingAddS = response.data.FittingAddS;
+          that.loadin = false;
         }),
         axios
           .get(
@@ -1042,6 +1052,7 @@ export default {
   },
   beforeCreate() {
     if (this.$route.params.CNO != "") {
+      let that = this;
       axios
         .get("/api/search/CM/" + this.$route.params.CNO)
         .then((response) => {
@@ -1053,6 +1064,7 @@ export default {
           this.CusAddressS = response.data.CusAddressS;
           this.FittingAddC = response.data.FittingAddC;
           this.FittingAddS = response.data.FittingAddS;
+          this.loadin =false;
           if (response.data[0] == null) {
             const message = "此客編不存在";
             this.$router.push({ path: "/CM/sendSearch", params: { message } });

@@ -49,3 +49,4 @@ Route::post('/Create/self-evaluation',[CreateController::class,'CreateCMself']);
 Route::post('/Create/Measure',[CreateController::class,'CreateMeasure']);
 Route::post('/Create/MeasureEnd',[CreateController::class,'CreateMeasureEnd']);
 Route::post('/Create/MeasureCheckJ',[CreateController::class,'CreateMeasureCheckJ']);
+Route::post('/Create/MeasureCheckK',[CreateController::class,'CreateMeasureCheckK']);
