@@ -8,11 +8,14 @@ use App\Models\CMCRFItems;
 use App\Models\CM_接待自評;
 use App\Models\CmMemo;
 use App\Models\CTD;
+use App\Models\chk;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Session;
 use Illuminate\Support\Facades\DB;
+
+date_default_timezone_set("Asia/Taipei");
 
 class UpdateController extends Controller
 {
@@ -37,7 +40,14 @@ class UpdateController extends Controller
         } else {
             $CustSname = '';
         }
+        $CC = $DAY['CusAddressC'];
+        $CS = $DAY['CusAddressS'];
+        $CusAddress = $CC.$CS;
 
+        $FC = $DAY['FittingAddC'];
+        $FS = $DAY['FittingAddS'];
+        $FittingAdd = $FC.$FS;
+        
         cm::where('CustNo', $CNO)
             ->update([
                 'LastModify' => ($LastModify == NULL) ? '' : $LastModify,
@@ -52,10 +62,10 @@ class UpdateController extends Controller
                 'Mobil' => ($data['Mobil'] == NULL) ? '' : $data['Mobil'],
                 'Fax' => ($data['Fax'] == NULL) ? '' : $data['Fax'],
                 'TelNight' => ($data['TelNight'] == NULL) ? '' : $data['TelNight'],
-                'CusAddress' => ($data['CusAddress'] == NULL) ? '' : $data['CusAddress'],
-                'FittingAdd' => ($data['FittingAdd'] == NULL) ? '' : $data['FittingAdd'],
                 'CustType' => ($data['CustType'] == NULL) ? '' : $data['CustType'],
                 'Gender' => ($data['Gender'] == NULL) ? '' : $data['Gender'],
+                'CusAddress' => $CusAddress,
+                'FittingAdd' => $FittingAdd,
                 //'Married',
                 //'Kids',
                 'HouseSize' => ($data['HouseSize'] == NULL) ? '' : $data['HouseSize'],
@@ -63,11 +73,11 @@ class UpdateController extends Controller
                 'FavColor' => ($FavColor == NULL) ? '' : $FavColor,
                 'Budget' => ($data['Budget'] == NULL) ? '' : $data['Budget'],
                 //'PorductType',
-                //'ZipCode',
+                'ZipCode' => ($data['ZipCode'] == NULL) ? '' : $data['ZipCode'],
                 'LastUse' => ($data['LastUse'] == NULL) ? '' : $data['LastUse'],
                 //'UserId',
                 //'Designer',
-                'LastModify' => ($HouseDate == NULL) ? '' : $LastModify,
+                'LastModify' => ($LastModify == NULL) ? '' : $LastModify,
                 //'DataCreate',
                 //'Meno',
                 'Birthday' => ($data['Birthday'] == NULL) ? '' : $data['Birthday'],
@@ -87,7 +97,7 @@ class UpdateController extends Controller
                 'budgetSofa' => ($data['budgetSofa'] == NULL) ? '' : $data['budgetSofa'],
                 'BuildName' => ($data['BuildName'] == NULL) ? '' : $data['BuildName'],
                 'Woodwork' => ($Woodwork == NULL) ? '' : $Woodwork,
-                //'needChk',
+                'needChk' => ($data['needChk'] == NULL) ? '' : $data['needChk'],
                 'HouseType' => ($data['HouseType'] == NULL) ? '' : $data['HouseType'],
                 'Family' => ($data['Family'] == NULL) ? '' : $data['Family'],
             ]);
@@ -301,4 +311,95 @@ class UpdateController extends Controller
         }
         return response()->json([789789], 200);
     }
+    public function UpdateMeasurestate(request $request){
+        $data = $request->all();
+        $state = $data['state'];
+        $type = $data['type'];
+        if($type=="J"){
+            if($state==0){
+                $state = 0;
+               }
+            else if($state==1){
+                $state = 1;
+               }
+            else if($state==2){
+                $state = 2;
+            }
+           $type='01';
+        }
+        else{
+            if($state==0){
+                $state = 3;
+               }
+            else if($state==1){
+                $state = 4;
+               }
+            else if($state==2){
+                $state = 5;
+            }
+            $type='84';
+        }
+        $data = $data['Data'][0];
+        $Memo = $data['result'];
+        $OrderNo = trim($data['OrderNo']);
+        
+        chk::where('單號', $OrderNo)
+            ->update([
+                '狀態' => $state,
+                'Memo' =>  $data['Memo'],
+                'Date_modi' => date('Ymd'),
+                '預計成交日' => ($data['EstimateDealDate'] == NULL) ? '' :  str_replace("-", "", $data['EstimateDealDate']),
+                '預計成交率' => ($data['EstimateDealRate'] == NULL) ? 0 : $data['EstimateDealRate'],
+            ]);
+        CmMemo::where('OrderNo', $OrderNo)
+        ->where('Type_', $type)
+        ->update([
+            'code_' => $state,
+            '備註' => ($Memo == NULL) ? '' : $Memo,
+            'Date_' => date('Ymd'),
+            'Time_' => date('His'),
+        ]);
+        return response()->json($OrderNo, 200);
+    }
+    public function UpdateDeleteMeasureJK(request $request){
+        $data = $request->all();
+       // return response()->json($data, 200);
+        $type = $data['type'];
+        $OrderNo = $data['OrderNo'];
+        if($type=="J"){
+            $state = 6;
+            $type='01';
+         }
+         else{
+            $state = 7;
+            $type='84';
+         }
+         chk::where('單號', $OrderNo)
+         ->update([
+             '狀態' => $state,
+         ]);
+        CmMemo::where('OrderNo', $OrderNo)
+        ->where('Type_', $type)
+        ->update([
+            'code_' => $state,
+            'Date_' => date('Ymd'),
+            'Time_' => date('His'),
+        ]);
+        return response()->json($OrderNo, 200);
+    }
+    public function UpdateMeasureEnd(request $request){
+        $data = $request->all();
+        $Data = $data['Data'][0];
+
+        CmMemo::where('CustNo', $data['CustNo'])
+        ->where('Type_', 85)
+        ->update([
+            'Type_' => 101,
+            'Date_' => date('Ymd'),
+            'code_' => $Data['code_'],
+            'Time_' => date('His'),
+        ]);
+         return response()->json($data['CustNo'], 200);
+    }
+
 }

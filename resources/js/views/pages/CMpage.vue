@@ -1,10 +1,47 @@
 <template>
+ <!-- 跳出選住址-->
+    <div id="ooo" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
+      <div class="modal-dialog modal-lg" >
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              <span>&times;</span>
+            </button>
+            <div class="modal-body" >
+            街路: <input
+                    type="text"
+                    class="form-control"
+                    style="width: 200px;display:inline"
+                    v-model="street[0].value"
+                /><button  @click.prevent="getaddress" style="display:inline" class="btn">查詢</button><br>
+                  <select v-model="addresschoose" :hidden="stateA==1"> 
+                    <option
+                      v-for="item in data" :value="item" :key="item"
+                    >
+                        {{ item.縣市 }}-{{ item.區鄉鎮市 }}-{{ item.街路}}
+                    </option>
+                  </select>
+            <button  @click.prevent="sendaddress" class="btn" data-dismiss="modal" :hidden="stateA==1">送出</button>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<a style="position:relative;left:800px;" v-if="loadin">
+  <loader></loader>
+</a>
+<a v-else>
+<a v-if="choose" style="position:relative;left:520px;top:300px;">
+      <CMpageDaymanage @my-event="DaymanageB" v-bind:CNO="CNO" v-bind:Dept="Dept"></CMpageDaymanage>
+</a>
+ <a v-else style="position:relative;left:300px;">
   <div
     style="
       position: relative;
       height: 1px;
       bottom: 80px;
-      width: 1100px;
+      width: 1200px;
       margin: 0px auto;
     "
   >
@@ -13,11 +50,7 @@
     </div>
     <br />
     <div class="AF2topic">
-      <input
-        type="button"
-        onclick="location.href='/AFeature1'"
-        value="貴賓卷"
-      />&nbsp;
+     <button @click.prevent="Daymanage" type="submit">日程管理</button>&nbsp;
       <input type="button" onclick="location.href='/AFeature1'" value="團購" />
       &nbsp;
       <button @click.prevent="Modify" type="submit">資料修改</button>&nbsp;
@@ -48,7 +81,7 @@
     </div>
     <br /><br /><br />
     <form action="/" v-on:submit.prevent="postdata">
-      <div class="row" style="height: 750px">
+      <div class="row" style="height: 800px">
         <div class="col-md-5 mb-4">
           <h2>
             <label class="font-weight-bold" style="color: #ff5151"
@@ -65,6 +98,7 @@
                   class="form-control"
                   v-model="cust.CustName"
                   :readonly="state == 1"
+                  style="width:300px"
                 />
               </th>
               <th style="padding: 5px">
@@ -95,6 +129,7 @@
                 class="form-control"
                 v-model="cust.COMPANY"
                 :readonly="state == 1"
+                style="width:300px"
             /></label>
           </h4>
           <br />
@@ -106,44 +141,51 @@
                 class="form-control"
                 v-model="cust.email"
                 :readonly="state == 1"
+                style="width:300px"
             /></label>
           </h4>
           <br />
-          <h4>
-            <label class="font-weight-bold"
-              >通訊地址
-              <input
-                type="text"
-                class="form-control"
-                style="width: 400px"
-                v-model="cust.CusAddress"
-                :readonly="state == 1"
-            /></label>
-          </h4>
+          <h4><label class="font-weight-bold"  style="display:inline">通訊地址</label></h4>
+          <input
+            type="text"
+            class="form-control"
+            v-model="custT.CusAddressC"
+            style="display:inline;width:130px"
+            readonly
+          /><input
+            type="text"
+            class="form-control"
+            v-model="custT.CusAddressS"
+             style="display:inline;width:270px"
+              :readonly="state == 1"
+          />
+          <button @click.prevent="getcusaddress" type="button" class="btn btn-primary"  style="display:inline" data-toggle="modal" data-target="#ooo" :disabled="state == 1">S</button>
           <br />
-          <h4>
-            <label class="font-weight-bold"
-              >安裝地址
-              <input
-                type="text"
-                class="form-control"
-                v-model="cust.FittingAdd"
-                style="width: 400px"
-                :readonly="state == 1"
-            /></label>
-          </h4>
+          <h4><label class="font-weight-bold">安裝地址</label></h4>
+           <input
+            type="text"
+            class="form-control"
+            v-model="custT.FittingAddC"
+            style="display:inline;width:130px"
+            readonly
+          />
+          <input
+            type="text"
+            class="form-control"
+            style="display:inline;width:270px"
+            v-model="custT.FittingAddS"
+             :readonly="state == 1"
+          />
+         <button @click.prevent="getfitaddress" type="button" class="btn btn-primary"  style="display:inline" data-toggle="modal" data-target="#ooo" :disabled="state == 1">S</button>
           <br />
-          <h4>
-            <label class="font-weight-bold"
-              >建案名稱
-              <input
-                type="text"
-                class="form-control"
-                v-model="cust.BuildName"
-                :readonly="state == 1"
-            /></label>
-          </h4>
-          <br />
+           <h4><label class="font-weight-bold">建案名稱</label></h4>
+          <input
+            type="text"
+            class="form-control"
+            v-model="cust.BuildName"
+            :readonly="state == 1"
+            style="width:300px"
+          /><br />
         </div>
         <div class="col-md-3 mb-4">
           <br /><br /><br />
@@ -196,7 +238,7 @@
           </h4>
           <br />
         </div>
-        <div class="col-md-4 mb-4">
+        <div class="col-md-3 mb-4">
           <h2>
             <label class="font-weight-bold" style="color: #ff5151"
               >來源與經驗</label
@@ -232,7 +274,6 @@
                   type="checkbox"
                   v-model="item.value"
                   :disabled="state == 1"
-                  :checked="item.value == 1"
                 />{{ item.data }}
               </div>
             </div>
@@ -253,7 +294,6 @@
                   type="checkbox"
                   v-model="item.value"
                   :disabled="state == 1"
-                  :checked="item.value == 1"
                 />{{ item.data }}
               </div>
             </div>
@@ -354,19 +394,18 @@
           <input
             type="checkbox"
             v-model="cust.needChk"
-            checked
             :disabled="state == 1"
           />有丈量需求 <br /><br />
           <h4>
             <label class="font-weight-bold"
               >預計完工日<br />
-              <input
-                type="date"
+              <el-date-picker
                 class="form-control"
                 style="width: 200px"
                 v-model="custT.FinishDate"
                 :readonly="state == 1"
-            /></label>
+                :picker-options="pickerOptions0">
+            </el-date-picker></label>
           </h4>
           <br />
           <h4>
@@ -388,15 +427,14 @@
             <div
               class="col-4"
               v-for="item in likeStyle"
-              :value="item"
-              :key="item"
+              :value="item.value"
+              :key="item.data"
               style="height: 25px"
             >
               <input
                 type="checkbox"
                 v-model="item.value"
                 :disabled="state == 1"
-                :checked="item.value == 1"
               />{{ item.data }}
             </div>
           </div>
@@ -435,7 +473,6 @@
                 type="checkbox"
                 v-model="item.value"
                 :disabled="state == 1"
-                :checked="item.value == 1"
               />{{ item.data }}
             </div>
           </div>
@@ -561,7 +598,7 @@
               <button
                 @click.prevent="FClear"
                 class="clearbutton"
-                :readonly="state == 1"
+                :disabled="state == 1"
               >
                 X</button
               >
@@ -581,7 +618,7 @@
                <button
                 @click.prevent="WClear"
                 class="clearbutton"
-                :readonly="state == 1"
+                :disabled="state == 1"
               >
                 X</button
               ></label>
@@ -599,7 +636,7 @@
               <button
                 @click.prevent="LClear"
                 class="clearbutton"
-                :readonly="state == 1"
+                :disabled="state == 1"
               >
                 X</button
               ></label>
@@ -717,14 +754,24 @@
       </button>
     </form>
   </div>
+  </a>
+  </a>
 </template>
 
 <script>
+import CMpageDaymanage from "./CM日程管理";
+import loader from "../test/Loader.vue";
 const axios = require("axios");
 export default {
+  components: { CMpageDaymanage,loader },
   name: "CMpage",
   data() {
     return {
+       pickerOptions0: {
+          disabledDate(time) {
+            return time.getTime() < Date.now();
+          }
+        },  
       state: this.$route.params.state,
       space: [
         { type: "|規劃空間", value: "false", data: "全室" },
@@ -818,9 +865,59 @@ export default {
         { value: "0", data: "小姐" },
         { value: "1", data: "先生" },
       ],
+
+      addresschoose:[],
+      data:[],
+      zip:[],
+      street:[{value:""}],
+      addressState:true,
+      stateA:1,
+
+      choose: false,
+      CNO:this.$route.params.CNO,
+      Dept:[],
+      loadin:true,
     };
   },
   methods: {
+    getaddress: function(){
+          axios
+          .get("/api/search/zip/"+this.street[0].value)
+          .then((response) => {
+            console.log(response.data);
+            this.data = response.data;
+          });
+           this.stateA=2;
+    },
+    getcusaddress: function(){
+      this.addressState=true;
+      this.stateA=1;
+      this.street[0].value="";
+    },
+    getfitaddress: function(){
+        this.addressState=false;
+        this.stateA=1;
+         this.street[0].value="";
+    },
+    sendaddress: function () {
+      if(this.addressState==true){
+          this.custT.CusAddressC = this.addresschoose.縣市+this.addresschoose.區鄉鎮市;
+       this.custT.CusAddressS = this.addresschoose.街路;
+       this.cust.CusAddress = this.addresschoose.縣市+this.addresschoose.區鄉鎮市+this.addresschoose.街路;
+         axios
+          .get("/api/search/zip/"+this.CusAddressC)
+          .then((response) => {
+            console.log(response.data);
+            this.cust.ZipCode = response.data;
+            this.zip = response.data;
+          });
+      }
+      if(this.addressState==false){
+          this.custT.FittingAddC = this.addresschoose.縣市+this.addresschoose.區鄉鎮市;
+       this.custT.FittingAddS = this.addresschoose.街路;
+       this.cust.FittingAdd = this.addresschoose.縣市+this.addresschoose.區鄉鎮市+this.addresschoose.街路;
+      }
+    },
     Modify: function () {
       this.state = 2;
     },
@@ -834,16 +931,12 @@ export default {
       this.custT.Woodwork = '';
     },
     save: function () {
+      this.cust.CusAddress = this.custT.CusAddressC + this.custT.CusAddressS;
+       this.cust.FittingAdd = this.custT.FittingAddC + this.custT.FittingAddS;
       axios
-        .post("http://it.home33.com.tw/api/Update/CM", {
+        .post("/api/Update/CM", {
           cust: this.cust,
           custT: this.custT,
-          CustType: this.CustType,
-          BuyReason: this.BuyReason,
-          Family: this.Family,
-          HouseType: this.HouseType,
-          Cmemo: this.Cmemo,
-          Gender: this.Gender,
         })
         .then(function (response) {
           console.log(response);
@@ -852,7 +945,7 @@ export default {
           console.log(response);
         });
       axios
-        .post("http://it.home33.com.tw/api/Update/CMCRFItems", {
+        .post("/api/Update/CMCRFItems", {
           cust: this.cust,
           UseExp: this.UseExp,
           UDS: this.UDS,
@@ -867,7 +960,7 @@ export default {
         });
 
       axios
-        .post("http://it.home33.com.tw/api/Update/CmMemo", {
+        .post("/api/Update/CmMemo", {
           cust: this.cust,
           Cmemo: this.Cmemo,
         })
@@ -877,28 +970,109 @@ export default {
         .catch(function (response) {
           console.log(response);
         });
-      this.$router.push({ name: "Home" });
+      this.refresh();
     },
+    Daymanage: function(){
+         this.choose = true;
+    },
+    DaymanageB: function(){
+          this.choose = false;
+    },
+    refresh: function(){
+      let that = this;
+      this.loadin = true;
+      this.state=1,
+        axios
+        .get("/api/search/CM/" + this.CNO)
+        .then((response) => {
+          console.log(response);
+          this.cust = response.data[0];
+          this.custT = response.data;
+          this.CusAddressC = response.data.CusAddressC;
+          this.CusAddressS = response.data.CusAddressS;
+          this.FittingAddC = response.data.FittingAddC;
+          this.FittingAddS = response.data.FittingAddS;
+          that.loadin = false;
+        }),
+        axios
+          .get(
+            "/api/search/CMCRFItems/" +
+              this.CNO
+          )
+          .then((response) => {
+            console.log(response.data);
+
+            for (let i = 0; i < 4; i++)
+              this.UseExp[i]["value"] = response.data[0][i];
+            for (let i = 0; i < 5; i++)
+              this.UDS[i]["value"] = response.data[1][i];
+            for (let i = 0; i < 6; i++)
+              this.likeStyle[i]["value"] = response.data[2][i];
+            for (let i = 0; i < 9; i++)
+              this.space[i]["value"] = response.data[3][i];
+          }),
+        axios
+          .get("/api/search/CTD/客來源")
+          .then((response) => {
+            console.log(response.data.Cust);
+            this.CustType = response.data;
+          }),
+        axios
+          .get("/api/search/CTD/買原因")
+          .then((response) => {
+            console.log(response.data);
+            this.BuyReason = response.data;
+          }),
+        axios
+          .get("/api/search/CTD/成員組合")
+          .then((response) => {
+            console.log(response.data);
+            this.Family = response.data;
+          }),
+        axios
+          .get("/api/search/CTD/屋型")
+          .then((response) => {
+            console.log(response.data);
+            this.HouseType = response.data;
+          });
+      axios
+        .get(
+          "/api/search/CmMemo/" +
+            this.CNO +
+            "&&00"
+        )
+        .then((response) => {
+          console.log(response.data);
+          this.Cmemo = response.data;
+        });
+    }
   },
   props: {
     msg: String,
   },
   beforeCreate() {
     if (this.$route.params.CNO != "") {
+      let that = this;
       axios
-        .get("http://it.home33.com.tw/api/search/CM/" + this.$route.params.CNO)
+        .get("/api/search/CM/" + this.$route.params.CNO)
         .then((response) => {
           console.log(response);
           this.cust = response.data[0];
+          this.Dept = response.data[0].門市別;
           this.custT = response.data;
-          if (response.data[0] == NULL) {
+          this.CusAddressC = response.data.CusAddressC;
+          this.CusAddressS = response.data.CusAddressS;
+          this.FittingAddC = response.data.FittingAddC;
+          this.FittingAddS = response.data.FittingAddS;
+          this.loadin =false;
+          if (response.data[0] == null) {
             const message = "此客編不存在";
             this.$router.push({ path: "/CM/sendSearch", params: { message } });
           }
         }),
         axios
           .get(
-            "http://it.home33.com.tw/api/search/CMCRFItems/" +
+            "/api/search/CMCRFItems/" +
               this.$route.params.CNO
           )
           .then((response) => {
@@ -914,32 +1088,32 @@ export default {
               this.space[i]["value"] = response.data[3][i];
           }),
         axios
-          .get("http://it.home33.com.tw/api/search/CTD/客來源")
+          .get("/api/search/CTD/客來源")
           .then((response) => {
             console.log(response.data.Cust);
             this.CustType = response.data;
           }),
         axios
-          .get("http://it.home33.com.tw/api/search/CTD/買原因")
+          .get("/api/search/CTD/買原因")
           .then((response) => {
             console.log(response.data);
             this.BuyReason = response.data;
           }),
         axios
-          .get("http://it.home33.com.tw/api/search/CTD/成員組合")
+          .get("/api/search/CTD/成員組合")
           .then((response) => {
             console.log(response.data);
             this.Family = response.data;
           }),
         axios
-          .get("http://it.home33.com.tw/api/search/CTD/屋型")
+          .get("/api/search/CTD/屋型")
           .then((response) => {
             console.log(response.data);
             this.HouseType = response.data;
           });
       axios
         .get(
-          "http://it.home33.com.tw/api/search/CmMemo/" +
+          "/api/search/CmMemo/" +
             this.$route.params.CNO +
             "&&00"
         )
@@ -967,6 +1141,7 @@ export default {
 }
 .AF11tableborder-250wid {
   font-size: 10px;
+  width:300px;
   border: 1px black solid;
 }
 .textw20 {

@@ -3,9 +3,6 @@
 	<div class="main">
 		<router-view></router-view>
 	</div>
-	<p>count: {{count}}</p>
-	<button @click="increment()"> +</button>
-	<button @click="decrement()"> -</button>
 </template>
 
 <script>

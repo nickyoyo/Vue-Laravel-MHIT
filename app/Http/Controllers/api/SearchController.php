@@ -8,9 +8,15 @@ use App\Models\CMCRFItems;
 use App\Models\CM_接待自評;
 use App\Models\CmMemo;
 use App\Models\CTD;
+use App\Models\zip;
+use App\Models\chk;
+use App\Models\SO;
+use App\Models\sod;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Auth;
 use PDO;
 use Session;
 
@@ -41,12 +47,25 @@ class SearchController extends Controller
     public function searchCM($CNO)          //CM-Data、月曆格式轉換、CTD
     {
         $useCM = cm::where('CustNo',trim($CNO))->first();
+       
         $FinishDate='';$CheckInDate='';$HouseDate='';$FavColor='';$Woodwork='';$LastModify='';
-
+        $CusAddressC='';$CusAddressS='';$FittingAddC='';$FittingAddS='';$msg ='';
         if($useCM == NULL){
             $useCM = new cm;
+            return response()->json(['msg' => '此客編號不存在'],200);
         }  
         else{
+            if($useCM->needChk == '1')$useCM->needChk=true;
+            if($useCM->CusAddress != NULL){
+                $length = mb_strlen($useCM->CusAddress,"utf-8");
+                $CusAddressC= mb_substr($useCM->CusAddress,0,6,"utf-8");
+                $CusAddressS= mb_substr($useCM->CusAddress,6,$length-6,"utf-8");
+            }
+            if($useCM->FittingAdd != NULL){
+                $length = mb_strlen($useCM->FittingAdd,"utf-8");
+                $FittingAddC= mb_substr($useCM->FittingAdd,0,6,"utf-8");
+                $FittingAddS= mb_substr($useCM->FittingAdd,6,$length-6,"utf-8");
+            }
             if($useCM->FinishDate != NULL){
                 $FinishDate= substr($useCM->FinishDate, 0, 4)."-".substr($useCM->FinishDate, 4, 2)."-".substr($useCM->FinishDate, 6, 2);  
             }
@@ -74,7 +93,7 @@ class SearchController extends Controller
         return response()->json([
              $useCM,
             'LastModify' => $LastModify , 'Woodwork' => $Woodwork , 'FavColor' => $FavColor ,'FinishDate' => $FinishDate , 'CheckInDate'=> $CheckInDate ,'HouseDate' =>$HouseDate,
-           ],200);
+            'CusAddressC' => $CusAddressC,'CusAddressS'=>$CusAddressS,'FittingAddC'=>$FittingAddC,'FittingAddS'=>$FittingAddS,'msg' => ''],200);
     }
     public function searchCTD($codename)        //CTD
     {
@@ -99,6 +118,14 @@ class SearchController extends Controller
     }
     public function searchCmMemo($CNO,$MemoType)        //CmMemo
     {
+        if($MemoType=='85'){
+            $data = CmMemo::where('CustNo',trim($CNO))->where('Type_',$MemoType)->first(['CmMemo.*','備註 as memo']);
+            if($data != NULL){
+                $data->code_ = trim($data->code_);
+                $data->Type_ = trim($data->Type_);
+            }         
+            return response()->json($data,200);
+        }
         $MemoType = $MemoType." ";
         $memonum =array('0','0','0','0','0','0');
         $useCM = cm::where('CustNo',trim($CNO))->first();
@@ -116,7 +143,7 @@ class SearchController extends Controller
                     'code_' => $i,
                     '備註' => '',
                     'Date_' =>  date('Ymd'),
-                    'UserId' => $use->UserId,
+                    'UserId' => $useCM->UserId,
                     'Items' => 0,
                 ]);
             }
@@ -139,85 +166,179 @@ class SearchController extends Controller
         foreach($CItems as $Items){
             if($Items->Items!=NULL){
                 if($Items->Items == '使用過系統家具|使用經驗'){
-                    $UseExp[0] = 1;
+                    $UseExp[0] = true;
                 }
                 if($Items->Items == '曾有裝修經驗|使用經驗'){
-                    $UseExp[1] = 1;
+                    $UseExp[1] = true;
                 }
                 if($Items->Items == '使用過木地板|使用經驗'){
-                    $UseExp[2] = 1;
+                    $UseExp[2] = true;
                 }
                 if($Items->Items == '購買過沙發|使用經驗'){
-                    $UseExp[3] = 1;
+                    $UseExp[3] = true;
                 }
                 if($Items->Items == '歐德|同業了解'){
-                    $UDS[0] = 1;
+                    $UDS[0] = true;
                 }
                 if($Items->Items == '綠的傢俱|同業了解'){
-                    $UDS[1] = 1;
+                    $UDS[1] = true;
                 }
                 if($Items->Items == '艾菲爾|同業了解'){
-                    $UDS[2] = 1;
+                    $UDS[2] = true;
                 }
                 if($Items->Items == '室內設計師|同業了解'){
-                    $UDS[3] = 1;
+                    $UDS[3] = true;
                 }
                 if($Items->Items == '其他|同業了解'){
-                    $UDS[4] = 1;
+                    $UDS[4] = true;
                 }
                 if($Items->Items == '鄉村風|喜好風格'){
-                    $likeStyle[0] = 1;
+                    $likeStyle[0] = true;
                 }
                 if($Items->Items == '現代風|喜好風格'){
-                    $likeStyle[1] = 1;
+                    $likeStyle[1] = true;
                 }
                 if($Items->Items == '工業風|喜好風格'){
-                    $likeStyle[2] = 1;
+                    $likeStyle[2] = true;
                 }
                 if($Items->Items == '北歐風|喜好風格'){
-                    $likeStyle[3] = 1;
+                    $likeStyle[3] = true;
                 }
                 if($Items->Items == '古典風|喜好風格'){
-                    $likeStyle[4] = 1;
+                    $likeStyle[4] = true;
                 }
                 if($Items->Items == '其他|喜好風格'){
-                    $likeStyle[5] = 1;
+                    $likeStyle[5] = true;
                 }
                 if($Items->Items == '全室|規劃空間'){
-                    $space[0] = 1;
+                    $space[0] = true;
                 }
                 if($Items->Items == '客廳|規劃空間'){
-                    $space[1] = 1;
+                    $space[1] = true;
                 }
                 if($Items->Items == '更衣室|規劃空間'){
-                    $space[2] = 1;
+                    $space[2] = true;
                 }
                 if($Items->Items == '廚房|規劃空間'){
-                    $space[3] = 1;
+                    $space[3] = true;
                 }
                 if($Items->Items == '餐廳|規劃空間'){
-                    $space[4] = 1;
+                    $space[4] = true;
                 }
                 if($Items->Items == '書房|規劃空間'){
-                    $space[5] = 1;
+                    $space[5] = true;
                 }
                 if($Items->Items == '玄關|規劃空間'){
-                    $space[6] = 1;
+                    $space[6] = true;
                 }
                 if($Items->Items == '臥室|規劃空間'){
-                    $space[7] = 1;
+                    $space[7] = true;
                 }
                 if($Items->Items == '其他|規劃空間'){
-                    $space[8] = 1;
+                    $space[8] = true;
                 }
             }
         }
         return response()->json([$UseExp,$UDS,$likeStyle,$space],200);
     }
-    public function searchPD($EMID)
+    public function searchPD()
     {
         //$EMID = Session::get('EMID');
-        $EM13 = EM13::where('EMID','=', $EMID)->where('OFDT','=','00000000')->first();
-        return response()->json(['EM13' => $EM13, 'EMID' => $EMID],200);
+       // $EM13 = EM13::where('EMID','=', $EMID)->where('OFDT','=','00000000')->first();
+        return response()->json(['YA' => Auth::user()],200);
+    }
+    public function searchaddress($street)
+    {
+        //找Zip
+        $length = mb_strlen($street, "utf-8");
+        if($length>=6){          
+            $city= mb_substr($street,0,3,"utf-8");
+            $area= mb_substr($street,3,3,"utf-8");
+            $address = zip::where('縣市',$city)->where('區鄉鎮市',$area)->first();
+            $zip = substr($address->區號,0,3);
+            return response()->json($zip,200);
+        }
+        else{
+        //傳資料
+            if($street=="empty"){
+                $address  = DB::select('SELECT DISTINCT 縣市,區鄉鎮市,街路 FROM zip'); 
+                foreach($address as $data){
+                    $data->街路=trim($data->街路);
+                }
+            }
+            else{
+                $str='%'.$street.'%';
+                $address = DB::select("SELECT DISTINCT 縣市,區鄉鎮市,街路 FROM zip WHERE 街路 LIKE '".$str."'");
+                if($address==NULL){
+                    $address  = DB::select('SELECT DISTINCT 縣市,區鄉鎮市,街路 FROM zip'); 
+                }
+                foreach($address as $data){
+                    $data->街路=trim($data->街路);
+                }
+            }
+            return response()->json($address,200);
+        } 
+    }
+    public function searchCHK($CNO)
+    {
+        //$data = chk::where('客戶號',$CNO)->orderby('狀態','asc')->get();
+        $dataJ = chk::where('客戶號',$CNO)->where('單號','LIKE', 'J'.'%')->where('狀態', '<', 3)->orderby('Date_add','asc')->get(['chk.*','Memo as result']);
+        $Jstate = 0;
+        foreach($dataJ as $data){
+            $Memo = CmMemo::where('OrderNo',trim($data->單號))->where('Type_','01')->where('code_',$data->狀態)->first();     
+            $data->result =  ($Memo == NULL) ? '' : $Memo['備註'];
+            $YMD = $data->預定日期;
+            $YMDE = $data->預計成交日;
+            $HMS = $data->時間;
+            $data->預定日期 = substr($YMD, 0, 4)."/".substr($YMD, 4, 2)."/".substr($YMD, 6, 2);
+            $data->預計成交日 = substr($YMDE, 0, 4)."-".substr($YMDE, 4, 2)."-".substr($YMDE, 6, 2);
+            $data->時間 = substr($HMS, 0, 2).":".substr($HMS, 2, 2);
+            if($data->狀態==0)$Jstate=1;
+        }
+        $dataK = chk::where('客戶號',$CNO)->where('單號','LIKE', 'K'.'%')->where('狀態', '<', 7)->orderby('Date_add','asc')->get(['chk.*','Memo as result']);
+        $Kstate = 0;
+          foreach($dataK as $data){
+            $Memo = CmMemo::where('OrderNo',trim($data->單號))->where('Type_','84')->where('code_',$data->狀態)->first();
+            $data->result= ($Memo == NULL) ? '' : $Memo['備註'];
+            $YMD = $data->預定日期;
+            $YMDE = $data->預計成交日;
+            $HMS = $data->時間;
+            $data->預定日期 = substr($YMD, 0, 4)."/".substr($YMD, 4, 2)."/".substr($YMD, 6, 2);
+            $data->預計成交日 = substr($YMDE, 0, 4)."-".substr($YMDE, 4, 2)."-".substr($YMDE, 6, 2);
+            $data->時間 = substr($HMS, 0, 2).":".substr($HMS, 2, 2);
+            if($data->狀態==3)$Kstate=1;
+        } 
+        return response()->json([$dataJ,$dataK,$Jstate,$Kstate],200);
+    }
+    
+    public function searchUserDeptMember($DVID)
+    {
+        $UserDept = EM13::where('DVID','=', $DVID)->where('OFDT','=','00000000')->get();
+        return response()->json($UserDept,200);
+    }
+
+    public function searchOrder($CNO)       
+    {
+        $data = SO::where('CusNo',trim($CNO))->where('QuotNo','LIKE', 'S'.'%')->where('OrderDate','>','00000000')->orderby('QuotNo','asc')->get();
+        if($data == NULL){
+            return response()->json(['msg' => '此客編號不存在'],200);
+        }  
+        foreach($data as $list){
+            $list->TotalValue=(int)$list->TotalValue;
+        }
+      
+        return response()->json([$data,'msg' => ''],200);
+    }
+
+    public function searchOrderDetail($QNO)        
+    {
+        $data = sod::where('QuotNo',trim($QNO))->get(['sod.*','UserID as Ordermember']);
+
+        foreach($data as $list){
+            $member = EM13::where('EMID','=', $list->UserID)->where('OFDT','=','00000000')->first();
+            $list->Ordermember= $member->EMME;
+        }
+
+        return response()->json($data,200);
     }
 }

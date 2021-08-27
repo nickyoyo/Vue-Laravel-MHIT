@@ -32,7 +32,7 @@ return [
     'google' => [
         'client_id' => '981686981558-6lme67ndgommamv6rq5r5163bffoavr2.apps.googleusercontent.com',
         'client_secret' => 'ZEIbsx62y1Bs-_XA99PKOh-G',
-        'redirect' => 'https://it.home33.com.tw/auth/google/callback',
+        'redirect' => '/auth/google/callback',
     ],
 
 ];

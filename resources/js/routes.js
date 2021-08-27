@@ -4,12 +4,21 @@ import About from "./views/pages/About";
 import Contact from "./views/pages/Contact";
 import Help from "./views/pages/Help";
 
-import Login from "./views/layouts/Login";
+import smallwindow from "./views/test/smallwindow";
+import quickButton from "./views/test/quickButton";
+import BVTest from "./views/test/BVTest";
+import 日程web from "./views/test/日程web";
+import require from "./views/test/require";
+import loader from "./views/test/Loader";
 
 import CM接待自評 from "./views/pages/CM接待自評";
 import CMcreate from "./views/pages/CMcreate";
 import CMsendSearch from "./views/pages/CMsendSearch";
 import CMpage from "./views/pages/CMpage";
+import CM日程管理 from "./views/pages/CM日程管理";
+
+import OrdersendSearch from "./views/pages/OrdersendSearch";
+import Orderpage from "./views/pages/Orderpage";
 
 import PersonalData from "./views/pages/PersonalData";
 
@@ -24,9 +33,19 @@ export default [
     { path: "/CM/sendSearch", component: CMsendSearch, name: 'CMsendSearch' },
 
     { path: "/CM/page", component: CMpage, name: 'CMpage' },
+    { path: "/CM/page/日程管理", component: CM日程管理, name: 'CM日程管理' },
+
+    { path: "/Order/sendSearch", component: OrdersendSearch, name: 'OrdersendSearch' },
+    { path: "/Order/page", component: Orderpage, name: 'Orderpage' },
+    //{ path: "/CM/page/日程管理", component: CM日程管理, name: 'CM日程管理' },
 
     { path: "/PersonalData", component: PersonalData, name: 'PersonalData' },
 
-    { path: "/Login", component: Login, name: 'Login' },
-
+    { path: "/smallwindow", component: smallwindow, name: 'smallwindow' },
+    { path: "/quickButton", component: quickButton, name: 'quickButton' },
+    { path: "/BVTest", component: BVTest, name: 'BVTest' },
+    { path: "/日程web", component: 日程web, name: '日程web' },
+    { path: "/require", component: require, name: 'require' },
+    { path: "/loader", component: loader, name: 'loader' },
+    
 ];

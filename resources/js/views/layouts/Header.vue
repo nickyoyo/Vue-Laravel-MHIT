@@ -1,7 +1,7 @@
 <template>
 		<header class="row" style="height:60px;padding:8px 50px 10px 50px;">
 			<div class="col-md-6 mb-4" style="font-size:30px;">
-				<router-link to="/" style="color:white;">MHIT</router-link>
+				<a href="/" style="color:white;">MHIT</a>
 			</div>
 			<div class="col-md-6 mb-4"  style="text-align:right;font-size:30px;">
 				<a href="/auth/google" style="color:white;" :hidden="state == 2">Login</a>
@@ -27,15 +27,15 @@
 		},
 		LoginPD:function(){
 			axios
-			.get("http://127.0.0.1:8000/api/search/PD/"+"21072177")
+			.get("/api/search/PD")
 			.then((response) => {
 			console.log(response.data);
-			this.EMData = response.data.EM13;
-			if(response.data!= null) {
-				this.state = 2;
-				sessionStorage.setItem('store', EMData);
-				console.log(sessionStorage.getItem('store')) 
-			}
+			this.EMData = response.data;
+			// if(response.data!= null) {
+			// 	this.state = 2;
+			// 	sessionStorage.setItem('store', EMData);
+			// 	console.log(sessionStorage.getItem('store')) 
+			// }
 		})
 		},
 		LogoutPD:function(){
