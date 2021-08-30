@@ -28,8 +28,8 @@
       </div>
       <br />
 
-      <div class="row" style="height: 500px">
-        <div class="col-md-6 mb-4">
+      <div class="row" style="height: 700px">
+        <div class="col-md-5 mb-4">
           <h2>
             <label class="font-weight-bold" style="color: #ff5151"
               >報價訂單列表</label
@@ -39,8 +39,8 @@
             class="container text-center"
             style="
               overflow-y: scroll;
-              height: 250px;
-              width: 700px;
+              height: 350px;
+              width: 500px;
               border: 1px black solid;
             "
           >
@@ -75,9 +75,14 @@
           </div>
         </div>
 
-        <div class="col-md-3 mb-4" style="border: 1px black solid">
+        <div class="col-md-3 mb-4" style="border: 1px black solid; padding:5px;">
+           <a v-show="loadinD">
+                <loader></loader>
+           </a>  
+          <a v-show="loadinD==false">    
+
           <table>
-            
+      
             <td>分類</td>
             <td>
               <input
@@ -104,7 +109,7 @@
               <br />
               <input
                 type="text"
-                style="height: 40px; width: 50px;"
+                style="height: 30px; width: 50px;"
                 v-model="OrderData[0].ZIP"
                 readonly
               />
@@ -135,38 +140,150 @@
             ></textarea>
           </label>
           <br /><br />
-            送: 
+            &nbsp;送: 
           <input
             type="text"
-            style="height: 40px; width: 100px; display: inline"
+            style="height: 30px; width: 90px; display: inline"
             readonly
           />
-            &nbsp;裝: 
+            &nbsp;&nbsp;裝: 
            <input
             type="text"
-            style="height: 40px; width: 100px; display: inline"
+            style="height: 30px; width: 90px; display: inline"
             readonly
-          /><br /><br />
-            出: 
+          />
+            &nbsp;&nbsp;出: 
            <input
             type="text"
-            style="height: 40px; width: 100px; display: inline"
+            style="height: 30px; width: 90px; display: inline"
             v-model="OrderData[0].DispatchDate"
             readonly
           />
           <br />
+          </a>
+        </div>
+        <div style="width:20px;"></div>
+
+        <div style="width:180px;">
+          <table class="container " style="padding:10px;text-align: right">
+             <tr><td style="height: 40px;">
+               專案顧問&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>  
+              <tr><td style="height: 40px;">
+                中文名&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>  
+    <tr><td style="height: 15px;"></td></tr>
+            <tr><td style="height: 40px;">
+               報價&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>
+    <tr><td style="height: 10px;"></td></tr>
+            <tr><td style="height: 40px;">
+               檔期&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>
+    <tr><td style="height: 10px;"></td></tr>
+            <tr><td style="height: 40px;">
+               簽約&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>
+    <tr><td style="height: 10px;"></td></tr>
+            <tr><td style="height: 40px;">
+               <button>預計完款</button>&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>
+    <tr><td style="height: 10px;"></td></tr>
+            <tr><td style="height: 40px;">
+               <button>預計安裝</button>&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>
+    <tr><td style="height: 10px;"></td></tr>
+            <tr><td style="height: 40px;">
+                完款&nbsp;:<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>
+    <tr><td style="height: 10px;"></td></tr>   
+            <tr><td style="height: 40px;">
+                揀貨&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>
+    <tr><td style="height: 10px;"></td></tr>
+            <tr><td style="height: 40px;">
+                確出&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>
+    <tr><td style="height: 10px;"></td></tr>
+            <tr><td style="height: 40px;">
+                損益&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>
+    <tr><td style="height: 10px;"></td></tr>
+            <tr><td style="height: 40px;">
+                完工&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>
+    <tr><td style="height: 10px;"></td></tr>
+            <tr><td style="height: 40px;">
+                檢日&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>
+            <tr><td style="height: 40px;">
+                驗收&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>     
+     
+          </table>
         </div>
 
-        <div class="col-md-3 mb-4">
-          <label class="font-weight-bold" style="color: #ff5151"
-            >來源與經驗</label
-          >
-          <label class="font-weight-bold">客戶來源: </label>
+         <div style="width:20px;"></div>
 
-          <div class="col-12">
-            <h4><label class="font-weight-bold">使用經驗</label></h4>
-          </div>
+        <div style="width:180px;">
+          <table class="container " style="padding:10px;text-align: right">
+            <tr><td style="height: 40px;">
+                門市別&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>  
+              <tr><td style="height: 40px;">
+                英文名&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>  
+    <tr><td style="height: 15px;"></td></tr>
+            <tr><td style="height: 40px;">
+               訂單總額&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>
+    <tr><td style="height: 10px;"></td></tr>
+            <tr><td style="height: 40px;">
+                <button>額外施工</button>&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>
+    <tr><td style="height: 10px;"></td></tr>
+            <tr><td style="height: 40px;">
+                帳單金額&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>
+    <tr><td style="height: 10px;"></td></tr>
+            <tr><td style="height: 40px;">
+                訂單餘額&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>
+    <tr><td style="height: 10px;"></td></tr>
+            <tr><td style="height: 40px;">
+                實收金額&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>
+    <tr><td style="height: 10px;"></td></tr>
+            <tr><td style="height: 40px;">
+                折讓金額&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>
+    <tr><td style="height: 10px;"></td></tr>   
+            <tr><td style="height: 40px;">
+                應收金額&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>
+    <tr><td style="height: 10px;"></td></tr>
+            <tr><td style="height: 40px;">
+                代墊餘額&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>
+    <tr><td style="height: 10px;"></td></tr>
+            <tr><td style="height: 40px;">
+                定規櫥櫃&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>
+    <tr><td style="height: 10px;"></td></tr>
+            <tr><td style="height: 40px;">
+                訂製櫃體&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>
+    <tr><td style="height: 10px;"></td></tr>
+            <tr><td style="height: 40px;">
+                配件&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>
+            <tr><td style="height: 40px;">
+                結案&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+            </td></tr>     
+     
+          </table>
         </div>
+
       </div>
 
       <div class="row" style="height: 450px">
@@ -233,13 +350,6 @@
         <div class="col-md-1 mb-4"></div>
       </div>
 
-      <div class="row" style="height: 500px">
-        <div class="col-md-6 mb-4"></div>
-
-        <div class="col-md-3 mb-4"></div>
-
-        <div class="col-md-3 mb-4" style="top: 54px"></div>
-      </div>
     </div>
   </a>
 </template>
