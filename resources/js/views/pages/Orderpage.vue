@@ -286,7 +286,7 @@
 
       </div>
 
-      <div class="row" style="height: 450px">
+      <div class="row" style="height: 500px">
         <div class="col-md-11 mb-4">
           <h2>
             <label class="font-weight-bold" style="color: #ff5151"
