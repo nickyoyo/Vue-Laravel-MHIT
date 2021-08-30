@@ -28,6 +28,7 @@ Route::get('/EMID',[GoogleController::class,'index']);
 Route::get('/search/CM/name/{CNO}',[SearchController::class,'searchCMname']);
 Route::get('/search/CM/{CNO}',[SearchController::class,'searchCM']);
 Route::get('/search/CTD/{codename}',[SearchController::class,'searchCTD']);
+Route::get('/search/CTD/Desc/{codename}&&{codeindex}',[SearchController::class,'searchCTDDesc']);
 Route::get('/search/CmMemo/{CNO}&&{MemoType}',[SearchController::class,'searchCmMemo']);
 Route::get('/search/CMCRFItems/{CNO}',[SearchController::class,'searchCMCRFItems']);
 Route::get('/search/PD',[SearchController::class,'searchPD']);
@@ -35,7 +36,9 @@ Route::get('/search/zip/{street}',[SearchController::class,'searchaddress']);
 Route::get('/search/chk/{CNO}',[SearchController::class,'searchCHK']);
 Route::get('/search/UserDept/{DVID}',[SearchController::class,'searchUserDeptMember']);//搜尋方式待修改
 Route::get('/search/Order/{CNO}',[SearchController::class,'searchOrder']);
-Route::get('/search/OrderDetail/{QNO}',[SearchController::class,'searchOrderDetail']);
+Route::get('/search/Orderdata/{QNO}',[SearchController::class,'searchOrderdata']);
+Route::get('/search/OrderDetailitem/{QNO}',[SearchController::class,'searchOrderDetailitem']);
+Route::get('/search/OrderitemPO/{QNO}',[SearchController::class,'searchOrderitemPO']);
 
 Route::post('/Update/CM',[UpdateController::class,'UpdateCM']);
 Route::post('/Update/CmMemo',[UpdateController::class,'UpdateCmMemo']);

@@ -27,20 +27,25 @@
         <button @click.prevent="Modify" type="submit">資料修改</button>&nbsp;
       </div>
       <br />
-      <form action="/" v-on:submit.prevent="postdata">
-        <div class="row" style="height: 400px">
-          <div class="col-md-6 mb-4">
-            <h2>
-              <label class="font-weight-bold" style="color: #ff5151"
-                >報價訂單列表</label
-              >
-            </h2>
-            <div
-              class="container text-center"
-              style="overflow-y: scroll; height: 250px; width: 700px; border: 1px black solid;"
+
+      <div class="row" style="height: 500px">
+        <div class="col-md-6 mb-4">
+          <h2>
+            <label class="font-weight-bold" style="color: #ff5151"
+              >報價訂單列表</label
             >
-              <table class="container" style="border: 1px black solid">
-                <thead>
+          </h2>
+          <div
+            class="container text-center"
+            style="
+              overflow-y: scroll;
+              height: 250px;
+              width: 700px;
+              border: 1px black solid;
+            "
+          >
+            <table class="container" style="border: 1px black solid">
+              <thead>
                 <tr style="border: 1px black solid">
                   <th class="orderth1">狀態</th>
                   <th class="orderth2">X</th>
@@ -48,49 +53,139 @@
                   <th class="orderth4">訂單總額</th>
                   <th></th>
                 </tr>
-                </thead>
-                <tr v-if="loadin">
-                  <loader></loader>
-                </tr>
-                <tr
-                  v-show="loadin == false"
-                  v-for="(item, index) in OrderList"
-                  :value="item"
-                  :key="index"
-                  style="border: 1px black solid"
-                  :hidden="show == 1"
-                >
-                  <td class="orderth1">訂單</td>
-                  <td class="orderth2"></td>
-                  <td class="orderth3">{{ item.QuotNo }}</td>
-                  <td class="orderth4">{{ item.TotalValue }}</td>
-                  <td><button @click="showDetail(index)">明細</button></td>
-                </tr>
-              </table>
-            </div>
-          </div>
-          <div class="col-md-3 mb-4">
-
-
-          </div>
-           <div class="col-md-3 mb-4">
-
-
+              </thead>
+              <tr v-if="loadin">
+                <loader></loader>
+              </tr>
+              <tr
+                v-show="loadin == false"
+                v-for="(item, index) in OrderList"
+                :value="item"
+                :key="index"
+                style="border: 1px black solid"
+                :hidden="show == 1"
+              >
+                <td class="orderth1">訂單</td>
+                <td class="orderth2"></td>
+                <td class="orderth3">{{ item.QuotNo }}</td>
+                <td class="orderth4">{{ item.TotalValue }}</td>
+                <td><button @click="GetOrderDetail(index)">明細</button></td>
+              </tr>
+            </table>
           </div>
         </div>
 
-        <div class="row" style="height: 450px">
-           <div class="col-md-11 mb-4">
-            <h2>
-              <label class="font-weight-bold" style="color: #ff5151"
-                >報價訂單明細</label
-              >
-            </h2>
-             <div
-              style="overflow-y: scroll; height: 400px; width: 1600px; border: 1px black solid;"
+        <div class="col-md-3 mb-4" style="border: 1px black solid">
+          <table>
+            
+            <td>分類</td>
+            <td>
+              <input
+                type="text"
+                style="height: 40px; width: 50px; text-align: center"
+                v-model="OrderData[0].OrderType"
+                readonly
+              />
+            </td>
+            <td>-</td>
+            <td>
+                <input
+                type="text"
+                style="height: 40px; width: 120px"
+                v-model="OrderDataCTD"
+                readonly
+              />
+            </td>
+          </table>
+          <br />
+          <table>
+            <th>
+              安裝地址
+              <br />
+              <input
+                type="text"
+                style="height: 40px; width: 50px;"
+                v-model="OrderData[0].ZIP"
+                readonly
+              />
+            </th>
+            <th>
+              <textarea
+                style="
+                  width: 300px;
+                  height: 80px;
+                  display: inline;
+                  vertical-align: middle;"
+                  v-model="OrderData[0].addr"
+                readonly
+              ></textarea>
+            </th>
+          </table>
+          <br />
+          <label class="font-weight-bold"
+            >Memo&nbsp;&nbsp;&nbsp;
+            <textarea
+              style="
+                width: 300px;
+                height: 80px;
+                display: inline;
+                vertical-align: middle;"
+                v-model="OrderDataMemo"
+              readonly
+            ></textarea>
+          </label>
+          <br /><br />
+            送: 
+          <input
+            type="text"
+            style="height: 40px; width: 100px; display: inline"
+            readonly
+          />
+            &nbsp;裝: 
+           <input
+            type="text"
+            style="height: 40px; width: 100px; display: inline"
+            readonly
+          /><br /><br />
+            出: 
+           <input
+            type="text"
+            style="height: 40px; width: 100px; display: inline"
+            v-model="OrderData[0].DispatchDate"
+            readonly
+          />
+          <br />
+        </div>
+
+        <div class="col-md-3 mb-4">
+          <label class="font-weight-bold" style="color: #ff5151"
+            >來源與經驗</label
+          >
+          <label class="font-weight-bold">客戶來源: </label>
+
+          <div class="col-12">
+            <h4><label class="font-weight-bold">使用經驗</label></h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="height: 450px">
+        <div class="col-md-11 mb-4">
+          <h2>
+            <label class="font-weight-bold" style="color: #ff5151"
+              >報價訂單明細</label
             >
-              <table style="border: 1px black solid;width: 1580px;">
-                <thead>
+          </h2>
+          <div
+            style="
+              overflow-y: scroll;
+              height: 400px;
+              width: 1600px;
+              border: 1px black solid;
+            "
+          >
+            <table style="border: 1px black solid; width: 1580px">
+              <thead>
                 <tr style="border: 1px black solid">
                   <th class="Dorderth1">項次</th>
                   <th class="Dorderth2">色號</th>
@@ -102,41 +197,49 @@
                   <th class="Dorderth8">是否有採購單</th>
                   <th class="Dorderth9">新增</th>
                 </tr>
-                </thead>
-                <tr v-if="loadinD">
-                  <loader></loader>
-                </tr>
-                <tr
-                  v-show="loadinD == false"
-                  v-for="(itemD, index) in OrderDetail"
-                  :value="itemD"
-                  :key="index"
-                  style="border: 1px black solid"
-                  :hidden="show == 1"
-                >
-                  <th class="Dorderth1">{{index+1}}</th>
-                  <th class="Dorderth2"></th>
-                  <th class="Dorderth3">{{itemD.SalesCode}}<br/><a style="color:blue;">{{itemD.SalesCodeData.Description}}[{{itemD.SalesCodeData.SupplierNo}}]</a></th>
-                  <th class="Dorderth4">{{itemD.UnitPrice}}</th>
-                  <th class="Dorderth5">{{itemD.Qty}}</th>
-                  <th class="Dorderth6">{{itemD.DiscountRate}}</th>
-                  <th class="Dorderth7">{{itemD.OrderValue}}</th>
-                  <th class="Dorderth8"></th>
-                  <th class="Dorderth9">{{itemD.OrderDate}}<br/>{{itemD.Ordermember}}</th>
-                </tr>
-              </table>
-            </div>
+              </thead>
+              <tr v-if="loadinD">
+                <loader></loader>
+              </tr>
+              <tr
+                v-show="loadinD == false"
+                v-for="(itemD, index) in OrderDetailitem"
+                :value="itemD"
+                :key="index"
+                style="border: 1px black solid"
+                :hidden="show == 1"
+              >
+                <th class="Dorderth1">{{ index + 1 }}</th>
+                <th class="Dorderth2"></th>
+                <th class="Dorderth3">
+                  {{ itemD.SalesCode }}<br /><a style="color: blue"
+                    >{{ itemD.SalesCodeData.Description }}[{{
+                      itemD.SalesCodeData.SupplierNo
+                    }}]</a
+                  >
+                </th>
+                <th class="Dorderth4">{{ itemD.UnitPrice }}</th>
+                <th class="Dorderth5">{{ itemD.Qty }}</th>
+                <th class="Dorderth6">{{ itemD.DiscountRate }}</th>
+                <th class="Dorderth7">{{ itemD.OrderValue }}</th>
+                <th class="Dorderth8"><a style="color:red" :hidden="itemD.poCheck==0">有採購單</a></th>
+                <th class="Dorderth9">
+                  {{ itemD.OrderDate }}<br />{{ itemD.Ordermember }}
+                </th>
+              </tr>
+            </table>
           </div>
-           <div class="col-md-1 mb-4"></div>
         </div>
-        <div class="row" style="height: 500px">
-          <div class="col-md-3 mb-4"></div>
+        <div class="col-md-1 mb-4"></div>
+      </div>
 
-          <div class="col-md-3 mb-4"></div>
+      <div class="row" style="height: 500px">
+        <div class="col-md-6 mb-4"></div>
 
-          <div class="col-md-3 mb-4" style="top: 54px"></div>
-        </div>
-      </form>
+        <div class="col-md-3 mb-4"></div>
+
+        <div class="col-md-3 mb-4" style="top: 54px"></div>
+      </div>
     </div>
   </a>
 </template>
@@ -152,21 +255,43 @@ export default {
       loadin: true,
       loadinD: false,
       OrderList: [],
-      OrderDetail: [],
+      OrderData: [{
+          OrderType:'',
+      }],
+      OrderDataMemo: "",
+      OrderDataCTD: "",
+      OrderDetailitem: [],
     };
   },
   methods: {
-      showDetail: function(index){
-           this.loadinD = true;
-          axios
-            .get("/api/search/OrderDetail/" + this.OrderList[index].QuotNo)
+    GetOrderDetail: function (index) {
+      this.loadinD = true;
+      axios
+        .get("/api/search/OrderDetailitem/" + this.OrderList[index].QuotNo)
+        .then((response) => {
+          console.log(response.data);
+          this.OrderDetailitem = response.data;
+          this.loadinD = false;
+        });
+      axios
+        .get("/api/search/Orderdata/" + this.OrderList[index].QuotNo)
+        .then((response) => {
+          console.log(response);
+          this.OrderData = response.data;
+           axios
+            .get("/api/search/CTD/Desc/訂單類&&" + this.OrderData[0].OrderType)
             .then((response) => {
-                console.log(response.data);
-                this.OrderDetail = response.data;
-                this.loadinD = false; 
+                console.log(response);
+                this.OrderDataCTD = response.data.codeDesc;
             });
-      },
-
+            axios
+            .get("/api/search/CmMemo/" + this.OrderData[0].QuotNo +"&&02")
+            .then((response) => {
+                console.log(response);
+                this.OrderDataMemo = response.data.memo;
+            });
+        });
+    },
   },
   props: {
     msg: String,
@@ -189,8 +314,8 @@ export default {
 
 <style>
 thead tr th {
- position:sticky;
- top:0;
+  position: sticky;
+  top: 0;
 }
 .topic {
   position: relative;

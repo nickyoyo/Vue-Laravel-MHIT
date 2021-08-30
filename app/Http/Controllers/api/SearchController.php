@@ -13,6 +13,7 @@ use App\Models\chk;
 use App\Models\SO;
 use App\Models\sod;
 use App\Models\im;
+use App\Models\po;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
@@ -110,13 +111,23 @@ class SearchController extends Controller
         if($codename=="屋型"){
             $data  = CTD::where('codename','屋型')->get();
         }    
-
+      
         foreach($data as $CTD){
             $CTD->codeindex=trim($CTD->codeindex);
         }
 
         return response()->json($data,200);
     }
+
+    public function searchCTDDesc($codename,$codeindex)        //CTD
+    {
+        if($codename == "訂單類"){
+            $data = CTD::where('codename','訂單類')->where('codeindex',$codeindex)->first();  
+            $data->codeindex=trim($data->codeindex); 
+        }    
+        return response()->json($data,200);
+    }
+
     public function searchCmMemo($CNO,$MemoType)        //CmMemo
     {
         if($MemoType=='85'){
@@ -127,6 +138,15 @@ class SearchController extends Controller
             }         
             return response()->json($data,200);
         }
+        if($MemoType=='02'){
+            $data = CmMemo::where('OrderNo',trim($CNO))->where('Type_',$MemoType)->first(['CmMemo.*','備註 as memo']);
+            if($data != NULL){
+                $data->code_ = trim($data->code_);
+                $data->Type_ = trim($data->Type_);
+            }         
+            return response()->json($data,200);
+        }
+
         $MemoType = $MemoType." ";
         $memonum =array('0','0','0','0','0','0');
         $useCM = cm::where('CustNo',trim($CNO))->first();
@@ -331,17 +351,52 @@ class SearchController extends Controller
         return response()->json([$data,'msg' => ''],200);
     }
 
-    public function searchOrderDetail($QNO)        
+    public function searchOrderdata($QNO)       
     {
-        $data = sod::where('QuotNo',trim($QNO))->get(['sod.*','UserID as Ordermember','SalesCode as SalesCodeData']);
+        $data = SO::where('QuotNo',trim($QNO))->where('OrderDate','>','00000000')->orderby('QuotNo','asc')->get();
+        foreach($data as $list){
+            $list->TotalValue=(int)$list->TotalValue;
+            $list->OrderDate = substr($list->OrderDate, 0, 4)."/".substr($list->OrderDate, 4, 2)."/".substr($list->OrderDate, 6, 2);  
+            $list->DispatchDate = substr($list->DispatchDate, 0, 4)."/".substr($list->DispatchDate, 4, 2)."/".substr($list->DispatchDate, 6, 2);  
+        }
+      
+        return response()->json($data,200);
+    }
+
+    public function searchOrderDetailitem($QNO)        
+    {
+        $data = sod::where('QuotNo',trim($QNO))->get(['sod.*','UserID as Ordermember','SalesCode as SalesCodeData','temp as poCheck']);
 
         foreach($data as $list){
+            $list->UnitPrice = (int)$list->UnitPrice;
+            $list->OrderValue = (int)$list->OrderValue; 
             $member = EM13::where('EMID','=', $list->UserID)->first();
             $list->Ordermember= $member->EMME;
+
             $SalesCodeData = im::where('SKU','=', $list->SalesCode)->first();
             $list->SalesCodeData = $SalesCodeData;
+            $list->OrderDate = substr($list->OrderDate, 0, 4)."/".substr($list->OrderDate, 4, 2)."/".substr($list->OrderDate, 6, 2);  
+            $list->DispatchDate = substr($list->DispatchDate, 0, 4)."/".substr($list->DispatchDate, 4, 2)."/".substr($list->DispatchDate, 6, 2);  
+
+            $list->poCheck=0;
+            $poCh = po::where('QuotNo',trim($QNO))->get();
+            if(count($poCh)>0){
+                $list->poCheck=1;
+            }
         }
 
         return response()->json($data,200);
     }
+
+    public function searchOrderitemPO($QNO)        
+    {
+        $getorder=0;
+        $data = po::where('QuotNo',trim($QNO))->get();
+        if(count($data)>0){
+            $getorder=1;
+        }
+
+        return response()->json($getorder,200);
+    }
+
 }
