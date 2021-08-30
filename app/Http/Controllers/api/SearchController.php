@@ -383,7 +383,7 @@ class SearchController extends Controller
                 $list->RangeName="";
             }
             else{
-                $list->RangeName = $doorcolor->$doorcolor;
+                $list->RangeName = $doorcolor->$codeDesc;
             }    
 
             $list->poCheck=0;
