@@ -12,6 +12,7 @@ use App\Models\zip;
 use App\Models\chk;
 use App\Models\SO;
 use App\Models\sod;
+use App\Models\im;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
@@ -332,11 +333,13 @@ class SearchController extends Controller
 
     public function searchOrderDetail($QNO)        
     {
-        $data = sod::where('QuotNo',trim($QNO))->get(['sod.*','UserID as Ordermember']);
+        $data = sod::where('QuotNo',trim($QNO))->get(['sod.*','UserID as Ordermember','SalesCode as SalesCodeData']);
 
         foreach($data as $list){
-            $member = EM13::where('EMID','=', $list->UserID)->where('OFDT','=','00000000')->first();
+            $member = EM13::where('EMID','=', $list->UserID)->first();
             $list->Ordermember= $member->EMME;
+            $SalesCodeData = im::where('SKU','=', $list->SalesCode)->first();
+            $list->SalesCodeData = $SalesCodeData;
         }
 
         return response()->json($data,200);

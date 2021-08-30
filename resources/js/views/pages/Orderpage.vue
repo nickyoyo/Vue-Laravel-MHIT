@@ -69,7 +69,14 @@
               </table>
             </div>
           </div>
-          <div class="col-md-6 mb-4"></div>
+          <div class="col-md-3 mb-4">
+
+
+          </div>
+           <div class="col-md-3 mb-4">
+
+
+          </div>
         </div>
 
         <div class="row" style="height: 450px">
@@ -109,7 +116,7 @@
                 >
                   <th class="Dorderth1">{{index+1}}</th>
                   <th class="Dorderth2"></th>
-                  <th class="Dorderth3"></th>
+                  <th class="Dorderth3">{{itemD.SalesCode}}<br/><a style="color:blue;">{{itemD.SalesCodeData.Description}}[{{itemD.SalesCodeData.SupplierNo}}]</a></th>
                   <th class="Dorderth4">{{itemD.UnitPrice}}</th>
                   <th class="Dorderth5">{{itemD.Qty}}</th>
                   <th class="Dorderth6">{{itemD.DiscountRate}}</th>
@@ -219,8 +226,7 @@ thead tr th {
   border: 1px black solid;
 }
 .Dorderth3 {
-  width: 30%;
-  text-align: center;
+  width: 35%;
 }
 .Dorderth4 {
   width: 5%;
@@ -246,7 +252,7 @@ thead tr th {
   border: 1px black solid;
 }
 .Dorderth9 {
-  width: 15%;
+  width: 10%;
   text-align: center;
 }
 
