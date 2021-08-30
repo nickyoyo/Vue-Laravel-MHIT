@@ -124,7 +124,7 @@ class SearchController extends Controller
         if($codename == "訂單類"){
             $data = CTD::where('codename','訂單類')->where('codeindex',$codeindex)->first();  
             $data->codeindex=trim($data->codeindex); 
-        }    
+        }      
         return response()->json($data,200);
     }
 
@@ -365,7 +365,7 @@ class SearchController extends Controller
 
     public function searchOrderDetailitem($QNO)        
     {
-        $data = sod::where('QuotNo',trim($QNO))->get(['sod.*','UserID as Ordermember','SalesCode as SalesCodeData','temp as poCheck']);
+        $data = sod::where('QuotNo',trim($QNO))->get(['sod.*','UserID as Ordermember','SalesCode as SalesCodeData','temp as poCheck','Ragne as RangeName']);
 
         foreach($data as $list){
             $list->UnitPrice = (int)$list->UnitPrice;
@@ -377,6 +377,14 @@ class SearchController extends Controller
             $list->SalesCodeData = $SalesCodeData;
             $list->OrderDate = substr($list->OrderDate, 0, 4)."/".substr($list->OrderDate, 4, 2)."/".substr($list->OrderDate, 6, 2);  
             $list->DispatchDate = substr($list->DispatchDate, 0, 4)."/".substr($list->DispatchDate, 4, 2)."/".substr($list->DispatchDate, 6, 2);  
+
+            $doorcolor = CTD::where('codename','門板色')->where('codeindex',$list->Ragne)->first();  
+            if($doorcolor==NULL){
+                $list->RangeName="";
+            }
+            else{
+                $list->RangeName = $doorcolor->$doorcolor;
+            }    
 
             $list->poCheck=0;
             $poCh = po::where('QuotNo',trim($QNO))->get();

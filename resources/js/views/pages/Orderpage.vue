@@ -97,7 +97,7 @@
                 <input
                 type="text"
                 style="height: 40px; width: 120px"
-                v-model="OrderDataCTD"
+                v-model="OrderDataCTDtype"
                 readonly
               />
             </td>
@@ -327,7 +327,9 @@
                 :hidden="show == 1"
               >
                 <th class="Dorderth1">{{ index + 1 }}</th>
-                <th class="Dorderth2"></th>
+                <th class="Dorderth2">  {{ itemD.Ragne }}<br /><a style="color: green">
+                     {{ itemD.RangeName}}
+                    </a></th>
                 <th class="Dorderth3">
                   {{ itemD.SalesCode }}<br /><a style="color: blue"
                     >{{ itemD.SalesCodeData.Description }}[{{
@@ -369,7 +371,7 @@ export default {
           OrderType:'',
       }],
       OrderDataMemo: "",
-      OrderDataCTD: "",
+      OrderDataCTDtype: "",
       OrderDetailitem: [],
     };
   },
@@ -392,7 +394,7 @@ export default {
             .get("/api/search/CTD/Desc/訂單類&&" + this.OrderData[0].OrderType)
             .then((response) => {
                 console.log(response);
-                this.OrderDataCTD = response.data.codeDesc;
+                this.OrderDataCTDtype = response.data.codeDesc;
             });
             axios
             .get("/api/search/CmMemo/" + this.OrderData[0].QuotNo +"&&02")

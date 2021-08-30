@@ -17636,7 +17636,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         OrderType: ''
       }],
       OrderDataMemo: "",
-      OrderDataCTD: "",
+      OrderDataCTDtype: "",
       OrderDetailitem: []
     };
   },
@@ -17655,7 +17655,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         _this.OrderData = response.data;
         axios.get("/api/search/CTD/Desc/訂單類&&" + _this.OrderData[0].OrderType).then(function (response) {
           console.log(response);
-          _this.OrderDataCTD = response.data.codeDesc;
+          _this.OrderDataCTDtype = response.data.codeDesc;
         });
         axios.get("/api/search/CmMemo/" + _this.OrderData[0].QuotNo + "&&02").then(function (response) {
           console.log(response);
@@ -20213,7 +20213,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _Orderpage_vue_vue_type_template_id_6b1f86fa_bindings_loadin_data_loadinD_data_OrderList_data_OrderData_data_OrderDataMemo_data_OrderDataCTD_data_OrderDetailitem_data_GetOrderDetail_options_msg_props___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={"loadin":"data","loadinD":"data","OrderList":"data","OrderData":"data","OrderDataMemo":"data","OrderDataCTD":"data","OrderDetailitem":"data","GetOrderDetail":"options","msg":"props"} */ "./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={\"loadin\":\"data\",\"loadinD\":\"data\",\"OrderList\":\"data\",\"OrderData\":\"data\",\"OrderDataMemo\":\"data\",\"OrderDataCTD\":\"data\",\"OrderDetailitem\":\"data\",\"GetOrderDetail\":\"options\",\"msg\":\"props\"}");
+/* harmony import */ var _Orderpage_vue_vue_type_template_id_6b1f86fa_bindings_loadin_data_loadinD_data_OrderList_data_OrderData_data_OrderDataMemo_data_OrderDataCTDtype_data_OrderDetailitem_data_GetOrderDetail_options_msg_props___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={"loadin":"data","loadinD":"data","OrderList":"data","OrderData":"data","OrderDataMemo":"data","OrderDataCTDtype":"data","OrderDetailitem":"data","GetOrderDetail":"options","msg":"props"} */ "./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={\"loadin\":\"data\",\"loadinD\":\"data\",\"OrderList\":\"data\",\"OrderData\":\"data\",\"OrderDataMemo\":\"data\",\"OrderDataCTDtype\":\"data\",\"OrderDetailitem\":\"data\",\"GetOrderDetail\":\"options\",\"msg\":\"props\"}");
 /* harmony import */ var _Orderpage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Orderpage.vue?vue&type=script&lang=js */ "./resources/js/views/pages/Orderpage.vue?vue&type=script&lang=js");
 /* harmony import */ var _Orderpage_vue_vue_type_style_index_0_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Orderpage.vue?vue&type=style&index=0&lang=css */ "./resources/js/views/pages/Orderpage.vue?vue&type=style&index=0&lang=css");
 
@@ -20221,7 +20221,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-_Orderpage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _Orderpage_vue_vue_type_template_id_6b1f86fa_bindings_loadin_data_loadinD_data_OrderList_data_OrderData_data_OrderDataMemo_data_OrderDataCTD_data_OrderDetailitem_data_GetOrderDetail_options_msg_props___WEBPACK_IMPORTED_MODULE_0__.render
+_Orderpage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _Orderpage_vue_vue_type_template_id_6b1f86fa_bindings_loadin_data_loadinD_data_OrderList_data_OrderData_data_OrderDataMemo_data_OrderDataCTDtype_data_OrderDetailitem_data_GetOrderDetail_options_msg_props___WEBPACK_IMPORTED_MODULE_0__.render
 /* hot reload */
 if (false) {}
 
@@ -21324,12 +21324,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={\"loadin\":\"data\",\"loadinD\":\"data\",\"OrderList\":\"data\",\"OrderData\":\"data\",\"OrderDataMemo\":\"data\",\"OrderDataCTD\":\"data\",\"OrderDetailitem\":\"data\",\"GetOrderDetail\":\"options\",\"msg\":\"props\"}":
-/*!*******************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={"loadin":"data","loadinD":"data","OrderList":"data","OrderData":"data","OrderDataMemo":"data","OrderDataCTD":"data","OrderDetailitem":"data","GetOrderDetail":"options","msg":"props"} ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={\"loadin\":\"data\",\"loadinD\":\"data\",\"OrderList\":\"data\",\"OrderData\":\"data\",\"OrderDataMemo\":\"data\",\"OrderDataCTDtype\":\"data\",\"OrderDetailitem\":\"data\",\"GetOrderDetail\":\"options\",\"msg\":\"props\"}":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={"loadin":"data","loadinD":"data","OrderList":"data","OrderData":"data","OrderDataMemo":"data","OrderDataCTDtype":"data","OrderDetailitem":"data","GetOrderDetail":"options","msg":"props"} ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={"loadin":"data","loadinD":"data","OrderList":"data","OrderData":"data","OrderDataMemo":"data","OrderDataCTD":"data","OrderDetailitem":"data","GetOrderDetail":"options","msg":"props"} .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={"loadin":"data","loadinD":"data","OrderList":"data","OrderData":"data","OrderDataMemo":"data","OrderDataCTDtype":"data","OrderDetailitem":"data","GetOrderDetail":"options","msg":"props"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -21337,9 +21337,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Orderpage_vue_vue_type_template_id_6b1f86fa_bindings_loadin_data_loadinD_data_OrderList_data_OrderData_data_OrderDataMemo_data_OrderDataCTD_data_OrderDetailitem_data_GetOrderDetail_options_msg_props___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Orderpage_vue_vue_type_template_id_6b1f86fa_bindings_loadin_data_loadinD_data_OrderList_data_OrderData_data_OrderDataMemo_data_OrderDataCTDtype_data_OrderDetailitem_data_GetOrderDetail_options_msg_props___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Orderpage_vue_vue_type_template_id_6b1f86fa_bindings_loadin_data_loadinD_data_OrderList_data_OrderData_data_OrderDataMemo_data_OrderDataCTD_data_OrderDetailitem_data_GetOrderDetail_options_msg_props___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={"loadin":"data","loadinD":"data","OrderList":"data","OrderData":"data","OrderDataMemo":"data","OrderDataCTD":"data","OrderDetailitem":"data","GetOrderDetail":"options","msg":"props"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={\"loadin\":\"data\",\"loadinD\":\"data\",\"OrderList\":\"data\",\"OrderData\":\"data\",\"OrderDataMemo\":\"data\",\"OrderDataCTD\":\"data\",\"OrderDetailitem\":\"data\",\"GetOrderDetail\":\"options\",\"msg\":\"props\"}");
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Orderpage_vue_vue_type_template_id_6b1f86fa_bindings_loadin_data_loadinD_data_OrderList_data_OrderData_data_OrderDataMemo_data_OrderDataCTDtype_data_OrderDetailitem_data_GetOrderDetail_options_msg_props___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={"loadin":"data","loadinD":"data","OrderList":"data","OrderData":"data","OrderDataMemo":"data","OrderDataCTDtype":"data","OrderDetailitem":"data","GetOrderDetail":"options","msg":"props"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={\"loadin\":\"data\",\"loadinD\":\"data\",\"OrderList\":\"data\",\"OrderData\":\"data\",\"OrderDataMemo\":\"data\",\"OrderDataCTDtype\":\"data\",\"OrderDetailitem\":\"data\",\"GetOrderDetail\":\"options\",\"msg\":\"props\"}");
 
 
 /***/ }),
@@ -26980,10 +26980,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={\"loadin\":\"data\",\"loadinD\":\"data\",\"OrderList\":\"data\",\"OrderData\":\"data\",\"OrderDataMemo\":\"data\",\"OrderDataCTD\":\"data\",\"OrderDetailitem\":\"data\",\"GetOrderDetail\":\"options\",\"msg\":\"props\"}":
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={"loadin":"data","loadinD":"data","OrderList":"data","OrderData":"data","OrderDataMemo":"data","OrderDataCTD":"data","OrderDetailitem":"data","GetOrderDetail":"options","msg":"props"} ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={\"loadin\":\"data\",\"loadinD\":\"data\",\"OrderList\":\"data\",\"OrderData\":\"data\",\"OrderDataMemo\":\"data\",\"OrderDataCTDtype\":\"data\",\"OrderDetailitem\":\"data\",\"GetOrderDetail\":\"options\",\"msg\":\"props\"}":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={"loadin":"data","loadinD":"data","OrderList":"data","OrderData":"data","OrderDataMemo":"data","OrderDataCTDtype":"data","OrderDetailitem":"data","GetOrderDetail":"options","msg":"props"} ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -27117,18 +27117,20 @@ const _hoisted_49 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode
 ], -1 /* HOISTED */)
 const _hoisted_50 = { key: 0 }
 const _hoisted_51 = { class: "Dorderth1" }
-const _hoisted_52 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", { class: "Dorderth2" }, null, -1 /* HOISTED */)
-const _hoisted_53 = { class: "Dorderth3" }
-const _hoisted_54 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
-const _hoisted_55 = { style: {"color":"blue"} }
-const _hoisted_56 = { class: "Dorderth4" }
-const _hoisted_57 = { class: "Dorderth5" }
-const _hoisted_58 = { class: "Dorderth6" }
-const _hoisted_59 = { class: "Dorderth7" }
-const _hoisted_60 = { class: "Dorderth8" }
-const _hoisted_61 = { class: "Dorderth9" }
-const _hoisted_62 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
-const _hoisted_63 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", { class: "col-md-1 mb-4" }, null, -1 /* HOISTED */)
+const _hoisted_52 = { class: "Dorderth2" }
+const _hoisted_53 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
+const _hoisted_54 = { style: {"color":"green"} }
+const _hoisted_55 = { class: "Dorderth3" }
+const _hoisted_56 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
+const _hoisted_57 = { style: {"color":"blue"} }
+const _hoisted_58 = { class: "Dorderth4" }
+const _hoisted_59 = { class: "Dorderth5" }
+const _hoisted_60 = { class: "Dorderth6" }
+const _hoisted_61 = { class: "Dorderth7" }
+const _hoisted_62 = { class: "Dorderth8" }
+const _hoisted_63 = { class: "Dorderth9" }
+const _hoisted_64 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
+const _hoisted_65 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", { class: "col-md-1 mb-4" }, null, -1 /* HOISTED */)
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_loader = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("loader")
@@ -27214,10 +27216,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
                       type: "text",
                       style: {"height":"40px","width":"120px"},
-                      "onUpdate:modelValue": _cache[4] || (_cache[4] = $event => ($data.OrderDataCTD = $event)),
+                      "onUpdate:modelValue": _cache[4] || (_cache[4] = $event => ($data.OrderDataCTDtype = $event)),
                       readonly: ""
                     }, null, 512 /* NEED_PATCH */), [
-                      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderDataCTD]
+                      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderDataCTDtype]
                     ])
                   ])
                 ]),
@@ -27297,25 +27299,29 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                       hidden: _ctx.show == 1
                     }, [
                       (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_51, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(index + 1), 1 /* TEXT */),
-                      _hoisted_52,
-                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_53, [
-                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.SalesCode), 1 /* TEXT */),
-                        _hoisted_54,
-                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", _hoisted_55, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.SalesCodeData.Description) + "[" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.SalesCodeData.SupplierNo) + "]", 1 /* TEXT */)
+                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_52, [
+                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.Ragne), 1 /* TEXT */),
+                        _hoisted_53,
+                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", _hoisted_54, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.RangeName), 1 /* TEXT */)
                       ]),
-                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_56, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.UnitPrice), 1 /* TEXT */),
-                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_57, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.Qty), 1 /* TEXT */),
-                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_58, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.DiscountRate), 1 /* TEXT */),
-                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_59, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.OrderValue), 1 /* TEXT */),
-                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_60, [
+                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_55, [
+                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.SalesCode), 1 /* TEXT */),
+                        _hoisted_56,
+                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", _hoisted_57, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.SalesCodeData.Description) + "[" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.SalesCodeData.SupplierNo) + "]", 1 /* TEXT */)
+                      ]),
+                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_58, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.UnitPrice), 1 /* TEXT */),
+                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_59, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.Qty), 1 /* TEXT */),
+                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_60, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.DiscountRate), 1 /* TEXT */),
+                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_61, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.OrderValue), 1 /* TEXT */),
+                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_62, [
                         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
                           style: {"color":"red"},
                           hidden: itemD.poCheck==0
                         }, "有採購單", 8 /* PROPS */, ["hidden"])
                       ]),
-                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_61, [
+                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_63, [
                         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.OrderDate), 1 /* TEXT */),
-                        _hoisted_62,
+                        _hoisted_64,
                         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.Ordermember), 1 /* TEXT */)
                       ])
                     ], 8 /* PROPS */, ["value", "hidden"])), [
@@ -27325,7 +27331,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 ])
               ])
             ]),
-            _hoisted_63
+            _hoisted_65
           ])
         ])
       ]))
