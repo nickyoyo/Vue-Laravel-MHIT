@@ -1,33 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@nickyoyo 
-nickyoyo
-/
-Vue-Laravel-MHIT
-1
-00
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Settings
-Vue-Laravel-MHIT/resources/js/views/pages/Orderpage.vue
-
-nick 2021.8.31-L+V-訂單資料
-Latest commit 818926e 1 hour ago
- History
- 0 contributors
-513 lines (497 sloc)  17.2 KB
-  
 <template>
   <div id="loading" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
       <div class="modal-dialog modal-sm" >
@@ -262,50 +232,50 @@ Latest commit 818926e 1 hour ago
             </td></tr>  
     <tr><td style="height: 15px;"></td></tr>
             <tr><td style="height: 40px;">
-               訂單總額&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderDataARM1.OrderValue" readonly />
+               訂單總額&nbsp;<input type="text" style="height: 30px; width: 90px; text-align: right" v-model="OrderDataARM1.OrderValue" readonly />
             </td></tr>
     <tr><td style="height: 10px;"></td></tr>
             <tr><td style="height: 40px;">
-                <button>額外施工</button>&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderDataARM1.exwork" readonly />
+                <button>額外施工</button>&nbsp;<input type="text" style="height: 30px; width: 90px;text-align: right" v-model="OrderDataARM1.exwork" readonly />
             </td></tr>
     <tr><td style="height: 10px;"></td></tr>
             <tr><td style="height: 40px;">
-                帳單金額&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderDataARM1.OrderValue1" readonly />
+                帳單金額&nbsp;<input type="text" style="height: 30px; width: 90px;text-align: right" v-model="OrderDataARM1.OrderValue1" readonly />
             </td></tr>
     <tr><td style="height: 10px;"></td></tr>
             <tr><td style="height: 40px;">
-                訂單餘額&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderDataARM1.HelpPayValue" readonly />
+                訂單餘額&nbsp;<input type="text" style="height: 30px; width: 90px;text-align: right" v-model="OrderDataARM1.HelpPayValue" readonly />
             </td></tr>
     <tr><td style="height: 10px;"></td></tr>
             <tr><td style="height: 40px;">
-                實收金額&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderDataARM1.TrueValue" readonly />
+                實收金額&nbsp;<input type="text" style="height: 30px; width: 90px;text-align: right" v-model="OrderDataARM1.TrueValue" readonly />
             </td></tr>
     <tr><td style="height: 10px;"></td></tr>
             <tr><td style="height: 40px;">
-                折讓金額&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderDataARM1.RebateValue" readonly />
+                折讓金額&nbsp;<input type="text" style="height: 30px; width: 90px;text-align: right" v-model="OrderDataARM1.RebateValue" readonly />
             </td></tr>
     <tr><td style="height: 10px;"></td></tr>   
             <tr><td style="height: 40px;">
-                應收餘額&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderDataARM1.ShouldValue" readonly />
+                應收餘額&nbsp;<input type="text" style="height: 30px; width: 90px;text-align: right" v-model="OrderDataARM1.ShouldValue" readonly />
             </td></tr>
     <tr><td style="height: 10px;"></td></tr>
             <tr><td style="height: 40px;">
-                代墊餘額&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderDataARM1.HelpPayValue1" readonly />
+                代墊餘額&nbsp;<input type="text" style="height: 30px; width: 90px;text-align: right" v-model="OrderDataARM1.HelpPayValue1" readonly />
             </td></tr>
     <tr><td style="height: 10px;"></td></tr>
             <tr><td style="height: 40px;">
-                定規櫥櫃&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+                定規櫥櫃&nbsp;<input type="text" style="height: 30px; width: 90px;text-align: right" readonly />
             </td></tr>
     <tr><td style="height: 10px;"></td></tr>
             <tr><td style="height: 40px;">
-                訂製櫃體&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderDataARM1.MFI" readonly />
+                訂製櫃體&nbsp;<input type="text" style="height: 30px; width: 90px;text-align: right" v-model="OrderDataARM1.MFI" readonly />
             </td></tr>
     <tr><td style="height: 10px;"></td></tr>
             <tr><td style="height: 40px;">
-                配件&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderDataARM1.Local_" readonly />
+                配件&nbsp;<input type="text" style="height: 30px; width: 90px;text-align: right" v-model="OrderDataARM1.Local_" readonly />
             </td></tr>
             <tr><td style="height: 40px;">
-                結案&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+                結案&nbsp;<input type="text" style="height: 30px; width: 90px;text-align: right" readonly />
             </td></tr>     
      
           </table>

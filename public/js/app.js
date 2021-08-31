@@ -27272,7 +27272,7 @@ const _hoisted_117 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNod
     /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 定規櫥櫃 "),
     /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
       type: "text",
-      style: {"height":"30px","width":"90px"},
+      style: {"height":"30px","width":"90px","text-align":"right"},
       readonly: ""
     })
   ])
@@ -27292,7 +27292,7 @@ const _hoisted_124 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNod
     /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" 結案 "),
     /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
       type: "text",
-      style: {"height":"30px","width":"90px"},
+      style: {"height":"30px","width":"90px","text-align":"right"},
       readonly: ""
     })
   ])
@@ -27723,7 +27723,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                   _hoisted_93,
                   (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
                     type: "text",
-                    style: {"height":"30px","width":"90px"},
+                    style: {"height":"30px","width":"90px","text-align":"right"},
                     "onUpdate:modelValue": _cache[27] || (_cache[27] = $event => ($data.OrderDataARM1.OrderValue = $event)),
                     readonly: ""
                   }, null, 512 /* NEED_PATCH */), [
@@ -27738,7 +27738,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                   _hoisted_97,
                   (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
                     type: "text",
-                    style: {"height":"30px","width":"90px"},
+                    style: {"height":"30px","width":"90px","text-align":"right"},
                     "onUpdate:modelValue": _cache[28] || (_cache[28] = $event => ($data.OrderDataARM1.exwork = $event)),
                     readonly: ""
                   }, null, 512 /* NEED_PATCH */), [
@@ -27752,7 +27752,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                   _hoisted_100,
                   (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
                     type: "text",
-                    style: {"height":"30px","width":"90px"},
+                    style: {"height":"30px","width":"90px","text-align":"right"},
                     "onUpdate:modelValue": _cache[29] || (_cache[29] = $event => ($data.OrderDataARM1.OrderValue1 = $event)),
                     readonly: ""
                   }, null, 512 /* NEED_PATCH */), [
@@ -27766,7 +27766,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                   _hoisted_103,
                   (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
                     type: "text",
-                    style: {"height":"30px","width":"90px"},
+                    style: {"height":"30px","width":"90px","text-align":"right"},
                     "onUpdate:modelValue": _cache[30] || (_cache[30] = $event => ($data.OrderDataARM1.HelpPayValue = $event)),
                     readonly: ""
                   }, null, 512 /* NEED_PATCH */), [
@@ -27780,7 +27780,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                   _hoisted_106,
                   (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
                     type: "text",
-                    style: {"height":"30px","width":"90px"},
+                    style: {"height":"30px","width":"90px","text-align":"right"},
                     "onUpdate:modelValue": _cache[31] || (_cache[31] = $event => ($data.OrderDataARM1.TrueValue = $event)),
                     readonly: ""
                   }, null, 512 /* NEED_PATCH */), [
@@ -27794,7 +27794,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                   _hoisted_109,
                   (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
                     type: "text",
-                    style: {"height":"30px","width":"90px"},
+                    style: {"height":"30px","width":"90px","text-align":"right"},
                     "onUpdate:modelValue": _cache[32] || (_cache[32] = $event => ($data.OrderDataARM1.RebateValue = $event)),
                     readonly: ""
                   }, null, 512 /* NEED_PATCH */), [
@@ -27808,7 +27808,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                   _hoisted_112,
                   (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
                     type: "text",
-                    style: {"height":"30px","width":"90px"},
+                    style: {"height":"30px","width":"90px","text-align":"right"},
                     "onUpdate:modelValue": _cache[33] || (_cache[33] = $event => ($data.OrderDataARM1.ShouldValue = $event)),
                     readonly: ""
                   }, null, 512 /* NEED_PATCH */), [
@@ -27822,7 +27822,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                   _hoisted_115,
                   (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
                     type: "text",
-                    style: {"height":"30px","width":"90px"},
+                    style: {"height":"30px","width":"90px","text-align":"right"},
                     "onUpdate:modelValue": _cache[34] || (_cache[34] = $event => ($data.OrderDataARM1.HelpPayValue1 = $event)),
                     readonly: ""
                   }, null, 512 /* NEED_PATCH */), [
@@ -27838,7 +27838,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                   _hoisted_120,
                   (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
                     type: "text",
-                    style: {"height":"30px","width":"90px"},
+                    style: {"height":"30px","width":"90px","text-align":"right"},
                     "onUpdate:modelValue": _cache[35] || (_cache[35] = $event => ($data.OrderDataARM1.MFI = $event)),
                     readonly: ""
                   }, null, 512 /* NEED_PATCH */), [
@@ -27852,7 +27852,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                   _hoisted_123,
                   (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
                     type: "text",
-                    style: {"height":"30px","width":"90px"},
+                    style: {"height":"30px","width":"90px","text-align":"right"},
                     "onUpdate:modelValue": _cache[36] || (_cache[36] = $event => ($data.OrderDataARM1.Local_ = $event)),
                     readonly: ""
                   }, null, 512 /* NEED_PATCH */), [
