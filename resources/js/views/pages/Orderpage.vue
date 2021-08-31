@@ -373,7 +373,7 @@ export default {
   methods: {
     GetOrderDetail: function (index) {
       this.Selectorder=index;
-       $("#loading").modal('toggle');
+       $("#loading").modal('show');
       axios
         .get("/api/search/OrderDetailitem/" + this.OrderList[index].QuotNo)
         .then((response) => {
@@ -414,7 +414,6 @@ export default {
             .get("/api/search/OrderARM1/" + this.OrderData[0].QuotNo)
             .then((response) => {
                 console.log(response);
-                $("#loading").modal('hide');
                 this.OrderDataARM1 = response.data;
             });
         });
