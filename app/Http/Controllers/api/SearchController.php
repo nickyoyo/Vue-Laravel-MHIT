@@ -48,6 +48,15 @@ class SearchController extends Controller
         $data = cm::where('CustName','LIKE', $searchname.'%')->get();
         return response()->json(['CM' => $data],200);
     }
+    public function searchCMAll(){
+        $data = cm::where('CustNo','LIKE', 'C'.'%')->where('門市別','1000')->get();
+        foreach($data as $list){
+            $EM = EM13::where('EMID','=', $list->UserId)->first();
+            $list->UserId = $EM;
+            $list->DataCreate = substr($list->DataCreate, 0, 4)."/".substr($list->DataCreate, 4, 2)."/".substr($list->DataCreate, 6, 2);  
+        }
+        return response()->json($data,200);
+    }
     public function searchCM($CNO)          //CM-Data、月曆格式轉換、CTD
     {
         $useCM = cm::where('CustNo',trim($CNO))->first();
