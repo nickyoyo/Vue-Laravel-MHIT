@@ -17629,8 +17629,6 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   name: "Orderpage",
   data: function data() {
     return {
-      loadin: true,
-      loadinD: false,
       OrderList: [],
       OrderData: [{
         OrderType: ''
@@ -17648,11 +17646,11 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       var _this = this;
 
       this.Selectorder = index;
-      this.loadinD = true;
+      $("#loading").modal('toggle');
       axios.get("/api/search/OrderDetailitem/" + this.OrderList[index].QuotNo).then(function (response) {
         console.log(response.data);
         _this.OrderDetailitem = response.data;
-        _this.loadinD = false;
+        $("#loading").modal('toggle');
       });
       axios.get("/api/search/Orderdata/" + this.OrderList[index].QuotNo).then(function (response) {
         console.log(response);
@@ -17682,10 +17680,11 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   beforeCreate: function beforeCreate() {
     var _this2 = this;
 
+    $("#loading").modal('toggle');
     axios.get("/api/search/Order/" + this.$route.params.CNO).then(function (response) {
       console.log(response);
       _this2.OrderList = response.data[0];
-      _this2.loadin = false;
+      $("#loading").modal('hide');
 
       if (response.data == null) {
         var message = "此客編不存在";
@@ -20225,7 +20224,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _Orderpage_vue_vue_type_template_id_6b1f86fa_bindings_loadin_data_loadinD_data_OrderList_data_OrderData_data_OrderDataMemo_data_OrderDataCTDtype_data_OrderDetailitem_data_OrderDataFINST_data_OrderDataEM_data_Selectorder_data_GetOrderDetail_options_msg_props___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={"loadin":"data","loadinD":"data","OrderList":"data","OrderData":"data","OrderDataMemo":"data","OrderDataCTDtype":"data","OrderDetailitem":"data","OrderDataFINST":"data","OrderDataEM":"data","Selectorder":"data","GetOrderDetail":"options","msg":"props"} */ "./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={\"loadin\":\"data\",\"loadinD\":\"data\",\"OrderList\":\"data\",\"OrderData\":\"data\",\"OrderDataMemo\":\"data\",\"OrderDataCTDtype\":\"data\",\"OrderDetailitem\":\"data\",\"OrderDataFINST\":\"data\",\"OrderDataEM\":\"data\",\"Selectorder\":\"data\",\"GetOrderDetail\":\"options\",\"msg\":\"props\"}");
+/* harmony import */ var _Orderpage_vue_vue_type_template_id_6b1f86fa_bindings_OrderList_data_OrderData_data_OrderDataMemo_data_OrderDataCTDtype_data_OrderDetailitem_data_OrderDataFINST_data_OrderDataEM_data_Selectorder_data_GetOrderDetail_options_msg_props___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={"OrderList":"data","OrderData":"data","OrderDataMemo":"data","OrderDataCTDtype":"data","OrderDetailitem":"data","OrderDataFINST":"data","OrderDataEM":"data","Selectorder":"data","GetOrderDetail":"options","msg":"props"} */ "./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={\"OrderList\":\"data\",\"OrderData\":\"data\",\"OrderDataMemo\":\"data\",\"OrderDataCTDtype\":\"data\",\"OrderDetailitem\":\"data\",\"OrderDataFINST\":\"data\",\"OrderDataEM\":\"data\",\"Selectorder\":\"data\",\"GetOrderDetail\":\"options\",\"msg\":\"props\"}");
 /* harmony import */ var _Orderpage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Orderpage.vue?vue&type=script&lang=js */ "./resources/js/views/pages/Orderpage.vue?vue&type=script&lang=js");
 /* harmony import */ var _Orderpage_vue_vue_type_style_index_0_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Orderpage.vue?vue&type=style&index=0&lang=css */ "./resources/js/views/pages/Orderpage.vue?vue&type=style&index=0&lang=css");
 
@@ -20233,7 +20232,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-_Orderpage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _Orderpage_vue_vue_type_template_id_6b1f86fa_bindings_loadin_data_loadinD_data_OrderList_data_OrderData_data_OrderDataMemo_data_OrderDataCTDtype_data_OrderDetailitem_data_OrderDataFINST_data_OrderDataEM_data_Selectorder_data_GetOrderDetail_options_msg_props___WEBPACK_IMPORTED_MODULE_0__.render
+_Orderpage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _Orderpage_vue_vue_type_template_id_6b1f86fa_bindings_OrderList_data_OrderData_data_OrderDataMemo_data_OrderDataCTDtype_data_OrderDetailitem_data_OrderDataFINST_data_OrderDataEM_data_Selectorder_data_GetOrderDetail_options_msg_props___WEBPACK_IMPORTED_MODULE_0__.render
 /* hot reload */
 if (false) {}
 
@@ -21336,12 +21335,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={\"loadin\":\"data\",\"loadinD\":\"data\",\"OrderList\":\"data\",\"OrderData\":\"data\",\"OrderDataMemo\":\"data\",\"OrderDataCTDtype\":\"data\",\"OrderDetailitem\":\"data\",\"OrderDataFINST\":\"data\",\"OrderDataEM\":\"data\",\"Selectorder\":\"data\",\"GetOrderDetail\":\"options\",\"msg\":\"props\"}":
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={"loadin":"data","loadinD":"data","OrderList":"data","OrderData":"data","OrderDataMemo":"data","OrderDataCTDtype":"data","OrderDetailitem":"data","OrderDataFINST":"data","OrderDataEM":"data","Selectorder":"data","GetOrderDetail":"options","msg":"props"} ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={\"OrderList\":\"data\",\"OrderData\":\"data\",\"OrderDataMemo\":\"data\",\"OrderDataCTDtype\":\"data\",\"OrderDetailitem\":\"data\",\"OrderDataFINST\":\"data\",\"OrderDataEM\":\"data\",\"Selectorder\":\"data\",\"GetOrderDetail\":\"options\",\"msg\":\"props\"}":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={"OrderList":"data","OrderData":"data","OrderDataMemo":"data","OrderDataCTDtype":"data","OrderDetailitem":"data","OrderDataFINST":"data","OrderDataEM":"data","Selectorder":"data","GetOrderDetail":"options","msg":"props"} ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={"loadin":"data","loadinD":"data","OrderList":"data","OrderData":"data","OrderDataMemo":"data","OrderDataCTDtype":"data","OrderDetailitem":"data","OrderDataFINST":"data","OrderDataEM":"data","Selectorder":"data","GetOrderDetail":"options","msg":"props"} .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={"OrderList":"data","OrderData":"data","OrderDataMemo":"data","OrderDataCTDtype":"data","OrderDetailitem":"data","OrderDataFINST":"data","OrderDataEM":"data","Selectorder":"data","GetOrderDetail":"options","msg":"props"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -21349,9 +21348,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Orderpage_vue_vue_type_template_id_6b1f86fa_bindings_loadin_data_loadinD_data_OrderList_data_OrderData_data_OrderDataMemo_data_OrderDataCTDtype_data_OrderDetailitem_data_OrderDataFINST_data_OrderDataEM_data_Selectorder_data_GetOrderDetail_options_msg_props___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Orderpage_vue_vue_type_template_id_6b1f86fa_bindings_OrderList_data_OrderData_data_OrderDataMemo_data_OrderDataCTDtype_data_OrderDetailitem_data_OrderDataFINST_data_OrderDataEM_data_Selectorder_data_GetOrderDetail_options_msg_props___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Orderpage_vue_vue_type_template_id_6b1f86fa_bindings_loadin_data_loadinD_data_OrderList_data_OrderData_data_OrderDataMemo_data_OrderDataCTDtype_data_OrderDetailitem_data_OrderDataFINST_data_OrderDataEM_data_Selectorder_data_GetOrderDetail_options_msg_props___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={"loadin":"data","loadinD":"data","OrderList":"data","OrderData":"data","OrderDataMemo":"data","OrderDataCTDtype":"data","OrderDetailitem":"data","OrderDataFINST":"data","OrderDataEM":"data","Selectorder":"data","GetOrderDetail":"options","msg":"props"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={\"loadin\":\"data\",\"loadinD\":\"data\",\"OrderList\":\"data\",\"OrderData\":\"data\",\"OrderDataMemo\":\"data\",\"OrderDataCTDtype\":\"data\",\"OrderDetailitem\":\"data\",\"OrderDataFINST\":\"data\",\"OrderDataEM\":\"data\",\"Selectorder\":\"data\",\"GetOrderDetail\":\"options\",\"msg\":\"props\"}");
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Orderpage_vue_vue_type_template_id_6b1f86fa_bindings_OrderList_data_OrderData_data_OrderDataMemo_data_OrderDataCTDtype_data_OrderDetailitem_data_OrderDataFINST_data_OrderDataEM_data_Selectorder_data_GetOrderDetail_options_msg_props___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={"OrderList":"data","OrderData":"data","OrderDataMemo":"data","OrderDataCTDtype":"data","OrderDetailitem":"data","OrderDataFINST":"data","OrderDataEM":"data","Selectorder":"data","GetOrderDetail":"options","msg":"props"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={\"OrderList\":\"data\",\"OrderData\":\"data\",\"OrderDataMemo\":\"data\",\"OrderDataCTDtype\":\"data\",\"OrderDetailitem\":\"data\",\"OrderDataFINST\":\"data\",\"OrderDataEM\":\"data\",\"Selectorder\":\"data\",\"GetOrderDetail\":\"options\",\"msg\":\"props\"}");
 
 
 /***/ }),
@@ -26992,10 +26991,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={\"loadin\":\"data\",\"loadinD\":\"data\",\"OrderList\":\"data\",\"OrderData\":\"data\",\"OrderDataMemo\":\"data\",\"OrderDataCTDtype\":\"data\",\"OrderDetailitem\":\"data\",\"OrderDataFINST\":\"data\",\"OrderDataEM\":\"data\",\"Selectorder\":\"data\",\"GetOrderDetail\":\"options\",\"msg\":\"props\"}":
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={"loadin":"data","loadinD":"data","OrderList":"data","OrderData":"data","OrderDataMemo":"data","OrderDataCTDtype":"data","OrderDetailitem":"data","OrderDataFINST":"data","OrderDataEM":"data","Selectorder":"data","GetOrderDetail":"options","msg":"props"} ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={\"OrderList\":\"data\",\"OrderData\":\"data\",\"OrderDataMemo\":\"data\",\"OrderDataCTDtype\":\"data\",\"OrderDetailitem\":\"data\",\"OrderDataFINST\":\"data\",\"OrderDataEM\":\"data\",\"Selectorder\":\"data\",\"GetOrderDetail\":\"options\",\"msg\":\"props\"}":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/Orderpage.vue?vue&type=template&id=6b1f86fa&bindings={"OrderList":"data","OrderData":"data","OrderDataMemo":"data","OrderDataCTDtype":"data","OrderDetailitem":"data","OrderDataFINST":"data","OrderDataEM":"data","Selectorder":"data","GetOrderDetail":"options","msg":"props"} ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -27011,51 +27010,54 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const _hoisted_1 = {
-  key: 0,
-  style: {"position":"relative","left":"800px"}
+  id: "loading",
+  class: "modal inmodal fade",
+  tabindex: "-1",
+  role: "dialog",
+  "aria-hidden": "true",
+  "data-backdrop": "static",
+  "data-keyboard": "true"
 }
-const _hoisted_2 = {
-  key: 1,
-  style: {"position":"relative","left":"100px"}
-}
-const _hoisted_3 = { style: {"position":"relative","height":"1px","bottom":"80px","width":"1600px","margin":"0px auto"} }
-const _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+const _hoisted_2 = { class: "modal-dialog modal-sm" }
+const _hoisted_3 = { style: {"position":"relative","left":"100px"} }
+const _hoisted_4 = { style: {"position":"relative","height":"1px","bottom":"80px","width":"1600px","margin":"0px auto"} }
+const _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   class: "topic",
   style: {"text-align":"center"}
 }, [
   /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", null, "報價訂單資料")
 ], -1 /* HOISTED */)
-const _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
-const _hoisted_6 = { class: "AF2topic" }
-const _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("  ")
-const _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+const _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
+const _hoisted_7 = { class: "AF2topic" }
+const _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("  ")
+const _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
   type: "button",
   onclick: "location.href='/AFeature1'",
   value: "團購"
 }, null, -1 /* HOISTED */)
-const _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("   ")
-const _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("  ")
-const _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
-const _hoisted_12 = {
+const _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("   ")
+const _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("  ")
+const _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
+const _hoisted_13 = {
   class: "row",
   style: {"height":"700px"}
 }
-const _hoisted_13 = { class: "col-md-5 mb-4" }
-const _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", null, [
+const _hoisted_14 = { class: "col-md-5 mb-4" }
+const _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", null, [
   /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
     class: "font-weight-bold",
     style: {"color":"#ff5151"}
   }, "報價訂單列表")
 ], -1 /* HOISTED */)
-const _hoisted_15 = {
+const _hoisted_16 = {
   class: "container text-center",
   style: {"overflow-y":"scroll","height":"350px","width":"500px","border":"1px black solid"}
 }
-const _hoisted_16 = {
+const _hoisted_17 = {
   class: "container",
   style: {"border":"1px black solid"}
 }
-const _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("thead", null, [
+const _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("thead", null, [
   /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", { style: {"border":"1px black solid"} }, [
     /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", { class: "orderth1" }, "狀態"),
     /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", { class: "orderth2" }, "X"),
@@ -27067,7 +27069,6 @@ const _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode
     /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th")
   ])
 ], -1 /* HOISTED */)
-const _hoisted_18 = { key: 0 }
 const _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", { class: "orderth1" }, "訂單", -1 /* HOISTED */)
 const _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", { class: "orderth2" }, null, -1 /* HOISTED */)
 const _hoisted_21 = {
@@ -27344,521 +27345,500 @@ const _hoisted_122 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNod
     /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", { class: "Dorderth9" }, "新增")
   ])
 ], -1 /* HOISTED */)
-const _hoisted_123 = { key: 0 }
-const _hoisted_124 = { class: "Dorderth1" }
-const _hoisted_125 = { class: "Dorderth2" }
-const _hoisted_126 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
-const _hoisted_127 = { style: {"color":"green"} }
-const _hoisted_128 = { class: "Dorderth3" }
-const _hoisted_129 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
-const _hoisted_130 = { style: {"color":"blue"} }
-const _hoisted_131 = { class: "Dorderth4" }
-const _hoisted_132 = { class: "Dorderth5" }
-const _hoisted_133 = { class: "Dorderth6" }
-const _hoisted_134 = { class: "Dorderth7" }
-const _hoisted_135 = { class: "Dorderth8" }
-const _hoisted_136 = { class: "Dorderth9" }
-const _hoisted_137 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
-const _hoisted_138 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", { class: "col-md-1 mb-4" }, null, -1 /* HOISTED */)
+const _hoisted_123 = { class: "Dorderth1" }
+const _hoisted_124 = { class: "Dorderth2" }
+const _hoisted_125 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
+const _hoisted_126 = { style: {"color":"green"} }
+const _hoisted_127 = { class: "Dorderth3" }
+const _hoisted_128 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
+const _hoisted_129 = { style: {"color":"blue"} }
+const _hoisted_130 = { class: "Dorderth4" }
+const _hoisted_131 = { class: "Dorderth5" }
+const _hoisted_132 = { class: "Dorderth6" }
+const _hoisted_133 = { class: "Dorderth7" }
+const _hoisted_134 = { class: "Dorderth8" }
+const _hoisted_135 = { class: "Dorderth9" }
+const _hoisted_136 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
+const _hoisted_137 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", { class: "col-md-1 mb-4" }, null, -1 /* HOISTED */)
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_loader = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("loader")
 
-  return ($data.loadin)
-    ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("a", _hoisted_1, [
+  return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [
+      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_loader)
-      ]))
-    : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("a", _hoisted_2, [
-        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [
-          _hoisted_4,
-          _hoisted_5,
-          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-              onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => (_ctx.Daymanage(...args)), ["prevent"])),
-              type: "submit"
-            }, "日程管理"),
-            _hoisted_7,
-            _hoisted_8,
-            _hoisted_9,
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-              onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => (_ctx.Modify(...args)), ["prevent"])),
-              type: "submit"
-            }, "資料修改"),
-            _hoisted_10
-          ]),
-          _hoisted_11,
-          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_13, [
-              _hoisted_14,
-              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_15, [
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_16, [
-                  _hoisted_17,
-                  ($data.loadin)
-                    ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("tr", _hoisted_18, [
-                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_loader)
-                      ]))
-                    : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-                  ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.OrderList, (item, index) => {
-                    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("tr", {
-                      value: item,
-                      key: index,
-                      style: {"border":"1px black solid"},
-                      hidden: _ctx.show == 1
-                    }, [
-                      _hoisted_19,
-                      _hoisted_20,
-                      ($data.Selectorder==index)
-                        ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("td", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.QuotNo), 1 /* TEXT */))
-                        : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("td", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.QuotNo), 1 /* TEXT */)),
-                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.TotalValue), 1 /* TEXT */),
-                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, [
-                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-                          onClick: $event => ($options.GetOrderDetail(index))
-                        }, "明細", 8 /* PROPS */, ["onClick"])
-                      ])
-                    ], 8 /* PROPS */, ["value", "hidden"])), [
-                      [vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.loadin == false]
+      ])
+    ]),
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", _hoisted_3, [
+      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [
+        _hoisted_5,
+        _hoisted_6,
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [
+          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+            onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => (_ctx.Daymanage(...args)), ["prevent"])),
+            type: "submit"
+          }, "日程管理"),
+          _hoisted_8,
+          _hoisted_9,
+          _hoisted_10,
+          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+            onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => (_ctx.Modify(...args)), ["prevent"])),
+            type: "submit"
+          }, "資料修改"),
+          _hoisted_11
+        ]),
+        _hoisted_12,
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_13, [
+          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_14, [
+            _hoisted_15,
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_16, [
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_17, [
+                _hoisted_18,
+                ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.OrderList, (item, index) => {
+                  return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("tr", {
+                    value: item,
+                    key: index,
+                    style: {"border":"1px black solid"},
+                    hidden: _ctx.show == 1
+                  }, [
+                    _hoisted_19,
+                    _hoisted_20,
+                    ($data.Selectorder==index)
+                      ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("td", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.QuotNo), 1 /* TEXT */))
+                      : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("td", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.QuotNo), 1 /* TEXT */)),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.TotalValue), 1 /* TEXT */),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, [
+                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+                        onClick: $event => ($options.GetOrderDetail(index))
+                      }, "明細", 8 /* PROPS */, ["onClick"])
                     ])
-                  }), 128 /* KEYED_FRAGMENT */))
-                ])
-              ])
-            ]),
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_24, [
-              (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", null, [
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_loader)
-              ], 512 /* NEED_PATCH */), [
-                [vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.loadinD]
-              ]),
-              (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", null, [
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", null, [
-                  _hoisted_25,
-                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, [
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                      type: "text",
-                      style: {"height":"40px","width":"50px","text-align":"center"},
-                      "onUpdate:modelValue": _cache[3] || (_cache[3] = $event => ($data.OrderData[0].OrderType = $event)),
-                      readonly: ""
-                    }, null, 512 /* NEED_PATCH */), [
-                      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].OrderType]
-                    ])
-                  ]),
-                  _hoisted_26,
-                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, [
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                      type: "text",
-                      style: {"height":"40px","width":"120px"},
-                      "onUpdate:modelValue": _cache[4] || (_cache[4] = $event => ($data.OrderDataCTDtype = $event)),
-                      readonly: ""
-                    }, null, 512 /* NEED_PATCH */), [
-                      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderDataCTDtype]
-                    ])
-                  ])
-                ]),
-                _hoisted_27,
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", null, [
-                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, [
-                    _hoisted_28,
-                    _hoisted_29,
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                      type: "text",
-                      style: {"height":"30px","width":"50px"},
-                      "onUpdate:modelValue": _cache[5] || (_cache[5] = $event => ($data.OrderData[0].ZIP = $event)),
-                      readonly: ""
-                    }, null, 512 /* NEED_PATCH */), [
-                      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].ZIP]
-                    ])
-                  ]),
-                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, [
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("textarea", {
-                      style: {"width":"300px","height":"80px","display":"inline","vertical-align":"middle"},
-                      "onUpdate:modelValue": _cache[6] || (_cache[6] = $event => ($data.OrderData[0].addr = $event)),
-                      readonly: ""
-                    }, null, 512 /* NEED_PATCH */), [
-                      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].addr]
-                    ])
-                  ])
-                ]),
-                _hoisted_30,
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", _hoisted_31, [
-                  _hoisted_32,
-                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("textarea", {
-                    style: {"width":"300px","height":"80px","display":"inline","vertical-align":"middle"},
-                    "onUpdate:modelValue": _cache[7] || (_cache[7] = $event => ($data.OrderDataMemo = $event)),
-                    readonly: ""
-                  }, null, 512 /* NEED_PATCH */), [
-                    [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderDataMemo]
-                  ])
-                ]),
-                _hoisted_33,
-                _hoisted_34,
-                _hoisted_35,
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                  type: "text",
-                  style: {"height":"30px","width":"90px","display":"inline"},
-                  "onUpdate:modelValue": _cache[8] || (_cache[8] = $event => ($data.OrderDataFINST.TransDate = $event)),
-                  readonly: ""
-                }, null, 512 /* NEED_PATCH */), [
-                  [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderDataFINST.TransDate]
-                ]),
-                _hoisted_36,
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                  type: "text",
-                  style: {"height":"30px","width":"90px","display":"inline"},
-                  "onUpdate:modelValue": _cache[9] || (_cache[9] = $event => ($data.OrderDataFINST.SetDate = $event)),
-                  readonly: ""
-                }, null, 512 /* NEED_PATCH */), [
-                  [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderDataFINST.SetDate]
-                ]),
-                _hoisted_37,
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                  type: "text",
-                  style: {"height":"30px","width":"90px","display":"inline"},
-                  "onUpdate:modelValue": _cache[10] || (_cache[10] = $event => ($data.OrderData[0].DispatchDate = $event)),
-                  readonly: ""
-                }, null, 512 /* NEED_PATCH */), [
-                  [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].DispatchDate]
-                ]),
-                _hoisted_38
-              ], 512 /* NEED_PATCH */), [
-                [vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.loadinD==false]
-              ])
-            ]),
-            _hoisted_39,
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_40, [
-              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_41, [
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
-                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_42, [
-                    _hoisted_43,
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                      type: "text",
-                      style: {"height":"30px","width":"90px"},
-                      "onUpdate:modelValue": _cache[11] || (_cache[11] = $event => ($data.OrderDataEM.EMID = $event)),
-                      readonly: ""
-                    }, null, 512 /* NEED_PATCH */), [
-                      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderDataEM.EMID]
-                    ])
-                  ])
-                ]),
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
-                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_44, [
-                    _hoisted_45,
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                      type: "text",
-                      style: {"height":"30px","width":"90px"},
-                      "onUpdate:modelValue": _cache[12] || (_cache[12] = $event => ($data.OrderDataEM.EMME = $event)),
-                      readonly: ""
-                    }, null, 512 /* NEED_PATCH */), [
-                      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderDataEM.EMME]
-                    ])
-                  ])
-                ]),
-                _hoisted_46,
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
-                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_47, [
-                    _hoisted_48,
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                      type: "text",
-                      style: {"height":"30px","width":"90px"},
-                      "onUpdate:modelValue": _cache[13] || (_cache[13] = $event => ($data.OrderData[0].QuotDate = $event)),
-                      readonly: ""
-                    }, null, 512 /* NEED_PATCH */), [
-                      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].QuotDate]
-                    ])
-                  ])
-                ]),
-                _hoisted_49,
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
-                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_50, [
-                    _hoisted_51,
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                      type: "text",
-                      style: {"height":"30px","width":"90px"},
-                      "onUpdate:modelValue": _cache[14] || (_cache[14] = $event => ($data.OrderData[0].PromotionPeriod = $event)),
-                      readonly: ""
-                    }, null, 512 /* NEED_PATCH */), [
-                      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].PromotionPeriod]
-                    ])
-                  ])
-                ]),
-                _hoisted_52,
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
-                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_53, [
-                    _hoisted_54,
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                      type: "text",
-                      style: {"height":"30px","width":"90px"},
-                      "onUpdate:modelValue": _cache[15] || (_cache[15] = $event => ($data.OrderData[0].OrderDate = $event)),
-                      readonly: ""
-                    }, null, 512 /* NEED_PATCH */), [
-                      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].OrderDate]
-                    ])
-                  ])
-                ]),
-                _hoisted_55,
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
-                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_56, [
-                    _hoisted_57,
-                    _hoisted_58,
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                      type: "text",
-                      style: {"height":"30px","width":"90px"},
-                      "onUpdate:modelValue": _cache[16] || (_cache[16] = $event => ($data.OrderData[0].ExpireDate = $event)),
-                      readonly: ""
-                    }, null, 512 /* NEED_PATCH */), [
-                      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].ExpireDate]
-                    ])
-                  ])
-                ]),
-                _hoisted_59,
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
-                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_60, [
-                    _hoisted_61,
-                    _hoisted_62,
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                      type: "text",
-                      style: {"height":"30px","width":"90px"},
-                      "onUpdate:modelValue": _cache[17] || (_cache[17] = $event => ($data.OrderData[0].RequireDate = $event)),
-                      readonly: ""
-                    }, null, 512 /* NEED_PATCH */), [
-                      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].RequireDate]
-                    ])
-                  ])
-                ]),
-                _hoisted_63,
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
-                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_64, [
-                    _hoisted_65,
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                      type: "text",
-                      style: {"height":"30px","width":"90px"},
-                      "onUpdate:modelValue": _cache[18] || (_cache[18] = $event => ($data.OrderData[0].ClearDate = $event)),
-                      readonly: ""
-                    }, null, 512 /* NEED_PATCH */), [
-                      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].ClearDate]
-                    ])
-                  ])
-                ]),
-                _hoisted_66,
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
-                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_67, [
-                    _hoisted_68,
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                      type: "text",
-                      style: {"height":"30px","width":"90px"},
-                      "onUpdate:modelValue": _cache[19] || (_cache[19] = $event => ($data.OrderData[0].PickingDate = $event)),
-                      readonly: ""
-                    }, null, 512 /* NEED_PATCH */), [
-                      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].PickingDate]
-                    ])
-                  ])
-                ]),
-                _hoisted_69,
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
-                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_70, [
-                    _hoisted_71,
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                      type: "text",
-                      style: {"height":"30px","width":"90px"},
-                      "onUpdate:modelValue": _cache[20] || (_cache[20] = $event => ($data.OrderData[0].AppDate = $event)),
-                      readonly: ""
-                    }, null, 512 /* NEED_PATCH */), [
-                      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].AppDate]
-                    ])
-                  ])
-                ]),
-                _hoisted_72,
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
-                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_73, [
-                    _hoisted_74,
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                      type: "text",
-                      style: {"height":"30px","width":"90px"},
-                      "onUpdate:modelValue": _cache[21] || (_cache[21] = $event => ($data.OrderData[0].ProfitDate = $event)),
-                      readonly: ""
-                    }, null, 512 /* NEED_PATCH */), [
-                      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].ProfitDate]
-                    ])
-                  ])
-                ]),
-                _hoisted_75,
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
-                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_76, [
-                    _hoisted_77,
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                      type: "text",
-                      style: {"height":"30px","width":"90px"},
-                      "onUpdate:modelValue": _cache[22] || (_cache[22] = $event => ($data.OrderDataFINST.InspectDate = $event)),
-                      readonly: ""
-                    }, null, 512 /* NEED_PATCH */), [
-                      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderDataFINST.InspectDate]
-                    ])
-                  ])
-                ]),
-                _hoisted_78,
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
-                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_79, [
-                    _hoisted_80,
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                      type: "text",
-                      style: {"height":"30px","width":"90px"},
-                      "onUpdate:modelValue": _cache[23] || (_cache[23] = $event => ($data.OrderDataFINST.CheckDate = $event)),
-                      readonly: ""
-                    }, null, 512 /* NEED_PATCH */), [
-                      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderDataFINST.CheckDate]
-                    ])
-                  ])
-                ]),
-                _hoisted_81,
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
-                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_82, [
-                    _hoisted_83,
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                      type: "text",
-                      style: {"height":"30px","width":"90px"},
-                      "onUpdate:modelValue": _cache[24] || (_cache[24] = $event => ($data.OrderDataFINST.CloseDate = $event)),
-                      readonly: ""
-                    }, null, 512 /* NEED_PATCH */), [
-                      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderDataFINST.CloseDate]
-                    ])
-                  ])
-                ])
-              ])
-            ]),
-            _hoisted_84,
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_85, [
-              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_86, [
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
-                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_87, [
-                    _hoisted_88,
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                      type: "text",
-                      style: {"height":"30px","width":"90px"},
-                      "onUpdate:modelValue": _cache[25] || (_cache[25] = $event => ($data.OrderDataEM.DVID = $event)),
-                      readonly: ""
-                    }, null, 512 /* NEED_PATCH */), [
-                      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderDataEM.DVID]
-                    ])
-                  ])
-                ]),
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
-                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_89, [
-                    _hoisted_90,
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                      type: "text",
-                      style: {"height":"30px","width":"90px"},
-                      "onUpdate:modelValue": _cache[26] || (_cache[26] = $event => ($data.OrderDataEM.ENME = $event)),
-                      readonly: ""
-                    }, null, 512 /* NEED_PATCH */), [
-                      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderDataEM.ENME]
-                    ])
-                  ])
-                ]),
-                _hoisted_91,
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
-                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_92, [
-                    _hoisted_93,
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                      type: "text",
-                      style: {"height":"30px","width":"90px"},
-                      "onUpdate:modelValue": _cache[27] || (_cache[27] = $event => ($data.OrderData[0].TotalValue = $event)),
-                      readonly: ""
-                    }, null, 512 /* NEED_PATCH */), [
-                      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].TotalValue]
-                    ])
-                  ])
-                ]),
-                _hoisted_94,
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
-                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_95, [
-                    _hoisted_96,
-                    _hoisted_97,
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-                      type: "text",
-                      style: {"height":"30px","width":"90px"},
-                      "onUpdate:modelValue": _cache[28] || (_cache[28] = $event => ($data.OrderData[0].exwork = $event)),
-                      readonly: ""
-                    }, null, 512 /* NEED_PATCH */), [
-                      [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].exwork]
-                    ])
-                  ])
-                ]),
-                _hoisted_98,
-                _hoisted_99,
-                _hoisted_100,
-                _hoisted_101,
-                _hoisted_102,
-                _hoisted_103,
-                _hoisted_104,
-                _hoisted_105,
-                _hoisted_106,
-                _hoisted_107,
-                _hoisted_108,
-                _hoisted_109,
-                _hoisted_110,
-                _hoisted_111,
-                _hoisted_112,
-                _hoisted_113,
-                _hoisted_114,
-                _hoisted_115,
-                _hoisted_116
+                  ], 8 /* PROPS */, ["value", "hidden"]))
+                }), 128 /* KEYED_FRAGMENT */))
               ])
             ])
           ]),
-          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_117, [
-            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_118, [
-              _hoisted_119,
-              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_120, [
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_121, [
-                  _hoisted_122,
-                  ($data.loadinD)
-                    ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("tr", _hoisted_123, [
-                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_loader)
-                      ]))
-                    : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true),
-                  ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.OrderDetailitem, (itemD, index) => {
-                    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("tr", {
-                      value: itemD,
-                      key: index,
-                      style: {"border":"1px black solid"},
-                      hidden: _ctx.show == 1
-                    }, [
-                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_124, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(index + 1), 1 /* TEXT */),
-                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_125, [
-                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.Ragne), 1 /* TEXT */),
-                        _hoisted_126,
-                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", _hoisted_127, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.RangeName), 1 /* TEXT */)
-                      ]),
-                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_128, [
-                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.SalesCode), 1 /* TEXT */),
-                        _hoisted_129,
-                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", _hoisted_130, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.SalesCodeData.Description) + "[" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.SalesCodeData.SupplierNo) + "]", 1 /* TEXT */)
-                      ]),
-                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_131, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.UnitPrice), 1 /* TEXT */),
-                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_132, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.Qty), 1 /* TEXT */),
-                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_133, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.DiscountRate), 1 /* TEXT */),
-                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_134, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.OrderValue), 1 /* TEXT */),
-                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_135, [
-                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
-                          style: {"color":"red"},
-                          hidden: itemD.poCheck==0
-                        }, "有採購單", 8 /* PROPS */, ["hidden"])
-                      ]),
-                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_136, [
-                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.OrderDate), 1 /* TEXT */),
-                        _hoisted_137,
-                        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.Ordermember), 1 /* TEXT */)
-                      ])
-                    ], 8 /* PROPS */, ["value", "hidden"])), [
-                      [vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.loadinD == false]
-                    ])
-                  }), 128 /* KEYED_FRAGMENT */))
+          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_24, [
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", null, [
+              _hoisted_25,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, [
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                  type: "text",
+                  style: {"height":"40px","width":"50px","text-align":"center"},
+                  "onUpdate:modelValue": _cache[3] || (_cache[3] = $event => ($data.OrderData[0].OrderType = $event)),
+                  readonly: ""
+                }, null, 512 /* NEED_PATCH */), [
+                  [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].OrderType]
+                ])
+              ]),
+              _hoisted_26,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", null, [
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                  type: "text",
+                  style: {"height":"40px","width":"120px"},
+                  "onUpdate:modelValue": _cache[4] || (_cache[4] = $event => ($data.OrderDataCTDtype = $event)),
+                  readonly: ""
+                }, null, 512 /* NEED_PATCH */), [
+                  [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderDataCTDtype]
                 ])
               ])
             ]),
-            _hoisted_138
+            _hoisted_27,
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", null, [
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, [
+                _hoisted_28,
+                _hoisted_29,
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                  type: "text",
+                  style: {"height":"30px","width":"50px"},
+                  "onUpdate:modelValue": _cache[5] || (_cache[5] = $event => ($data.OrderData[0].ZIP = $event)),
+                  readonly: ""
+                }, null, 512 /* NEED_PATCH */), [
+                  [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].ZIP]
+                ])
+              ]),
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", null, [
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("textarea", {
+                  style: {"width":"300px","height":"80px","display":"inline","vertical-align":"middle"},
+                  "onUpdate:modelValue": _cache[6] || (_cache[6] = $event => ($data.OrderData[0].addr = $event)),
+                  readonly: ""
+                }, null, 512 /* NEED_PATCH */), [
+                  [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].addr]
+                ])
+              ])
+            ]),
+            _hoisted_30,
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", _hoisted_31, [
+              _hoisted_32,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("textarea", {
+                style: {"width":"300px","height":"80px","display":"inline","vertical-align":"middle"},
+                "onUpdate:modelValue": _cache[7] || (_cache[7] = $event => ($data.OrderDataMemo = $event)),
+                readonly: ""
+              }, null, 512 /* NEED_PATCH */), [
+                [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderDataMemo]
+              ])
+            ]),
+            _hoisted_33,
+            _hoisted_34,
+            _hoisted_35,
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+              type: "text",
+              style: {"height":"30px","width":"90px","display":"inline"},
+              "onUpdate:modelValue": _cache[8] || (_cache[8] = $event => ($data.OrderDataFINST.TransDate = $event)),
+              readonly: ""
+            }, null, 512 /* NEED_PATCH */), [
+              [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderDataFINST.TransDate]
+            ]),
+            _hoisted_36,
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+              type: "text",
+              style: {"height":"30px","width":"90px","display":"inline"},
+              "onUpdate:modelValue": _cache[9] || (_cache[9] = $event => ($data.OrderDataFINST.SetDate = $event)),
+              readonly: ""
+            }, null, 512 /* NEED_PATCH */), [
+              [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderDataFINST.SetDate]
+            ]),
+            _hoisted_37,
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+              type: "text",
+              style: {"height":"30px","width":"90px","display":"inline"},
+              "onUpdate:modelValue": _cache[10] || (_cache[10] = $event => ($data.OrderData[0].DispatchDate = $event)),
+              readonly: ""
+            }, null, 512 /* NEED_PATCH */), [
+              [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].DispatchDate]
+            ]),
+            _hoisted_38
+          ]),
+          _hoisted_39,
+          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_40, [
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_41, [
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_42, [
+                  _hoisted_43,
+                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                    type: "text",
+                    style: {"height":"30px","width":"90px"},
+                    "onUpdate:modelValue": _cache[11] || (_cache[11] = $event => ($data.OrderDataEM.EMID = $event)),
+                    readonly: ""
+                  }, null, 512 /* NEED_PATCH */), [
+                    [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderDataEM.EMID]
+                  ])
+                ])
+              ]),
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_44, [
+                  _hoisted_45,
+                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                    type: "text",
+                    style: {"height":"30px","width":"90px"},
+                    "onUpdate:modelValue": _cache[12] || (_cache[12] = $event => ($data.OrderDataEM.EMME = $event)),
+                    readonly: ""
+                  }, null, 512 /* NEED_PATCH */), [
+                    [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderDataEM.EMME]
+                  ])
+                ])
+              ]),
+              _hoisted_46,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_47, [
+                  _hoisted_48,
+                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                    type: "text",
+                    style: {"height":"30px","width":"90px"},
+                    "onUpdate:modelValue": _cache[13] || (_cache[13] = $event => ($data.OrderData[0].QuotDate = $event)),
+                    readonly: ""
+                  }, null, 512 /* NEED_PATCH */), [
+                    [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].QuotDate]
+                  ])
+                ])
+              ]),
+              _hoisted_49,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_50, [
+                  _hoisted_51,
+                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                    type: "text",
+                    style: {"height":"30px","width":"90px"},
+                    "onUpdate:modelValue": _cache[14] || (_cache[14] = $event => ($data.OrderData[0].PromotionPeriod = $event)),
+                    readonly: ""
+                  }, null, 512 /* NEED_PATCH */), [
+                    [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].PromotionPeriod]
+                  ])
+                ])
+              ]),
+              _hoisted_52,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_53, [
+                  _hoisted_54,
+                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                    type: "text",
+                    style: {"height":"30px","width":"90px"},
+                    "onUpdate:modelValue": _cache[15] || (_cache[15] = $event => ($data.OrderData[0].OrderDate = $event)),
+                    readonly: ""
+                  }, null, 512 /* NEED_PATCH */), [
+                    [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].OrderDate]
+                  ])
+                ])
+              ]),
+              _hoisted_55,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_56, [
+                  _hoisted_57,
+                  _hoisted_58,
+                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                    type: "text",
+                    style: {"height":"30px","width":"90px"},
+                    "onUpdate:modelValue": _cache[16] || (_cache[16] = $event => ($data.OrderData[0].ExpireDate = $event)),
+                    readonly: ""
+                  }, null, 512 /* NEED_PATCH */), [
+                    [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].ExpireDate]
+                  ])
+                ])
+              ]),
+              _hoisted_59,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_60, [
+                  _hoisted_61,
+                  _hoisted_62,
+                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                    type: "text",
+                    style: {"height":"30px","width":"90px"},
+                    "onUpdate:modelValue": _cache[17] || (_cache[17] = $event => ($data.OrderData[0].RequireDate = $event)),
+                    readonly: ""
+                  }, null, 512 /* NEED_PATCH */), [
+                    [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].RequireDate]
+                  ])
+                ])
+              ]),
+              _hoisted_63,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_64, [
+                  _hoisted_65,
+                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                    type: "text",
+                    style: {"height":"30px","width":"90px"},
+                    "onUpdate:modelValue": _cache[18] || (_cache[18] = $event => ($data.OrderData[0].ClearDate = $event)),
+                    readonly: ""
+                  }, null, 512 /* NEED_PATCH */), [
+                    [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].ClearDate]
+                  ])
+                ])
+              ]),
+              _hoisted_66,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_67, [
+                  _hoisted_68,
+                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                    type: "text",
+                    style: {"height":"30px","width":"90px"},
+                    "onUpdate:modelValue": _cache[19] || (_cache[19] = $event => ($data.OrderData[0].PickingDate = $event)),
+                    readonly: ""
+                  }, null, 512 /* NEED_PATCH */), [
+                    [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].PickingDate]
+                  ])
+                ])
+              ]),
+              _hoisted_69,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_70, [
+                  _hoisted_71,
+                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                    type: "text",
+                    style: {"height":"30px","width":"90px"},
+                    "onUpdate:modelValue": _cache[20] || (_cache[20] = $event => ($data.OrderData[0].AppDate = $event)),
+                    readonly: ""
+                  }, null, 512 /* NEED_PATCH */), [
+                    [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].AppDate]
+                  ])
+                ])
+              ]),
+              _hoisted_72,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_73, [
+                  _hoisted_74,
+                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                    type: "text",
+                    style: {"height":"30px","width":"90px"},
+                    "onUpdate:modelValue": _cache[21] || (_cache[21] = $event => ($data.OrderData[0].ProfitDate = $event)),
+                    readonly: ""
+                  }, null, 512 /* NEED_PATCH */), [
+                    [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].ProfitDate]
+                  ])
+                ])
+              ]),
+              _hoisted_75,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_76, [
+                  _hoisted_77,
+                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                    type: "text",
+                    style: {"height":"30px","width":"90px"},
+                    "onUpdate:modelValue": _cache[22] || (_cache[22] = $event => ($data.OrderDataFINST.InspectDate = $event)),
+                    readonly: ""
+                  }, null, 512 /* NEED_PATCH */), [
+                    [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderDataFINST.InspectDate]
+                  ])
+                ])
+              ]),
+              _hoisted_78,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_79, [
+                  _hoisted_80,
+                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                    type: "text",
+                    style: {"height":"30px","width":"90px"},
+                    "onUpdate:modelValue": _cache[23] || (_cache[23] = $event => ($data.OrderDataFINST.CheckDate = $event)),
+                    readonly: ""
+                  }, null, 512 /* NEED_PATCH */), [
+                    [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderDataFINST.CheckDate]
+                  ])
+                ])
+              ]),
+              _hoisted_81,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_82, [
+                  _hoisted_83,
+                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                    type: "text",
+                    style: {"height":"30px","width":"90px"},
+                    "onUpdate:modelValue": _cache[24] || (_cache[24] = $event => ($data.OrderDataFINST.CloseDate = $event)),
+                    readonly: ""
+                  }, null, 512 /* NEED_PATCH */), [
+                    [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderDataFINST.CloseDate]
+                  ])
+                ])
+              ])
+            ])
+          ]),
+          _hoisted_84,
+          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_85, [
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_86, [
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_87, [
+                  _hoisted_88,
+                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                    type: "text",
+                    style: {"height":"30px","width":"90px"},
+                    "onUpdate:modelValue": _cache[25] || (_cache[25] = $event => ($data.OrderDataEM.DVID = $event)),
+                    readonly: ""
+                  }, null, 512 /* NEED_PATCH */), [
+                    [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderDataEM.DVID]
+                  ])
+                ])
+              ]),
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_89, [
+                  _hoisted_90,
+                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                    type: "text",
+                    style: {"height":"30px","width":"90px"},
+                    "onUpdate:modelValue": _cache[26] || (_cache[26] = $event => ($data.OrderDataEM.ENME = $event)),
+                    readonly: ""
+                  }, null, 512 /* NEED_PATCH */), [
+                    [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderDataEM.ENME]
+                  ])
+                ])
+              ]),
+              _hoisted_91,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_92, [
+                  _hoisted_93,
+                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                    type: "text",
+                    style: {"height":"30px","width":"90px"},
+                    "onUpdate:modelValue": _cache[27] || (_cache[27] = $event => ($data.OrderData[0].TotalValue = $event)),
+                    readonly: ""
+                  }, null, 512 /* NEED_PATCH */), [
+                    [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].TotalValue]
+                  ])
+                ])
+              ]),
+              _hoisted_94,
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", null, [
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("td", _hoisted_95, [
+                  _hoisted_96,
+                  _hoisted_97,
+                  (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                    type: "text",
+                    style: {"height":"30px","width":"90px"},
+                    "onUpdate:modelValue": _cache[28] || (_cache[28] = $event => ($data.OrderData[0].exwork = $event)),
+                    readonly: ""
+                  }, null, 512 /* NEED_PATCH */), [
+                    [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.OrderData[0].exwork]
+                  ])
+                ])
+              ]),
+              _hoisted_98,
+              _hoisted_99,
+              _hoisted_100,
+              _hoisted_101,
+              _hoisted_102,
+              _hoisted_103,
+              _hoisted_104,
+              _hoisted_105,
+              _hoisted_106,
+              _hoisted_107,
+              _hoisted_108,
+              _hoisted_109,
+              _hoisted_110,
+              _hoisted_111,
+              _hoisted_112,
+              _hoisted_113,
+              _hoisted_114,
+              _hoisted_115,
+              _hoisted_116
+            ])
           ])
+        ]),
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_117, [
+          (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_118, [
+            _hoisted_119,
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_120, [
+              (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_121, [
+                _hoisted_122,
+                ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.OrderDetailitem, (itemD, index) => {
+                  return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("tr", {
+                    value: itemD,
+                    key: index,
+                    style: {"border":"1px black solid"},
+                    hidden: _ctx.show == 1
+                  }, [
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_123, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(index + 1), 1 /* TEXT */),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_124, [
+                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.Ragne), 1 /* TEXT */),
+                      _hoisted_125,
+                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", _hoisted_126, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.RangeName), 1 /* TEXT */)
+                    ]),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_127, [
+                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.SalesCode), 1 /* TEXT */),
+                      _hoisted_128,
+                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", _hoisted_129, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.SalesCodeData.Description) + "[" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.SalesCodeData.SupplierNo) + "]", 1 /* TEXT */)
+                    ]),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_130, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.UnitPrice), 1 /* TEXT */),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_131, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.Qty), 1 /* TEXT */),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_132, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.DiscountRate), 1 /* TEXT */),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_133, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.OrderValue), 1 /* TEXT */),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_134, [
+                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
+                        style: {"color":"red"},
+                        hidden: itemD.poCheck==0
+                      }, "有採購單", 8 /* PROPS */, ["hidden"])
+                    ]),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_135, [
+                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.OrderDate), 1 /* TEXT */),
+                      _hoisted_136,
+                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.Ordermember), 1 /* TEXT */)
+                    ])
+                  ], 8 /* PROPS */, ["value", "hidden"]))
+                }), 128 /* KEYED_FRAGMENT */))
+              ])
+            ])
+          ]),
+          _hoisted_137
         ])
-      ]))
+      ])
+    ])
+  ], 64 /* STABLE_FRAGMENT */))
 }
 
 /***/ }),

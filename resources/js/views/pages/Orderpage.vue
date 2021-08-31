@@ -1,8 +1,11 @@
 <template>
-  <a style="position: relative; left: 800px" v-if="loadin">
-    <loader></loader>
-  </a>
-  <a v-else style="position: relative; left: 100px">
+  <div id="loading" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
+      <div class="modal-dialog modal-sm" >
+            <loader></loader>
+      </div>
+  </div>
+
+  <a style="position: relative; left: 100px">
     <div
       style="
         position: relative;
@@ -54,11 +57,7 @@
                   <th></th>
                 </tr>
               </thead>
-              <tr v-if="loadin">
-                <loader></loader>
-              </tr>
               <tr
-                v-show="loadin == false"
                 v-for="(item, index) in OrderList"
                 :value="item"
                 :key="index"
@@ -77,11 +76,6 @@
         </div>
 
         <div class="col-md-3 mb-4" style="border: 1px black solid; padding:5px;">
-           <a v-show="loadinD">
-                <loader></loader>
-           </a>  
-          <a v-show="loadinD==false">    
-
           <table>
       
             <td>分類</td>
@@ -163,7 +157,6 @@
             readonly
           />
           <br />
-          </a>
         </div>
         <div style="width:20px;"></div>
 
@@ -319,11 +312,7 @@
                   <th class="Dorderth9">新增</th>
                 </tr>
               </thead>
-              <tr v-if="loadinD">
-                <loader></loader>
-              </tr>
               <tr
-                v-show="loadinD == false"
                 v-for="(itemD, index) in OrderDetailitem"
                 :value="itemD"
                 :key="index"
@@ -368,8 +357,6 @@ export default {
   name: "Orderpage",
   data() {
     return {
-      loadin: true,
-      loadinD: false,
       OrderList: [],
       OrderData: [{
           OrderType:'',
@@ -385,13 +372,13 @@ export default {
   methods: {
     GetOrderDetail: function (index) {
       this.Selectorder=index;
-      this.loadinD = true;
+       $("#loading").modal('toggle');
       axios
         .get("/api/search/OrderDetailitem/" + this.OrderList[index].QuotNo)
         .then((response) => {
           console.log(response.data);
           this.OrderDetailitem = response.data;
-          this.loadinD = false;
+         $("#loading").modal('toggle');
         });
       axios
         .get("/api/search/Orderdata/" + this.OrderList[index].QuotNo)
@@ -429,12 +416,13 @@ export default {
     msg: String,
   },
   beforeCreate() {
+      $("#loading").modal('toggle');
     axios
       .get("/api/search/Order/" + this.$route.params.CNO)
       .then((response) => {
         console.log(response);
         this.OrderList = response.data[0];
-        this.loadin = false;
+        $("#loading").modal('hide');
         if (response.data == null) {
           const message = "此客編不存在";
           this.$router.push({ path: "/Order/sendSearch", params: { message } });
