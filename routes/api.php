@@ -40,6 +40,7 @@ Route::get('/search/Orderdata/{QNO}',[SearchController::class,'searchOrderdata']
 Route::get('/search/OrderDetailitem/{QNO}',[SearchController::class,'searchOrderDetailitem']);
 Route::get('/search/OrderitemPO/{QNO}',[SearchController::class,'searchOrderitemPO']);
 Route::get('/search/OrderFINST/{QNO}',[SearchController::class,'searchOrderFINST']);
+Route::get('/search/OrderARM1/{QNO}',[SearchController::class,'searchOrderARM1']);
 
 Route::post('/Update/CM',[UpdateController::class,'UpdateCM']);
 Route::post('/Update/CmMemo',[UpdateController::class,'UpdateCmMemo']);

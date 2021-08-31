@@ -15,6 +15,7 @@ use App\Models\sod;
 use App\Models\im;
 use App\Models\po;
 use App\Models\FINST;
+use App\Models\arm1;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
@@ -464,6 +465,16 @@ class SearchController extends Controller
         else{
             $data->InspectDate='';
         }
+
+        return response()->json($data,200);
+    }
+
+    public function searchOrderARM1($QNO)
+    {
+        $data = arm1::where('OrderNo',trim($QNO))->first(['arm1.*','帳款金額 as OrderValue1','額外施工費用 as exwork','墊款餘額 as HelpPayValue','退折讓 as Rebate','實收金額 as TrueValue',
+        '應收餘額 as ShouldValue','溢收金額 as MorePayValue','店折扣額 as StoreRebate','代墊餘額 as HelpPayValue1','應收還款 as ShouldBackValue','保固費用 as WarrantyValue','Rebat as RebateValue']);
+    
+        $data->RebateValue = $data->Rebat - $data->退折讓;
 
         return response()->json($data,200);
     }
