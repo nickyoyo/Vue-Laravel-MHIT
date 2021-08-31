@@ -17660,7 +17660,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       var _this = this;
 
       this.Selectorder = index;
-      $("#loading").modal('show');
+      $("#loading").modal('toggle');
       axios.get("/api/search/OrderDetailitem/" + this.OrderList[index].QuotNo).then(function (response) {
         console.log(response.data);
         _this.OrderDetailitem = response.data;

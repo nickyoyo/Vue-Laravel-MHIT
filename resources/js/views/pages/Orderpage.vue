@@ -373,7 +373,7 @@ export default {
   methods: {
     GetOrderDetail: function (index) {
       this.Selectorder=index;
-       $("#loading").modal('show');
+       $("#loading").modal('toggle');
       axios
         .get("/api/search/OrderDetailitem/" + this.OrderList[index].QuotNo)
         .then((response) => {
