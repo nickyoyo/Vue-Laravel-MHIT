@@ -1,45 +1,57 @@
 <template>
-  <div id="MJ" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
+
+  <div id="loading" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
       <div class="modal-dialog modal-sm" >
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"  @click.prevent="cleanCancel">
-              <span>&times;</span>
-            </button>
-          </div>
-		  <div class="modal-body" >
-				預約丈量日 : &nbsp;&nbsp;
+            <loader></loader>
+      </div>
+  </div>
+
+<div id="MJ" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
+      <div class="modal-dialog modal-sm" >
+        <div class="modal-content" >
+			<a v-if="loadin==1">
+				 <loader></loader>
+			</a>
+			<a v-else>
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"  @click.prevent="cleanCancel">
+				<span>&times;</span>
+				</button>
+			</div>
+				<div class="modal-body" >
+					預約丈量日 : &nbsp;&nbsp;
+						<input
+							type="date"
+							class="form-control"
+							style="display: inline; width: 180px"
+							v-model="Data[0].ReserveDate"
+							:readonly="state == 1"
+							:min="newdate"
+						/><br /><br />
+					預約丈量時間 :
 					<input
-						type="date"
-						class="form-control"
-						style="display: inline; width: 180px"
-						v-model="Data[0].ReserveDate"
-						:readonly="state == 1"
-						:min="newdate"
-					/><br /><br />
-				預約丈量時間 :
-				<input
-						type="time"
-						class="form-control"
-						style="display: inline; width: 180px"
-						v-model="Data[0].Time"
-						:readonly="state == 1"
-					/><br /><br />
-				丈量人員 :
-				 <select v-model="Data[0].MeasureMember"> 
-                    <option
-                      v-for="item in UserData" :value="item.EMID" :key="item"
-                    >
-                        {{ item.EMID }}|{{ item.EMME }}
-                    </option>
-                  </select><br /><br /><br />
-				  丈量準備方向與重點<br />
-				  <textarea class="form-control" style="height:200px;display:inline" v-model="Data[0].Memo"></textarea><br />
-				  </div>
-				  <div style="text-align: center;height:50px;">
-				  <button  @click.prevent="saveJ" style="display:inline;border: 1px black solid;" class="btn">確定</button>&nbsp;
-				  <button data-dismiss="modal" style="display:inline;border: 1px black solid;"  class="btn"  @click.prevent="cleanCancel">取消</button>
-          		</div>
+							type="time"
+							class="form-control"
+							style="display: inline; width: 180px"
+							v-model="Data[0].Time"
+							:readonly="state == 1"
+						/><br /><br />
+					丈量人員 :
+					<select v-model="Data[0].MeasureMember"> 
+						<option
+						v-for="item in UserData" :value="item.EMID" :key="item"
+						>
+							{{ item.EMID }}|{{ item.EMME }}
+						</option>
+					</select><br /><br /><br />
+					丈量準備方向與重點<br />
+					<textarea class="form-control" style="height:200px;display:inline" v-model="Data[0].Memo"></textarea><br />
+					</div>
+					<div style="text-align: center;height:50px;">
+					<button  @click.prevent="saveJ" style="display:inline;border: 1px black solid;" class="btn">確定</button>&nbsp;
+					<button data-dismiss="modal" style="display:inline;border: 1px black solid;"  class="btn"  @click.prevent="cleanCancel">取消</button>
+				</div>
+			</a>
         </div>
       </div>
     </div>
@@ -55,8 +67,8 @@
 		 		<div class="modal-body" >
 				  丈量取消原因/丈量取得資訊<br />
 				  <textarea class="form-control" style="height:200px;display:inline"  v-model="Data[0].result"></textarea><br /><br />
-				  <input type="radio" name="MJstate" value=0 v-model="MJstate"/>丈量取消
-				  <input type="radio" name="MJstate" value=1 v-model="MJstate"/>丈量完成
+				  <input type="radio" name="MJstate" value=1 v-model="MJstate"/>丈量取消
+				  <input type="radio" name="MJstate" value=2 v-model="MJstate"/>丈量完成
 				  <input type="checkbox" name="endch" v-model="MeasureEarly"/>提前&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				 	<input
 						type="date"
@@ -107,59 +119,64 @@
 <div id="MK" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
       <div class="modal-dialog modal-sm" >
         <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"  @click.prevent="cleanCancel">
-              <span>&times;</span>
-            </button>
-          </div>
-		  <div class="modal-body" >
-				預約看圖日 : &nbsp;&nbsp;
+		   <a v-if="loadin==1">
+				 <loader></loader>
+			</a>
+			<a v-else>
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"  @click.prevent="cleanCancel">
+					<span>&times;</span>
+					</button>
+				</div>
+				<div class="modal-body" >
+					預約看圖日 : &nbsp;&nbsp;
+						<input
+							type="date"
+							class="form-control"
+							style="display: inline; width: 180px"
+							v-model="Data[0].ReserveDate"
+							:min="newdate"
+						/><br /><br />
+					預約看圖時間 :
 					<input
-						type="date"
-						class="form-control"
-						style="display: inline; width: 180px"
-						v-model="Data[0].ReserveDate"
-						:min="newdate"
-					/><br /><br />
-				預約看圖時間 :
-				<input
-						type="time"
-						class="form-control"
-						style="display: inline; width: 180px"
-						v-model="Data[0].Time"
-					/><br /><br />
-				丈量人員 :
-				 <select v-model="Data[0].MeasureMember"> 
-                    <option
-                      v-for="item in UserData" :value="item.EMID" :key="item"
-                    >
-                        {{ item.EMID }}|{{ item.EMME }}
-                    </option>
-                  </select><br /><br />
-				  預約成交日 :
-				   <input
-						type="date"
-						class="form-control"
-						style="display: inline; width: 180px"
-						v-model="Data[0].EstimateDealDate"
-						:min="newdate"
-					/><br /><br />
-				 預約成交率 :
-				   <input
-						type="number"
-						class="form-control"
-						style="display: inline; width: 80px"
-						v-model="Data[0].EstimateDealRate"
-						min = 0
-						:readonly="state == 1"
-					/>%<br /><br />
-				  看圖準備方向與重點<br />
-				  <textarea class="form-control" style="height:200px;display:inline" v-model="Data[0].Memo"></textarea><br />
-				  </div>
-				  <div style="text-align: center;height:50px;">
-				  <button  @click.prevent="saveK" style="display:inline;border: 1px black solid;" class="btn">確定</button>&nbsp;
-				  <button @click.prevent="cleanCancel" data-dismiss="modal" style="display:inline;border: 1px black solid;"  class="btn">取消</button>
-          		</div>
+							type="time"
+							class="form-control"
+							style="display: inline; width: 180px"
+							v-model="Data[0].Time"
+						/><br /><br />
+					丈量人員 :
+					<select v-model="Data[0].MeasureMember"> 
+						<option
+						v-for="item in UserData" :value="item.EMID" :key="item"
+						>
+							{{ item.EMID }}|{{ item.EMME }}
+						</option>
+					</select><br /><br />
+					預約成交日 :
+					<input
+							type="date"
+							class="form-control"
+							style="display: inline; width: 180px"
+							v-model="Data[0].EstimateDealDate"
+							:min="newdate"
+						/><br /><br />
+					預約成交率 :
+					<input
+							type="number"
+							class="form-control"
+							style="display: inline; width: 80px"
+							v-model="Data[0].EstimateDealRate"
+							min = 0
+							:readonly="state == 1"
+						/>%<br /><br />
+					看圖準備方向與重點<br />
+					<textarea class="form-control" style="height:200px;display:inline" v-model="Data[0].Memo"></textarea><br />
+					</div>
+					<div style="text-align: center;height:50px;">
+					<button  @click.prevent="saveK" style="display:inline;border: 1px black solid;" class="btn">確定</button>&nbsp;
+					<button @click.prevent="cleanCancel" data-dismiss="modal" style="display:inline;border: 1px black solid;"  class="btn">取消</button>
+					</div>
+			</a>
         </div>
       </div>
     </div>
@@ -175,8 +192,8 @@
 		 		<div class="modal-body" >
 				  看圖取消原因/看圖取得資訊<br />
 				  <textarea class="form-control" style="height:200px;display:inline"  v-model="Data[0].result"></textarea><br /><br />
-				  <input type="radio" name="MKstate" value=0 v-model="MKstate"/>看圖取消
-				  <input type="radio" name="MKstate" value=1 v-model="MKstate"/>看圖完成
+				  <input type="radio" name="MKstate" value=1 v-model="MKstate"/>看圖取消
+				  <input type="radio" name="MKstate" value=2 v-model="MKstate"/>看圖完成
 					<br /><br />
 				  <button  @click.prevent="saveKC" data-dismiss="modal" style="display:inline;border: 1px black solid;" class="btn" :hidden="nextK==true">確定</button>&nbsp;
 				  <button @click.prevent="cleanCancel" data-dismiss="modal" style="display:inline;border: 1px black solid;"  class="btn" :hidden="nextK==true">取消</button>
@@ -229,10 +246,7 @@
 				<th style="width:40%;border: 1px black solid;">準備方向</th>
 				<th style="width:40%">結果</th>
 			</tr>
-			<tr v-if="loadin">
-				<loader></loader>
-			</tr>
-				<tr v-show="loadin==false"
+				<tr
 					 v-for="(item,index) in DataJ" 
 						:value="item"
 						:key="index"
@@ -315,6 +329,7 @@
 	 refnew:false,
 	 show:0,
 	 newdate:new Date(Date.now()).toISOString().slice(0,10),
+	 loadin:0,
 
 	 endch:"0",							//轉購單品待追蹤、已簽約或是無購買意願
 	 DataJ:[],							//存取丈量之chk資料
@@ -354,7 +369,6 @@
 
 	newData:[],
 	checkrepeat:0,			//檢查日期是否重複	
-	loadin:true,
     };
   },
   methods: {
@@ -371,8 +385,8 @@
 		this.$emit('my-event');
 	},
 	refresh: function(){
+		$("#loading").modal('toggle');
 		let that = this;
-		this.loadin=true;
 			 axios
       .get("/api/search/chk/"+this.CNO)
       .then((response) => {
@@ -381,7 +395,7 @@
 		this.DataK = response.data[1];
 		this.Jstate = response.data[2];
 		this.Kstate = response.data[3];
-		that.loadin=false;
+		$("#loading").modal('hide');
       });
 	  	axios
       .get("/api/search/CmMemo/"+this.CNO+"&&85")
@@ -390,6 +404,7 @@
         this.CHKendData[0] = response.data;
       });
 	  this.refnew = false;
+	  this.loadin=0;	
 	  $("#MJFinish").modal('hide');
 	  $("#MKFinish").modal('hide');
 	},
@@ -446,6 +461,7 @@
 		 this.refnew = false;
 	  $("#MJFinish").modal('hide');
 	  $("#MKFinish").modal('hide');
+	  $("#loading").modal('hide');
 	},
 	DeleteJ:function (index) {
 		let that = this;
@@ -552,7 +568,8 @@
 		this.Data[0]['result'] = this.DataK[index]['result'];
 	},
 	saveJ: function () {
-		let that = this;	
+		let that = this;
+		this.loadin=1;	
 		axios
         .post("/api/Create/MeasureCheckJ", {
           Data: this.Data,
@@ -568,6 +585,7 @@
 			.then(function (response) {
 				console.log(response);
 				$("#MJ").modal('hide');
+				that.loadin=0;
 				that.refresh();
 				that.cleanData();
 			})
@@ -576,8 +594,9 @@
 			});
 		  }
 		  else{
+			  that.loadin=0;
 			  that.Data.ReserveDate="";
-			  alert('此日期已經有丈量，同一天只能設定一次丈量');
+			  alert('此日期已經有丈量，同一天只能設定一次丈量');	  
 		  }
         })
         .catch(function (response) {
@@ -586,6 +605,7 @@
 	},
 	saveK: function () {
 		let that = this;	
+		this.loadin=1;	
 			axios
 			.post("/api/Create/MeasureCheckK", {
 				Data: this.Data,
@@ -602,6 +622,7 @@
 						.then(function (response) {
 							console.log(response);
 							$("#MK").modal('hide');
+							that.loadin=0;
 							that.refresh();
 							that.cleanData();
 						})
@@ -610,6 +631,7 @@
 						});
 					}
 					else{
+						that.loadin=0;
 						that.Data.ReserveDate="";
 						alert('此日期已經有看圖，同一天只能設定一次看圖');
 					}
@@ -619,7 +641,9 @@
 			});
 	},
 	saveJC: function () {
+
 		let that = this;
+		this.loadin=1;	
 		 axios
         .post("/api/Update/Measurestate", {
           Data: this.Data,
@@ -629,6 +653,7 @@
         .then(function (response) {
           console.log(response);
 		  that.cleanData();
+ 		  that.loadin=0;	
         })
         .catch(function (response) {
           console.log(response);
@@ -636,6 +661,7 @@
 	},
 	saveKC: function () {
 		let that = this;
+		this.loadin=1;	
 	 axios
         .post("/api/Update/Measurestate", {
          Data: this.Data,
@@ -645,6 +671,7 @@
         .then(function (response) {
           console.log(response);
 		  that.cleanData();
+		  that.loadin=0;
         })
         .catch(function (response) {
           console.log(response);
@@ -684,6 +711,7 @@
 	},
 },     
   mounted(){
+	  $("#loading").modal('toggle');
 	  let that = this;
       axios
       .get("/api/search/chk/"+this.CNO)
@@ -693,7 +721,7 @@
 		this.DataK = response.data[1];
 		this.Jstate = response.data[2];
 		this.Kstate = response.data[3];
-		that.loadin=false;
+		 $("#loading").modal('hide');
       });
 		 axios
 		.get("/api/search/UserDept/"+this.Data[0].Dept)

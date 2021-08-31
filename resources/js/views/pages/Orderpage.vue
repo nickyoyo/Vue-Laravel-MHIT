@@ -294,7 +294,7 @@
             style="
               overflow-y: scroll;
               height: 400px;
-              width: 1600px;
+              width: 1630px;
               border: 1px black solid;
             "
           >
@@ -378,7 +378,7 @@ export default {
         .then((response) => {
           console.log(response.data);
           this.OrderDetailitem = response.data;
-         $("#loading").modal('toggle');
+         $("#loading").modal('hide');
         });
       axios
         .get("/api/search/Orderdata/" + this.OrderList[index].QuotNo)
