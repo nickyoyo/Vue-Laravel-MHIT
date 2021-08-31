@@ -67,7 +67,8 @@
               >
                 <td class="orderth1">訂單</td>
                 <td class="orderth2"></td>
-                <td class="orderth3">{{ item.QuotNo }}</td>
+                <td v-if="Selectorder==index" style="color:red;font-weight:bold;" class="orderth3">{{ item.QuotNo }}</td>
+                <td v-else class="orderth3">{{ item.QuotNo }}</td>
                 <td class="orderth4">{{ item.TotalValue }}</td>
                 <td><button @click="GetOrderDetail(index)">明細</button></td>
               </tr>
@@ -144,12 +145,14 @@
           <input
             type="text"
             style="height: 30px; width: 90px; display: inline"
+            v-model="OrderDataFINST.TransDate"
             readonly
           />
             &nbsp;&nbsp;裝: 
            <input
             type="text"
             style="height: 30px; width: 90px; display: inline"
+            v-model="OrderDataFINST.SetDate"
             readonly
           />
             &nbsp;&nbsp;出: 
@@ -167,57 +170,58 @@
         <div style="width:180px;">
           <table class="container " style="padding:10px;text-align: right">
              <tr><td style="height: 40px;">
-               專案顧問&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+               專案顧問&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderDataEM.EMID" readonly />
             </td></tr>  
               <tr><td style="height: 40px;">
-                中文名&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+                中文名&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderDataEM.EMME" readonly />
             </td></tr>  
     <tr><td style="height: 15px;"></td></tr>
             <tr><td style="height: 40px;">
-               報價&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+               報價&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderData[0].QuotDate" readonly />
             </td></tr>
     <tr><td style="height: 10px;"></td></tr>
             <tr><td style="height: 40px;">
-               檔期&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+               檔期&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderData[0].PromotionPeriod" readonly />
             </td></tr>
     <tr><td style="height: 10px;"></td></tr>
             <tr><td style="height: 40px;">
-               簽約&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+               簽約&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderData[0].OrderDate" readonly />
             </td></tr>
     <tr><td style="height: 10px;"></td></tr>
             <tr><td style="height: 40px;">
-               <button>預計完款</button>&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+               <button>預計完款</button>&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderData[0].ExpireDate" readonly />
             </td></tr>
     <tr><td style="height: 10px;"></td></tr>
             <tr><td style="height: 40px;">
-               <button>預計安裝</button>&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+               <button>預計安裝</button>&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderData[0].RequireDate" readonly />
             </td></tr>
     <tr><td style="height: 10px;"></td></tr>
             <tr><td style="height: 40px;">
-                完款&nbsp;:<input type="text" style="height: 30px; width: 90px;" readonly />
+                完款&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderData[0].ClearDate" readonly />
             </td></tr>
     <tr><td style="height: 10px;"></td></tr>   
             <tr><td style="height: 40px;">
-                揀貨&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+                揀貨&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderData[0].PickingDate" readonly />
             </td></tr>
     <tr><td style="height: 10px;"></td></tr>
             <tr><td style="height: 40px;">
-                確出&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+                確出&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderData[0].AppDate" readonly />
             </td></tr>
     <tr><td style="height: 10px;"></td></tr>
             <tr><td style="height: 40px;">
-                損益&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+                損益&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderData[0].ProfitDate" readonly />
             </td></tr>
     <tr><td style="height: 10px;"></td></tr>
             <tr><td style="height: 40px;">
-                完工&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+                完工&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderDataFINST.InspectDate" readonly />
             </td></tr>
     <tr><td style="height: 10px;"></td></tr>
             <tr><td style="height: 40px;">
-                檢日&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+                檢日&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderDataFINST.CheckDate" readonly />
             </td></tr>
+    <tr><td style="height: 10px;"></td></tr>
             <tr><td style="height: 40px;">
-                驗收&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+                驗收&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderDataFINST.CloseDate" readonly />
             </td></tr>     
      
           </table>
@@ -228,18 +232,18 @@
         <div style="width:180px;">
           <table class="container " style="padding:10px;text-align: right">
             <tr><td style="height: 40px;">
-                門市別&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+                門市別&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderDataEM.DVID" readonly />
             </td></tr>  
               <tr><td style="height: 40px;">
-                英文名&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+                英文名&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderDataEM.ENME" readonly />
             </td></tr>  
     <tr><td style="height: 15px;"></td></tr>
             <tr><td style="height: 40px;">
-               訂單總額&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+               訂單總額&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderData[0].TotalValue" readonly />
             </td></tr>
     <tr><td style="height: 10px;"></td></tr>
             <tr><td style="height: 40px;">
-                <button>額外施工</button>&nbsp;<input type="text" style="height: 30px; width: 90px;" readonly />
+                <button>額外施工</button>&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderData[0].exwork" readonly />
             </td></tr>
     <tr><td style="height: 10px;"></td></tr>
             <tr><td style="height: 40px;">
@@ -373,10 +377,14 @@ export default {
       OrderDataMemo: "",
       OrderDataCTDtype: "",
       OrderDetailitem: [],
+      OrderDataFINST: [],
+      OrderDataEM: [],
+      Selectorder:-1,
     };
   },
   methods: {
     GetOrderDetail: function (index) {
+      this.Selectorder=index;
       this.loadinD = true;
       axios
         .get("/api/search/OrderDetailitem/" + this.OrderList[index].QuotNo)
@@ -401,6 +409,18 @@ export default {
             .then((response) => {
                 console.log(response);
                 this.OrderDataMemo = response.data.memo;
+            });
+            axios
+            .get("/api/search/OrderFINST/" + this.OrderData[0].QuotNo)
+            .then((response) => {
+                console.log(response);
+                this.OrderDataFINST = response.data;
+            });
+            axios
+            .get("/api/search/PD/" + this.OrderData[0].UserId)
+            .then((response) => {
+                console.log(response);
+                this.OrderDataEM = response.data;
             });
         });
     },

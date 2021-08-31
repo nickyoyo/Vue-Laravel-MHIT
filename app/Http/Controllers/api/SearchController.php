@@ -14,6 +14,7 @@ use App\Models\SO;
 use App\Models\sod;
 use App\Models\im;
 use App\Models\po;
+use App\Models\FINST;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
@@ -262,11 +263,11 @@ class SearchController extends Controller
         }
         return response()->json([$UseExp,$UDS,$likeStyle,$space],200);
     }
-    public function searchPD()
+    public function searchPD($EMID)
     {
-        //$EMID = Session::get('EMID');
-       // $EM13 = EM13::where('EMID','=', $EMID)->where('OFDT','=','00000000')->first();
-        return response()->json(['YA' => Auth::user()],200);
+
+        $data = EM13::where('EMID','=', $EMID)->where('OFDT','=','00000000')->first();
+        return response()->json($data,200);
     }
     public function searchaddress($street)
     {
@@ -356,8 +357,18 @@ class SearchController extends Controller
         $data = SO::where('QuotNo',trim($QNO))->where('OrderDate','>','00000000')->orderby('QuotNo','asc')->get();
         foreach($data as $list){
             $list->TotalValue=(int)$list->TotalValue;
-            $list->OrderDate = substr($list->OrderDate, 0, 4)."/".substr($list->OrderDate, 4, 2)."/".substr($list->OrderDate, 6, 2);  
-            $list->DispatchDate = substr($list->DispatchDate, 0, 4)."/".substr($list->DispatchDate, 4, 2)."/".substr($list->DispatchDate, 6, 2);  
+            $list->exwork = (int)$list->exwork;  
+            $list->OrderDate = ($list->OrderDate > '00000000') ? substr($list->OrderDate, 0, 4)."/".substr($list->OrderDate, 4, 2)."/".substr($list->OrderDate, 6, 2) : '';  
+            $list->QuotDate = ($list->QuotDate > '00000000') ? substr($list->QuotDate, 0, 4)."/".substr($list->QuotDate, 4, 2)."/".substr($list->QuotDate, 6, 2) : '';  
+            $list->RequireDate = ($list->RequireDate > '00000000') ? substr($list->RequireDate, 0, 4)."/".substr($list->RequireDate, 4, 2)."/".substr($list->RequireDate, 6, 2) : '';  
+            $list->PromotionPeriod = ($list->PromotionPeriod > '00000000') ? substr($list->PromotionPeriod, 0, 4)."/".substr($list->PromotionPeriod, 4, 2)."/".substr($list->PromotionPeriod, 6, 2) : '';  
+            $list->ExpireDate  = ($list->ExpireDate  > '00000000') ? substr($list->ExpireDate , 0, 4)."/".substr($list->ExpireDate , 4, 2)."/".substr($list->ExpireDate , 6, 2) : '';  
+            $list->DispatchDate = ($list->DispatchDate > '00000000') ? substr($list->DispatchDate, 0, 4)."/".substr($list->DispatchDate, 4, 2)."/".substr($list->DispatchDate, 6, 2) : '';  
+            $list->ClearDate = ($list->ClearDate > '00000000') ? substr($list->ClearDate, 0, 4)."/".substr($list->ClearDate, 4, 2)."/".substr($list->ClearDate, 6, 2) : '';  
+            $list->PickingDate = ($list->PickingDate > '00000000') ? substr($list->PickingDate, 0, 4)."/".substr($list->PickingDate, 4, 2)."/".substr($list->PickingDate, 6, 2) : '';  
+            $list->AppDate = ( $list->AppDate > '00000000') ? substr( $list->AppDate, 0, 4)."/".substr( $list->AppDate, 4, 2)."/".substr( $list->AppDate, 6, 2) : '';  
+            $list->ProfitDate = ($list->ProfitDate > '00000000') ? substr($list->ProfitDate, 0, 4)."/".substr($list->ProfitDate, 4, 2)."/".substr($list->ProfitDate, 6, 2) : '';  
+            
         }
       
         return response()->json($data,200);
@@ -405,6 +416,56 @@ class SearchController extends Controller
         }
 
         return response()->json($getorder,200);
+    }
+
+    public function searchOrderFINST($QNO)
+    {
+        $data = FINST::where('訂單編號',trim($QNO))->first(['FINST.*','確定出貨日 as SuresendDate','檢核日 as CheckDate','安裝日 as SetDate','拆除日 as RemoveDate','運送日 as TransDate']);
+       
+        if($data->SuresendDate > '00000000'){
+            $data->SuresendDate = substr($data->SuresendDate, 0, 4)."/".substr($data->SuresendDate, 4, 2)."/".substr($data->SuresendDate, 6, 2);  
+        }
+        else{
+            $data->SuresendDate='';
+        }
+        if($data->CheckDate > '00000000'){
+            $data->CheckDate = substr($data->CheckDate, 0, 4)."/".substr($data->CheckDate, 4, 2)."/".substr($data->CheckDate, 6, 2);  
+        }
+        else{
+            $data->CheckDate='';
+        }
+        if($data->SetDate > '00000000'){
+            $data->SetDate = substr($data->SetDate, 0, 4)."/".substr($data->SetDate, 4, 2)."/".substr($data->SetDate, 6, 2);  
+        }
+        else{
+            $data->SetDate='';
+        }
+        if($data->RemoveDate > '00000000'){
+            $data->RemoveDate = substr($data->RemoveDate, 0, 4)."/".substr($data->RemoveDate, 4, 2)."/".substr($data->RemoveDate, 6, 2);  
+        }
+        else{
+            $data->RemoveDate='';
+        }
+        if($data->TransDate > '00000000'){
+            $data->TransDate = substr($data->TransDate, 0, 4)."/".substr($data->TransDate, 4, 2)."/".substr($data->TransDate, 6, 2);  
+        }
+        else{
+            $data->TransDate='';
+        }
+        if($data->CloseDate > '00000000'){
+            $data->CloseDate = substr($data->CloseDate, 0, 4)."/".substr($data->CloseDate, 4, 2)."/".substr($data->CloseDate, 6, 2);  
+        }
+        else{
+            $data->CloseDate='';
+        }
+        if($data->InspectDate > '00000000'){
+            $data->InspectDate = substr($data->InspectDate, 0, 4)."/".substr($data->InspectDate, 4, 2)."/".substr($data->InspectDate, 6, 2);  
+        }
+        else{
+            $data->InspectDate='';
+        }
+
+        return response()->json($data,200);
     }
 
 }
