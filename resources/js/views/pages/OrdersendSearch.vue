@@ -1,6 +1,11 @@
 <template>
   <div id="CMList" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
-    <CMList @getCustNo="setCustNo"></CMList>
+
+     <CMList @getCustNo="setCustNo"></CMList>
+  </div>
+
+    <div class="modal" id="Modify" tabindex="-1" style="display: none;" aria-hidden="true">
+            <ModifyOrderpage v-bind:index="Selectorder"></ModifyOrderpage>
   </div>
 
   <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
@@ -18,11 +23,15 @@
 
 <script>
 import CMList from "../dropwindow/CMList.vue";
+import PartNo from "../dropwindow/PartNo.vue";
+import ModifyOrderpage from "../dropwindow/ModifyOrderpage.vue";
   const axios = require("axios");
 export default {
   name: "CMsendSearch",
   components: {
       CMList,
+      PartNo,
+      ModifyOrderpage,
     },
   data() {
     return {
@@ -51,8 +60,9 @@ export default {
   },
    mounted() {
         document.getElementById('PID').addEventListener('keydown',function(e){
-            if (e.shiftKey) {
-                  $("#CMList").modal('show');              
+            if (e.shiftKey) {        
+                  $("#Modify").modal('show');    
+                 
             }
                 },false);
     },

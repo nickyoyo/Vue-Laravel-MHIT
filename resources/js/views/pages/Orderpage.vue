@@ -1,4 +1,8 @@
 <template>
+   <div class="modal" id="Modify" tabindex="-1" style="display: none;" aria-hidden="true">
+            <ModifyOrderpage v-bind:index="Selectorder" :key="modifyref"></ModifyOrderpage>
+  </div>
+
   <div id="loading" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
       <div class="modal-dialog modal-sm" >
             <loader></loader>
@@ -302,8 +306,8 @@
               <thead>
                 <tr style="border: 1px black solid">
                   <th class="Dorderth1">項次</th>
-                  <th class="Dorderth2">色號</th>
                   <th class="Dorderth3">料號</th>
+                  <th class="Dorderth2">色號</th>
                   <th class="Dorderth4">定價</th>
                   <th class="Dorderth5">訂單量</th>
                   <th class="Dorderth6">折扣率</th>
@@ -320,9 +324,6 @@
                 :hidden="show == 1"
               >
                 <th class="Dorderth1">{{ index + 1 }}</th>
-                <th class="Dorderth2">  {{ itemD.Ragne }}<br /><a style="color: green">
-                     {{ itemD.RangeName}}
-                    </a></th>
                 <th class="Dorderth3">
                   {{ itemD.SalesCode }}<br /><a style="color: blue"
                     >{{ itemD.SalesCodeData.Description }}[{{
@@ -330,6 +331,9 @@
                     }}]</a
                   >
                 </th>
+                <th class="Dorderth2">  {{ itemD.Ragne }}<br /><a style="color: green">
+                     {{ itemD.RangeName}}
+                    </a></th>
                 <th class="Dorderth4">{{ itemD.UnitPrice }}</th>
                 <th class="Dorderth5">{{ itemD.Qty }}</th>
                 <th class="Dorderth6">{{ itemD.DiscountRate }}</th>
@@ -351,9 +355,13 @@
 
 <script>
 import loader from "../test/Loader.vue";
+import ModifyOrderpage from "../dropwindow/ModifyOrderpage.vue";
 const axios = require("axios");
 export default {
-  components: { loader },
+  components: { 
+    loader,
+    ModifyOrderpage,
+   },
   name: "Orderpage",
   data() {
     return {
@@ -368,11 +376,19 @@ export default {
       OrderDataEM: [],
       OrderDataARM1:[],
       Selectorder:-1,
+
+      modifyref:1,
     };
   },
   methods: {
+    Modify: function(){
+        this.modifyref=1,
+        $("#Modify").modal('show');
+
+    },
     GetOrderDetail: function (index) {
       this.Selectorder=index;
+       this.modifyref=0,
        $("#loading").modal('show');
       axios
         .get("/api/search/OrderDetailitem/" + this.OrderList[index].QuotNo)
@@ -475,10 +491,11 @@ thead tr th {
 .Dorderth2 {
   width: 8%;
   text-align: center;
-  border: 1px black solid;
+ 
 }
 .Dorderth3 {
   width: 35%;
+   border: 1px black solid;
 }
 .Dorderth4 {
   width: 5%;
@@ -517,16 +534,3 @@ thead tr th {
   border: 2px solid #2d302d;
 }
 </style>
-© 2021 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Loading complete
