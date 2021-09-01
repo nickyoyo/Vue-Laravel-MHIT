@@ -1,4 +1,8 @@
 <template>
+  <div id="CMList" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
+    <CMList @getCustNo="setCustNo"></CMList>
+  </div>
+
   <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
       <h1>查詢門市訂單</h1>
     <label for="PID">客戶編號:</label><br />
@@ -13,9 +17,13 @@
 </template>
 
 <script>
+import CMList from "../dropwindow/CMList.vue";
   const axios = require("axios");
 export default {
   name: "CMsendSearch",
+  components: {
+      CMList,
+    },
   data() {
     return {
       PID: [],
@@ -36,6 +44,17 @@ export default {
             }
           });
     },
+      setCustNo: function(CustNo){
+        this.PID = CustNo;
+        $("#CMList").modal('hide');   
+      },
   },
+   mounted() {
+        document.getElementById('PID').addEventListener('keydown',function(e){
+            if (e.shiftKey) {
+                  $("#CMList").modal('show');              
+            }
+                },false);
+    },
 };
 </script>
