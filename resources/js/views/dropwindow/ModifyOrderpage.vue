@@ -1,6 +1,16 @@
 <template>
+    <div id="loading" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
+      <div class="modal-dialog modal-sm" >
+            <loader></loader>
+      </div>
+  </div>
+
  <div id="ColorNum" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
      <ColorNum @getColor="setColor" @closeColor="closeColor"></ColorNum>
+  </div>
+
+  <div id="PartNum" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
+     <PartNum @getPart="setPart" @closePart="closePart"></PartNum>
   </div>
 
     <div class="modal-content">
@@ -204,12 +214,15 @@
                                 <th class="Morderth1">{{ index + 1 }}</th>
                                 <th class="Morderth3">
                                   <input
+                                        name='Part[]'
                                         type="text"
                                         style="height: 30px; width: 100px;"
                                         onkeyup="value=value.replace(/[\W]/g,'') " 
                                         onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"
                                         v-model="itemD.SalesCode"
                                         maxlength="10"
+                                        @keydown.shift="getPartNum()"
+                                        @click="getindex(index)"
                                         @keydown.tab.exact="checkPC(index)"
                                     />    
                                     <br /><a style="color: blue"
@@ -218,8 +231,10 @@
                                     }}]</a
                                 >
                                 </th>
-                                <th class="Morderth2">  <input
+                                <th class="Morderth2">  
+                                    <input
                                         type="text"
+                                        name='Color[]'
                                         style="height: 30px; width: 80px;"
                                         onkeyup="value=value.replace(/[\W]/g,'') " 
                                         onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"
@@ -227,8 +242,8 @@
                                         maxlength="10"
                                         @keydown.shift="getColorNum()"
                                         @click="getindex(index)"
-                                         @keydown.tab.exact="checkPC1(index)"
-                                        :disabled="checkPC==0"                   
+                                        @keydown.tab.exact="checkPC1(index)"
+                                        :disabled="Selectorder==-1"                   
                                     /><br /><a style="color: green">
                                     {{ itemD.RangeName}}
                                     </a></th>
@@ -256,6 +271,7 @@
 
 <script>
 import ColorNum from "../dropwindow/ColorNum.vue";
+import PartNum from "../dropwindow/PartNum.vue";
 import loader from "../test/Loader.vue";
 const axios = require("axios");
 export default {
@@ -264,6 +280,7 @@ export default {
    components: { 
     loader,
     ColorNum,
+    PartNum,
    },
   data: function () {
     return {
@@ -279,19 +296,32 @@ export default {
       OrderDataARM1:[],
       Selectorder:this.index,
       DetailIndex:"",
-      checkPC:0,
     };
   },
   methods:{
-      closeColor:function(){
+    closeColor:function(){
          $("#ColorNum").modal('hide');              
     },
-        getColorNum:function(){
+    getColorNum:function(){
          $("#ColorNum").modal('show');              
     },
+    closePart:function(){
+         $("#PartNum").modal('hide');              
+    },
+    getPartNum:function(){
+         $("#PartNum").modal('show');              
+    },
     setColor:function(val){
-        this.OrderDetailitem[this.DetailIndex].Ragne = val;   
+        this.OrderDetailitem[this.DetailIndex].Ragne = val.codeindex;   
+        this.OrderDetailitem[this.DetailIndex].RangeName = val.codeDesc;  
         $("#ColorNum").modal('hide');         
+        document.getElementsByName('Color[]')[this.DetailIndex].select();    
+    },
+    setPart:function(val){
+        this.OrderDetailitem[this.DetailIndex].SalesCode = val.SKU;   
+        this.OrderDetailitem[this.DetailIndex].SalesCodeData.Description = val.Description;  
+        $("#PartNum").modal('hide'); 
+        document.getElementsByName('Part[]')[this.DetailIndex].select();        
     },
     getindex:function(index){
          this.DetailIndex = index;
@@ -305,6 +335,7 @@ export default {
         });
     },
     checkPC1:function(index){
+         this.DetailIndex = index+1;
         axios
         .get("/api/search/OrderDetailitemCheckPC1")
         .then((response) => {
@@ -368,7 +399,7 @@ export default {
   text-align: center;
 }
 .Morderth2 {
-  width: 8%;
+  width: 14%;
   text-align: left;
  
 }
@@ -395,12 +426,12 @@ export default {
   text-align: center;
 }
 .Morderth8 {
-  width: 9%;
+  width: 5%;
   text-align: center;
   border: 1px black solid;
 }
 .Morderth9 {
-  width: 10%;
+  width: 8%;
   text-align: center;
 }
 </style>

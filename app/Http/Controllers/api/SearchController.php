@@ -123,7 +123,7 @@ class SearchController extends Controller
             $data  = CTD::where('codename','屋型')->get();
         }   
         if($codename=="門板色"){
-            $data  = CTD::where('codename','門板色')->where('codetype','11')->orderby('Reserve4','asc')->get();
+            $data  = CTD::where('codename','門板色')->where('codetype','11')->orderby('Reserve4','asc')->take(100)->get();
         }    
       
         foreach($data as $CTD){
@@ -133,15 +133,14 @@ class SearchController extends Controller
         return response()->json($data,200);
     }
 
-    public function searchPartNo($SupplierNo,$imclass)        
+    public function searchPartNo($SKU)        
     {
-        $check  = CTD::where('codename','門板色')->where('Reserve4',$SupplierNo)->first();
-        $data  = im::where('im_class',$imclass)->take(100)->get();  
-        if($check == NULL){          //以料號顯示
-            return response()->json([$data,0],200);
+        $data  = im::where('SKU','LIKE', $SKU.'%')->take(200)->get();  
+        foreach($data as $PartNo){
+            $PartNo->FullPrice=(int)$PartNo->FullPrice;
         }
         
-        return response()->json([$data,1],200);
+        return response()->json($data,200);
     }
 
     public function searchCTDDesc($codename,$codeindex)        //CTD

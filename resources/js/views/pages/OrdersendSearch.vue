@@ -23,14 +23,14 @@
 
 <script>
 import CMList from "../dropwindow/CMList.vue";
-import PartNo from "../dropwindow/PartNo.vue";
+import PartNum from "../dropwindow/PartNum.vue";
 import ModifyOrderpage from "../dropwindow/ModifyOrderpage.vue";
   const axios = require("axios");
 export default {
   name: "CMsendSearch",
   components: {
       CMList,
-      PartNo,
+      PartNum,
       ModifyOrderpage,
     },
   data() {

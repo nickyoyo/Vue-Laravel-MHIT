@@ -1,15 +1,15 @@
 <template>
-      <div class="modal-dialog modal-lg" >
-        <div class="modal-content" >
+      <div class="modal-dialog modal-xl">
+      <div class="modal-content" >
 			<div class="modal-header">
 				<button type="button" class="close"  @click="close()">
-          <span>&times;</span>
+                    <span>&times;</span>
 				</button>
 			</div>
 				<div class="modal-body" >
           <h2>
             <label class="font-weight-bold" style="color: #ff5151"
-              >色號列表</label
+              >料號列表</label
             >
           </h2>
           <div
@@ -22,22 +22,24 @@
             <table style="border: 1px black solid;">
               <thead>
                 <tr style="border: 1px black solid">
-                  <th class="Corder1">選擇</th>
-                  <th class="Corder2">廠商</th>
-                  <th class="Corder3">色號</th>
-                  <th class="Corder4">內容描述</th>
+                  <th class="PPorder1">選擇</th>
+                  <th class="PPorder2">料號</th>
+                  <th class="PPorder3">廠商</th>
+                  <th class="PPorder4">品名</th>
+                  <th class="PPorder5">售價</th>
                 </tr>
               </thead>
               <tr     
-               v-for="(item,index) in CTDcolornum" 
+              v-for="(item,index) in PartNoData" 
                 :value="item"
                 :key="index"
                 style="border: 1px black solid;"
               >
-                  <th class="Corder1" ><button  @click="GetColor(index)">選擇</button></th>
-                  <th class="Corder2">{{item.Reserve4}}</th>
-                  <th class="Corder3">{{item.codeindex}}</th>
-                  <th class="Corder4">{{item.codeDesc}}</th>
+                  <th class="PPorder1" ><button  @click="GetPart(index)">選擇</button></th>
+                  <th class="PPorder2">{{item.SKU}}</th>
+                  <th class="PPorder3">{{item.SupplierNo}}</th>
+                  <th class="PPorder4">{{item.Description}}</th>
+                  <th class="PPorder5">{{item.FullPrice}}</th>
               </tr>
             </table>
           </div>
@@ -49,48 +51,54 @@
 <script>
 const axios = require("axios");
 export default {
-  name: "ColorNum",
+  name: "PartNum",
   data: function () {
     return {
-        CTDcolornum:[],
+        PartNoData:[],
     };
   },
   methods:{
     close:function () {
-        this.$emit("closeColor");
+        this.$emit("closePart");
     },
-     GetColor: function (index) {
-       console.log(this.CTDcolornum[index])
-        this.$emit("getColor", this.CTDcolornum[index]);
+     GetPart: function (index) {
+       console.log(this.PartNoData[index])
+        this.$emit("getPart", this.PartNoData[index]);
     }
   },
   mounted(){
        axios
-        .get("/api/search/CTD/門板色")
+        .get("/api/search/PartNo/SK")
         .then((response) => {
           console.log(response.data);        
-            this.CTDcolornum = response.data;
+            this.PartNoData = response.data;
           });
   },
 };
 </script>
 
 <style>
-.Corder1 {
+
+.PPorder1 {
   width: 80px;
   text-align: center;
 }
-.Corder2 {
-  width: 100px;
+.PPorder2 {
+  width: 200px;
   text-align: center;
   border: 1px black solid;
 }
-.Corder3 {
-  width: 100px;
+.PPorder3 {
+  width: 130px;
   text-align: center;
 }
-.Corder4 {
+.PPorder4 {
   width: 500px;
+  text-align: center;
+  border: 1px black solid;
+}
+.PPorder5 {
+  width: 150px;
   text-align: center;
   border: 1px black solid;
 }
