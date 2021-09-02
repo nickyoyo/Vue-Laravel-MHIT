@@ -11,7 +11,16 @@
             <label class="font-weight-bold" style="color: #ff5151"
               >料號列表</label
             >
-          </h2>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input
+                type="text"
+                style="height: 30px; width: 100px;display:inline;vertical-align: middle;font-size:18px;"
+                onkeyup="value=value.replace(/[\W]/g,'') " 
+                onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"
+                v-model="PartSelect"     
+              />&nbsp;
+            <button type="button" @click="PartSelectM()" style="height: 30px; width: 50px;font-size:15px;display:inline;vertical-align: middle;">查詢</button>
+             </h2>
           <div
             style="
               overflow-y: scroll;
@@ -19,6 +28,10 @@
               border: 1px black solid;
             "
           >
+          <a v-if="loadin==1">
+                <loader></loader>
+          </a>
+          <a v-else>
             <table style="border: 1px black solid;">
               <thead>
                 <tr style="border: 1px black solid">
@@ -37,11 +50,12 @@
               >
                   <th class="PPorder1" ><button  @click="GetPart(index)">選擇</button></th>
                   <th class="PPorder2">{{item.SKU}}</th>
-                  <th class="PPorder3">{{item.SupplierNo}}</th>
+                  <th class="PPorder3">{{item.SupplierNo.SuppNo}}</th>
                   <th class="PPorder4">{{item.Description}}</th>
                   <th class="PPorder5">{{item.FullPrice}}</th>
-              </tr>
+              </tr> 
             </table>
+             </a>
           </div>
         </div>
         </div>
@@ -50,11 +64,17 @@
 
 <script>
 const axios = require("axios");
+import loader from "../test/Loader.vue";
 export default {
   name: "PartNum",
+   components: { 
+    loader,
+   },
   data: function () {
     return {
         PartNoData:[],
+        PartSelect:"",
+        loadin:0,
     };
   },
   methods:{
@@ -64,7 +84,18 @@ export default {
      GetPart: function (index) {
        console.log(this.PartNoData[index])
         this.$emit("getPart", this.PartNoData[index]);
-    }
+    },
+       PartSelectM:function () {
+           this.loadin=1;
+            axios
+            .get("/api/search/PartNo/"+ this.PartSelect)
+            .then((response) => {
+            console.log(response.data);        
+                this.PartNoData = response.data;
+                this.PartSelect = "";
+                 this.loadin=0;
+            });  
+    },
   },
   mounted(){
        axios

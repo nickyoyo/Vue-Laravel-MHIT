@@ -62,7 +62,6 @@ export default {
         document.getElementById('PID').addEventListener('keydown',function(e){
             if (e.shiftKey) {        
                   $("#Modify").modal('show');    
-                 
             }
                 },false);
     },

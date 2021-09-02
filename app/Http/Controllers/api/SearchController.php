@@ -123,8 +123,8 @@ class SearchController extends Controller
         if($codename=="屋型"){
             $data  = CTD::where('codename','屋型')->get();
         }   
-        if($codename=="門板色"){
-            $data  = CTD::where('codename','門板色')->where('codetype','11')->orderby('Reserve4','asc')->take(100)->get();
+        if($codename=="色號"){
+            $data  = CTD::where('codename','門板色')->orderby('codeindex','asc')->take(100)->get();
         }    
       
         foreach($data as $CTD){
@@ -134,22 +134,26 @@ class SearchController extends Controller
         return response()->json($data,200);
     }
 
+    public function searchColorNo($Colorselect)        //CTD
+    {
+        $data  = CTD::where('Reserve4','LIKE', $Colorselect.'%')->orderby('codeindex','asc')->get();
+        return response()->json($data,200);
+    }
+
     public function searchPartNo($SKU)        
     {
         $data  = im::where('SKU','LIKE', $SKU.'%')->take(200)->get();  
         foreach($data as $PartNo){
             $PartNo->FullPrice=(int)$PartNo->FullPrice;
+
+            $vm  = vm::where('SuppNo',$PartNo->SupplierNo)->first();
+            $vm->SupplierNo = trim($vm->SupplierNo);
+            $PartNo->SupplierNo = $vm;
         }
-        
+           
         return response()->json($data,200);
     }
 
-    public function searchPartNoVM($SuppNo)        
-    {
-        $data  = vm::where('SuppNo',$SuppNo)->first();
-        $data->LastTrans = trim($data->LastTrans);
-        return response()->json($data,200);
-    }
 
     public function searchCTDDesc($codename,$codeindex)        //CTD
     {

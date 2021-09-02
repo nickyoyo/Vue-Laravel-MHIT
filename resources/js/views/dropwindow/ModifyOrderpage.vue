@@ -27,10 +27,10 @@
                         <div style="width:200px;">
                             <table class="container " style="padding:10px;text-align: right">
                                 <tr><td style="height: 40px;">
-                                        客戶編號&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderData[0].CusNo" readonly />
+                                        客戶編號&nbsp;<input type="text" style="height: 30px; width: 120px;" v-model="OrderData[0].CusNo" readonly />
                                     </td></tr>  
                                         <tr><td style="height:40px;">
-                                            訂單編號&nbsp;<input type="text" style="height: 30px; width: 90px;" v-model="OrderData[0].QuotNo" readonly />
+                                            訂單編號&nbsp;<input type="text" style="height: 30px; width: 120px;" v-model="OrderData[0].QuotNo" readonly />
                                         </td></tr>  
                             </table>
                         </div>
@@ -321,13 +321,6 @@ export default {
         this.OrderDetailitem[this.DetailIndex].SalesCode = val.SKU;   
         this.OrderDetailitem[this.DetailIndex].SalesCodeData = val;  
     
-        axios
-        .get("/api/search/PartNoVM/"+this.OrderDetailitem[this.DetailIndex].SalesCodeData.SupplierNo)
-        .then((response) => {
-          console.log(response.data);
-          this.OrderDetailitem[this.DetailIndex].SalesCodeData.SupplierNo = response.data;
-        });
-
         $("#PartNum").modal('hide'); 
         document.getElementsByName('Part[]')[this.DetailIndex].select();        
     },

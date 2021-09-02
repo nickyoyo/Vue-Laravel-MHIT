@@ -11,7 +11,16 @@
             <label class="font-weight-bold" style="color: #ff5151"
               >色號列表</label
             >
-          </h2>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <input
+                type="text"
+                style="height: 30px; width: 100px;display:inline;vertical-align: middle;font-size:18px;"
+                onkeyup="value=value.replace(/[\W]/g,'') " 
+                onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"
+                v-model="ColorSelect"     
+              />&nbsp;
+            <button type="button" @click="ColorSelectM()" style="height: 30px; width: 50px;font-size:15px;display:inline;vertical-align: middle;">查詢</button>
+             </h2>
           <div
             style="
               overflow-y: scroll;
@@ -19,6 +28,10 @@
               border: 1px black solid;
             "
           >
+           <a v-if="loadin==1">
+                <loader></loader>
+          </a>
+          <a v-else>
             <table style="border: 1px black solid;">
               <thead>
                 <tr style="border: 1px black solid">
@@ -40,6 +53,7 @@
                   <th class="Corder4">{{item.codeDesc}}</th>
               </tr>
             </table>
+            </a>
           </div>
         </div>
         </div>
@@ -48,11 +62,17 @@
 
 <script>
 const axios = require("axios");
+import loader from "../test/Loader.vue";
 export default {
   name: "ColorNum",
+  components: { 
+    loader,
+   },
   data: function () {
     return {
         CTDcolornum:[],
+        ColorSelect:"",
+        loadin:0,
     };
   },
   methods:{
@@ -62,11 +82,22 @@ export default {
      GetColor: function (index) {
        console.log(this.CTDcolornum[index])
         this.$emit("getColor", this.CTDcolornum[index]);
-    }
+    },
+    ColorSelectM:function () {
+      this.loadin=1;
+       axios
+        .get("/api/search/ColorNo/"+ this.ColorSelect)
+        .then((response) => {
+          console.log(response.data);        
+            this.CTDcolornum = response.data;
+            this.ColorSelect = "";
+            this.loadin=0;
+          });  
+    },
   },
   mounted(){
        axios
-        .get("/api/search/CTD/門板色")
+        .get("/api/search/CTD/色號")
         .then((response) => {
           console.log(response.data);        
             this.CTDcolornum = response.data;
