@@ -15821,27 +15821,22 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       document.getElementsByName('Color[]')[this.DetailIndex].select();
     },
     setPart: function setPart(val) {
+      var _this = this;
+
       this.OrderDetailitem[this.DetailIndex].SalesCode = val.SKU;
-      this.OrderDetailitem[this.DetailIndex].SalesCodeData.Description = val.Description;
+      this.OrderDetailitem[this.DetailIndex].SalesCodeData = val;
+      axios.get("/api/search/PartNoVM/" + this.OrderDetailitem[this.DetailIndex].SalesCodeData.SupplierNo).then(function (response) {
+        console.log(response.data);
+        _this.OrderDetailitem[_this.DetailIndex].SalesCodeData.SupplierNo = response.data;
+      });
       $("#PartNum").modal('hide');
       document.getElementsByName('Part[]')[this.DetailIndex].select();
     },
     getindex: function getindex(index) {
       this.DetailIndex = index;
     },
-    checkPC: function checkPC(index) {
-      var _this = this;
-
-      axios.get("/api/search/OrderDetailitemCheckPC/" + this.OrderDetailitem[index].SupplierNo).then(function (response) {
-        console.log(response.data);
-        _this.checkPC = response.data;
-      });
-    },
-    checkPC1: function checkPC1(index) {
+    nextcol: function nextcol(index) {
       this.DetailIndex = index + 1;
-      axios.get("/api/search/OrderDetailitemCheckPC1").then(function (response) {
-        console.log(response.data);
-      });
     }
   },
   mounted: function mounted() {
@@ -15919,7 +15914,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   mounted: function mounted() {
     var _this = this;
 
-    axios.get("/api/search/PartNo/SK").then(function (response) {
+    axios.get("/api/search/PartNo/ANK01").then(function (response) {
       console.log(response.data);
       _this.PartNoData = response.data;
     });
@@ -20498,7 +20493,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _ModifyOrderpage_vue_vue_type_template_id_547fcf72_bindings_index_props_closeColor_options_getColorNum_options_closePart_options_getPartNum_options_setColor_options_setPart_options_getindex_options_checkPC_options_checkPC1_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","getindex":"options","checkPC":"options","checkPC1":"options"} */ "./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={\"index\":\"props\",\"closeColor\":\"options\",\"getColorNum\":\"options\",\"closePart\":\"options\",\"getPartNum\":\"options\",\"setColor\":\"options\",\"setPart\":\"options\",\"getindex\":\"options\",\"checkPC\":\"options\",\"checkPC1\":\"options\"}");
+/* harmony import */ var _ModifyOrderpage_vue_vue_type_template_id_547fcf72_bindings_index_props_closeColor_options_getColorNum_options_closePart_options_getPartNum_options_setColor_options_setPart_options_getindex_options_nextcol_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","getindex":"options","nextcol":"options"} */ "./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={\"index\":\"props\",\"closeColor\":\"options\",\"getColorNum\":\"options\",\"closePart\":\"options\",\"getPartNum\":\"options\",\"setColor\":\"options\",\"setPart\":\"options\",\"getindex\":\"options\",\"nextcol\":\"options\"}");
 /* harmony import */ var _ModifyOrderpage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ModifyOrderpage.vue?vue&type=script&lang=js */ "./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=script&lang=js");
 /* harmony import */ var _ModifyOrderpage_vue_vue_type_style_index_0_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ModifyOrderpage.vue?vue&type=style&index=0&lang=css */ "./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=style&index=0&lang=css");
 
@@ -20506,7 +20501,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-_ModifyOrderpage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _ModifyOrderpage_vue_vue_type_template_id_547fcf72_bindings_index_props_closeColor_options_getColorNum_options_closePart_options_getPartNum_options_setColor_options_setPart_options_getindex_options_checkPC_options_checkPC1_options___WEBPACK_IMPORTED_MODULE_0__.render
+_ModifyOrderpage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _ModifyOrderpage_vue_vue_type_template_id_547fcf72_bindings_index_props_closeColor_options_getColorNum_options_closePart_options_getPartNum_options_setColor_options_setPart_options_getindex_options_nextcol_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* hot reload */
 if (false) {}
 
@@ -22006,12 +22001,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={\"index\":\"props\",\"closeColor\":\"options\",\"getColorNum\":\"options\",\"closePart\":\"options\",\"getPartNum\":\"options\",\"setColor\":\"options\",\"setPart\":\"options\",\"getindex\":\"options\",\"checkPC\":\"options\",\"checkPC1\":\"options\"}":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","getindex":"options","checkPC":"options","checkPC1":"options"} ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={\"index\":\"props\",\"closeColor\":\"options\",\"getColorNum\":\"options\",\"closePart\":\"options\",\"getPartNum\":\"options\",\"setColor\":\"options\",\"setPart\":\"options\",\"getindex\":\"options\",\"nextcol\":\"options\"}":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","getindex":"options","nextcol":"options"} ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","getindex":"options","checkPC":"options","checkPC1":"options"} .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","getindex":"options","nextcol":"options"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -22019,9 +22014,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModifyOrderpage_vue_vue_type_template_id_547fcf72_bindings_index_props_closeColor_options_getColorNum_options_closePart_options_getPartNum_options_setColor_options_setPart_options_getindex_options_checkPC_options_checkPC1_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModifyOrderpage_vue_vue_type_template_id_547fcf72_bindings_index_props_closeColor_options_getColorNum_options_closePart_options_getPartNum_options_setColor_options_setPart_options_getindex_options_nextcol_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModifyOrderpage_vue_vue_type_template_id_547fcf72_bindings_index_props_closeColor_options_getColorNum_options_closePart_options_getPartNum_options_setColor_options_setPart_options_getindex_options_checkPC_options_checkPC1_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","getindex":"options","checkPC":"options","checkPC1":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={\"index\":\"props\",\"closeColor\":\"options\",\"getColorNum\":\"options\",\"closePart\":\"options\",\"getPartNum\":\"options\",\"setColor\":\"options\",\"setPart\":\"options\",\"getindex\":\"options\",\"checkPC\":\"options\",\"checkPC1\":\"options\"}");
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModifyOrderpage_vue_vue_type_template_id_547fcf72_bindings_index_props_closeColor_options_getColorNum_options_closePart_options_getPartNum_options_setColor_options_setPart_options_getindex_options_nextcol_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","getindex":"options","nextcol":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={\"index\":\"props\",\"closeColor\":\"options\",\"getColorNum\":\"options\",\"closePart\":\"options\",\"getPartNum\":\"options\",\"setColor\":\"options\",\"setPart\":\"options\",\"getindex\":\"options\",\"nextcol\":\"options\"}");
 
 
 /***/ }),
@@ -22870,10 +22865,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={\"index\":\"props\",\"closeColor\":\"options\",\"getColorNum\":\"options\",\"closePart\":\"options\",\"getPartNum\":\"options\",\"setColor\":\"options\",\"setPart\":\"options\",\"getindex\":\"options\",\"checkPC\":\"options\",\"checkPC1\":\"options\"}":
-/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","getindex":"options","checkPC":"options","checkPC1":"options"} ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={\"index\":\"props\",\"closeColor\":\"options\",\"getColorNum\":\"options\",\"closePart\":\"options\",\"getPartNum\":\"options\",\"setColor\":\"options\",\"setPart\":\"options\",\"getindex\":\"options\",\"nextcol\":\"options\"}":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","getindex":"options","nextcol":"options"} ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -23417,16 +23412,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                         onbeforepaste: "clipboardData.setData('text',clipboardData.getData('text').replace(/[^\\d]/g,''))",
                         "onUpdate:modelValue": $event => (itemD.SalesCode = $event),
                         maxlength: "10",
-                        onKeydown: [
-                          _cache[20] || (_cache[20] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($event => ($options.getPartNum()), ["shift"])),
-                          (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)((0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($event => ($options.checkPC(index)), ["exact"]), ["tab"])
-                        ],
+                        onKeydown: _cache[20] || (_cache[20] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($event => ($options.getPartNum()), ["shift"])),
                         onClick: $event => ($options.getindex(index))
-                      }, null, 40 /* PROPS, HYDRATE_EVENTS */, ["onUpdate:modelValue", "onClick", "onKeydown"]), [
+                      }, null, 40 /* PROPS, HYDRATE_EVENTS */, ["onUpdate:modelValue", "onClick"]), [
                         [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, itemD.SalesCode]
                       ]),
                       _hoisted_79,
-                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", _hoisted_80, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.SalesCodeData.Description) + "[" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.SalesCodeData.SupplierNo) + "]", 1 /* TEXT */)
+                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", _hoisted_80, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.SalesCodeData.Description) + "[" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.SalesCodeData.SupplierNo.SuppNo) + "]", 1 /* TEXT */)
                     ]),
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_81, [
                       (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
@@ -23439,10 +23431,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                         maxlength: "10",
                         onKeydown: [
                           _cache[21] || (_cache[21] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($event => ($options.getColorNum()), ["shift"])),
-                          (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)((0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($event => ($options.checkPC1(index)), ["exact"]), ["tab"])
+                          (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)((0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($event => ($options.nextcol(index)), ["exact"]), ["tab"])
                         ],
                         onClick: $event => ($options.getindex(index)),
-                        disabled: _ctx.Selectorder==-1
+                        disabled: itemD.SalesCodeData.SupplierNo.LastTrans==''
                       }, null, 40 /* PROPS, HYDRATE_EVENTS */, ["onUpdate:modelValue", "onClick", "onKeydown", "disabled"]), [
                         [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, itemD.Ragne]
                       ]),

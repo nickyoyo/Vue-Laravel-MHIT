@@ -13,6 +13,7 @@ use App\Models\chk;
 use App\Models\SO;
 use App\Models\sod;
 use App\Models\im;
+use App\Models\vm;
 use App\Models\po;
 use App\Models\FINST;
 use App\Models\arm1;
@@ -140,6 +141,13 @@ class SearchController extends Controller
             $PartNo->FullPrice=(int)$PartNo->FullPrice;
         }
         
+        return response()->json($data,200);
+    }
+
+    public function searchPartNoVM($SuppNo)        
+    {
+        $data  = vm::where('SuppNo',$SuppNo)->first();
+        $data->LastTrans = trim($data->LastTrans);
         return response()->json($data,200);
     }
 
@@ -412,6 +420,10 @@ class SearchController extends Controller
             $list->OrderDate = substr($list->OrderDate, 0, 4)."/".substr($list->OrderDate, 4, 2)."/".substr($list->OrderDate, 6, 2);  
             $list->DispatchDate = substr($list->DispatchDate, 0, 4)."/".substr($list->DispatchDate, 4, 2)."/".substr($list->DispatchDate, 6, 2);  
 
+            $SupplierNo = vm::where('SuppNo','=', $list->SalesCodeData->SupplierNo)->first();
+            $SupplierNo->LastTrans = trim($SupplierNo->LastTrans);
+            $list->SalesCodeData->SupplierNo = $SupplierNo;
+
             $doorcolor = CTD::where('codename','門板色')->where('codeindex',$list->Ragne)->first();  
             if($doorcolor==NULL){
                 $list->RangeName="";
@@ -501,11 +513,7 @@ class SearchController extends Controller
         return response()->json($data,200);
     }
 
-    public function searchOrderDetailitemCheckPC($PartNo){
-
-    }
-
-    public function searchOrderDetailitemCheckPC1($PartNo,$ColorNo){
+    public function searchOrderDetailitemCheckPC($SuppNo){
 
     }
 

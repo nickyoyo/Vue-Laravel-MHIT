@@ -223,11 +223,10 @@
                                         maxlength="10"
                                         @keydown.shift="getPartNum()"
                                         @click="getindex(index)"
-                                        @keydown.tab.exact="checkPC(index)"
                                     />    
                                     <br /><a style="color: blue"
                                     >{{ itemD.SalesCodeData.Description }}[{{
-                                    itemD.SalesCodeData.SupplierNo
+                                    itemD.SalesCodeData.SupplierNo.SuppNo
                                     }}]</a
                                 >
                                 </th>
@@ -242,8 +241,8 @@
                                         maxlength="10"
                                         @keydown.shift="getColorNum()"
                                         @click="getindex(index)"
-                                        @keydown.tab.exact="checkPC1(index)"
-                                        :disabled="Selectorder==-1"                   
+                                        @keydown.tab.exact="nextcol(index)"
+                                        :disabled="itemD.SalesCodeData.SupplierNo.LastTrans==''"                   
                                     /><br /><a style="color: green">
                                     {{ itemD.RangeName}}
                                     </a></th>
@@ -296,6 +295,7 @@ export default {
       OrderDataARM1:[],
       Selectorder:this.index,
       DetailIndex:"",
+
     };
   },
   methods:{
@@ -319,28 +319,24 @@ export default {
     },
     setPart:function(val){
         this.OrderDetailitem[this.DetailIndex].SalesCode = val.SKU;   
-        this.OrderDetailitem[this.DetailIndex].SalesCodeData.Description = val.Description;  
+        this.OrderDetailitem[this.DetailIndex].SalesCodeData = val;  
+    
+        axios
+        .get("/api/search/PartNoVM/"+this.OrderDetailitem[this.DetailIndex].SalesCodeData.SupplierNo)
+        .then((response) => {
+          console.log(response.data);
+          this.OrderDetailitem[this.DetailIndex].SalesCodeData.SupplierNo = response.data;
+        });
+
         $("#PartNum").modal('hide'); 
         document.getElementsByName('Part[]')[this.DetailIndex].select();        
     },
     getindex:function(index){
          this.DetailIndex = index;
     },
-    checkPC:function(index){
-        axios
-        .get("/api/search/OrderDetailitemCheckPC/"+this.OrderDetailitem[index].SupplierNo)
-        .then((response) => {
-          console.log(response.data);
-          this.checkPC = response.data;
-        });
-    },
-    checkPC1:function(index){
+    nextcol:function(index){
          this.DetailIndex = index+1;
-        axios
-        .get("/api/search/OrderDetailitemCheckPC1")
-        .then((response) => {
-          console.log(response.data);
-        });
+     
     },
   },
   mounted(){

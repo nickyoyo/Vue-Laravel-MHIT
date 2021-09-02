@@ -68,7 +68,7 @@ export default {
   },
   mounted(){
        axios
-        .get("/api/search/PartNo/SK")
+        .get("/api/search/PartNo/ANK01")
         .then((response) => {
           console.log(response.data);        
             this.PartNoData = response.data;
