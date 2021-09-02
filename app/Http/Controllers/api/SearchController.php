@@ -133,25 +133,29 @@ class SearchController extends Controller
 
         return response()->json($data,200);
     }
-
+    
+    public function searchColorNoAll() {
+        $data  = CTD::where('codename','門板色')->where('codetype',11)->orderby('Reserve4','asc')->take(100)->get();
+        return response()->json($data,200);
+    }
+    
     public function searchColorNo($Colorselect,$ColorselectVM,$PartNo)        //CTD
     {
-        if($Colorselect==' ' && $ColorselectVM==' '){
+        if($Colorselect=='X' && $ColorselectVM=='X'){
             $data  = CTD::where('Reserve4',$PartNo)->orderby('codeindex','asc')->get();
 
         }
-        else if($Colorselect==' '){
+        else if($Colorselect=='X'||$Colorselect==''){
             $data  = CTD::where('Reserve4','LIKE',$ColorselectVM.'%')->orderby('codeindex','asc')->get();
 
         }
-        else if($ColorselectVM==' '){
+        else if($ColorselectVM=='X'||$ColorselectVM==''){
             $data  = CTD::where('codeindex','LIKE', $Colorselect.'%')->orderby('codeindex','asc')->get();
   
         }
         else{
             if($PartNo==NULL){
                 $data  = CTD::where('Reserve4','LIKE','S'.'%')->orderby('codeindex','asc')->take(100)->get();
-   
             }
             else{
                 $data  = CTD::where('codeindex','LIKE', $Colorselect.'%')->where('Reserve4','LIKE',$ColorselectVM.'%')->orderby('codeindex','asc')->take(100)->get();
@@ -163,12 +167,15 @@ class SearchController extends Controller
 
     public function searchPartNo($SKU)        
     {
-        $data  = im::where('SKU','LIKE', $SKU.'%')->take(200)->get();  
+        $data  = im::where('SKU','LIKE', $SKU.'%')->take(200)->get();
+        
+        
         foreach($data as $PartNo){
             $PartNo->FullPrice=(int)$PartNo->FullPrice;
+            $PartNo->SKU = trim($PartNo->SKU);
 
             $vm  = vm::where('SuppNo',$PartNo->SupplierNo)->first();
-            $vm->SupplierNo = trim($vm->SupplierNo);
+            $vm->SuppNo = trim($vm->SuppNo);
             $PartNo->SupplierNo = $vm;
         }
            
@@ -539,8 +546,15 @@ class SearchController extends Controller
         return response()->json($data,200);
     }
 
-    public function searchOrderDetailitemCheckPC($SuppNo){
-
+    public function searchOrderDetailitemCheckPC($SuppNo,$colornum){
+        $SuppNo = trim($SuppNo);
+        $data  = CTD::where('codeindex',$colornum)->where('Reserve4',$SuppNo)->first();
+        if($data==NULL){
+            return response()->json(0,200);
+        }
+        else{
+            return response()->json(1,200);
+        }
     }
 
 }

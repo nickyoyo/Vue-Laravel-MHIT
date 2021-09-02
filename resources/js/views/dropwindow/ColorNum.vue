@@ -16,8 +16,7 @@
           <input
                 type="text"
                 style="height: 30px; width: 100px;display:inline;vertical-align: middle;font-size:18px;"
-                onkeyup="value=value.replace(/[\W]/g,'') " 
-                onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"
+                onkeyup="this.value=this.value.replace(/\s+/g,'')"
                 v-model="ColorSelectNum"     
               />&nbsp;
              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -96,10 +95,10 @@ export default {
         this.$emit("getColor", this.CTDcolornum[index]);
     },
     ColorSelectM:function () {
+      if(this.ColorSelectNum==""){this.ColorSelectNum='X'};
+      if(this.ColorSelectVM==""){this.ColorSelectVM='X'};
+    
       this.loadin=1;
-      if(this.ColorSelectNum=="")this.ColorSelectNum=' ';
-      if(this.ColorSelectVM=="")this.ColorSelectVM=' ';
-
        axios
         .get("/api/search/ColorNo/"+ this.ColorSelectNum + "&&" + this.ColorSelectVM + "&&" + this.PartNo)
         .then((response) => {
@@ -111,7 +110,7 @@ export default {
   },
   mounted(){
        axios
-        .get("/api/search/ColorNo/"+ this.ColorSelectNum + "&&" + this.ColorSelectVM + "&&" + this.PartNo)
+        .get("/api/search/ColorNoA")
         .then((response) => {
           console.log(response.data);        
             this.CTDcolornum = response.data;

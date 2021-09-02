@@ -222,6 +222,7 @@
                                         v-model="itemD.SalesCode"
                                         maxlength="10"
                                         @keydown.shift="getPartNum(index)"
+                                        @keydown.tab.exact="SetTypePart(index)"
                                         @click="getindex(index)"
                                     />    
                                     <br /><a style="color: blue"
@@ -235,8 +236,7 @@
                                         type="text"
                                         name='Color[]'
                                         style="height: 30px; width: 80px;"
-                                        onkeyup="value=value.replace(/[\W]/g,'') " 
-                                        onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"
+                                        onkeyup="this.value=this.value.replace(/\s+/g,'')"
                                         v-model="itemD.Ragne"
                                         maxlength="10"
                                         @keydown.shift="getColorNum(index)"
@@ -333,11 +333,35 @@ export default {
         $("#PartNum").modal('hide'); 
         document.getElementsByName('Part[]')[this.DetailIndex].select();        
     },
+    SetTypePart:function(index){
+        axios
+            .get("/api/search/PartNo/"+ this.OrderDetailitem[index].SalesCode)
+            .then((response) => {
+            console.log(response.data);        
+               this.OrderDetailitem[index].SalesCode = response.data[0].SKU;   
+               this.OrderDetailitem[index].SalesCodeData = response.data[0];   
+            });  
+    },
     getindex:function(index){
          this.DetailIndex = index;
     },
     nextcol:function(index){
+        var colornum;
         this.DetailIndex = index+1;
+         if(this.OrderDetailitem[index].Ragne==""){
+            colornum='X';
+         }
+         else{
+            colornum=this.OrderDetailitem[index].Ragne;
+         }
+        axios
+        .get("/api/search/searchOrderDetailitemCheckPC/"+ this.OrderDetailitem[index].SalesCodeData.SupplierNo.SuppNo +"&&" + colornum)
+        .then((response) => {
+          console.log(response.data);
+            if(response.data==0){
+                this.OrderDetailitem[index] = OrderOrderDetailitemstorage[index];   
+            }
+        });
     },
   },
   beforeCreate(){

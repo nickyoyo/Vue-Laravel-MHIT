@@ -30,6 +30,7 @@ Route::get('/search/CM/{CNO}',[SearchController::class,'searchCM']);
 Route::get('/search/CMAll',[SearchController::class,'searchCMAll']);
 Route::get('/search/CTD/{codename}',[SearchController::class,'searchCTD']);
 Route::get('/search/CTD/Desc/{codename}&&{codeindex}',[SearchController::class,'searchCTDDesc']);
+Route::get('/search/ColorNoA',[SearchController::class,'searchColorNoAll']);
 Route::get('/search/ColorNo/{Colorselect}&&{ColorselectVM}&&{PartNo}',[SearchController::class,'searchColorNo']);
 Route::get('/search/PartNo/{SKU}',[SearchController::class,'searchPartNo']);
 Route::get('/search/PartNoVM/{SuppNo}',[SearchController::class,'searchPartNoVM']);
@@ -45,7 +46,7 @@ Route::get('/search/OrderDetailitem/{QNO}',[SearchController::class,'searchOrder
 Route::get('/search/OrderitemPO/{QNO}',[SearchController::class,'searchOrderitemPO']);
 Route::get('/search/OrderFINST/{QNO}',[SearchController::class,'searchOrderFINST']);
 Route::get('/search/OrderARM1/{QNO}',[SearchController::class,'searchOrderARM1']);
-Route::get('/search/OrderDetailitemCheckPC/{SuppNo}',[SearchController::class,'searchOrderDetailitemCheckPC']);
+Route::get('/search/OrderDetailitemCheckPC/{SuppNo}&&{colornum}',[SearchController::class,'searchOrderDetailitemCheckPC']);
 
 Route::post('/Update/CM',[UpdateController::class,'UpdateCM']);
 Route::post('/Update/CmMemo',[UpdateController::class,'UpdateCmMemo']);
