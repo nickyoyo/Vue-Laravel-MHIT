@@ -134,9 +134,30 @@ class SearchController extends Controller
         return response()->json($data,200);
     }
 
-    public function searchColorNo($Colorselect)        //CTD
+    public function searchColorNo($Colorselect,$ColorselectVM,$PartNo)        //CTD
     {
-        $data  = CTD::where('Reserve4','LIKE', $Colorselect.'%')->orderby('codeindex','asc')->get();
+        if($Colorselect==' ' && $ColorselectVM==' '){
+            $data  = CTD::where('Reserve4',$PartNo)->orderby('codeindex','asc')->get();
+
+        }
+        else if($Colorselect==' '){
+            $data  = CTD::where('Reserve4','LIKE',$ColorselectVM.'%')->orderby('codeindex','asc')->get();
+
+        }
+        else if($ColorselectVM==' '){
+            $data  = CTD::where('codeindex','LIKE', $Colorselect.'%')->orderby('codeindex','asc')->get();
+  
+        }
+        else{
+            if($PartNo==NULL){
+                $data  = CTD::where('Reserve4','LIKE','S'.'%')->orderby('codeindex','asc')->take(100)->get();
+   
+            }
+            else{
+                $data  = CTD::where('codeindex','LIKE', $Colorselect.'%')->where('Reserve4','LIKE',$ColorselectVM.'%')->orderby('codeindex','asc')->take(100)->get();
+               
+            }
+        }      
         return response()->json($data,200);
     }
 
@@ -426,6 +447,7 @@ class SearchController extends Controller
 
             $SupplierNo = vm::where('SuppNo','=', $list->SalesCodeData->SupplierNo)->first();
             $SupplierNo->LastTrans = trim($SupplierNo->LastTrans);
+            $SupplierNo->SuppNo = trim($SupplierNo->SuppNo);
             $list->SalesCodeData->SupplierNo = $SupplierNo;
 
             $doorcolor = CTD::where('codename','門板色')->where('codeindex',$list->Ragne)->first();  

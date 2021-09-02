@@ -85,7 +85,7 @@ export default {
        console.log(this.PartNoData[index])
         this.$emit("getPart", this.PartNoData[index]);
     },
-       PartSelectM:function () {
+    PartSelectM:function () {
            this.loadin=1;
             axios
             .get("/api/search/PartNo/"+ this.PartSelect)

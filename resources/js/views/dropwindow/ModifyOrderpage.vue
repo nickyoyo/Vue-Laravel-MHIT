@@ -6,11 +6,11 @@
   </div>
 
  <div id="ColorNum" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
-     <ColorNum @getColor="setColor" @closeColor="closeColor"></ColorNum>
+     <ColorNum @getColor="setColor" @closeColor="closeColor" v-bind:PartNo="SuppNo" :key="refnew"></ColorNum>
   </div>
 
   <div id="PartNum" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
-     <PartNum @getPart="setPart" @closePart="closePart"></PartNum>
+     <PartNum @getPart="setPart" @closePart="closePart" :key="refnew"></PartNum>
   </div>
 
     <div class="modal-content">
@@ -221,7 +221,7 @@
                                         onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"
                                         v-model="itemD.SalesCode"
                                         maxlength="10"
-                                        @keydown.shift="getPartNum()"
+                                        @keydown.shift="getPartNum(index)"
                                         @click="getindex(index)"
                                     />    
                                     <br /><a style="color: blue"
@@ -239,7 +239,7 @@
                                         onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"
                                         v-model="itemD.Ragne"
                                         maxlength="10"
-                                        @keydown.shift="getColorNum()"
+                                        @keydown.shift="getColorNum(index)"
                                         @click="getindex(index)"
                                         @keydown.tab.exact="nextcol(index)"
                                         :disabled="itemD.SalesCodeData.SupplierNo.LastTrans==''"                   
@@ -262,7 +262,7 @@
                 </div>  
 
                 <div class="modal-footer" style="height:50px">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="close" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -283,6 +283,9 @@ export default {
    },
   data: function () {
     return {
+       refnew:false,
+       SuppNo:0,
+
       OrderList: [],
       OrderData: [{
           OrderType:'',
@@ -295,21 +298,28 @@ export default {
       OrderDataARM1:[],
       Selectorder:this.index,
       DetailIndex:"",
-
+      OrderOrderDetailitemstorage:[],
     };
   },
   methods:{
     closeColor:function(){
+         this.refnew=false;
          $("#ColorNum").modal('hide');              
     },
-    getColorNum:function(){
-         $("#ColorNum").modal('show');              
+    getColorNum:function(index){
+        this.DetailIndex = index;
+        this.refnew=true;
+        this.SuppNo = this.OrderDetailitem[index].SalesCodeData.SupplierNo.SuppNo;       
+         $("#ColorNum").modal('show');    
     },
     closePart:function(){
+         this.refnew=false;
          $("#PartNum").modal('hide');              
     },
-    getPartNum:function(){
-         $("#PartNum").modal('show');              
+    getPartNum:function(index){
+        this.DetailIndex = index;
+        this.refnew=true;
+         $("#PartNum").modal('show');       
     },
     setColor:function(val){
         this.OrderDetailitem[this.DetailIndex].Ragne = val.codeindex;   
@@ -320,7 +330,6 @@ export default {
     setPart:function(val){
         this.OrderDetailitem[this.DetailIndex].SalesCode = val.SKU;   
         this.OrderDetailitem[this.DetailIndex].SalesCodeData = val;  
-    
         $("#PartNum").modal('hide'); 
         document.getElementsByName('Part[]')[this.DetailIndex].select();        
     },
@@ -328,17 +337,17 @@ export default {
          this.DetailIndex = index;
     },
     nextcol:function(index){
-         this.DetailIndex = index+1;
-     
+        this.DetailIndex = index+1;
     },
   },
-  mounted(){
+  beforeCreate(){
        $("#loading").modal('show');
       axios
         .get("/api/search/OrderDetailitem/S02171130103")
         .then((response) => {
           console.log(response.data);
           this.OrderDetailitem = response.data;
+          this.OrderOrderDetailitemstorage = response.data;
          $("#loading").modal('hide');
         });
       axios

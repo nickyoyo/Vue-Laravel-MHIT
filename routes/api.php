@@ -30,7 +30,7 @@ Route::get('/search/CM/{CNO}',[SearchController::class,'searchCM']);
 Route::get('/search/CMAll',[SearchController::class,'searchCMAll']);
 Route::get('/search/CTD/{codename}',[SearchController::class,'searchCTD']);
 Route::get('/search/CTD/Desc/{codename}&&{codeindex}',[SearchController::class,'searchCTDDesc']);
-Route::get('/search/ColorNo/{Colorselect}',[SearchController::class,'searchColorNo']);
+Route::get('/search/ColorNo/{Colorselect}&&{ColorselectVM}&&{PartNo}',[SearchController::class,'searchColorNo']);
 Route::get('/search/PartNo/{SKU}',[SearchController::class,'searchPartNo']);
 Route::get('/search/PartNoVM/{SuppNo}',[SearchController::class,'searchPartNoVM']);
 Route::get('/search/CmMemo/{CNO}&&{MemoType}',[SearchController::class,'searchCmMemo']);

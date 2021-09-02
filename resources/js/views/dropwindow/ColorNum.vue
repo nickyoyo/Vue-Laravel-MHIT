@@ -10,17 +10,27 @@
           <h2>
             <label class="font-weight-bold" style="color: #ff5151"
               >色號列表</label
-            >
-         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            ></h2>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         色號名稱&nbsp;
           <input
                 type="text"
                 style="height: 30px; width: 100px;display:inline;vertical-align: middle;font-size:18px;"
                 onkeyup="value=value.replace(/[\W]/g,'') " 
                 onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"
-                v-model="ColorSelect"     
+                v-model="ColorSelectNum"     
+              />&nbsp;
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          廠商編號&nbsp;
+          <input
+                type="text"
+                style="height: 30px; width: 100px;display:inline;vertical-align: middle;font-size:18px;"
+                onkeyup="value=value.replace(/[\W]/g,'') " 
+                onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"
+                v-model="ColorSelectVM"     
               />&nbsp;
             <button type="button" @click="ColorSelectM()" style="height: 30px; width: 50px;font-size:15px;display:inline;vertical-align: middle;">查詢</button>
-             </h2>
+             <br />  <br />
           <div
             style="
               overflow-y: scroll;
@@ -65,13 +75,15 @@ const axios = require("axios");
 import loader from "../test/Loader.vue";
 export default {
   name: "ColorNum",
+  props:["PartNo"],
   components: { 
     loader,
    },
   data: function () {
     return {
         CTDcolornum:[],
-        ColorSelect:"",
+        ColorSelectNum:"",
+        ColorSelectVM:"",
         loadin:0,
     };
   },
@@ -85,19 +97,21 @@ export default {
     },
     ColorSelectM:function () {
       this.loadin=1;
+      if(this.ColorSelectNum=="")this.ColorSelectNum=' ';
+      if(this.ColorSelectVM=="")this.ColorSelectVM=' ';
+
        axios
-        .get("/api/search/ColorNo/"+ this.ColorSelect)
+        .get("/api/search/ColorNo/"+ this.ColorSelectNum + "&&" + this.ColorSelectVM + "&&" + this.PartNo)
         .then((response) => {
           console.log(response.data);        
             this.CTDcolornum = response.data;
-            this.ColorSelect = "";
             this.loadin=0;
           });  
     },
   },
   mounted(){
        axios
-        .get("/api/search/CTD/色號")
+        .get("/api/search/ColorNo/"+ this.ColorSelectNum + "&&" + this.ColorSelectVM + "&&" + this.PartNo)
         .then((response) => {
           console.log(response.data);        
             this.CTDcolornum = response.data;
