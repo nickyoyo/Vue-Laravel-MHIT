@@ -49,6 +49,7 @@ Route::get('/search/OrderitemPO/{QNO}',[SearchController::class,'searchOrderitem
 Route::get('/search/OrderFINST/{QNO}',[SearchController::class,'searchOrderFINST']);
 Route::get('/search/OrderARM1/{QNO}',[SearchController::class,'searchOrderARM1']);
 Route::get('/search/OrderDetailitemCheckPC/{SuppNo}&&{colornum}',[SearchController::class,'searchOrderDetailitemCheckPC']);
+Route::get('/search/IMChangePriceRecord/{PartNo}&&{QNO}',[SearchController::class,'searchIMChangePriceRecord']);
 
 Route::post('/Update/CM',[UpdateController::class,'UpdateCM']);
 Route::post('/Update/CmMemo',[UpdateController::class,'UpdateCmMemo']);

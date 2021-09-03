@@ -17,6 +17,7 @@
                 type="text"
                 style="height: 30px; width: 100px;display:inline;vertical-align: middle;font-size:18px;"
                 onkeyup="this.value=this.value.replace(/\s+/g,'')"
+                onbeforepaste="value=value.replace(/(^\s*)|(\s*$)/g, '')"
                 v-model="ColorSelectNum"     
               />&nbsp;
              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

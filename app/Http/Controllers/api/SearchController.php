@@ -17,6 +17,7 @@ use App\Models\vm;
 use App\Models\po;
 use App\Models\FINST;
 use App\Models\arm1;
+use App\Models\ChangePriceRecord;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
@@ -139,7 +140,7 @@ class SearchController extends Controller
         return response()->json($data,200);
     }
     
-    public function searchColorNo($Colorselect,$PartNo)        //CTD
+    public function searchColorNo($Colorselect,$PartNo)       
     {
         if($Colorselect=='X'){
             $data  = CTD::where('Reserve4',$PartNo)->orderby('codeindex','asc')->get();
@@ -150,7 +151,7 @@ class SearchController extends Controller
         return response()->json($data,200);
     }
 
-    public function searchColorNoType($Colorselect,$PartNo)        //CTD
+    public function searchColorNoType($Colorselect,$PartNo)        
     {
         $data  = CTD::where('codeindex',$Colorselect)->where('Reserve4',$PartNo)->orderby('codeindex','asc')->first();
         
@@ -576,4 +577,17 @@ class SearchController extends Controller
         }
     }
 
+    public function searchIMChangePriceRecord($PartNo,$QNO){
+        
+        $data = ChangePriceRecord::where('料',$PartNo)->first();    
+
+        if($data!=NULL){
+            $dataSO  = SO::where('QuotNo',$QNO)->first();
+    
+            $data = ChangePriceRecord::where('料',$PartNo)->where('日','<=',$dataSO->PromotionPeriod)->orderby('日','desc')->first();    
+
+            return response()->json([$data,1],200);  
+        }
+        return response()->json([$data,0],200);  
+    }
 }

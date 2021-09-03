@@ -218,7 +218,7 @@
                                         type="text"
                                         style="height: 30px; width: 250px;"
                                         onkeyup="value=value.replace(/\s/g,'')" 
-                                        onbeforepaste="value=value.replace(/\s/g,'')"
+                                        onbeforepaste="value=value.replace(/(^\s*)|(\s*$)/g, '')"
                                         v-on:change="SetTypePart(index)"
                                         v-model="itemD.SalesCode"
                                         maxlength="30"
@@ -237,6 +237,7 @@
                                         name='Color[]'
                                         style="height: 30px; width: 100px;"
                                         onkeyup="this.value=this.value.replace(/\s+/g,'')"
+                                        onbeforepaste="value=value.replace(/(^\s*)|(\s*$)/g, '')"
                                         v-model="itemD.Ragne"
                                         maxlength="20"
                                         @keydown.shift="getColorNum(index)"
@@ -328,23 +329,32 @@ export default {
          $("#PartNum").modal('show');       
     },
     setColor:function(val){
+         this.refnew=false;
         this.OrderDetailitem[this.DetailIndex].Ragne = val.codeindex;   
         this.OrderDetailitem[this.DetailIndex].RangeName = val.codeDesc;  
         this.OrderOrderDetailitemstorage[this.DetailIndex]=this.OrderDetailitem[this.DetailIndex];
         $("#ColorNum").modal('hide');         
-        document.getElementsByName('Color[]')[this.DetailIndex].select();    
+        document.getElementsByName('Color[]')[this.DetailIndex].select(); 
+
+        axios
+        .get("/api/search/IMChangePriceRecord/"+ this.OrderDetailitem[this.DetailIndex].SalesCode +"&&" + this.OrderData[0].QuotNo)
+        .then((response) => {
+          console.log(response.data);
+          
+        });
     },
+
     setPart:function(val){
+         this.refnew=false;
         this.OrderDetailitem[this.DetailIndex].SalesCode = val.SKU;   
         this.OrderDetailitem[this.DetailIndex].SalesCodeData = val;  
-         if(this.OrderDetailitem[this.DetailIndex].SalesCodeData.SupplierNo.LastTrans==''){
                    this.OrderDetailitem[this.DetailIndex].Ragne="";
                    this.OrderDetailitem[this.DetailIndex].RangeName="";              
-        }
         this.OrderOrderDetailitemstorage[this.DetailIndex]=this.OrderDetailitem[this.DetailIndex];
         $("#PartNum").modal('hide'); 
         document.getElementsByName('Part[]')[this.DetailIndex].select();        
     },
+    
     SetTypeColor:function(index){
         this.OrderDetailitem[this.DetailIndex].Ragne = this.OrderDetailitem[this.DetailIndex].Ragne.replace(/\s*/g,"");
         axios
@@ -356,8 +366,8 @@ export default {
                     this.OrderDetailitem[index].RangeName = this.OrderOrderDetailitemstorage[index].RangeName;  
                 }   
                 else{
-                    this.OrderDetailitem[index].Ragne = "";   
-                    this.OrderDetailitem[index].RangeName = "";   
+                    this.OrderDetailitem[index].Ragne = response.data[0].codeindex;   
+                    this.OrderDetailitem[index].RangeName = response.data[0].codeDesc;  
                     this.OrderOrderDetailitemstorage[this.DetailIndex]=this.OrderDetailitem[index];
                 }
             });

@@ -16,7 +16,7 @@
                 type="text"
                 style="height: 30px; width: 250px;display:inline;vertical-align: middle;font-size:18px;"
                 onkeyup="value=value.replace(/\s/g,'')" 
-                onbeforepaste="value=value.replace(/\s/g,'')"
+                onbeforepaste="value=value.replace(/(^\s*)|(\s*$)/g, '')"
                 v-model="PartSelect"     
               />&nbsp;
             <button type="button" @click="PartSelectM()" style="height: 30px; width: 50px;font-size:15px;display:inline;vertical-align: middle;">查詢</button>

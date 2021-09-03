@@ -15852,21 +15852,22 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       $("#PartNum").modal('show');
     },
     setColor: function setColor(val) {
+      this.refnew = false;
       this.OrderDetailitem[this.DetailIndex].Ragne = val.codeindex;
       this.OrderDetailitem[this.DetailIndex].RangeName = val.codeDesc;
       this.OrderOrderDetailitemstorage[this.DetailIndex] = this.OrderDetailitem[this.DetailIndex];
       $("#ColorNum").modal('hide');
       document.getElementsByName('Color[]')[this.DetailIndex].select();
+      axios.get("/api/search/IMChangePriceRecord/" + this.OrderDetailitem[this.DetailIndex].SalesCode + "&&" + this.OrderData[0].QuotNo).then(function (response) {
+        console.log(response.data);
+      });
     },
     setPart: function setPart(val) {
+      this.refnew = false;
       this.OrderDetailitem[this.DetailIndex].SalesCode = val.SKU;
       this.OrderDetailitem[this.DetailIndex].SalesCodeData = val;
-
-      if (this.OrderDetailitem[this.DetailIndex].SalesCodeData.SupplierNo.LastTrans == '') {
-        this.OrderDetailitem[this.DetailIndex].Ragne = "";
-        this.OrderDetailitem[this.DetailIndex].RangeName = "";
-      }
-
+      this.OrderDetailitem[this.DetailIndex].Ragne = "";
+      this.OrderDetailitem[this.DetailIndex].RangeName = "";
       this.OrderOrderDetailitemstorage[this.DetailIndex] = this.OrderDetailitem[this.DetailIndex];
       $("#PartNum").modal('hide');
       document.getElementsByName('Part[]')[this.DetailIndex].select();
@@ -15882,8 +15883,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
           _this.OrderDetailitem[index].Ragne = _this.OrderOrderDetailitemstorage[index].Ragne;
           _this.OrderDetailitem[index].RangeName = _this.OrderOrderDetailitemstorage[index].RangeName;
         } else {
-          _this.OrderDetailitem[index].Ragne = "";
-          _this.OrderDetailitem[index].RangeName = "";
+          _this.OrderDetailitem[index].Ragne = response.data[0].codeindex;
+          _this.OrderDetailitem[index].RangeName = response.data[0].codeDesc;
           _this.OrderOrderDetailitemstorage[_this.DetailIndex] = _this.OrderDetailitem[index];
         }
       });
@@ -22730,6 +22731,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           type: "text",
           style: {"height":"30px","width":"100px","display":"inline","vertical-align":"middle","font-size":"18px"},
           onkeyup: "this.value=this.value.replace(/\\s+/g,'')",
+          onbeforepaste: "value=value.replace(/(^\\s*)|(\\s*$)/g, '')",
           "onUpdate:modelValue": _cache[2] || (_cache[2] = $event => ($props.ColorSelectNum = $event))
         }, null, 512 /* NEED_PATCH */), [
           [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $props.ColorSelectNum]
@@ -23570,7 +23572,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                         type: "text",
                         style: {"height":"30px","width":"250px"},
                         onkeyup: "value=value.replace(/\\s/g,'')",
-                        onbeforepaste: "value=value.replace(/\\s/g,'')",
+                        onbeforepaste: "value=value.replace(/(^\\s*)|(\\s*$)/g, '')",
                         onChange: $event => ($options.SetTypePart(index)),
                         "onUpdate:modelValue": $event => (itemD.SalesCode = $event),
                         maxlength: "30",
@@ -23588,6 +23590,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                         name: "Color[]",
                         style: {"height":"30px","width":"100px"},
                         onkeyup: "this.value=this.value.replace(/\\s+/g,'')",
+                        onbeforepaste: "value=value.replace(/(^\\s*)|(\\s*$)/g, '')",
                         "onUpdate:modelValue": $event => (itemD.Ragne = $event),
                         maxlength: "20",
                         onKeydown: [
@@ -23703,7 +23706,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             type: "text",
             style: {"height":"30px","width":"250px","display":"inline","vertical-align":"middle","font-size":"18px"},
             onkeyup: "value=value.replace(/\\s/g,'')",
-            onbeforepaste: "value=value.replace(/\\s/g,'')",
+            onbeforepaste: "value=value.replace(/(^\\s*)|(\\s*$)/g, '')",
             "onUpdate:modelValue": _cache[2] || (_cache[2] = $event => ($props.PartSelect = $event))
           }, null, 512 /* NEED_PATCH */), [
             [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $props.PartSelect]
