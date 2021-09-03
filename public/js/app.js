@@ -15857,7 +15857,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       this.refnew = false;
       this.OrderDetailitem[this.DetailIndex].Ragne = val.codeindex;
       this.OrderDetailitem[this.DetailIndex].RangeName = val.codeDesc;
-      this.OrderOrderDetailitemstorage[this.DetailIndex] = this.OrderDetailitem[this.DetailIndex];
+      this.OrderOrderDetailitemstorage[this.DetailIndex] = Object.assign({}, this.OrderDetailitem[this.DetailIndex]);
       $("#ColorNum").modal('hide');
       document.getElementsByName('Color[]')[this.DetailIndex].select();
       axios.get("/api/search/IMChangePriceRecord/" + this.OrderDetailitem[this.DetailIndex].SalesCode + "&&" + this.OrderData[0].QuotNo).then(function (response) {
@@ -15870,7 +15870,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       this.OrderDetailitem[this.DetailIndex].SalesCodeData = val;
       this.OrderDetailitem[this.DetailIndex].Ragne = "";
       this.OrderDetailitem[this.DetailIndex].RangeName = "";
-      this.OrderOrderDetailitemstorage[this.DetailIndex] = this.OrderDetailitem[this.DetailIndex];
+      this.OrderOrderDetailitemstorage[this.DetailIndex] = Object.assign({}, this.OrderDetailitem[this.DetailIndex]);
       $("#PartNum").modal('hide');
       document.getElementsByName('Part[]')[this.DetailIndex].select();
     },
@@ -15887,7 +15887,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         } else {
           _this.OrderDetailitem[index].Ragne = response.data[0].codeindex;
           _this.OrderDetailitem[index].RangeName = response.data[0].codeDesc;
-          _this.OrderOrderDetailitemstorage[_this.DetailIndex] = _this.OrderDetailitem[index];
+          _this.OrderOrderDetailitemstorage[index] = Object.assign({}, _this.OrderDetailitem[index]);
         }
       });
     },
@@ -15909,7 +15909,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
           } else {
             _this2.OrderDetailitem[index].SalesCode = response.data[0].SKU;
             _this2.OrderDetailitem[index].SalesCodeData = response.data[0];
-            _this2.OrderOrderDetailitemstorage[_this2.DetailIndex] = _this2.OrderDetailitem[_this2.DetailIndex];
+            _this2.OrderOrderDetailitemstorage[_this2.DetailIndex] = Object.assign({}, _this2.OrderDetailitem[_this2.DetailIndex]);
           }
 
           _this2.OrderDetailitem[index].Ragne = "";
@@ -15933,7 +15933,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         } else {
           _this3.OrderDetailitem[index].Ragne = response.data[0].codeindex;
           _this3.OrderDetailitem[index].RangeName = response.data[0].codeDesc;
-          _this3.OrderOrderDetailitemstorage[_this3.DetailIndex] = _this3.OrderDetailitem[index];
+          _this3.OrderOrderDetailitemstorage[index] = Object.assign({}, _this3.OrderDetailitem[index]);
         }
       });
       var colornum;
@@ -15948,7 +15948,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         console.log(response.data);
 
         if (response.data == 0) {
-          _this3.OrderDetailitem[index] = _this3.OrderOrderDetailitemstorage[index];
+          _this3.OrderDetailitem[index] = Object.assign({}, _this3.OrderOrderDetailitemstorage[index]);
         }
 
         _this3.DetailIndex = index + 1;

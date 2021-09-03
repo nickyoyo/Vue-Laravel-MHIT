@@ -334,7 +334,7 @@ export default {
         this.refnew=false;
         this.OrderDetailitem[this.DetailIndex].Ragne = val.codeindex;   
         this.OrderDetailitem[this.DetailIndex].RangeName = val.codeDesc;  
-        this.OrderOrderDetailitemstorage[this.DetailIndex]=this.OrderDetailitem[this.DetailIndex];
+        this.OrderOrderDetailitemstorage[this.DetailIndex]=Object.assign({}, this.OrderDetailitem[this.DetailIndex]);
         $("#ColorNum").modal('hide');         
         document.getElementsByName('Color[]')[this.DetailIndex].select(); 
 
@@ -352,7 +352,7 @@ export default {
         this.OrderDetailitem[this.DetailIndex].SalesCodeData = val;  
         this.OrderDetailitem[this.DetailIndex].Ragne="";
         this.OrderDetailitem[this.DetailIndex].RangeName="";              
-        this.OrderOrderDetailitemstorage[this.DetailIndex]=this.OrderDetailitem[this.DetailIndex];
+        this.OrderOrderDetailitemstorage[this.DetailIndex]=Object.assign({}, this.OrderDetailitem[this.DetailIndex]);
         $("#PartNum").modal('hide'); 
         document.getElementsByName('Part[]')[this.DetailIndex].select();        
     },
@@ -370,7 +370,7 @@ export default {
                 else{
                     this.OrderDetailitem[index].Ragne = response.data[0].codeindex;   
                     this.OrderDetailitem[index].RangeName = response.data[0].codeDesc;  
-                    this.OrderOrderDetailitemstorage[this.DetailIndex]=this.OrderDetailitem[index];
+                    this.OrderOrderDetailitemstorage[index]=Object.assign({}, this.OrderDetailitem[index]);
                 }
             });
     },  
@@ -392,7 +392,7 @@ export default {
                 else{
                 this.OrderDetailitem[index].SalesCode = response.data[0].SKU;   
                 this.OrderDetailitem[index].SalesCodeData = response.data[0];   
-                this.OrderOrderDetailitemstorage[this.DetailIndex]=this.OrderDetailitem[this.DetailIndex];
+                this.OrderOrderDetailitemstorage[this.DetailIndex]=Object.assign({}, this.OrderDetailitem[this.DetailIndex]);
                 }   
                 this.OrderDetailitem[index].Ragne="";
                 this.OrderDetailitem[index].RangeName="";
@@ -415,7 +415,7 @@ export default {
                     else{
                         this.OrderDetailitem[index].Ragne = response.data[0].codeindex;   
                         this.OrderDetailitem[index].RangeName = response.data[0].codeDesc;  
-                        this.OrderOrderDetailitemstorage[this.DetailIndex]=this.OrderDetailitem[index];
+                        this.OrderOrderDetailitemstorage[index]=Object.assign({}, this.OrderDetailitem[index]);
                     }
                 });
         var colornum;
@@ -430,7 +430,7 @@ export default {
         .then((response) => {
           console.log(response.data);
             if(response.data==0){
-                this.OrderDetailitem[index] = this.OrderOrderDetailitemstorage[index]; 
+                this.OrderDetailitem[index]=Object.assign({}, this.OrderOrderDetailitemstorage[index]); 
             }
             this.DetailIndex = index+1; 
         });
