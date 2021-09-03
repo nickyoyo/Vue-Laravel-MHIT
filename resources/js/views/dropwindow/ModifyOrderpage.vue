@@ -6,11 +6,11 @@
   </div>
 
  <div id="ColorNum" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
-     <ColorNum @getColor="setColor" @closeColor="closeColor" v-bind:PartNo="SuppNo" :key="refnew"></ColorNum>
+     <ColorNum @getColor="setColor" @closeColor="closeColor" v-bind:PartNo="SuppNo" v-bind:ColorSelectNum="ColorSelectNum" :key="refnew"></ColorNum>
   </div>
 
   <div id="PartNum" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
-     <PartNum @getPart="setPart" @closePart="closePart" :key="refnew"></PartNum>
+     <PartNum @getPart="setPart" @closePart="closePart" :key="refnew" v-bind:PartSelect="PartSelect"></PartNum>
   </div>
 
     <div class="modal-content">
@@ -216,13 +216,13 @@
                                   <input
                                         name='Part[]'
                                         type="text"
-                                        style="height: 30px; width: 100px;"
-                                        onkeyup="value=value.replace(/[\W]/g,'') " 
-                                        onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"
+                                        style="height: 30px; width: 250px;"
+                                        onkeyup="value=value.replace(/\s/g,'')" 
+                                        onbeforepaste="value=value.replace(/\s/g,'')"
+                                        v-on:change="SetTypePart(index)"
                                         v-model="itemD.SalesCode"
-                                        maxlength="10"
+                                        maxlength="30"
                                         @keydown.shift="getPartNum(index)"
-                                        @keydown.tab.exact="SetTypePart(index)"
                                         @click="getindex(index)"
                                     />    
                                     <br /><a style="color: blue"
@@ -235,14 +235,15 @@
                                     <input
                                         type="text"
                                         name='Color[]'
-                                        style="height: 30px; width: 80px;"
+                                        style="height: 30px; width: 100px;"
                                         onkeyup="this.value=this.value.replace(/\s+/g,'')"
                                         v-model="itemD.Ragne"
-                                        maxlength="10"
+                                        maxlength="20"
                                         @keydown.shift="getColorNum(index)"
+                                        v-on:change="SetTypeColor(index)"
                                         @click="getindex(index)"
                                         @keydown.tab.exact="nextcol(index)"
-                                        :disabled="itemD.SalesCodeData.SupplierNo.LastTrans==''"                   
+                                        :readonly="itemD.SalesCodeData.SupplierNo.LastTrans==''"                   
                                     /><br /><a style="color: green">
                                     {{ itemD.RangeName}}
                                     </a></th>
@@ -299,6 +300,9 @@ export default {
       Selectorder:this.index,
       DetailIndex:"",
       OrderOrderDetailitemstorage:[],
+
+      ColorSelectNum:"",
+      PartSelect:"",
     };
   },
   methods:{
@@ -309,7 +313,8 @@ export default {
     getColorNum:function(index){
         this.DetailIndex = index;
         this.refnew=true;
-        this.SuppNo = this.OrderDetailitem[index].SalesCodeData.SupplierNo.SuppNo;       
+        this.SuppNo = this.OrderDetailitem[index].SalesCodeData.SupplierNo.SuppNo;
+        this.ColorSelectNum = this.OrderDetailitem[index].Ragne;       
          $("#ColorNum").modal('show');    
     },
     closePart:function(){
@@ -319,28 +324,68 @@ export default {
     getPartNum:function(index){
         this.DetailIndex = index;
         this.refnew=true;
+        this.PartSelect = this.OrderDetailitem[index].SalesCodeData.SKU;       
          $("#PartNum").modal('show');       
     },
     setColor:function(val){
         this.OrderDetailitem[this.DetailIndex].Ragne = val.codeindex;   
         this.OrderDetailitem[this.DetailIndex].RangeName = val.codeDesc;  
+        this.OrderOrderDetailitemstorage[this.DetailIndex]=this.OrderDetailitem[this.DetailIndex];
         $("#ColorNum").modal('hide');         
         document.getElementsByName('Color[]')[this.DetailIndex].select();    
     },
     setPart:function(val){
         this.OrderDetailitem[this.DetailIndex].SalesCode = val.SKU;   
         this.OrderDetailitem[this.DetailIndex].SalesCodeData = val;  
+         if(this.OrderDetailitem[this.DetailIndex].SalesCodeData.SupplierNo.LastTrans==''){
+                   this.OrderDetailitem[this.DetailIndex].Ragne="";
+                   this.OrderDetailitem[this.DetailIndex].RangeName="";              
+        }
+        this.OrderOrderDetailitemstorage[this.DetailIndex]=this.OrderDetailitem[this.DetailIndex];
         $("#PartNum").modal('hide'); 
         document.getElementsByName('Part[]')[this.DetailIndex].select();        
     },
-    SetTypePart:function(index){
+    SetTypeColor:function(index){
+        this.OrderDetailitem[this.DetailIndex].Ragne = this.OrderDetailitem[this.DetailIndex].Ragne.replace(/\s*/g,"");
         axios
-            .get("/api/search/PartNo/"+ this.OrderDetailitem[index].SalesCode)
+            .get("/api/search/ColorNoType/"+ this.OrderDetailitem[this.DetailIndex].Ragne + "&&" +  this.OrderDetailitem[index].SalesCodeData.SupplierNo.SuppNo)
             .then((response) => {
             console.log(response.data);        
-               this.OrderDetailitem[index].SalesCode = response.data[0].SKU;   
-               this.OrderDetailitem[index].SalesCodeData = response.data[0];   
+                if(response.data[1] == 0){
+                    this.OrderDetailitem[index].Ragne = this.OrderOrderDetailitemstorage[index].Ragne;  
+                    this.OrderDetailitem[index].RangeName = this.OrderOrderDetailitemstorage[index].RangeName;  
+                }   
+                else{
+                    this.OrderDetailitem[index].Ragne = "";   
+                    this.OrderDetailitem[index].RangeName = "";   
+                    this.OrderOrderDetailitemstorage[this.DetailIndex]=this.OrderDetailitem[index];
+                }
+            });
+    },  
+    SetTypePart:function(index){
+        this.OrderDetailitem[index].SalesCode = this.OrderDetailitem[index].SalesCode.replace(/\s*/g,"");
+        if(this.OrderDetailitem[index].SalesCode ==''|| this.OrderDetailitem[index].SalesCode ==' '){
+              this.OrderDetailitem[index].SalesCodeData = this.OrderOrderDetailitemstorage[index].SalesCodeData;  
+              this.OrderDetailitem[index].SalesCode = this.OrderOrderDetailitemstorage[index].SalesCodeData.SKU;  
+        }
+        else{
+                axios
+                .get("/api/search/PartNoType/"+ this.OrderDetailitem[index].SalesCode)
+                .then((response) => {
+                console.log(response.data);  
+                if(response.data[1] == 0){
+                    this.OrderDetailitem[index].SalesCodeData = this.OrderOrderDetailitemstorage[index].SalesCodeData;  
+                    this.OrderDetailitem[index].SalesCode = this.OrderOrderDetailitemstorage[index].SalesCodeData.SKU;  
+                }   
+                else{
+                this.OrderDetailitem[index].SalesCode = response.data[0].SKU;   
+                this.OrderDetailitem[index].SalesCodeData = response.data[0];   
+                this.OrderOrderDetailitemstorage[this.DetailIndex]=this.OrderDetailitem[this.DetailIndex];
+                }   
+                this.OrderDetailitem[index].Ragne="";
+                this.OrderDetailitem[index].RangeName="";
             });  
+        }
     },
     getindex:function(index){
          this.DetailIndex = index;
@@ -359,7 +404,7 @@ export default {
         .then((response) => {
           console.log(response.data);
             if(response.data==0){
-                this.OrderDetailitem[index] = OrderOrderDetailitemstorage[index];   
+                this.OrderDetailitem[index] = this.OrderOrderDetailitemstorage[index];   
             }
         });
     },
@@ -371,6 +416,12 @@ export default {
         .then((response) => {
           console.log(response.data);
           this.OrderDetailitem = response.data;
+         $("#loading").modal('hide');
+        });
+     axios
+        .get("/api/search/OrderDetailitem/S02171130103")
+        .then((response) => {
+          console.log(response.data);
           this.OrderOrderDetailitemstorage = response.data;
          $("#loading").modal('hide');
         });

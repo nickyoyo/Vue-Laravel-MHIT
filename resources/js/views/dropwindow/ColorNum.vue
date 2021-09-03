@@ -20,14 +20,6 @@
                 v-model="ColorSelectNum"     
               />&nbsp;
              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          廠商編號&nbsp;
-          <input
-                type="text"
-                style="height: 30px; width: 100px;display:inline;vertical-align: middle;font-size:18px;"
-                onkeyup="value=value.replace(/[\W]/g,'') " 
-                onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"
-                v-model="ColorSelectVM"     
-              />&nbsp;
             <button type="button" @click="ColorSelectM()" style="height: 30px; width: 50px;font-size:15px;display:inline;vertical-align: middle;">查詢</button>
              <br />  <br />
           <div
@@ -74,15 +66,14 @@ const axios = require("axios");
 import loader from "../test/Loader.vue";
 export default {
   name: "ColorNum",
-  props:["PartNo"],
+  props:["PartNo","ColorSelectNum"],
   components: { 
     loader,
    },
   data: function () {
     return {
         CTDcolornum:[],
-        ColorSelectNum:"",
-        ColorSelectVM:"",
+        ColorSelectNum:this.ColorSelectNum,
         loadin:0,
     };
   },
@@ -95,12 +86,10 @@ export default {
         this.$emit("getColor", this.CTDcolornum[index]);
     },
     ColorSelectM:function () {
-      if(this.ColorSelectNum==""){this.ColorSelectNum='X'};
-      if(this.ColorSelectVM==""){this.ColorSelectVM='X'};
-    
+      if(this.ColorSelectNum==""){this.ColorSelectNum='X'};    
       this.loadin=1;
        axios
-        .get("/api/search/ColorNo/"+ this.ColorSelectNum + "&&" + this.ColorSelectVM + "&&" + this.PartNo)
+        .get("/api/search/ColorNo/"+ this.ColorSelectNum + "&&" + this.PartNo)
         .then((response) => {
           console.log(response.data);        
             this.CTDcolornum = response.data;
@@ -110,7 +99,7 @@ export default {
   },
   mounted(){
        axios
-        .get("/api/search/ColorNoA")
+        .get("/api/search/ColorNo/X&&" + this.PartNo)
         .then((response) => {
           console.log(response.data);        
             this.CTDcolornum = response.data;

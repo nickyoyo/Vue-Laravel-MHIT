@@ -139,47 +139,66 @@ class SearchController extends Controller
         return response()->json($data,200);
     }
     
-    public function searchColorNo($Colorselect,$ColorselectVM,$PartNo)        //CTD
+    public function searchColorNo($Colorselect,$PartNo)        //CTD
     {
-        if($Colorselect=='X' && $ColorselectVM=='X'){
+        if($Colorselect=='X'){
             $data  = CTD::where('Reserve4',$PartNo)->orderby('codeindex','asc')->get();
-
-        }
-        else if($Colorselect=='X'||$Colorselect==''){
-            $data  = CTD::where('Reserve4','LIKE',$ColorselectVM.'%')->orderby('codeindex','asc')->get();
-
-        }
-        else if($ColorselectVM=='X'||$ColorselectVM==''){
-            $data  = CTD::where('codeindex','LIKE', $Colorselect.'%')->orderby('codeindex','asc')->get();
-  
         }
         else{
-            if($PartNo==NULL){
-                $data  = CTD::where('Reserve4','LIKE','S'.'%')->orderby('codeindex','asc')->take(100)->get();
-            }
-            else{
-                $data  = CTD::where('codeindex','LIKE', $Colorselect.'%')->where('Reserve4','LIKE',$ColorselectVM.'%')->orderby('codeindex','asc')->take(100)->get();
-               
-            }
+            $data  = CTD::where('Reserve4',$PartNo)->where('codeindex','LIKE',$Colorselect.'%')->orderby('codeindex','asc')->take(100)->get();
         }      
         return response()->json($data,200);
     }
 
+    public function searchColorNoType($Colorselect,$PartNo)        //CTD
+    {
+        $data  = CTD::where('codeindex',$Colorselect)->where('Reserve4',$PartNo)->orderby('codeindex','asc')->first();
+        
+        if($data!=NULL){
+            $data->codeindex = trim($data->codeindex);
+            $data->Reserve4 = trim($data->Reserve4);
+            return response()->json([$data,1],200);  
+        }
+        return response()->json([$data,0],200);  
+    }
+
     public function searchPartNo($SKU)        
     {
-        $data  = im::where('SKU','LIKE', $SKU.'%')->take(200)->get();
-        
-        
-        foreach($data as $PartNo){
-            $PartNo->FullPrice=(int)$PartNo->FullPrice;
-            $PartNo->SKU = trim($PartNo->SKU);
-
-            $vm  = vm::where('SuppNo',$PartNo->SupplierNo)->first();
-            $vm->SuppNo = trim($vm->SuppNo);
-            $PartNo->SupplierNo = $vm;
+        if($SKU=='XXXXX'){
+            $data  = im::where('SKU','LIKE', 'H%')->take(200)->get();
         }
-           
-        return response()->json($data,200);
+        else{
+        $data  = im::where('SKU','LIKE', $SKU.'%')->take(200)->get();
+         
+            foreach($data as $PartNo){
+                $PartNo->FullPrice=(int)$PartNo->FullPrice;
+                $PartNo->SKU = trim($PartNo->SKU);
+
+                $vm  = vm::where('SuppNo',$PartNo->SupplierNo)->first();
+                $vm->SuppNo = trim($vm->SuppNo);
+                $vm->LastTrans = trim($vm->LastTrans);
+                $PartNo->SupplierNo = $vm;
+            }
+        }
+            return response()->json($data,200);        
+    }
+    public function searchTypePartNo($SKU)        
+    {
+        $data  = im::where('SKU',$SKU)->first();
+        
+        if($data!=NULL){
+            $data->FullPrice=(int)$data->FullPrice;
+            $data->SKU = trim($data->SKU);
+
+            $vm  = vm::where('SuppNo',$data->SupplierNo)->first();
+            $vm->SuppNo = trim($vm->SuppNo);
+            $vm->LastTrans = trim($vm->LastTrans);
+            $data->SupplierNo = $vm;
+
+            return response()->json([$data,1],200);  
+        }
+        return response()->json([$data,0],200);  
+             
     }
 
 

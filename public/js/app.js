@@ -15634,15 +15634,14 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "ColorNum",
-  props: ["PartNo"],
+  props: ["PartNo", "ColorSelectNum"],
   components: {
     loader: _test_Loader_vue__WEBPACK_IMPORTED_MODULE_0__.default
   },
   data: function data() {
     return {
       CTDcolornum: [],
-      ColorSelectNum: "",
-      ColorSelectVM: "",
+      ColorSelectNum: this.ColorSelectNum,
       loadin: 0
     };
   },
@@ -15662,14 +15661,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       }
 
       ;
-
-      if (this.ColorSelectVM == "") {
-        this.ColorSelectVM = 'X';
-      }
-
-      ;
       this.loadin = 1;
-      axios.get("/api/search/ColorNo/" + this.ColorSelectNum + "&&" + this.ColorSelectVM + "&&" + this.PartNo).then(function (response) {
+      axios.get("/api/search/ColorNo/" + this.ColorSelectNum + "&&" + this.PartNo).then(function (response) {
         console.log(response.data);
         _this.CTDcolornum = response.data;
         _this.loadin = 0;
@@ -15679,7 +15672,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   mounted: function mounted() {
     var _this2 = this;
 
-    axios.get("/api/search/ColorNoA").then(function (response) {
+    axios.get("/api/search/ColorNo/X&&" + this.PartNo).then(function (response) {
       console.log(response.data);
       _this2.CTDcolornum = response.data;
     });
@@ -15831,7 +15824,9 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       OrderDataARM1: [],
       Selectorder: this.index,
       DetailIndex: "",
-      OrderOrderDetailitemstorage: []
+      OrderOrderDetailitemstorage: [],
+      ColorSelectNum: "",
+      PartSelect: ""
     };
   },
   methods: {
@@ -15843,6 +15838,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       this.DetailIndex = index;
       this.refnew = true;
       this.SuppNo = this.OrderDetailitem[index].SalesCodeData.SupplierNo.SuppNo;
+      this.ColorSelectNum = this.OrderDetailitem[index].Ragne;
       $("#ColorNum").modal('show');
     },
     closePart: function closePart() {
@@ -15852,34 +15848,77 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     getPartNum: function getPartNum(index) {
       this.DetailIndex = index;
       this.refnew = true;
+      this.PartSelect = this.OrderDetailitem[index].SalesCodeData.SKU;
       $("#PartNum").modal('show');
     },
     setColor: function setColor(val) {
       this.OrderDetailitem[this.DetailIndex].Ragne = val.codeindex;
       this.OrderDetailitem[this.DetailIndex].RangeName = val.codeDesc;
+      this.OrderOrderDetailitemstorage[this.DetailIndex] = this.OrderDetailitem[this.DetailIndex];
       $("#ColorNum").modal('hide');
       document.getElementsByName('Color[]')[this.DetailIndex].select();
     },
     setPart: function setPart(val) {
       this.OrderDetailitem[this.DetailIndex].SalesCode = val.SKU;
       this.OrderDetailitem[this.DetailIndex].SalesCodeData = val;
+
+      if (this.OrderDetailitem[this.DetailIndex].SalesCodeData.SupplierNo.LastTrans == '') {
+        this.OrderDetailitem[this.DetailIndex].Ragne = "";
+        this.OrderDetailitem[this.DetailIndex].RangeName = "";
+      }
+
+      this.OrderOrderDetailitemstorage[this.DetailIndex] = this.OrderDetailitem[this.DetailIndex];
       $("#PartNum").modal('hide');
       document.getElementsByName('Part[]')[this.DetailIndex].select();
     },
-    SetTypePart: function SetTypePart(index) {
+    SetTypeColor: function SetTypeColor(index) {
       var _this = this;
 
-      axios.get("/api/search/PartNo/" + this.OrderDetailitem[index].SalesCode).then(function (response) {
+      this.OrderDetailitem[this.DetailIndex].Ragne = this.OrderDetailitem[this.DetailIndex].Ragne.replace(/\s*/g, "");
+      axios.get("/api/search/ColorNoType/" + this.OrderDetailitem[this.DetailIndex].Ragne + "&&" + this.OrderDetailitem[index].SalesCodeData.SupplierNo.SuppNo).then(function (response) {
         console.log(response.data);
-        _this.OrderDetailitem[index].SalesCode = response.data[0].SKU;
-        _this.OrderDetailitem[index].SalesCodeData = response.data[0];
+
+        if (response.data[1] == 0) {
+          _this.OrderDetailitem[index].Ragne = _this.OrderOrderDetailitemstorage[index].Ragne;
+          _this.OrderDetailitem[index].RangeName = _this.OrderOrderDetailitemstorage[index].RangeName;
+        } else {
+          _this.OrderDetailitem[index].Ragne = "";
+          _this.OrderDetailitem[index].RangeName = "";
+          _this.OrderOrderDetailitemstorage[_this.DetailIndex] = _this.OrderDetailitem[index];
+        }
       });
+    },
+    SetTypePart: function SetTypePart(index) {
+      var _this2 = this;
+
+      this.OrderDetailitem[index].SalesCode = this.OrderDetailitem[index].SalesCode.replace(/\s*/g, "");
+
+      if (this.OrderDetailitem[index].SalesCode == '' || this.OrderDetailitem[index].SalesCode == ' ') {
+        this.OrderDetailitem[index].SalesCodeData = this.OrderOrderDetailitemstorage[index].SalesCodeData;
+        this.OrderDetailitem[index].SalesCode = this.OrderOrderDetailitemstorage[index].SalesCodeData.SKU;
+      } else {
+        axios.get("/api/search/PartNoType/" + this.OrderDetailitem[index].SalesCode).then(function (response) {
+          console.log(response.data);
+
+          if (response.data[1] == 0) {
+            _this2.OrderDetailitem[index].SalesCodeData = _this2.OrderOrderDetailitemstorage[index].SalesCodeData;
+            _this2.OrderDetailitem[index].SalesCode = _this2.OrderOrderDetailitemstorage[index].SalesCodeData.SKU;
+          } else {
+            _this2.OrderDetailitem[index].SalesCode = response.data[0].SKU;
+            _this2.OrderDetailitem[index].SalesCodeData = response.data[0];
+            _this2.OrderOrderDetailitemstorage[_this2.DetailIndex] = _this2.OrderDetailitem[_this2.DetailIndex];
+          }
+
+          _this2.OrderDetailitem[index].Ragne = "";
+          _this2.OrderDetailitem[index].RangeName = "";
+        });
+      }
     },
     getindex: function getindex(index) {
       this.DetailIndex = index;
     },
     nextcol: function nextcol(index) {
-      var _this2 = this;
+      var _this3 = this;
 
       var colornum;
       this.DetailIndex = index + 1;
@@ -15894,43 +15933,47 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         console.log(response.data);
 
         if (response.data == 0) {
-          _this2.OrderDetailitem[index] = OrderOrderDetailitemstorage[index];
+          _this3.OrderDetailitem[index] = _this3.OrderOrderDetailitemstorage[index];
         }
       });
     }
   },
   beforeCreate: function beforeCreate() {
-    var _this3 = this;
+    var _this4 = this;
 
     $("#loading").modal('show');
     axios.get("/api/search/OrderDetailitem/S02171130103").then(function (response) {
       console.log(response.data);
-      _this3.OrderDetailitem = response.data;
-      _this3.OrderOrderDetailitemstorage = response.data;
+      _this4.OrderDetailitem = response.data;
+      $("#loading").modal('hide');
+    });
+    axios.get("/api/search/OrderDetailitem/S02171130103").then(function (response) {
+      console.log(response.data);
+      _this4.OrderOrderDetailitemstorage = response.data;
       $("#loading").modal('hide');
     });
     axios.get("/api/search/Orderdata/S02171130103").then(function (response) {
       console.log(response);
-      _this3.OrderData = response.data;
+      _this4.OrderData = response.data;
       axios.get("/api/search/CTD/Desc/訂單類&&00").then(function (response) {
         console.log(response);
-        _this3.OrderDataCTDtype = response.data.codeDesc;
+        _this4.OrderDataCTDtype = response.data.codeDesc;
       });
       axios.get("/api/search/CmMemo/S02171130103&&02").then(function (response) {
         console.log(response);
-        _this3.OrderDataMemo = response.data.memo;
+        _this4.OrderDataMemo = response.data.memo;
       });
       axios.get("/api/search/OrderFINST/S02171130103").then(function (response) {
         console.log(response);
-        _this3.OrderDataFINST = response.data;
+        _this4.OrderDataFINST = response.data;
       });
       axios.get("/api/search/PD/03030210").then(function (response) {
         console.log(response);
-        _this3.OrderDataEM = response.data;
+        _this4.OrderDataEM = response.data;
       });
       axios.get("/api/search/OrderARM1/S02171130103").then(function (response) {
         console.log(response);
-        _this3.OrderDataARM1 = response.data;
+        _this4.OrderDataARM1 = response.data;
         $("#loading").modal('hide');
       });
     });
@@ -15960,13 +16003,14 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "PartNum",
+  props: ["PartSelect"],
   components: {
     loader: _test_Loader_vue__WEBPACK_IMPORTED_MODULE_0__.default
   },
   data: function data() {
     return {
       PartNoData: [],
-      PartSelect: "",
+      PartSelect: this.PartSelect,
       loadin: 0
     };
   },
@@ -15993,7 +16037,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   mounted: function mounted() {
     var _this2 = this;
 
-    axios.get("/api/search/PartNo/ANK01").then(function (response) {
+    axios.get("/api/search/PartNo/XXXXX").then(function (response) {
       console.log(response.data);
       _this2.PartNoData = response.data;
     });
@@ -20479,7 +20523,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _ColorNum_vue_vue_type_template_id_633d3f04_bindings_PartNo_props_close_options_GetColor_options_ColorSelectM_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ColorNum.vue?vue&type=template&id=633d3f04&bindings={"PartNo":"props","close":"options","GetColor":"options","ColorSelectM":"options"} */ "./resources/js/views/dropwindow/ColorNum.vue?vue&type=template&id=633d3f04&bindings={\"PartNo\":\"props\",\"close\":\"options\",\"GetColor\":\"options\",\"ColorSelectM\":\"options\"}");
+/* harmony import */ var _ColorNum_vue_vue_type_template_id_633d3f04_bindings_PartNo_props_ColorSelectNum_props_close_options_GetColor_options_ColorSelectM_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ColorNum.vue?vue&type=template&id=633d3f04&bindings={"PartNo":"props","ColorSelectNum":"props","close":"options","GetColor":"options","ColorSelectM":"options"} */ "./resources/js/views/dropwindow/ColorNum.vue?vue&type=template&id=633d3f04&bindings={\"PartNo\":\"props\",\"ColorSelectNum\":\"props\",\"close\":\"options\",\"GetColor\":\"options\",\"ColorSelectM\":\"options\"}");
 /* harmony import */ var _ColorNum_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ColorNum.vue?vue&type=script&lang=js */ "./resources/js/views/dropwindow/ColorNum.vue?vue&type=script&lang=js");
 /* harmony import */ var _ColorNum_vue_vue_type_style_index_0_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ColorNum.vue?vue&type=style&index=0&lang=css */ "./resources/js/views/dropwindow/ColorNum.vue?vue&type=style&index=0&lang=css");
 
@@ -20487,7 +20531,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-_ColorNum_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _ColorNum_vue_vue_type_template_id_633d3f04_bindings_PartNo_props_close_options_GetColor_options_ColorSelectM_options___WEBPACK_IMPORTED_MODULE_0__.render
+_ColorNum_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _ColorNum_vue_vue_type_template_id_633d3f04_bindings_PartNo_props_ColorSelectNum_props_close_options_GetColor_options_ColorSelectM_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* hot reload */
 if (false) {}
 
@@ -20572,7 +20616,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _ModifyOrderpage_vue_vue_type_template_id_547fcf72_bindings_index_props_closeColor_options_getColorNum_options_closePart_options_getPartNum_options_setColor_options_setPart_options_SetTypePart_options_getindex_options_nextcol_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","SetTypePart":"options","getindex":"options","nextcol":"options"} */ "./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={\"index\":\"props\",\"closeColor\":\"options\",\"getColorNum\":\"options\",\"closePart\":\"options\",\"getPartNum\":\"options\",\"setColor\":\"options\",\"setPart\":\"options\",\"SetTypePart\":\"options\",\"getindex\":\"options\",\"nextcol\":\"options\"}");
+/* harmony import */ var _ModifyOrderpage_vue_vue_type_template_id_547fcf72_bindings_index_props_closeColor_options_getColorNum_options_closePart_options_getPartNum_options_setColor_options_setPart_options_SetTypeColor_options_SetTypePart_options_getindex_options_nextcol_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","SetTypeColor":"options","SetTypePart":"options","getindex":"options","nextcol":"options"} */ "./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={\"index\":\"props\",\"closeColor\":\"options\",\"getColorNum\":\"options\",\"closePart\":\"options\",\"getPartNum\":\"options\",\"setColor\":\"options\",\"setPart\":\"options\",\"SetTypeColor\":\"options\",\"SetTypePart\":\"options\",\"getindex\":\"options\",\"nextcol\":\"options\"}");
 /* harmony import */ var _ModifyOrderpage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ModifyOrderpage.vue?vue&type=script&lang=js */ "./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=script&lang=js");
 /* harmony import */ var _ModifyOrderpage_vue_vue_type_style_index_0_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ModifyOrderpage.vue?vue&type=style&index=0&lang=css */ "./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=style&index=0&lang=css");
 
@@ -20580,7 +20624,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-_ModifyOrderpage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _ModifyOrderpage_vue_vue_type_template_id_547fcf72_bindings_index_props_closeColor_options_getColorNum_options_closePart_options_getPartNum_options_setColor_options_setPart_options_SetTypePart_options_getindex_options_nextcol_options___WEBPACK_IMPORTED_MODULE_0__.render
+_ModifyOrderpage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _ModifyOrderpage_vue_vue_type_template_id_547fcf72_bindings_index_props_closeColor_options_getColorNum_options_closePart_options_getPartNum_options_setColor_options_setPart_options_SetTypeColor_options_SetTypePart_options_getindex_options_nextcol_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* hot reload */
 if (false) {}
 
@@ -20605,7 +20649,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _PartNum_vue_vue_type_template_id_3f1aa9c2_bindings_close_options_GetPart_options_PartSelectM_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PartNum.vue?vue&type=template&id=3f1aa9c2&bindings={"close":"options","GetPart":"options","PartSelectM":"options"} */ "./resources/js/views/dropwindow/PartNum.vue?vue&type=template&id=3f1aa9c2&bindings={\"close\":\"options\",\"GetPart\":\"options\",\"PartSelectM\":\"options\"}");
+/* harmony import */ var _PartNum_vue_vue_type_template_id_3f1aa9c2_bindings_PartSelect_props_close_options_GetPart_options_PartSelectM_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PartNum.vue?vue&type=template&id=3f1aa9c2&bindings={"PartSelect":"props","close":"options","GetPart":"options","PartSelectM":"options"} */ "./resources/js/views/dropwindow/PartNum.vue?vue&type=template&id=3f1aa9c2&bindings={\"PartSelect\":\"props\",\"close\":\"options\",\"GetPart\":\"options\",\"PartSelectM\":\"options\"}");
 /* harmony import */ var _PartNum_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PartNum.vue?vue&type=script&lang=js */ "./resources/js/views/dropwindow/PartNum.vue?vue&type=script&lang=js");
 /* harmony import */ var _PartNum_vue_vue_type_style_index_0_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PartNum.vue?vue&type=style&index=0&lang=css */ "./resources/js/views/dropwindow/PartNum.vue?vue&type=style&index=0&lang=css");
 
@@ -20613,7 +20657,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-_PartNum_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _PartNum_vue_vue_type_template_id_3f1aa9c2_bindings_close_options_GetPart_options_PartSelectM_options___WEBPACK_IMPORTED_MODULE_0__.render
+_PartNum_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _PartNum_vue_vue_type_template_id_3f1aa9c2_bindings_PartSelect_props_close_options_GetPart_options_PartSelectM_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* hot reload */
 if (false) {}
 
@@ -22020,12 +22064,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/dropwindow/ColorNum.vue?vue&type=template&id=633d3f04&bindings={\"PartNo\":\"props\",\"close\":\"options\",\"GetColor\":\"options\",\"ColorSelectM\":\"options\"}":
-/*!******************************************************************************************************************************************************************************!*\
-  !*** ./resources/js/views/dropwindow/ColorNum.vue?vue&type=template&id=633d3f04&bindings={"PartNo":"props","close":"options","GetColor":"options","ColorSelectM":"options"} ***!
-  \******************************************************************************************************************************************************************************/
+/***/ "./resources/js/views/dropwindow/ColorNum.vue?vue&type=template&id=633d3f04&bindings={\"PartNo\":\"props\",\"ColorSelectNum\":\"props\",\"close\":\"options\",\"GetColor\":\"options\",\"ColorSelectM\":\"options\"}":
+/*!*******************************************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/views/dropwindow/ColorNum.vue?vue&type=template&id=633d3f04&bindings={"PartNo":"props","ColorSelectNum":"props","close":"options","GetColor":"options","ColorSelectM":"options"} ***!
+  \*******************************************************************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ColorNum.vue?vue&type=template&id=633d3f04&bindings={"PartNo":"props","close":"options","GetColor":"options","ColorSelectM":"options"} .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ColorNum.vue?vue&type=template&id=633d3f04&bindings={"PartNo":"props","ColorSelectNum":"props","close":"options","GetColor":"options","ColorSelectM":"options"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -22033,9 +22077,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ColorNum_vue_vue_type_template_id_633d3f04_bindings_PartNo_props_close_options_GetColor_options_ColorSelectM_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ColorNum_vue_vue_type_template_id_633d3f04_bindings_PartNo_props_ColorSelectNum_props_close_options_GetColor_options_ColorSelectM_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ColorNum_vue_vue_type_template_id_633d3f04_bindings_PartNo_props_close_options_GetColor_options_ColorSelectM_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ColorNum.vue?vue&type=template&id=633d3f04&bindings={"PartNo":"props","close":"options","GetColor":"options","ColorSelectM":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ColorNum.vue?vue&type=template&id=633d3f04&bindings={\"PartNo\":\"props\",\"close\":\"options\",\"GetColor\":\"options\",\"ColorSelectM\":\"options\"}");
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ColorNum_vue_vue_type_template_id_633d3f04_bindings_PartNo_props_ColorSelectNum_props_close_options_GetColor_options_ColorSelectM_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ColorNum.vue?vue&type=template&id=633d3f04&bindings={"PartNo":"props","ColorSelectNum":"props","close":"options","GetColor":"options","ColorSelectM":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ColorNum.vue?vue&type=template&id=633d3f04&bindings={\"PartNo\":\"props\",\"ColorSelectNum\":\"props\",\"close\":\"options\",\"GetColor\":\"options\",\"ColorSelectM\":\"options\"}");
 
 
 /***/ }),
@@ -22080,12 +22124,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={\"index\":\"props\",\"closeColor\":\"options\",\"getColorNum\":\"options\",\"closePart\":\"options\",\"getPartNum\":\"options\",\"setColor\":\"options\",\"setPart\":\"options\",\"SetTypePart\":\"options\",\"getindex\":\"options\",\"nextcol\":\"options\"}":
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","SetTypePart":"options","getindex":"options","nextcol":"options"} ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={\"index\":\"props\",\"closeColor\":\"options\",\"getColorNum\":\"options\",\"closePart\":\"options\",\"getPartNum\":\"options\",\"setColor\":\"options\",\"setPart\":\"options\",\"SetTypeColor\":\"options\",\"SetTypePart\":\"options\",\"getindex\":\"options\",\"nextcol\":\"options\"}":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","SetTypeColor":"options","SetTypePart":"options","getindex":"options","nextcol":"options"} ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","SetTypePart":"options","getindex":"options","nextcol":"options"} .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","SetTypeColor":"options","SetTypePart":"options","getindex":"options","nextcol":"options"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -22093,19 +22137,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModifyOrderpage_vue_vue_type_template_id_547fcf72_bindings_index_props_closeColor_options_getColorNum_options_closePart_options_getPartNum_options_setColor_options_setPart_options_SetTypePart_options_getindex_options_nextcol_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModifyOrderpage_vue_vue_type_template_id_547fcf72_bindings_index_props_closeColor_options_getColorNum_options_closePart_options_getPartNum_options_setColor_options_setPart_options_SetTypeColor_options_SetTypePart_options_getindex_options_nextcol_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModifyOrderpage_vue_vue_type_template_id_547fcf72_bindings_index_props_closeColor_options_getColorNum_options_closePart_options_getPartNum_options_setColor_options_setPart_options_SetTypePart_options_getindex_options_nextcol_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","SetTypePart":"options","getindex":"options","nextcol":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={\"index\":\"props\",\"closeColor\":\"options\",\"getColorNum\":\"options\",\"closePart\":\"options\",\"getPartNum\":\"options\",\"setColor\":\"options\",\"setPart\":\"options\",\"SetTypePart\":\"options\",\"getindex\":\"options\",\"nextcol\":\"options\"}");
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModifyOrderpage_vue_vue_type_template_id_547fcf72_bindings_index_props_closeColor_options_getColorNum_options_closePart_options_getPartNum_options_setColor_options_setPart_options_SetTypeColor_options_SetTypePart_options_getindex_options_nextcol_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","SetTypeColor":"options","SetTypePart":"options","getindex":"options","nextcol":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={\"index\":\"props\",\"closeColor\":\"options\",\"getColorNum\":\"options\",\"closePart\":\"options\",\"getPartNum\":\"options\",\"setColor\":\"options\",\"setPart\":\"options\",\"SetTypeColor\":\"options\",\"SetTypePart\":\"options\",\"getindex\":\"options\",\"nextcol\":\"options\"}");
 
 
 /***/ }),
 
-/***/ "./resources/js/views/dropwindow/PartNum.vue?vue&type=template&id=3f1aa9c2&bindings={\"close\":\"options\",\"GetPart\":\"options\",\"PartSelectM\":\"options\"}":
-/*!**********************************************************************************************************************************************************!*\
-  !*** ./resources/js/views/dropwindow/PartNum.vue?vue&type=template&id=3f1aa9c2&bindings={"close":"options","GetPart":"options","PartSelectM":"options"} ***!
-  \**********************************************************************************************************************************************************/
+/***/ "./resources/js/views/dropwindow/PartNum.vue?vue&type=template&id=3f1aa9c2&bindings={\"PartSelect\":\"props\",\"close\":\"options\",\"GetPart\":\"options\",\"PartSelectM\":\"options\"}":
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/views/dropwindow/PartNum.vue?vue&type=template&id=3f1aa9c2&bindings={"PartSelect":"props","close":"options","GetPart":"options","PartSelectM":"options"} ***!
+  \*******************************************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/PartNum.vue?vue&type=template&id=3f1aa9c2&bindings={"close":"options","GetPart":"options","PartSelectM":"options"} .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/PartNum.vue?vue&type=template&id=3f1aa9c2&bindings={"PartSelect":"props","close":"options","GetPart":"options","PartSelectM":"options"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -22113,9 +22157,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_PartNum_vue_vue_type_template_id_3f1aa9c2_bindings_close_options_GetPart_options_PartSelectM_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_PartNum_vue_vue_type_template_id_3f1aa9c2_bindings_PartSelect_props_close_options_GetPart_options_PartSelectM_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_PartNum_vue_vue_type_template_id_3f1aa9c2_bindings_close_options_GetPart_options_PartSelectM_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./PartNum.vue?vue&type=template&id=3f1aa9c2&bindings={"close":"options","GetPart":"options","PartSelectM":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/PartNum.vue?vue&type=template&id=3f1aa9c2&bindings={\"close\":\"options\",\"GetPart\":\"options\",\"PartSelectM\":\"options\"}");
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_PartNum_vue_vue_type_template_id_3f1aa9c2_bindings_PartSelect_props_close_options_GetPart_options_PartSelectM_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./PartNum.vue?vue&type=template&id=3f1aa9c2&bindings={"PartSelect":"props","close":"options","GetPart":"options","PartSelectM":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/PartNum.vue?vue&type=template&id=3f1aa9c2&bindings={\"PartSelect\":\"props\",\"close\":\"options\",\"GetPart\":\"options\",\"PartSelectM\":\"options\"}");
 
 
 /***/ }),
@@ -22614,10 +22658,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ColorNum.vue?vue&type=template&id=633d3f04&bindings={\"PartNo\":\"props\",\"close\":\"options\",\"GetColor\":\"options\",\"ColorSelectM\":\"options\"}":
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ColorNum.vue?vue&type=template&id=633d3f04&bindings={"PartNo":"props","close":"options","GetColor":"options","ColorSelectM":"options"} ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ColorNum.vue?vue&type=template&id=633d3f04&bindings={\"PartNo\":\"props\",\"ColorSelectNum\":\"props\",\"close\":\"options\",\"GetColor\":\"options\",\"ColorSelectM\":\"options\"}":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ColorNum.vue?vue&type=template&id=633d3f04&bindings={"PartNo":"props","ColorSelectNum":"props","close":"options","GetColor":"options","ColorSelectM":"options"} ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -22644,16 +22688,15 @@ const _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)
   }, "色號列表")
 ], -1 /* HOISTED */)
 const _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("           色號名稱  ")
-const _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("         廠商編號  ")
-const _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("  ")
-const _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
-const _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)()
-const _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
-const _hoisted_13 = { style: {"overflow-y":"scroll","height":"400px","border":"1px black solid"} }
-const _hoisted_14 = { key: 0 }
-const _hoisted_15 = { key: 1 }
-const _hoisted_16 = { style: {"border":"1px black solid"} }
-const _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("thead", null, [
+const _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("         ")
+const _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
+const _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)()
+const _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
+const _hoisted_12 = { style: {"overflow-y":"scroll","height":"400px","border":"1px black solid"} }
+const _hoisted_13 = { key: 0 }
+const _hoisted_14 = { key: 1 }
+const _hoisted_15 = { style: {"border":"1px black solid"} }
+const _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("thead", null, [
   /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("tr", { style: {"border":"1px black solid"} }, [
     /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", { class: "Corder1" }, "選擇"),
     /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", { class: "Corder2" }, "廠商"),
@@ -22661,10 +22704,10 @@ const _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode
     /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", { class: "Corder4" }, "內容描述")
   ])
 ], -1 /* HOISTED */)
-const _hoisted_18 = { class: "Corder1" }
-const _hoisted_19 = { class: "Corder2" }
-const _hoisted_20 = { class: "Corder3" }
-const _hoisted_21 = { class: "Corder4" }
+const _hoisted_17 = { class: "Corder1" }
+const _hoisted_18 = { class: "Corder2" }
+const _hoisted_19 = { class: "Corder3" }
+const _hoisted_20 = { class: "Corder4" }
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_loader = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("loader")
@@ -22687,51 +22730,41 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           type: "text",
           style: {"height":"30px","width":"100px","display":"inline","vertical-align":"middle","font-size":"18px"},
           onkeyup: "this.value=this.value.replace(/\\s+/g,'')",
-          "onUpdate:modelValue": _cache[2] || (_cache[2] = $event => (_ctx.ColorSelectNum = $event))
+          "onUpdate:modelValue": _cache[2] || (_cache[2] = $event => ($props.ColorSelectNum = $event))
         }, null, 512 /* NEED_PATCH */), [
-          [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.ColorSelectNum]
+          [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $props.ColorSelectNum]
         ]),
         _hoisted_8,
-        (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
-          type: "text",
-          style: {"height":"30px","width":"100px","display":"inline","vertical-align":"middle","font-size":"18px"},
-          onkeyup: "value=value.replace(/[\\W]/g,'') ",
-          onbeforepaste: "clipboardData.setData('text',clipboardData.getData('text').replace(/[^\\d]/g,''))",
-          "onUpdate:modelValue": _cache[3] || (_cache[3] = $event => (_ctx.ColorSelectVM = $event))
-        }, null, 512 /* NEED_PATCH */), [
-          [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.ColorSelectVM]
-        ]),
-        _hoisted_9,
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
           type: "button",
-          onClick: _cache[4] || (_cache[4] = $event => ($options.ColorSelectM())),
+          onClick: _cache[3] || (_cache[3] = $event => ($options.ColorSelectM())),
           style: {"height":"30px","width":"50px","font-size":"15px","display":"inline","vertical-align":"middle"}
         }, "查詢"),
+        _hoisted_9,
         _hoisted_10,
         _hoisted_11,
-        _hoisted_12,
-        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_13, [
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [
           (_ctx.loadin==1)
-            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("a", _hoisted_14, [
+            ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("a", _hoisted_13, [
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_loader)
               ]))
-            : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("a", _hoisted_15, [
-                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_16, [
-                  _hoisted_17,
+            : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("a", _hoisted_14, [
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("table", _hoisted_15, [
+                  _hoisted_16,
                   ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.CTDcolornum, (item, index) => {
                     return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("tr", {
                       value: item,
                       key: index,
                       style: {"border":"1px black solid"}
                     }, [
-                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_18, [
+                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_17, [
                         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
                           onClick: $event => ($options.GetColor(index))
                         }, "選擇", 8 /* PROPS */, ["onClick"])
                       ]),
-                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.Reserve4), 1 /* TEXT */),
-                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.codeindex), 1 /* TEXT */),
-                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.codeDesc), 1 /* TEXT */)
+                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.Reserve4), 1 /* TEXT */),
+                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.codeindex), 1 /* TEXT */),
+                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.codeDesc), 1 /* TEXT */)
                     ], 8 /* PROPS */, ["value"]))
                   }), 128 /* KEYED_FRAGMENT */))
                 ])
@@ -22988,10 +23021,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={\"index\":\"props\",\"closeColor\":\"options\",\"getColorNum\":\"options\",\"closePart\":\"options\",\"getPartNum\":\"options\",\"setColor\":\"options\",\"setPart\":\"options\",\"SetTypePart\":\"options\",\"getindex\":\"options\",\"nextcol\":\"options\"}":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","SetTypePart":"options","getindex":"options","nextcol":"options"} ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={\"index\":\"props\",\"closeColor\":\"options\",\"getColorNum\":\"options\",\"closePart\":\"options\",\"getPartNum\":\"options\",\"setColor\":\"options\",\"setPart\":\"options\",\"SetTypeColor\":\"options\",\"SetTypePart\":\"options\",\"getindex\":\"options\",\"nextcol\":\"options\"}":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","SetTypeColor":"options","SetTypePart":"options","getindex":"options","nextcol":"options"} ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -23217,15 +23250,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onGetColor: $options.setColor,
         onCloseColor: $options.closeColor,
         PartNo: _ctx.SuppNo,
+        ColorSelectNum: _ctx.ColorSelectNum,
         key: _ctx.refnew
-      }, null, 8 /* PROPS */, ["onGetColor", "onCloseColor", "PartNo"])
+      }, null, 8 /* PROPS */, ["onGetColor", "onCloseColor", "PartNo", "ColorSelectNum"])
     ]),
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [
       (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_PartNum, {
         onGetPart: $options.setPart,
         onClosePart: $options.closePart,
-        key: _ctx.refnew
-      }, null, 8 /* PROPS */, ["onGetPart", "onClosePart"])
+        key: _ctx.refnew,
+        PartSelect: _ctx.PartSelect
+      }, null, 8 /* PROPS */, ["onGetPart", "onClosePart", "PartSelect"])
     ]),
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [
       _hoisted_6,
@@ -23533,17 +23568,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                       (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
                         name: "Part[]",
                         type: "text",
-                        style: {"height":"30px","width":"100px"},
-                        onkeyup: "value=value.replace(/[\\W]/g,'') ",
-                        onbeforepaste: "clipboardData.setData('text',clipboardData.getData('text').replace(/[^\\d]/g,''))",
+                        style: {"height":"30px","width":"250px"},
+                        onkeyup: "value=value.replace(/\\s/g,'')",
+                        onbeforepaste: "value=value.replace(/\\s/g,'')",
+                        onChange: $event => ($options.SetTypePart(index)),
                         "onUpdate:modelValue": $event => (itemD.SalesCode = $event),
-                        maxlength: "10",
-                        onKeydown: [
-                          (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($event => ($options.getPartNum(index)), ["shift"]),
-                          (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)((0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($event => ($options.SetTypePart(index)), ["exact"]), ["tab"])
-                        ],
+                        maxlength: "30",
+                        onKeydown: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($event => ($options.getPartNum(index)), ["shift"]),
                         onClick: $event => ($options.getindex(index))
-                      }, null, 40 /* PROPS, HYDRATE_EVENTS */, ["onUpdate:modelValue", "onKeydown", "onClick"]), [
+                      }, null, 40 /* PROPS, HYDRATE_EVENTS */, ["onChange", "onUpdate:modelValue", "onKeydown", "onClick"]), [
                         [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, itemD.SalesCode]
                       ]),
                       _hoisted_79,
@@ -23553,17 +23586,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                       (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
                         type: "text",
                         name: "Color[]",
-                        style: {"height":"30px","width":"80px"},
+                        style: {"height":"30px","width":"100px"},
                         onkeyup: "this.value=this.value.replace(/\\s+/g,'')",
                         "onUpdate:modelValue": $event => (itemD.Ragne = $event),
-                        maxlength: "10",
+                        maxlength: "20",
                         onKeydown: [
                           (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($event => ($options.getColorNum(index)), ["shift"]),
                           (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)((0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($event => ($options.nextcol(index)), ["exact"]), ["tab"])
                         ],
+                        onChange: $event => ($options.SetTypeColor(index)),
                         onClick: $event => ($options.getindex(index)),
-                        disabled: itemD.SalesCodeData.SupplierNo.LastTrans==''
-                      }, null, 40 /* PROPS, HYDRATE_EVENTS */, ["onUpdate:modelValue", "onKeydown", "onClick", "disabled"]), [
+                        readonly: itemD.SalesCodeData.SupplierNo.LastTrans==''
+                      }, null, 40 /* PROPS, HYDRATE_EVENTS */, ["onUpdate:modelValue", "onKeydown", "onChange", "onClick", "readonly"]), [
                         [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, itemD.Ragne]
                       ]),
                       _hoisted_82,
@@ -23599,10 +23633,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/PartNum.vue?vue&type=template&id=3f1aa9c2&bindings={\"close\":\"options\",\"GetPart\":\"options\",\"PartSelectM\":\"options\"}":
-/*!*******************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/PartNum.vue?vue&type=template&id=3f1aa9c2&bindings={"close":"options","GetPart":"options","PartSelectM":"options"} ***!
-  \*******************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/PartNum.vue?vue&type=template&id=3f1aa9c2&bindings={\"PartSelect\":\"props\",\"close\":\"options\",\"GetPart\":\"options\",\"PartSelectM\":\"options\"}":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/PartNum.vue?vue&type=template&id=3f1aa9c2&bindings={"PartSelect":"props","close":"options","GetPart":"options","PartSelectM":"options"} ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -23667,12 +23701,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           _hoisted_7,
           (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
             type: "text",
-            style: {"height":"30px","width":"100px","display":"inline","vertical-align":"middle","font-size":"18px"},
-            onkeyup: "value=value.replace(/[\\W]/g,'') ",
-            onbeforepaste: "clipboardData.setData('text',clipboardData.getData('text').replace(/[^\\d]/g,''))",
-            "onUpdate:modelValue": _cache[2] || (_cache[2] = $event => (_ctx.PartSelect = $event))
+            style: {"height":"30px","width":"250px","display":"inline","vertical-align":"middle","font-size":"18px"},
+            onkeyup: "value=value.replace(/\\s/g,'')",
+            onbeforepaste: "value=value.replace(/\\s/g,'')",
+            "onUpdate:modelValue": _cache[2] || (_cache[2] = $event => ($props.PartSelect = $event))
           }, null, 512 /* NEED_PATCH */), [
-            [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.PartSelect]
+            [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $props.PartSelect]
           ]),
           _hoisted_8,
           (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {

@@ -14,9 +14,9 @@
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <input
                 type="text"
-                style="height: 30px; width: 100px;display:inline;vertical-align: middle;font-size:18px;"
-                onkeyup="value=value.replace(/[\W]/g,'') " 
-                onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"
+                style="height: 30px; width: 250px;display:inline;vertical-align: middle;font-size:18px;"
+                onkeyup="value=value.replace(/\s/g,'')" 
+                onbeforepaste="value=value.replace(/\s/g,'')"
                 v-model="PartSelect"     
               />&nbsp;
             <button type="button" @click="PartSelectM()" style="height: 30px; width: 50px;font-size:15px;display:inline;vertical-align: middle;">查詢</button>
@@ -67,13 +67,14 @@ const axios = require("axios");
 import loader from "../test/Loader.vue";
 export default {
   name: "PartNum",
+  props:["PartSelect"],
    components: { 
     loader,
    },
   data: function () {
     return {
         PartNoData:[],
-        PartSelect:"",
+        PartSelect:this.PartSelect,
         loadin:0,
     };
   },
@@ -99,7 +100,7 @@ export default {
   },
   mounted(){
        axios
-        .get("/api/search/PartNo/ANK01")
+        .get("/api/search/PartNo/XXXXX")
         .then((response) => {
           console.log(response.data);        
             this.PartNoData = response.data;
