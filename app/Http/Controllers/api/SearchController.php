@@ -568,7 +568,7 @@ class SearchController extends Controller
 
     public function searchOrderDetailitemCheckPC($SuppNo,$colornum){
         $SuppNo = trim($SuppNo);
-        $data  = CTD::where('codeindex',$colornum)->where('Reserve4',$SuppNo)->first();
+        $data = CTD::where('codeindex',$colornum)->where('Reserve4',$SuppNo)->first();
         if($data==NULL){
             return response()->json(0,200);
         }

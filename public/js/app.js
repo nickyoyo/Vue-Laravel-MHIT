@@ -15826,7 +15826,9 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       DetailIndex: "",
       OrderOrderDetailitemstorage: [],
       ColorSelectNum: "",
-      PartSelect: ""
+      PartSelect: "",
+      Ragne: "",
+      RangeName: ""
     };
   },
   methods: {
@@ -15921,8 +15923,20 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     nextcol: function nextcol(index) {
       var _this3 = this;
 
+      this.OrderDetailitem[this.DetailIndex].Ragne = this.OrderDetailitem[this.DetailIndex].Ragne.replace(/\s*/g, "");
+      axios.get("/api/search/ColorNoType/" + this.OrderDetailitem[this.DetailIndex].Ragne + "&&" + this.OrderDetailitem[index].SalesCodeData.SupplierNo.SuppNo).then(function (response) {
+        console.log(response.data);
+
+        if (response.data[1] == 0) {
+          _this3.OrderDetailitem[index].Ragne = _this3.OrderOrderDetailitemstorage[index].Ragne;
+          _this3.OrderDetailitem[index].RangeName = _this3.OrderOrderDetailitemstorage[index].RangeName;
+        } else {
+          _this3.OrderDetailitem[index].Ragne = response.data[0].codeindex;
+          _this3.OrderDetailitem[index].RangeName = response.data[0].codeDesc;
+          _this3.OrderOrderDetailitemstorage[_this3.DetailIndex] = _this3.OrderDetailitem[index];
+        }
+      });
       var colornum;
-      this.DetailIndex = index + 1;
 
       if (this.OrderDetailitem[index].Ragne == "") {
         colornum = 'X';
@@ -15930,12 +15944,14 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         colornum = this.OrderDetailitem[index].Ragne;
       }
 
-      axios.get("/api/search/searchOrderDetailitemCheckPC/" + this.OrderDetailitem[index].SalesCodeData.SupplierNo.SuppNo + "&&" + colornum).then(function (response) {
+      axios.get("/api/search/OrderDetailitemCheckPC/" + this.OrderDetailitem[index].SalesCodeData.SupplierNo.SuppNo + "&&" + colornum).then(function (response) {
         console.log(response.data);
 
         if (response.data == 0) {
           _this3.OrderDetailitem[index] = _this3.OrderOrderDetailitemstorage[index];
         }
+
+        _this3.DetailIndex = index + 1;
       });
     }
   },
@@ -23576,7 +23592,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                         onChange: $event => ($options.SetTypePart(index)),
                         "onUpdate:modelValue": $event => (itemD.SalesCode = $event),
                         maxlength: "30",
-                        onKeydown: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($event => ($options.getPartNum(index)), ["shift"]),
+                        onKeydown: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)($event => ($options.getPartNum(index)), ["enter"]),
                         onClick: $event => ($options.getindex(index))
                       }, null, 40 /* PROPS, HYDRATE_EVENTS */, ["onChange", "onUpdate:modelValue", "onKeydown", "onClick"]), [
                         [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, itemD.SalesCode]
@@ -23594,7 +23610,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                         "onUpdate:modelValue": $event => (itemD.Ragne = $event),
                         maxlength: "20",
                         onKeydown: [
-                          (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($event => ($options.getColorNum(index)), ["shift"]),
+                          (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)($event => ($options.getColorNum(index)), ["enter"]),
                           (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)((0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($event => ($options.nextcol(index)), ["exact"]), ["tab"])
                         ],
                         onChange: $event => ($options.SetTypeColor(index)),
