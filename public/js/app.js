@@ -15860,42 +15860,57 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       this.OrderOrderDetailitemstorage[this.DetailIndex] = Object.assign({}, this.OrderDetailitem[this.DetailIndex]);
       $("#ColorNum").modal('hide');
       document.getElementsByName('Color[]')[this.DetailIndex].select();
-      axios.get("/api/search/IMChangePriceRecord/" + this.OrderDetailitem[this.DetailIndex].SalesCode + "&&" + this.OrderData[0].QuotNo).then(function (response) {
-        console.log(response.data);
-      });
     },
     setPart: function setPart(val) {
+      var _this = this;
+
       this.refnew = false;
       this.OrderDetailitem[this.DetailIndex].SalesCode = val.SKU;
       this.OrderDetailitem[this.DetailIndex].SalesCodeData = val;
       this.OrderDetailitem[this.DetailIndex].Ragne = "";
       this.OrderDetailitem[this.DetailIndex].RangeName = "";
-      this.OrderOrderDetailitemstorage[this.DetailIndex] = Object.assign({}, this.OrderDetailitem[this.DetailIndex]);
       $("#PartNum").modal('hide');
+      axios.get("/api/search/IMChangePriceRecord/" + this.OrderDetailitem[this.DetailIndex].SalesCode + "&&" + this.OrderData[0].QuotNo).then(function (response) {
+        console.log(response.data);
+
+        if (response.data[1] == 1) {
+          _this.OrderDetailitem[_this.DetailIndex].UnitPrice = response.data[0].後價;
+          _this.OrderDetailitem[_this.DetailIndex].Qty = 0;
+          _this.OrderDetailitem[_this.DetailIndex].OrderValue = 0;
+        } else {
+          _this.OrderDetailitem[_this.DetailIndex].UnitPrice = response.data[0].FullPrice;
+          _this.OrderDetailitem[_this.DetailIndex].Qty = 0;
+          _this.OrderDetailitem[_this.DetailIndex].OrderValue = 0;
+        }
+      });
+      this.OrderOrderDetailitemstorage[this.DetailIndex] = Object.assign({}, this.OrderDetailitem[this.DetailIndex]);
       document.getElementsByName('Part[]')[this.DetailIndex].select();
     },
+    SetQty: function SetQty(index) {
+      this.OrderDetailitem[index].OrderValue = this.OrderDetailitem[index].UnitPrice * this.OrderDetailitem[index].Qty;
+    },
     SetTypeColor: function SetTypeColor(index) {
-      var _this = this;
+      var _this2 = this;
 
       this.OrderDetailitem[this.DetailIndex].Ragne = this.OrderDetailitem[this.DetailIndex].Ragne.replace(/\s*/g, "");
       axios.get("/api/search/ColorNoType/" + this.OrderDetailitem[this.DetailIndex].Ragne + "&&" + this.OrderDetailitem[index].SalesCodeData.SupplierNo.SuppNo).then(function (response) {
         console.log(response.data);
 
         if (response.data[1] == 0) {
-          _this.OrderDetailitem[index].Ragne = _this.OrderOrderDetailitemstorage[index].Ragne;
-          _this.OrderDetailitem[index].RangeName = _this.OrderOrderDetailitemstorage[index].RangeName;
-          alert("此料號並無此色號");
+          _this2.OrderDetailitem[index].Ragne = _this2.OrderOrderDetailitemstorage[index].Ragne;
+          _this2.OrderDetailitem[index].RangeName = _this2.OrderOrderDetailitemstorage[index].RangeName;
         } else {
-          _this.OrderDetailitem[index].Ragne = response.data[0].codeindex;
-          _this.OrderDetailitem[index].RangeName = response.data[0].codeDesc;
-          _this.OrderOrderDetailitemstorage[index] = Object.assign({}, _this.OrderDetailitem[index]);
+          _this2.OrderDetailitem[index].Ragne = response.data[0].codeindex;
+          _this2.OrderDetailitem[index].RangeName = response.data[0].codeDesc;
+          _this2.OrderOrderDetailitemstorage[index] = Object.assign({}, _this2.OrderDetailitem[index]);
         }
       });
     },
     SetTypePart: function SetTypePart(index) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.OrderDetailitem[index].SalesCode = this.OrderDetailitem[index].SalesCode.replace(/\s*/g, "");
+      this.PartSelect = this.OrderDetailitem[index].SalesCode;
 
       if (this.OrderDetailitem[index].SalesCode == '' || this.OrderDetailitem[index].SalesCode == ' ') {
         this.OrderDetailitem[index].SalesCodeData = this.OrderOrderDetailitemstorage[index].SalesCodeData;
@@ -15905,14 +15920,27 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
           console.log(response.data);
 
           if (response.data[1] == 0) {
-            _this2.OrderDetailitem[index].SalesCodeData = _this2.OrderOrderDetailitemstorage[index].SalesCodeData;
-            _this2.OrderDetailitem[index].SalesCode = _this2.OrderOrderDetailitemstorage[index].SalesCodeData.SKU;
+            _this3.OrderDetailitem[index].SalesCodeData = _this3.OrderOrderDetailitemstorage[index].SalesCodeData;
+            _this3.OrderDetailitem[index].SalesCode = _this3.OrderOrderDetailitemstorage[index].SalesCodeData.SKU;
           } else {
-            _this2.OrderDetailitem[index].SalesCode = response.data[0].SKU;
-            _this2.OrderDetailitem[index].SalesCodeData = response.data[0];
-            _this2.OrderOrderDetailitemstorage[_this2.DetailIndex] = Object.assign({}, _this2.OrderDetailitem[_this2.DetailIndex]);
-            _this2.OrderDetailitem[index].Ragne = "";
-            _this2.OrderDetailitem[index].RangeName = "";
+            _this3.OrderDetailitem[index].SalesCode = response.data[0].SKU;
+            _this3.OrderDetailitem[index].SalesCodeData = response.data[0];
+            _this3.OrderDetailitem[index].Ragne = "";
+            _this3.OrderDetailitem[index].RangeName = "";
+            axios.get("/api/search/IMChangePriceRecord/" + _this3.OrderDetailitem[index].SalesCode + "&&" + _this3.OrderData[0].QuotNo).then(function (response) {
+              console.log(response.data);
+
+              if (response.data[1] == 1) {
+                _this3.OrderDetailitem[index].UnitPrice = response.data[0].後價;
+                _this3.OrderDetailitem[index].Qty = 0;
+                _this3.OrderDetailitem[index].OrderValue = 0;
+              } else {
+                _this3.OrderDetailitem[index].UnitPrice = response.data[0].FullPrice;
+                _this3.OrderDetailitem[index].Qty = 0;
+                _this3.OrderDetailitem[index].OrderValue = 0;
+              }
+            });
+            _this3.OrderOrderDetailitemstorage[index] = Object.assign({}, _this3.OrderDetailitem[index]);
           }
         });
       }
@@ -15920,21 +15948,22 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     getindex: function getindex(index) {
       this.DetailIndex = index;
     },
-    nextcol: function nextcol(index) {
-      var _this3 = this;
+    TypeColorTab: function TypeColorTab(index) {
+      var _this4 = this;
 
       this.OrderDetailitem[this.DetailIndex].Ragne = this.OrderDetailitem[this.DetailIndex].Ragne.replace(/\s*/g, "");
       axios.get("/api/search/ColorNoType/" + this.OrderDetailitem[this.DetailIndex].Ragne + "&&" + this.OrderDetailitem[index].SalesCodeData.SupplierNo.SuppNo).then(function (response) {
         console.log(response.data);
 
         if (response.data[1] == 0) {
-          _this3.OrderDetailitem[index].Ragne = _this3.OrderOrderDetailitemstorage[index].Ragne;
-          _this3.OrderDetailitem[index].RangeName = _this3.OrderOrderDetailitemstorage[index].RangeName;
+          _this4.OrderDetailitem[index].Ragne = _this4.OrderOrderDetailitemstorage[index].Ragne;
+          _this4.OrderDetailitem[index].RangeName = _this4.OrderOrderDetailitemstorage[index].RangeName;
+          document.getElementsByName('Color[]')[index].select();
           alert("此料號並無此色號");
         } else {
-          _this3.OrderDetailitem[index].Ragne = response.data[0].codeindex;
-          _this3.OrderDetailitem[index].RangeName = response.data[0].codeDesc;
-          _this3.OrderOrderDetailitemstorage[index] = Object.assign({}, _this3.OrderDetailitem[index]);
+          _this4.OrderDetailitem[index].Ragne = response.data[0].codeindex;
+          _this4.OrderDetailitem[index].RangeName = response.data[0].codeDesc;
+          _this4.OrderOrderDetailitemstorage[index] = Object.assign({}, _this4.OrderDetailitem[index]);
         }
       });
       var colornum;
@@ -15949,49 +15978,50 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         console.log(response.data);
 
         if (response.data == 0) {
-          _this3.OrderDetailitem[index] = Object.assign({}, _this3.OrderOrderDetailitemstorage[index]);
+          _this4.OrderDetailitem[index] = Object.assign({}, _this4.OrderOrderDetailitemstorage[index]);
         }
-
-        _this3.DetailIndex = index + 1;
       });
+    },
+    nextcol: function nextcol(index) {
+      this.DetailIndex = index + 1;
     }
   },
   beforeCreate: function beforeCreate() {
-    var _this4 = this;
+    var _this5 = this;
 
     $("#loading").modal('show');
     axios.get("/api/search/OrderDetailitem/S02171130103").then(function (response) {
       console.log(response.data);
-      _this4.OrderDetailitem = response.data;
+      _this5.OrderDetailitem = response.data;
       $("#loading").modal('hide');
     });
     axios.get("/api/search/OrderDetailitem/S02171130103").then(function (response) {
       console.log(response.data);
-      _this4.OrderOrderDetailitemstorage = response.data;
+      _this5.OrderOrderDetailitemstorage = response.data;
       $("#loading").modal('hide');
     });
     axios.get("/api/search/Orderdata/S02171130103").then(function (response) {
       console.log(response);
-      _this4.OrderData = response.data;
+      _this5.OrderData = response.data;
       axios.get("/api/search/CTD/Desc/訂單類&&00").then(function (response) {
         console.log(response);
-        _this4.OrderDataCTDtype = response.data.codeDesc;
+        _this5.OrderDataCTDtype = response.data.codeDesc;
       });
       axios.get("/api/search/CmMemo/S02171130103&&02").then(function (response) {
         console.log(response);
-        _this4.OrderDataMemo = response.data.memo;
+        _this5.OrderDataMemo = response.data.memo;
       });
       axios.get("/api/search/OrderFINST/S02171130103").then(function (response) {
         console.log(response);
-        _this4.OrderDataFINST = response.data;
+        _this5.OrderDataFINST = response.data;
       });
       axios.get("/api/search/PD/03030210").then(function (response) {
         console.log(response);
-        _this4.OrderDataEM = response.data;
+        _this5.OrderDataEM = response.data;
       });
       axios.get("/api/search/OrderARM1/S02171130103").then(function (response) {
         console.log(response);
-        _this4.OrderDataARM1 = response.data;
+        _this5.OrderDataARM1 = response.data;
         $("#loading").modal('hide');
       });
     });
@@ -20634,7 +20664,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _ModifyOrderpage_vue_vue_type_template_id_547fcf72_bindings_index_props_closeColor_options_getColorNum_options_closePart_options_getPartNum_options_setColor_options_setPart_options_SetTypeColor_options_SetTypePart_options_getindex_options_nextcol_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","SetTypeColor":"options","SetTypePart":"options","getindex":"options","nextcol":"options"} */ "./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={\"index\":\"props\",\"closeColor\":\"options\",\"getColorNum\":\"options\",\"closePart\":\"options\",\"getPartNum\":\"options\",\"setColor\":\"options\",\"setPart\":\"options\",\"SetTypeColor\":\"options\",\"SetTypePart\":\"options\",\"getindex\":\"options\",\"nextcol\":\"options\"}");
+/* harmony import */ var _ModifyOrderpage_vue_vue_type_template_id_547fcf72_bindings_index_props_closeColor_options_getColorNum_options_closePart_options_getPartNum_options_setColor_options_setPart_options_SetQty_options_SetTypeColor_options_SetTypePart_options_getindex_options_TypeColorTab_options_nextcol_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","SetQty":"options","SetTypeColor":"options","SetTypePart":"options","getindex":"options","TypeColorTab":"options","nextcol":"options"} */ "./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={\"index\":\"props\",\"closeColor\":\"options\",\"getColorNum\":\"options\",\"closePart\":\"options\",\"getPartNum\":\"options\",\"setColor\":\"options\",\"setPart\":\"options\",\"SetQty\":\"options\",\"SetTypeColor\":\"options\",\"SetTypePart\":\"options\",\"getindex\":\"options\",\"TypeColorTab\":\"options\",\"nextcol\":\"options\"}");
 /* harmony import */ var _ModifyOrderpage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ModifyOrderpage.vue?vue&type=script&lang=js */ "./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=script&lang=js");
 /* harmony import */ var _ModifyOrderpage_vue_vue_type_style_index_0_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ModifyOrderpage.vue?vue&type=style&index=0&lang=css */ "./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=style&index=0&lang=css");
 
@@ -20642,7 +20672,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-_ModifyOrderpage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _ModifyOrderpage_vue_vue_type_template_id_547fcf72_bindings_index_props_closeColor_options_getColorNum_options_closePart_options_getPartNum_options_setColor_options_setPart_options_SetTypeColor_options_SetTypePart_options_getindex_options_nextcol_options___WEBPACK_IMPORTED_MODULE_0__.render
+_ModifyOrderpage_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _ModifyOrderpage_vue_vue_type_template_id_547fcf72_bindings_index_props_closeColor_options_getColorNum_options_closePart_options_getPartNum_options_setColor_options_setPart_options_SetQty_options_SetTypeColor_options_SetTypePart_options_getindex_options_TypeColorTab_options_nextcol_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* hot reload */
 if (false) {}
 
@@ -22142,12 +22172,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={\"index\":\"props\",\"closeColor\":\"options\",\"getColorNum\":\"options\",\"closePart\":\"options\",\"getPartNum\":\"options\",\"setColor\":\"options\",\"setPart\":\"options\",\"SetTypeColor\":\"options\",\"SetTypePart\":\"options\",\"getindex\":\"options\",\"nextcol\":\"options\"}":
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","SetTypeColor":"options","SetTypePart":"options","getindex":"options","nextcol":"options"} ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={\"index\":\"props\",\"closeColor\":\"options\",\"getColorNum\":\"options\",\"closePart\":\"options\",\"getPartNum\":\"options\",\"setColor\":\"options\",\"setPart\":\"options\",\"SetQty\":\"options\",\"SetTypeColor\":\"options\",\"SetTypePart\":\"options\",\"getindex\":\"options\",\"TypeColorTab\":\"options\",\"nextcol\":\"options\"}":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","SetQty":"options","SetTypeColor":"options","SetTypePart":"options","getindex":"options","TypeColorTab":"options","nextcol":"options"} ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","SetTypeColor":"options","SetTypePart":"options","getindex":"options","nextcol":"options"} .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","SetQty":"options","SetTypeColor":"options","SetTypePart":"options","getindex":"options","TypeColorTab":"options","nextcol":"options"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -22155,9 +22185,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModifyOrderpage_vue_vue_type_template_id_547fcf72_bindings_index_props_closeColor_options_getColorNum_options_closePart_options_getPartNum_options_setColor_options_setPart_options_SetTypeColor_options_SetTypePart_options_getindex_options_nextcol_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModifyOrderpage_vue_vue_type_template_id_547fcf72_bindings_index_props_closeColor_options_getColorNum_options_closePart_options_getPartNum_options_setColor_options_setPart_options_SetQty_options_SetTypeColor_options_SetTypePart_options_getindex_options_TypeColorTab_options_nextcol_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModifyOrderpage_vue_vue_type_template_id_547fcf72_bindings_index_props_closeColor_options_getColorNum_options_closePart_options_getPartNum_options_setColor_options_setPart_options_SetTypeColor_options_SetTypePart_options_getindex_options_nextcol_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","SetTypeColor":"options","SetTypePart":"options","getindex":"options","nextcol":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={\"index\":\"props\",\"closeColor\":\"options\",\"getColorNum\":\"options\",\"closePart\":\"options\",\"getPartNum\":\"options\",\"setColor\":\"options\",\"setPart\":\"options\",\"SetTypeColor\":\"options\",\"SetTypePart\":\"options\",\"getindex\":\"options\",\"nextcol\":\"options\"}");
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModifyOrderpage_vue_vue_type_template_id_547fcf72_bindings_index_props_closeColor_options_getColorNum_options_closePart_options_getPartNum_options_setColor_options_setPart_options_SetQty_options_SetTypeColor_options_SetTypePart_options_getindex_options_TypeColorTab_options_nextcol_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","SetQty":"options","SetTypeColor":"options","SetTypePart":"options","getindex":"options","TypeColorTab":"options","nextcol":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={\"index\":\"props\",\"closeColor\":\"options\",\"getColorNum\":\"options\",\"closePart\":\"options\",\"getPartNum\":\"options\",\"setColor\":\"options\",\"setPart\":\"options\",\"SetQty\":\"options\",\"SetTypeColor\":\"options\",\"SetTypePart\":\"options\",\"getindex\":\"options\",\"TypeColorTab\":\"options\",\"nextcol\":\"options\"}");
 
 
 /***/ }),
@@ -23040,10 +23070,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={\"index\":\"props\",\"closeColor\":\"options\",\"getColorNum\":\"options\",\"closePart\":\"options\",\"getPartNum\":\"options\",\"setColor\":\"options\",\"setPart\":\"options\",\"SetTypeColor\":\"options\",\"SetTypePart\":\"options\",\"getindex\":\"options\",\"nextcol\":\"options\"}":
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","SetTypeColor":"options","SetTypePart":"options","getindex":"options","nextcol":"options"} ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={\"index\":\"props\",\"closeColor\":\"options\",\"getColorNum\":\"options\",\"closePart\":\"options\",\"getPartNum\":\"options\",\"setColor\":\"options\",\"setPart\":\"options\",\"SetQty\":\"options\",\"SetTypeColor\":\"options\",\"SetTypePart\":\"options\",\"getindex\":\"options\",\"TypeColorTab\":\"options\",\"nextcol\":\"options\"}":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ModifyOrderpage.vue?vue&type=template&id=547fcf72&bindings={"index":"props","closeColor":"options","getColorNum":"options","closePart":"options","getPartNum":"options","setColor":"options","setPart":"options","SetQty":"options","SetTypeColor":"options","SetTypePart":"options","getindex":"options","TypeColorTab":"options","nextcol":"options"} ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -23611,7 +23641,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                         maxlength: "20",
                         onKeydown: [
                           (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)($event => ($options.getColorNum(index)), ["enter"]),
-                          (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)((0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($event => ($options.nextcol(index)), ["exact"]), ["tab"])
+                          (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)((0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($event => ($options.TypeColorTab(index)), ["exact"]), ["tab"])
                         ],
                         onChange: $event => ($options.SetTypeColor(index)),
                         onClick: $event => ($options.getindex(index)),
@@ -23623,7 +23653,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                       (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", _hoisted_83, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.RangeName), 1 /* TEXT */)
                     ]),
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_84, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.UnitPrice), 1 /* TEXT */),
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_85, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.Qty), 1 /* TEXT */),
+                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_85, [
+                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+                        name: "Qty[]",
+                        type: "number",
+                        style: {"height":"30px","width":"70px"},
+                        min: "0",
+                        "onUpdate:modelValue": $event => (itemD.Qty = $event),
+                        onChange: $event => ($options.SetQty(index)),
+                        onKeydown: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)((0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($event => ($options.nextcol(index)), ["exact"]), ["tab"]),
+                        onClick: $event => ($options.getindex(index))
+                      }, null, 40 /* PROPS, HYDRATE_EVENTS */, ["onUpdate:modelValue", "onChange", "onKeydown", "onClick"]), [
+                        [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, itemD.Qty]
+                      ])
+                    ]),
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_86, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.DiscountRate), 1 /* TEXT */),
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_87, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.OrderValue), 1 /* TEXT */),
                     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_88, [

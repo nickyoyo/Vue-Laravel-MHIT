@@ -588,6 +588,10 @@ class SearchController extends Controller
 
             return response()->json([$data,1],200);  
         }
-        return response()->json([$data,0],200);  
+        else{
+            $data = im::where('SKU',$PartNo)->first();  
+            return response()->json([$data,0],200);  
+        }
+        
     }
 }
