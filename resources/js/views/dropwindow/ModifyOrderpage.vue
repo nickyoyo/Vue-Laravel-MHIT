@@ -345,11 +345,21 @@ export default {
         this.refnew=false;
         this.OrderDetailitem[this.DetailIndex].Ragne = val.codeindex;   
         this.OrderDetailitem[this.DetailIndex].RangeName = val.codeDesc;  
+         $("#ColorNum").modal('hide'); 
+
+         axios
+        .get("/api/search/ColorPrice/"+ this.OrderDetailitem[this.DetailIndex].SalesCode +"&&" + this.OrderDetailitem[this.DetailIndex].Ragne +"&&" + this.OrderData[0].QuotNo)
+        .then((response) => {
+          console.log(response.data);
+            this.OrderDetailitem[this.DetailIndex].UnitPrice = response.data;
+            this.OrderDetailitem[this.DetailIndex].Qty = 0;
+            this.OrderDetailitem[this.DetailIndex].OrderValue = 0;
+        });         
+
         this.OrderOrderDetailitemstorage[this.DetailIndex]=Object.assign({}, this.OrderDetailitem[this.DetailIndex]);
-        $("#ColorNum").modal('hide');         
+               
         document.getElementsByName('Color[]')[this.DetailIndex].select(); 
     },
-
     setPart:function(val){
         this.refnew=false;
         this.OrderDetailitem[this.DetailIndex].SalesCode = val.SKU;   
@@ -393,7 +403,17 @@ export default {
                 }   
                 else{
                     this.OrderDetailitem[index].Ragne = response.data[0].codeindex;   
-                    this.OrderDetailitem[index].RangeName = response.data[0].codeDesc;  
+                    this.OrderDetailitem[index].RangeName = response.data[0].codeDesc;
+                    
+                    axios
+                    .get("/api/search/ColorPrice/"+ this.OrderDetailitem[index].SalesCode +"&&" + this.OrderDetailitem[index].Ragne +"&&" + this.OrderData[0].QuotNo)
+                    .then((response) => {
+                    console.log(response.data);
+                        this.OrderDetailitem[index].UnitPrice = response.data;
+                        this.OrderDetailitem[index].Qty = 0;
+                        this.OrderDetailitem[index].OrderValue = 0;
+                    });       
+
                     this.OrderOrderDetailitemstorage[index]=Object.assign({}, this.OrderDetailitem[index]);
                 }
             });
@@ -488,24 +508,24 @@ export default {
         this.$emit("saveModify");  
     },
   },
-  mounted(){
-      // $("#loading").modal('show');
+ mounted(){
+       $("#loading").modal('show');
       axios
-        .get("/api/search/OrderDetailitem/"+this.QuotNo)
+        .get("/api/search/OrderDetailitem/S02171130103")
         .then((response) => {
           console.log(response.data);
           this.OrderDetailitem = response.data;
          $("#loading").modal('hide');
         });
      axios
-        .get("/api/search/OrderDetailitem/"+this.QuotNo)
+        .get("/api/search/OrderDetailitem/S02171130103")
         .then((response) => {
           console.log(response.data);
           this.OrderOrderDetailitemstorage = response.data;
          $("#loading").modal('hide');
         });
       axios
-        .get("/api/search/Orderdata/"+this.QuotNo)
+        .get("/api/search/Orderdata/S02171130103")
         .then((response) => {
           console.log(response);
           this.OrderData = response.data;
@@ -516,13 +536,13 @@ export default {
                 this.OrderDataCTDtype = response.data.codeDesc;
             });
             axios
-            .get("/api/search/CmMemo/"+this.QuotNo+"&&02")
+            .get("/api/search/CmMemo/S02171130103&&02")
             .then((response) => {
                 console.log(response);
                 this.OrderDataMemo = response.data.memo;
             });
             axios
-            .get("/api/search/OrderFINST/"+this.QuotNo)
+            .get("/api/search/OrderFINST/S02171130103")
             .then((response) => {
                 console.log(response);
                 this.OrderDataFINST = response.data;
@@ -534,7 +554,7 @@ export default {
                 this.OrderDataEM = response.data;
             });
             axios
-            .get("/api/search/OrderARM1/"+this.QuotNo)
+            .get("/api/search/OrderARM1/S02171130103")
             .then((response) => {
                 console.log(response);
                 this.OrderDataARM1 = response.data;

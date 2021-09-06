@@ -15854,15 +15854,23 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       $("#PartNum").modal('show');
     },
     setColor: function setColor(val) {
+      var _this = this;
+
       this.refnew = false;
       this.OrderDetailitem[this.DetailIndex].Ragne = val.codeindex;
       this.OrderDetailitem[this.DetailIndex].RangeName = val.codeDesc;
-      this.OrderOrderDetailitemstorage[this.DetailIndex] = Object.assign({}, this.OrderDetailitem[this.DetailIndex]);
       $("#ColorNum").modal('hide');
+      axios.get("/api/search/ColorPrice/" + this.OrderDetailitem[this.DetailIndex].SalesCode + "&&" + this.OrderDetailitem[this.DetailIndex].Ragne + "&&" + this.OrderData[0].QuotNo).then(function (response) {
+        console.log(response.data);
+        _this.OrderDetailitem[_this.DetailIndex].UnitPrice = response.data;
+        _this.OrderDetailitem[_this.DetailIndex].Qty = 0;
+        _this.OrderDetailitem[_this.DetailIndex].OrderValue = 0;
+      });
+      this.OrderOrderDetailitemstorage[this.DetailIndex] = Object.assign({}, this.OrderDetailitem[this.DetailIndex]);
       document.getElementsByName('Color[]')[this.DetailIndex].select();
     },
     setPart: function setPart(val) {
-      var _this = this;
+      var _this2 = this;
 
       this.refnew = false;
       this.OrderDetailitem[this.DetailIndex].SalesCode = val.SKU;
@@ -15874,13 +15882,13 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         console.log(response.data);
 
         if (response.data[1] == 1) {
-          _this.OrderDetailitem[_this.DetailIndex].UnitPrice = response.data[0].後價;
-          _this.OrderDetailitem[_this.DetailIndex].Qty = 0;
-          _this.OrderDetailitem[_this.DetailIndex].OrderValue = 0;
+          _this2.OrderDetailitem[_this2.DetailIndex].UnitPrice = response.data[0].後價;
+          _this2.OrderDetailitem[_this2.DetailIndex].Qty = 0;
+          _this2.OrderDetailitem[_this2.DetailIndex].OrderValue = 0;
         } else {
-          _this.OrderDetailitem[_this.DetailIndex].UnitPrice = response.data[0].FullPrice;
-          _this.OrderDetailitem[_this.DetailIndex].Qty = 0;
-          _this.OrderDetailitem[_this.DetailIndex].OrderValue = 0;
+          _this2.OrderDetailitem[_this2.DetailIndex].UnitPrice = response.data[0].FullPrice;
+          _this2.OrderDetailitem[_this2.DetailIndex].Qty = 0;
+          _this2.OrderDetailitem[_this2.DetailIndex].OrderValue = 0;
         }
       });
       this.OrderOrderDetailitemstorage[this.DetailIndex] = Object.assign({}, this.OrderDetailitem[this.DetailIndex]);
@@ -15890,24 +15898,30 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       this.OrderDetailitem[index].OrderValue = this.OrderDetailitem[index].UnitPrice * this.OrderDetailitem[index].Qty;
     },
     SetTypeColor: function SetTypeColor(index) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.OrderDetailitem[this.DetailIndex].Ragne = this.OrderDetailitem[this.DetailIndex].Ragne.replace(/\s*/g, "");
       axios.get("/api/search/ColorNoType/" + this.OrderDetailitem[this.DetailIndex].Ragne + "&&" + this.OrderDetailitem[index].SalesCodeData.SupplierNo.SuppNo).then(function (response) {
         console.log(response.data);
 
         if (response.data[1] == 0) {
-          _this2.OrderDetailitem[index].Ragne = _this2.OrderOrderDetailitemstorage[index].Ragne;
-          _this2.OrderDetailitem[index].RangeName = _this2.OrderOrderDetailitemstorage[index].RangeName;
+          _this3.OrderDetailitem[index].Ragne = _this3.OrderOrderDetailitemstorage[index].Ragne;
+          _this3.OrderDetailitem[index].RangeName = _this3.OrderOrderDetailitemstorage[index].RangeName;
         } else {
-          _this2.OrderDetailitem[index].Ragne = response.data[0].codeindex;
-          _this2.OrderDetailitem[index].RangeName = response.data[0].codeDesc;
-          _this2.OrderOrderDetailitemstorage[index] = Object.assign({}, _this2.OrderDetailitem[index]);
+          _this3.OrderDetailitem[index].Ragne = response.data[0].codeindex;
+          _this3.OrderDetailitem[index].RangeName = response.data[0].codeDesc;
+          axios.get("/api/search/ColorPrice/" + _this3.OrderDetailitem[index].SalesCode + "&&" + _this3.OrderDetailitem[index].Ragne + "&&" + _this3.OrderData[0].QuotNo).then(function (response) {
+            console.log(response.data);
+            _this3.OrderDetailitem[index].UnitPrice = response.data;
+            _this3.OrderDetailitem[index].Qty = 0;
+            _this3.OrderDetailitem[index].OrderValue = 0;
+          });
+          _this3.OrderOrderDetailitemstorage[index] = Object.assign({}, _this3.OrderDetailitem[index]);
         }
       });
     },
     SetTypePart: function SetTypePart(index) {
-      var _this3 = this;
+      var _this4 = this;
 
       this.OrderDetailitem[index].SalesCode = this.OrderDetailitem[index].SalesCode.replace(/\s*/g, "");
       this.PartSelect = this.OrderDetailitem[index].SalesCode;
@@ -15920,27 +15934,27 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
           console.log(response.data);
 
           if (response.data[1] == 0) {
-            _this3.OrderDetailitem[index].SalesCodeData = _this3.OrderOrderDetailitemstorage[index].SalesCodeData;
-            _this3.OrderDetailitem[index].SalesCode = _this3.OrderOrderDetailitemstorage[index].SalesCodeData.SKU;
+            _this4.OrderDetailitem[index].SalesCodeData = _this4.OrderOrderDetailitemstorage[index].SalesCodeData;
+            _this4.OrderDetailitem[index].SalesCode = _this4.OrderOrderDetailitemstorage[index].SalesCodeData.SKU;
           } else {
-            _this3.OrderDetailitem[index].SalesCode = response.data[0].SKU;
-            _this3.OrderDetailitem[index].SalesCodeData = response.data[0];
-            _this3.OrderDetailitem[index].Ragne = "";
-            _this3.OrderDetailitem[index].RangeName = "";
-            axios.get("/api/search/IMChangePriceRecord/" + _this3.OrderDetailitem[index].SalesCode + "&&" + _this3.OrderData[0].QuotNo).then(function (response) {
+            _this4.OrderDetailitem[index].SalesCode = response.data[0].SKU;
+            _this4.OrderDetailitem[index].SalesCodeData = response.data[0];
+            _this4.OrderDetailitem[index].Ragne = "";
+            _this4.OrderDetailitem[index].RangeName = "";
+            axios.get("/api/search/IMChangePriceRecord/" + _this4.OrderDetailitem[index].SalesCode + "&&" + _this4.OrderData[0].QuotNo).then(function (response) {
               console.log(response.data);
 
               if (response.data[1] == 1) {
-                _this3.OrderDetailitem[index].UnitPrice = response.data[0].後價;
-                _this3.OrderDetailitem[index].Qty = 0;
-                _this3.OrderDetailitem[index].OrderValue = 0;
+                _this4.OrderDetailitem[index].UnitPrice = response.data[0].後價;
+                _this4.OrderDetailitem[index].Qty = 0;
+                _this4.OrderDetailitem[index].OrderValue = 0;
               } else {
-                _this3.OrderDetailitem[index].UnitPrice = response.data[0].FullPrice;
-                _this3.OrderDetailitem[index].Qty = 0;
-                _this3.OrderDetailitem[index].OrderValue = 0;
+                _this4.OrderDetailitem[index].UnitPrice = response.data[0].FullPrice;
+                _this4.OrderDetailitem[index].Qty = 0;
+                _this4.OrderDetailitem[index].OrderValue = 0;
               }
             });
-            _this3.OrderOrderDetailitemstorage[index] = Object.assign({}, _this3.OrderDetailitem[index]);
+            _this4.OrderOrderDetailitemstorage[index] = Object.assign({}, _this4.OrderDetailitem[index]);
           }
         });
       }
@@ -15949,21 +15963,21 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       this.DetailIndex = index;
     },
     TypeColorTab: function TypeColorTab(index) {
-      var _this4 = this;
+      var _this5 = this;
 
       this.OrderDetailitem[this.DetailIndex].Ragne = this.OrderDetailitem[this.DetailIndex].Ragne.replace(/\s*/g, "");
       axios.get("/api/search/ColorNoType/" + this.OrderDetailitem[this.DetailIndex].Ragne + "&&" + this.OrderDetailitem[index].SalesCodeData.SupplierNo.SuppNo).then(function (response) {
         console.log(response.data);
 
         if (response.data[1] == 0) {
-          _this4.OrderDetailitem[index].Ragne = _this4.OrderOrderDetailitemstorage[index].Ragne;
-          _this4.OrderDetailitem[index].RangeName = _this4.OrderOrderDetailitemstorage[index].RangeName;
+          _this5.OrderDetailitem[index].Ragne = _this5.OrderOrderDetailitemstorage[index].Ragne;
+          _this5.OrderDetailitem[index].RangeName = _this5.OrderOrderDetailitemstorage[index].RangeName;
           document.getElementsByName('Color[]')[index].select();
           alert("此料號並無此色號");
         } else {
-          _this4.OrderDetailitem[index].Ragne = response.data[0].codeindex;
-          _this4.OrderDetailitem[index].RangeName = response.data[0].codeDesc;
-          _this4.OrderOrderDetailitemstorage[index] = Object.assign({}, _this4.OrderDetailitem[index]);
+          _this5.OrderDetailitem[index].Ragne = response.data[0].codeindex;
+          _this5.OrderDetailitem[index].RangeName = response.data[0].codeDesc;
+          _this5.OrderOrderDetailitemstorage[index] = Object.assign({}, _this5.OrderDetailitem[index]);
         }
       });
       var colornum;
@@ -15978,7 +15992,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         console.log(response.data);
 
         if (response.data == 0) {
-          _this4.OrderDetailitem[index] = Object.assign({}, _this4.OrderOrderDetailitemstorage[index]);
+          _this5.OrderDetailitem[index] = Object.assign({}, _this5.OrderOrderDetailitemstorage[index]);
         }
       });
     },
@@ -15993,41 +16007,41 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     }
   },
   mounted: function mounted() {
-    var _this5 = this;
+    var _this6 = this;
 
-    // $("#loading").modal('show');
-    axios.get("/api/search/OrderDetailitem/" + this.QuotNo).then(function (response) {
+    $("#loading").modal('show');
+    axios.get("/api/search/OrderDetailitem/S02171130103").then(function (response) {
       console.log(response.data);
-      _this5.OrderDetailitem = response.data;
+      _this6.OrderDetailitem = response.data;
       $("#loading").modal('hide');
     });
-    axios.get("/api/search/OrderDetailitem/" + this.QuotNo).then(function (response) {
+    axios.get("/api/search/OrderDetailitem/S02171130103").then(function (response) {
       console.log(response.data);
-      _this5.OrderOrderDetailitemstorage = response.data;
+      _this6.OrderOrderDetailitemstorage = response.data;
       $("#loading").modal('hide');
     });
-    axios.get("/api/search/Orderdata/" + this.QuotNo).then(function (response) {
+    axios.get("/api/search/Orderdata/S02171130103").then(function (response) {
       console.log(response);
-      _this5.OrderData = response.data;
+      _this6.OrderData = response.data;
       axios.get("/api/search/CTD/Desc/訂單類&&00").then(function (response) {
         console.log(response);
-        _this5.OrderDataCTDtype = response.data.codeDesc;
+        _this6.OrderDataCTDtype = response.data.codeDesc;
       });
-      axios.get("/api/search/CmMemo/" + _this5.QuotNo + "&&02").then(function (response) {
+      axios.get("/api/search/CmMemo/S02171130103&&02").then(function (response) {
         console.log(response);
-        _this5.OrderDataMemo = response.data.memo;
+        _this6.OrderDataMemo = response.data.memo;
       });
-      axios.get("/api/search/OrderFINST/" + _this5.QuotNo).then(function (response) {
+      axios.get("/api/search/OrderFINST/S02171130103").then(function (response) {
         console.log(response);
-        _this5.OrderDataFINST = response.data;
+        _this6.OrderDataFINST = response.data;
       });
       axios.get("/api/search/PD/03030210").then(function (response) {
         console.log(response);
-        _this5.OrderDataEM = response.data;
+        _this6.OrderDataEM = response.data;
       });
-      axios.get("/api/search/OrderARM1/" + _this5.QuotNo).then(function (response) {
+      axios.get("/api/search/OrderARM1/S02171130103").then(function (response) {
         console.log(response);
-        _this5.OrderDataARM1 = response.data;
+        _this6.OrderDataARM1 = response.data;
         $("#loading").modal('hide');
       });
     });

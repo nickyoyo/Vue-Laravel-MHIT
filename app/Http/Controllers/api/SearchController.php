@@ -18,6 +18,8 @@ use App\Models\po;
 use App\Models\FINST;
 use App\Models\arm1;
 use App\Models\ChangePriceRecord;
+use App\Models\SD_Cost_Price;
+use App\Models\psf;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
@@ -142,18 +144,20 @@ class SearchController extends Controller
     
     public function searchColorNo($Colorselect,$PartNo)       
     {
+        $VMcode = substr($PartNo,0,2);
         if($Colorselect=='X'){
-            $data  = CTD::where('Reserve4',$PartNo)->orderby('codeindex','asc')->get();
+            $data  = CTD::where('Reserve4','LIKE', $VMcode.'%')->orderby('codeindex','asc')->get();
         }
-        else{
-            $data  = CTD::where('Reserve4',$PartNo)->where('codeindex','LIKE',$Colorselect.'%')->orderby('codeindex','asc')->take(100)->get();
+        else{ 
+            $data  = CTD::where('Reserve4','LIKE', $VMcode.'%')->where('codeindex','LIKE',$Colorselect.'%')->orderby('codeindex','asc')->take(100)->get();
         }      
         return response()->json($data,200);
     }
 
     public function searchColorNoType($Colorselect,$PartNo)        
     {
-        $data  = CTD::where('codeindex',$Colorselect)->where('Reserve4',$PartNo)->orderby('codeindex','asc')->first();
+        $VMcode = substr($PartNo,0,2);
+        $data  = CTD::where('codeindex',$Colorselect)->where('Reserve4','LIKE', $VMcode.'%')->orderby('codeindex','asc')->first();
         
         if($data!=NULL){
             $data->codeindex = trim($data->codeindex);
@@ -560,7 +564,6 @@ class SearchController extends Controller
     {
         $data = arm1::where('OrderNo',trim($QNO))->first(['arm1.*','帳款金額 as OrderValue1','額外施工費用 as exwork','墊款餘額 as HelpPayValue','退折讓 as Rebate','實收金額 as TrueValue',
         '應收餘額 as ShouldValue','溢收金額 as MorePayValue','店折扣額 as StoreRebate','代墊餘額 as HelpPayValue1','應收還款 as ShouldBackValue','保固費用 as WarrantyValue','Rebat as RebateValue']);
-    
         $data->RebateValue = $data->Rebat - $data->退折讓;
 
         return response()->json($data,200);
@@ -594,4 +597,37 @@ class SearchController extends Controller
         }
         
     }
+
+    public function searchColorPrice($PartNo,$Color,$QNO){
+        $Color=trim($Color);
+        $PartNo=trim($PartNo);
+        $QNO=trim($QNO);
+
+        $dataSO = SO::where('QuotNo',$QNO)->first();
+        $data = psf::where('Salescode',$PartNo)->get();    
+        $TotalPrice = 0;  
+      
+        if(count($data)==0){
+            $Partim  = im::where('SKU',$PartNo)->first();      
+            $dataColor = SD_Cost_Price::where('Range_',$Color)->where('Date_','<=',$dataSO->PromotionPeriod)->orderby('Date_','desc')->first();   
+            $TotalPrice += $dataColor->Price_ * $Partim->m3;           
+        }
+        else{
+            foreach($data as $PartGroup){  
+                $Partim  = im::where('SKU',$PartGroup->Stockcode)->first();      
+                $Colorcheck  = vm::where('SuppNo',$Partim->SupplierNo)->first();
+               
+                if(trim($Colorcheck->LastTrans)=='A'){
+                    $dataColor = SD_Cost_Price::where('Range_',$Color)->where('Date_','<=',$dataSO->PromotionPeriod)->orderby('Date_','desc')->first();   
+                    $TotalPrice += $dataColor->Price_ * $Partim->m3;
+                }
+                else{
+                    $TotalPrice += $Partim->FullPrice;
+                }
+            }
+        }
+        return response()->json((int)$TotalPrice ,200);
+           
+    }
+
 }
