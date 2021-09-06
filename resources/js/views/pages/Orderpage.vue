@@ -1,6 +1,6 @@
 <template>
    <div class="modal" id="Modify" tabindex="-1" style="display: none;" aria-hidden="true">
-            <ModifyOrderpage v-bind:index="Selectorder" :key="modifyref"></ModifyOrderpage>
+            <ModifyOrderpage @closeModify="closeModify" v-bind:QuotNo="QuotNo" v-bind:index="Selectorder" :key="modifyref"></ModifyOrderpage>
   </div>
 
   <div id="loading" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
@@ -327,7 +327,7 @@
                 <th class="Dorderth3">
                   {{ itemD.SalesCode }}<br /><a style="color: blue"
                     >{{ itemD.SalesCodeData.Description }}[{{
-                      itemD.SalesCodeData.SupplierNo
+                      itemD.SalesCodeData.SupplierNo.SuppNo
                     }}]</a
                   >
                 </th>
@@ -376,26 +376,31 @@ export default {
       OrderDataEM: [],
       OrderDataARM1:[],
       Selectorder:-1,
+      QuotNo:[],
 
       modifyref:1,
     };
   },
   methods: {
     Modify: function(){
-        this.modifyref=1,
         $("#Modify").modal('show');
-
+        this.modifyref=1;
+    },
+    closeModify: function(){
+        $("#Modify").modal('hide');
+        this.modifyref=0;
     },
     GetOrderDetail: function (index) {
-      this.Selectorder=index;
-       this.modifyref=0,
-       $("#loading").modal('show');
+      this.modifyref=0;
+      this.Selectorder=index;    
+      this.QuotNo = this.OrderList[this.Selectorder].QuotNo;
+      $("#loading").modal('show');
       axios
         .get("/api/search/OrderDetailitem/" + this.OrderList[index].QuotNo)
         .then((response) => {
           console.log(response.data);
           this.OrderDetailitem = response.data;
-         $("#loading").modal('hide');
+           $("#loading").modal('hide');
         });
       axios
         .get("/api/search/Orderdata/" + this.OrderList[index].QuotNo)
@@ -431,16 +436,18 @@ export default {
             .then((response) => {
                 console.log(response);
                 this.OrderDataARM1 = response.data;
-                 $("#loading").modal('hide');
+                 
             });
+           
         });
     },
+    
   },
   props: {
     msg: String,
   },
   beforeCreate() {
-      $("#loading").modal('toggle');
+      $("#loading").modal('show');
     axios
       .get("/api/search/Order/" + this.$route.params.CNO)
       .then((response) => {
@@ -489,39 +496,38 @@ thead tr th {
   text-align: center;
 }
 .Dorderth2 {
-  width: 8%;
-  text-align: center;
- 
+  width: 14%;
+text-align: left;
 }
 .Dorderth3 {
   width: 35%;
-   border: 1px black solid;
+  border: 1px black solid;
 }
 .Dorderth4 {
-  width: 5%;
+  width: 4%;
   text-align: center;
   border: 1px black solid;
 }
 .Dorderth5 {
-  width: 5%;
+  width: 4%;
   text-align: center;
 }
 .Dorderth6 {
-  width: 5%;
+  width: 4%;
   text-align: center;
   border: 1px black solid;
 }
 .Dorderth7 {
-  width: 5%;
+  width: 4%;
   text-align: center;
 }
 .Dorderth8 {
-  width: 9%;
+  width: 6%;
   text-align: center;
   border: 1px black solid;
 }
 .Dorderth9 {
-  width: 10%;
+  width: 11%;
   text-align: center;
 }
 .clearbutton {

@@ -425,7 +425,7 @@ class SearchController extends Controller
     public function searchOrder($CNO)       
     {
         $data = SO::where('CusNo',trim($CNO))->where('QuotNo','LIKE', 'S'.'%')->where('OrderDate','>','00000000')->orderby('QuotNo','asc')->get();
-        if($data == NULL){
+        if(count($data) == 0){
             return response()->json(['msg' => '此客編號不存在'],200);
         }  
         foreach($data as $list){

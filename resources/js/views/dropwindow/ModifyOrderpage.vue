@@ -176,6 +176,7 @@
                 </div>
 
                 <div class="row" style="height: 420px">
+                        <div style="width:50px;"></div>
                         <div class="col-md-11 mb-4">
                         <h2>
                             <label class="font-weight-bold" style="color: #ff5151"
@@ -273,7 +274,8 @@
                 </div>  
 
                 <div class="modal-footer" style="height:50px">
-                    <button type="button" class="close" data-dismiss="modal">Close</button>
+                    <button type="button" class="close" style="padding:10px;border: 2px black solid" data-dismiss="modal" @click="save()">送出儲存</button>
+                    <button type="button" class="close" style="padding:10px;border: 2px black solid" data-dismiss="modal" @click="close()">不儲存離開</button>
                 </div>
             </div>
         </div>
@@ -286,7 +288,7 @@ import loader from "../test/Loader.vue";
 const axios = require("axios");
 export default {
   name: "ModifyOrderpage",
-  props:["index"],
+  props:["index","QuotNo"],
    components: { 
     loader,
     ColorNum,
@@ -479,25 +481,31 @@ export default {
     nextcol:function(index){
             this.DetailIndex = index+1;  
     },
+    close:function(){
+        this.$emit("closeModify");  
+    },
+    save:function(){
+        this.$emit("saveModify");  
+    },
   },
-  beforeCreate(){
-       $("#loading").modal('show');
+  mounted(){
+      // $("#loading").modal('show');
       axios
-        .get("/api/search/OrderDetailitem/S02171130103")
+        .get("/api/search/OrderDetailitem/"+this.QuotNo)
         .then((response) => {
           console.log(response.data);
           this.OrderDetailitem = response.data;
          $("#loading").modal('hide');
         });
      axios
-        .get("/api/search/OrderDetailitem/S02171130103")
+        .get("/api/search/OrderDetailitem/"+this.QuotNo)
         .then((response) => {
           console.log(response.data);
           this.OrderOrderDetailitemstorage = response.data;
          $("#loading").modal('hide');
         });
       axios
-        .get("/api/search/Orderdata/S02171130103")
+        .get("/api/search/Orderdata/"+this.QuotNo)
         .then((response) => {
           console.log(response);
           this.OrderData = response.data;
@@ -508,13 +516,13 @@ export default {
                 this.OrderDataCTDtype = response.data.codeDesc;
             });
             axios
-            .get("/api/search/CmMemo/S02171130103&&02")
+            .get("/api/search/CmMemo/"+this.QuotNo+"&&02")
             .then((response) => {
                 console.log(response);
                 this.OrderDataMemo = response.data.memo;
             });
             axios
-            .get("/api/search/OrderFINST/S02171130103")
+            .get("/api/search/OrderFINST/"+this.QuotNo)
             .then((response) => {
                 console.log(response);
                 this.OrderDataFINST = response.data;
@@ -526,7 +534,7 @@ export default {
                 this.OrderDataEM = response.data;
             });
             axios
-            .get("/api/search/OrderARM1/S02171130103")
+            .get("/api/search/OrderARM1/"+this.QuotNo)
             .then((response) => {
                 console.log(response);
                 this.OrderDataARM1 = response.data;
