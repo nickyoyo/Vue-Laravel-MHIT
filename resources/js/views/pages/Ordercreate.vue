@@ -201,7 +201,7 @@
                                 <th class="Morderth6">折扣率</th>
                                 <th class="Morderth7">金額</th>
                                 <th class="Morderth8">是否有採購單</th>
-                                <th class="Morderth9">備註</th>
+                                <th class="Morderth9">新增</th>
                                 </tr>
                             </thead>
                             <tr
@@ -253,7 +253,9 @@
                                 <th class="Morderth6">{{ itemD.DiscountRate }}</th>
                                 <th class="Morderth7">{{ itemD.OrderValue }}</th>
                                 <th class="Morderth8"><a style="color:red" :hidden="itemD.poCheck==0">有採購單</a></th>
-                                <th class="Morderth9"></th>
+                                <th class="Morderth9">
+                                {{ itemD.OrderDate }}<br />{{ itemD.Ordermember }}
+                                </th>
                             </tr>
                             </table>
                         </div>
@@ -363,8 +365,7 @@ export default {
             console.log(response.data);        
                 if(response.data[1] == 0){
                     this.OrderDetailitem[index].Ragne = this.OrderOrderDetailitemstorage[index].Ragne;  
-                    this.OrderDetailitem[index].RangeName = this.OrderOrderDetailitemstorage[index].RangeName;
-                    alert("此料號並無此色號");  
+                    this.OrderDetailitem[index].RangeName = this.OrderOrderDetailitemstorage[index].RangeName;  
                 }   
                 else{
                     this.OrderDetailitem[index].Ragne = response.data[0].codeindex;   
@@ -392,10 +393,9 @@ export default {
                 this.OrderDetailitem[index].SalesCode = response.data[0].SKU;   
                 this.OrderDetailitem[index].SalesCodeData = response.data[0];   
                 this.OrderOrderDetailitemstorage[this.DetailIndex]=Object.assign({}, this.OrderDetailitem[this.DetailIndex]);
+                }   
                 this.OrderDetailitem[index].Ragne="";
                 this.OrderDetailitem[index].RangeName="";
-                }   
-               
             });  
         }
     },
@@ -410,8 +410,7 @@ export default {
                 console.log(response.data);        
                     if(response.data[1] == 0){
                         this.OrderDetailitem[index].Ragne = this.OrderOrderDetailitemstorage[index].Ragne;  
-                        this.OrderDetailitem[index].RangeName = this.OrderOrderDetailitemstorage[index].RangeName;
-                        alert("此料號並無此色號");    
+                        this.OrderDetailitem[index].RangeName = this.OrderOrderDetailitemstorage[index].RangeName;  
                     }   
                     else{
                         this.OrderDetailitem[index].Ragne = response.data[0].codeindex;   
@@ -512,30 +511,30 @@ export default {
    border: 1px black solid;
 }
 .Morderth4 {
-  width: 4%;
+  width: 5%;
   text-align: center;
   border: 1px black solid;
 }
 .Morderth5 {
-  width: 4%;
+  width: 5%;
   text-align: center;
 }
 .Morderth6 {
-  width: 4%;
+  width: 5%;
   text-align: center;
   border: 1px black solid;
 }
 .Morderth7 {
-  width: 4%;
+  width: 5%;
   text-align: center;
 }
 .Morderth8 {
-  width: 6%;
+  width: 5%;
   text-align: center;
   border: 1px black solid;
 }
 .Morderth9 {
-  width: 11%;
+  width: 8%;
   text-align: center;
 }
 </style>

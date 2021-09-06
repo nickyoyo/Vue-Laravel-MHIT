@@ -15884,6 +15884,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         if (response.data[1] == 0) {
           _this.OrderDetailitem[index].Ragne = _this.OrderOrderDetailitemstorage[index].Ragne;
           _this.OrderDetailitem[index].RangeName = _this.OrderOrderDetailitemstorage[index].RangeName;
+          alert("此料號並無此色號");
         } else {
           _this.OrderDetailitem[index].Ragne = response.data[0].codeindex;
           _this.OrderDetailitem[index].RangeName = response.data[0].codeDesc;
@@ -15910,10 +15911,9 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
             _this2.OrderDetailitem[index].SalesCode = response.data[0].SKU;
             _this2.OrderDetailitem[index].SalesCodeData = response.data[0];
             _this2.OrderOrderDetailitemstorage[_this2.DetailIndex] = Object.assign({}, _this2.OrderDetailitem[_this2.DetailIndex]);
+            _this2.OrderDetailitem[index].Ragne = "";
+            _this2.OrderDetailitem[index].RangeName = "";
           }
-
-          _this2.OrderDetailitem[index].Ragne = "";
-          _this2.OrderDetailitem[index].RangeName = "";
         });
       }
     },
@@ -15930,6 +15930,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         if (response.data[1] == 0) {
           _this3.OrderDetailitem[index].Ragne = _this3.OrderOrderDetailitemstorage[index].Ragne;
           _this3.OrderDetailitem[index].RangeName = _this3.OrderOrderDetailitemstorage[index].RangeName;
+          alert("此料號並無此色號");
         } else {
           _this3.OrderDetailitem[index].Ragne = response.data[0].codeindex;
           _this3.OrderDetailitem[index].RangeName = response.data[0].codeDesc;
@@ -19046,7 +19047,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.Morderth1 {\r\n  width: 3%;\r\n  text-align: center;\n}\n.Morderth2 {\r\n  width: 14%;\r\n  text-align: left;\n}\n.Morderth3 {\r\n  width: 35%;\r\n   border: 1px black solid;\n}\n.Morderth4 {\r\n  width: 5%;\r\n  text-align: center;\r\n  border: 1px black solid;\n}\n.Morderth5 {\r\n  width: 5%;\r\n  text-align: center;\n}\n.Morderth6 {\r\n  width: 5%;\r\n  text-align: center;\r\n  border: 1px black solid;\n}\n.Morderth7 {\r\n  width: 5%;\r\n  text-align: center;\n}\n.Morderth8 {\r\n  width: 5%;\r\n  text-align: center;\r\n  border: 1px black solid;\n}\n.Morderth9 {\r\n  width: 8%;\r\n  text-align: center;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.Morderth1 {\r\n  width: 3%;\r\n  text-align: center;\n}\n.Morderth2 {\r\n  width: 14%;\r\n  text-align: left;\n}\n.Morderth3 {\r\n  width: 35%;\r\n   border: 1px black solid;\n}\n.Morderth4 {\r\n  width: 4%;\r\n  text-align: center;\r\n  border: 1px black solid;\n}\n.Morderth5 {\r\n  width: 4%;\r\n  text-align: center;\n}\n.Morderth6 {\r\n  width: 4%;\r\n  text-align: center;\r\n  border: 1px black solid;\n}\n.Morderth7 {\r\n  width: 4%;\r\n  text-align: center;\n}\n.Morderth8 {\r\n  width: 6%;\r\n  text-align: center;\r\n  border: 1px black solid;\n}\n.Morderth9 {\r\n  width: 11%;\r\n  text-align: center;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -23223,7 +23224,7 @@ const _hoisted_76 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode
     /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", { class: "Morderth6" }, "折扣率"),
     /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", { class: "Morderth7" }, "金額"),
     /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", { class: "Morderth8" }, "是否有採購單"),
-    /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", { class: "Morderth9" }, "新增")
+    /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", { class: "Morderth9" }, "備註")
   ])
 ], -1 /* HOISTED */)
 const _hoisted_77 = { class: "Morderth1" }
@@ -23238,10 +23239,9 @@ const _hoisted_85 = { class: "Morderth5" }
 const _hoisted_86 = { class: "Morderth6" }
 const _hoisted_87 = { class: "Morderth7" }
 const _hoisted_88 = { class: "Morderth8" }
-const _hoisted_89 = { class: "Morderth9" }
-const _hoisted_90 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
-const _hoisted_91 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", { class: "col-md-1 mb-4" }, null, -1 /* HOISTED */)
-const _hoisted_92 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+const _hoisted_89 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", { class: "Morderth9" }, null, -1 /* HOISTED */)
+const _hoisted_90 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", { class: "col-md-1 mb-4" }, null, -1 /* HOISTED */)
+const _hoisted_91 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   class: "modal-footer",
   style: {"height":"50px"}
 }, [
@@ -23632,19 +23632,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                         hidden: itemD.poCheck==0
                       }, "有採購單", 8 /* PROPS */, ["hidden"])
                     ]),
-                    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("th", _hoisted_89, [
-                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.OrderDate), 1 /* TEXT */),
-                      _hoisted_90,
-                      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(itemD.Ordermember), 1 /* TEXT */)
-                    ])
+                    _hoisted_89
                   ], 8 /* PROPS */, ["value", "hidden"]))
                 }), 128 /* KEYED_FRAGMENT */))
               ])
             ])
           ]),
-          _hoisted_91
+          _hoisted_90
         ]),
-        _hoisted_92
+        _hoisted_91
       ])
     ])
   ], 64 /* STABLE_FRAGMENT */))
