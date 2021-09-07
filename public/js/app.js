@@ -15883,12 +15883,12 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
         if (response.data[1] == 1) {
           _this2.OrderDetailitem[_this2.DetailIndex].UnitPrice = response.data[0].後價;
-          _this2.OrderDetailitem[_this2.DetailIndex].Qty = 0;
-          _this2.OrderDetailitem[_this2.DetailIndex].OrderValue = 0;
+          _this2.OrderDetailitem[_this2.DetailIndex].Qty = 1;
+          _this2.OrderDetailitem[_this2.DetailIndex].OrderValue = _this2.OrderDetailitem[_this2.DetailIndex].UnitPrice;
         } else {
           _this2.OrderDetailitem[_this2.DetailIndex].UnitPrice = response.data[0].FullPrice;
-          _this2.OrderDetailitem[_this2.DetailIndex].Qty = 0;
-          _this2.OrderDetailitem[_this2.DetailIndex].OrderValue = 0;
+          _this2.OrderDetailitem[_this2.DetailIndex].Qty = 1;
+          _this2.OrderDetailitem[_this2.DetailIndex].OrderValue = _this2.OrderDetailitem[_this2.DetailIndex].UnitPrice;
         }
       });
       this.OrderOrderDetailitemstorage[this.DetailIndex] = Object.assign({}, this.OrderDetailitem[this.DetailIndex]);
@@ -15913,8 +15913,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
           axios.get("/api/search/ColorPrice/" + _this3.OrderDetailitem[index].SalesCode + "&&" + _this3.OrderDetailitem[index].Ragne + "&&" + _this3.OrderData[0].QuotNo).then(function (response) {
             console.log(response.data);
             _this3.OrderDetailitem[index].UnitPrice = response.data;
-            _this3.OrderDetailitem[index].Qty = 0;
-            _this3.OrderDetailitem[index].OrderValue = 0;
+            _this3.OrderDetailitem[index].Qty = 1;
+            _this3.OrderDetailitem[index].OrderValue = _this3.OrderDetailitem[index].UnitPrice;
           });
           _this3.OrderOrderDetailitemstorage[index] = Object.assign({}, _this3.OrderDetailitem[index]);
         }
@@ -15946,12 +15946,12 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
               if (response.data[1] == 1) {
                 _this4.OrderDetailitem[index].UnitPrice = response.data[0].後價;
-                _this4.OrderDetailitem[index].Qty = 0;
-                _this4.OrderDetailitem[index].OrderValue = 0;
+                _this4.OrderDetailitem[index].Qty = 1;
+                _this4.OrderDetailitem[index].OrderValue = _this4.OrderDetailitem[index].UnitPrice;
               } else {
                 _this4.OrderDetailitem[index].UnitPrice = response.data[0].FullPrice;
-                _this4.OrderDetailitem[index].Qty = 0;
-                _this4.OrderDetailitem[index].OrderValue = 0;
+                _this4.OrderDetailitem[index].Qty = 1;
+                _this4.OrderDetailitem[index].OrderValue = _this4.OrderDetailitem[index].UnitPrice;
               }
             });
             _this4.OrderOrderDetailitemstorage[index] = Object.assign({}, _this4.OrderDetailitem[index]);

@@ -373,13 +373,13 @@ export default {
           console.log(response.data);
           if(response.data[1]==1){
             this.OrderDetailitem[this.DetailIndex].UnitPrice = response.data[0].後價;
-            this.OrderDetailitem[this.DetailIndex].Qty = 0;
-            this.OrderDetailitem[this.DetailIndex].OrderValue = 0;
+            this.OrderDetailitem[this.DetailIndex].Qty = 1;
+            this.OrderDetailitem[this.DetailIndex].OrderValue = this.OrderDetailitem[this.DetailIndex].UnitPrice;
           }
           else{
             this.OrderDetailitem[this.DetailIndex].UnitPrice = response.data[0].FullPrice;
-            this.OrderDetailitem[this.DetailIndex].Qty = 0;
-            this.OrderDetailitem[this.DetailIndex].OrderValue = 0;
+            this.OrderDetailitem[this.DetailIndex].Qty = 1;
+            this.OrderDetailitem[this.DetailIndex].OrderValue = this.OrderDetailitem[this.DetailIndex].UnitPrice;
           }
         });              
         this.OrderOrderDetailitemstorage[this.DetailIndex]=Object.assign({}, this.OrderDetailitem[this.DetailIndex]);
@@ -409,8 +409,8 @@ export default {
                     .then((response) => {
                     console.log(response.data);
                         this.OrderDetailitem[index].UnitPrice = response.data;
-                        this.OrderDetailitem[index].Qty = 0;
-                        this.OrderDetailitem[index].OrderValue = 0;
+                        this.OrderDetailitem[index].Qty = 1;
+                        this.OrderDetailitem[index].OrderValue = this.OrderDetailitem[index].UnitPrice;
                     });       
 
                     this.OrderOrderDetailitemstorage[index]=Object.assign({}, this.OrderDetailitem[index]);
@@ -444,13 +444,13 @@ export default {
                     console.log(response.data);
                     if(response.data[1]==1){
                         this.OrderDetailitem[index].UnitPrice = response.data[0].後價;
-                        this.OrderDetailitem[index].Qty = 0;
-                        this.OrderDetailitem[index].OrderValue = 0;
+                        this.OrderDetailitem[index].Qty = 1;
+                        this.OrderDetailitem[index].OrderValue = this.OrderDetailitem[index].UnitPrice;
                     }
                     else{
                         this.OrderDetailitem[index].UnitPrice = response.data[0].FullPrice;
-                        this.OrderDetailitem[index].Qty = 0;
-                        this.OrderDetailitem[index].OrderValue = 0;
+                        this.OrderDetailitem[index].Qty = 1;
+                        this.OrderDetailitem[index].OrderValue = this.OrderDetailitem[index].UnitPrice;
 
                     }
                     }); 
