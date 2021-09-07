@@ -514,7 +514,6 @@ export default {
         .then((response) => {
           console.log(response.data);
           this.OrderDetailitem = response.data;
-         $("#loading").modal('hide');
         });
      axios
         .get("/api/search/OrderDetailitem/"+this.QuotNo)
@@ -557,7 +556,6 @@ export default {
             .then((response) => {
                 console.log(response);
                 this.OrderDataARM1 = response.data;
-                 $("#loading").modal('hide');
             });
         });
   },

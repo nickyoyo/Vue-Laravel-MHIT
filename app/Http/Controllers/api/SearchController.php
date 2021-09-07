@@ -20,6 +20,7 @@ use App\Models\arm1;
 use App\Models\ChangePriceRecord;
 use App\Models\SD_Cost_Price;
 use App\Models\psf;
+use App\Models\psf2;
 use App\Models\SF002_Cost_Price;
 use App\Models\SF002_Psf;
 use App\Http\Controllers\Controller;
@@ -631,6 +632,24 @@ class SearchController extends Controller
             
         }
 
+        function DownPartPrice($PartNo,$QNO,$SKU,$Qty){
+            $TotalPrice = 0;
+            $DownPart = psf2::where('Selescode',$PartNo)->get();     //找下階料號  
+            if(count($DownPart)==0){
+                $price = IMChangePriceRecord($SKU,$QNO);
+                $TotalPrice += $price*$Qty;   
+            }
+            else{
+                $TotalDownPrice=0;
+                foreach($DownPart as $DownPartGroup){
+                    $DownPartim  = im::where('SKU',trim($DownPartGroup->Stockcode))->first();  
+                    $TotalDownPrice +=  $DownPartGroup->Qty * $DownPartim->FullPrice;
+                }
+                $TotalPrice += $TotalDownPrice*$Qty;     
+            } 
+            return $TotalPrice;
+        }
+
         $Color=trim($Color);
         $PartNo=trim($PartNo);
         $QNO=trim($QNO);
@@ -639,7 +658,7 @@ class SearchController extends Controller
         $Partim  = im::where('SKU',$PartNo)->first(); 
         if(substr($Partim->SupplierNo,0,2)=='SD'){
             $dataSO = SO::where('QuotNo',$QNO)->first();
-            $data = psf::where('Salescode',$PartNo)->get();    
+            $data = psf::where('Salescode',$PartNo)->get();     //找中階料號  
         
             if(count($data)==0){   
                 $dataColor = SD_Cost_Price::where('Range_',$Color)->where('Date_','<=',$dataSO->PromotionPeriod)->orderby('Date_','desc')->first();   
@@ -650,26 +669,24 @@ class SearchController extends Controller
                     $Partim  = im::where('SKU',trim($PartGroup->Stockcode))->first();      
                     $Colorcheck  = vm::where('SuppNo',$Partim->SupplierNo)->first();
                    
-                    if(trim($Colorcheck->LastTrans)=='A'){
+                    if(trim($Colorcheck->LastTrans)=='A'){       //色號加權
                         $dataColor = SD_Cost_Price::where('Range_',$Color)->where('Date_','<=',$dataSO->PromotionPeriod)->orderby('Date_','desc')->first();   
                         if($dataColor==null){
-                            $price = IMChangePriceRecord($Partim->SKU,$QNO);
-                            $TotalPrice += $price*$PartGroup->Qty;   
+                            $TotalPrice += DownPartPrice($PartGroup->Stockcode,$QNO,$Partim->SKU,$PartGroup->Qty);
                         }
                         else{
                             $TotalPrice += $dataColor->Price_ * $Partim->m3;
                         }
                     }
                     else{
-                        $price = IMChangePriceRecord($Partim->SKU,$QNO);
-                        $TotalPrice += $price*$PartGroup->Qty;   
+                        $TotalPrice += DownPartPrice($PartGroup->Stockcode,$QNO,$Partim->SKU,$PartGroup->Qty);
                     }
                 }
             }
         }
         else if(substr($Partim->SupplierNo,0,2)=='SF'){
             $dataSO = SO::where('QuotNo',$QNO)->first();
-            $data = SF002_Psf::where('Salescode',$PartNo)->get();    
+            $data = SF002_Psf::where('Salescode',$PartNo)->get();    //找中階料號   
           
             if(count($data)==0){   
                 $dataColor = SF002_Cost_Price::where('色號',$Color)->where('板類',$Partim->Type2)->where('日期','<=',$dataSO->PromotionPeriod)->orderby('日期','desc')->first();   
@@ -680,26 +697,22 @@ class SearchController extends Controller
                 foreach($data as $PartGroup){  
                     $Partim  = im::where('SKU',trim($PartGroup->StockCode))->first(); 
                     $Colorcheck  = vm::where('SuppNo',$Partim->SupplierNo)->first();
-                    if(trim($Colorcheck->LastTrans)=='A'){
+                    if(trim($Colorcheck->LastTrans)=='A'){                  //色號加權
                         $dataColor = SF002_Cost_Price::where('色號',$Color)->where('板類',$Partim->Type2)->where('日期','<=',$dataSO->PromotionPeriod)->orderby('日期','desc')->first();   
                         if($dataColor==null){
-                            $price = IMChangePriceRecord($Partim->SKU,$QNO);
-                            $TotalPrice += $price*$PartGroup->Qty;            
+                            $TotalPrice += DownPartPrice($PartGroup->Stockcode,$QNO,$Partim->SKU,$PartGroup->Qty);
                         }
                         else{
                             $TotalPrice += $dataColor->售價 * $PartGroup->Qty;
                         }    
                     }
                     else{
-                        $price = IMChangePriceRecord($Partim->SKU,$QNO);
-                        $TotalPrice += $price*$PartGroup->Qty;    
-                        //return response()->json(0 ,200);
+                        $TotalPrice += DownPartPrice($PartGroup->Stockcode,$QNO,$Partim->SKU,$PartGroup->Qty);
                     }
                 }
                
             }
         }     
-      
         if($TotalPrice % 10 > 0){
             $TotalPrice = $TotalPrice/10;
             $TotalPrice = ((int)$TotalPrice)*10+10;

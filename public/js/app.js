@@ -16013,7 +16013,6 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     axios.get("/api/search/OrderDetailitem/" + this.QuotNo).then(function (response) {
       console.log(response.data);
       _this6.OrderDetailitem = response.data;
-      $("#loading").modal('hide');
     });
     axios.get("/api/search/OrderDetailitem/" + this.QuotNo).then(function (response) {
       console.log(response.data);
@@ -16042,7 +16041,6 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       axios.get("/api/search/OrderARM1/" + _this6.QuotNo).then(function (response) {
         console.log(response);
         _this6.OrderDataARM1 = response.data;
-        $("#loading").modal('hide');
       });
     });
   }
@@ -18139,11 +18137,11 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       this.modifyref = 0;
       this.Selectorder = index;
       this.QuotNo = this.OrderList[this.Selectorder].QuotNo;
-      $("#loading").modal('show');
-      setTimeout(function () {
-        $('#loading').modal('hide');
-        $(".modal").modal('hide');
-      }, 5000);
+      $("#loading").modal('show'); // 　　　setTimeout(function(){
+      //                 $('#loading').modal('hide');
+      //                 $(".modal").modal('hide');
+      //       },5000)
+
       axios.get("/api/search/OrderDetailitem/" + this.OrderList[index].QuotNo).then(function (response) {
         console.log(response.data);
         _this.OrderDetailitem = response.data;

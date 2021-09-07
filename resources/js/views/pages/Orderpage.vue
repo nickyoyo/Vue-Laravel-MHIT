@@ -395,10 +395,10 @@ export default {
       this.Selectorder=index;    
       this.QuotNo = this.OrderList[this.Selectorder].QuotNo;
       $("#loading").modal('show');
-　　　setTimeout(function(){
-                $('#loading').modal('hide');
-                $(".modal").modal('hide');
-      },5000)
+// 　　　setTimeout(function(){
+//                 $('#loading').modal('hide');
+//                 $(".modal").modal('hide');
+//       },5000)
 
       axios
         .get("/api/search/OrderDetailitem/" + this.OrderList[index].QuotNo)
