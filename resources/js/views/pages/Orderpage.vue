@@ -412,33 +412,37 @@ export default {
             .then((response) => {
                 console.log(response);
                 this.OrderDataCTDtype = response.data.codeDesc;
+                $("#loading").modal('hide');
             });
             axios
             .get("/api/search/CmMemo/" + this.OrderData[0].QuotNo +"&&02")
             .then((response) => {
                 console.log(response);
                 this.OrderDataMemo = response.data.memo;
+                $("#loading").modal('hide');
             });
             axios
             .get("/api/search/OrderFINST/" + this.OrderData[0].QuotNo)
             .then((response) => {
                 console.log(response);
                 this.OrderDataFINST = response.data;
+                $("#loading").modal('hide');
             });
             axios
             .get("/api/search/PD/" + this.OrderData[0].UserId)
             .then((response) => {
                 console.log(response);
                 this.OrderDataEM = response.data;
+                $("#loading").modal('hide');
             });
             axios
             .get("/api/search/OrderARM1/" + this.OrderData[0].QuotNo)
             .then((response) => {
                 console.log(response);
                 this.OrderDataARM1 = response.data;
-                 
+                $("#loading").modal('hide');             
             });
-           
+              $("#loading").modal('hide');  
         });
     },
     

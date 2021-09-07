@@ -508,24 +508,24 @@ export default {
         this.$emit("saveModify");  
     },
   },
- mounted(){
-       $("#loading").modal('show');
+  mounted(){
+       //$("#loading").modal('show');
       axios
-        .get("/api/search/OrderDetailitem/S02171130103")
+        .get("/api/search/OrderDetailitem/"+this.QuotNo)
         .then((response) => {
           console.log(response.data);
           this.OrderDetailitem = response.data;
          $("#loading").modal('hide');
         });
      axios
-        .get("/api/search/OrderDetailitem/S02171130103")
+        .get("/api/search/OrderDetailitem/"+this.QuotNo)
         .then((response) => {
           console.log(response.data);
           this.OrderOrderDetailitemstorage = response.data;
          $("#loading").modal('hide');
         });
       axios
-        .get("/api/search/Orderdata/S02171130103")
+        .get("/api/search/Orderdata/"+this.QuotNo)
         .then((response) => {
           console.log(response);
           this.OrderData = response.data;
@@ -536,13 +536,13 @@ export default {
                 this.OrderDataCTDtype = response.data.codeDesc;
             });
             axios
-            .get("/api/search/CmMemo/S02171130103&&02")
+            .get("/api/search/CmMemo/"+this.QuotNo+"&&02")
             .then((response) => {
                 console.log(response);
                 this.OrderDataMemo = response.data.memo;
             });
             axios
-            .get("/api/search/OrderFINST/S02171130103")
+            .get("/api/search/OrderFINST/"+this.QuotNo)
             .then((response) => {
                 console.log(response);
                 this.OrderDataFINST = response.data;
@@ -554,7 +554,7 @@ export default {
                 this.OrderDataEM = response.data;
             });
             axios
-            .get("/api/search/OrderARM1/S02171130103")
+            .get("/api/search/OrderARM1/"+this.QuotNo)
             .then((response) => {
                 console.log(response);
                 this.OrderDataARM1 = response.data;

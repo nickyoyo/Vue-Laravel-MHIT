@@ -20,6 +20,8 @@ use App\Models\arm1;
 use App\Models\ChangePriceRecord;
 use App\Models\SD_Cost_Price;
 use App\Models\psf;
+use App\Models\SF002_Cost_Price;
+use App\Models\SF002_Psf;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
@@ -602,30 +604,65 @@ class SearchController extends Controller
         $Color=trim($Color);
         $PartNo=trim($PartNo);
         $QNO=trim($QNO);
-
-        $dataSO = SO::where('QuotNo',$QNO)->first();
-        $data = psf::where('Salescode',$PartNo)->get();    
         $TotalPrice = 0;  
-      
-        if(count($data)==0){
-            $Partim  = im::where('SKU',$PartNo)->first();      
-            $dataColor = SD_Cost_Price::where('Range_',$Color)->where('Date_','<=',$dataSO->PromotionPeriod)->orderby('Date_','desc')->first();   
-            $TotalPrice += $dataColor->Price_ * $Partim->m3;           
-        }
-        else{
-            foreach($data as $PartGroup){  
-                $Partim  = im::where('SKU',$PartGroup->Stockcode)->first();      
-                $Colorcheck  = vm::where('SuppNo',$Partim->SupplierNo)->first();
-               
-                if(trim($Colorcheck->LastTrans)=='A'){
-                    $dataColor = SD_Cost_Price::where('Range_',$Color)->where('Date_','<=',$dataSO->PromotionPeriod)->orderby('Date_','desc')->first();   
-                    $TotalPrice += $dataColor->Price_ * $Partim->m3;
-                }
-                else{
-                    $TotalPrice += $Partim->FullPrice;
+        
+        $Partim  = im::where('SKU',$PartNo)->first(); 
+        if(substr($Partim->SupplierNo,0,2)=='SD'){
+            $dataSO = SO::where('QuotNo',$QNO)->first();
+            $data = psf::where('Salescode',$PartNo)->get();    
+        
+            if(count($data)==0){   
+                $dataColor = SD_Cost_Price::where('Range_',$Color)->where('Date_','<=',$dataSO->PromotionPeriod)->orderby('Date_','desc')->first();   
+                $TotalPrice += $dataColor->Price_ * $Partim->m3;           
+            }
+            else{
+                foreach($data as $PartGroup){  
+                    $Partim  = im::where('SKU',trim($PartGroup->Stockcode))->first();      
+                    $Colorcheck  = vm::where('SuppNo',$Partim->SupplierNo)->first();
+                   
+                    if(trim($Colorcheck->LastTrans)=='A'){
+                        $dataColor = SD_Cost_Price::where('Range_',$Color)->where('Date_','<=',$dataSO->PromotionPeriod)->orderby('Date_','desc')->first();   
+                        if($dataColor==null){
+                            $TotalPrice += $Partim->FullPrice;
+                        }
+                        else{
+                            $TotalPrice += $dataColor->Price_ * $Partim->m3;
+                        }
+                    }
+                    else{
+                        $TotalPrice += $Partim->FullPrice;
+                    }
                 }
             }
         }
+        else if(substr($Partim->SupplierNo,0,2)=='SF'){
+            $dataSO = SO::where('QuotNo',$QNO)->first();
+            $data = SF002_Psf::where('Salescode',$PartNo)->get();    
+          
+            if(count($data)==0){   
+                $dataColor = SF002_Cost_Price::where('色號',$Color)->where('日期','<=',$dataSO->PromotionPeriod)->orderby('日期','desc')->first();   
+                $TotalPrice += $dataColor->Price_ * $Partim->m3;   
+                //return response()->json(0 ,200);        
+            }
+            else{
+                foreach($data as $PartGroup){  
+                    $Partim  = im::where('SKU',trim($PartGroup->StockCode))->first(); 
+                    $Colorcheck  = vm::where('SuppNo',$Partim->SupplierNo)->first();
+                    if(trim($Colorcheck->LastTrans)=='A'){
+                        $dataColor = SF002_Cost_Price::where('色號',$Color)->where('板類',$Partim->Type2)->where('日期','<=',$dataSO->PromotionPeriod)->orderby('日期','desc')->first();   
+                        if($dataColor==null){
+                            $TotalPrice += $Partim->FullPrice;
+                        }
+                        else{
+                            $TotalPrice += $dataColor->售價 * $PartGroup->Qty;
+                        }    
+                    }
+                    else{
+                        $TotalPrice += $Partim->FullPrice;
+                    }
+                }
+            }
+        }     
         return response()->json((int)$TotalPrice ,200);
            
     }

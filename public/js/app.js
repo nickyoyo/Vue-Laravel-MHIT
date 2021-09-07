@@ -16009,29 +16009,29 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   mounted: function mounted() {
     var _this6 = this;
 
-    $("#loading").modal('show');
-    axios.get("/api/search/OrderDetailitem/S02171130103").then(function (response) {
+    //$("#loading").modal('show');
+    axios.get("/api/search/OrderDetailitem/" + this.QuotNo).then(function (response) {
       console.log(response.data);
       _this6.OrderDetailitem = response.data;
       $("#loading").modal('hide');
     });
-    axios.get("/api/search/OrderDetailitem/S02171130103").then(function (response) {
+    axios.get("/api/search/OrderDetailitem/" + this.QuotNo).then(function (response) {
       console.log(response.data);
       _this6.OrderOrderDetailitemstorage = response.data;
       $("#loading").modal('hide');
     });
-    axios.get("/api/search/Orderdata/S02171130103").then(function (response) {
+    axios.get("/api/search/Orderdata/" + this.QuotNo).then(function (response) {
       console.log(response);
       _this6.OrderData = response.data;
       axios.get("/api/search/CTD/Desc/訂單類&&00").then(function (response) {
         console.log(response);
         _this6.OrderDataCTDtype = response.data.codeDesc;
       });
-      axios.get("/api/search/CmMemo/S02171130103&&02").then(function (response) {
+      axios.get("/api/search/CmMemo/" + _this6.QuotNo + "&&02").then(function (response) {
         console.log(response);
         _this6.OrderDataMemo = response.data.memo;
       });
-      axios.get("/api/search/OrderFINST/S02171130103").then(function (response) {
+      axios.get("/api/search/OrderFINST/" + _this6.QuotNo).then(function (response) {
         console.log(response);
         _this6.OrderDataFINST = response.data;
       });
@@ -16039,7 +16039,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         console.log(response);
         _this6.OrderDataEM = response.data;
       });
-      axios.get("/api/search/OrderARM1/S02171130103").then(function (response) {
+      axios.get("/api/search/OrderARM1/" + _this6.QuotNo).then(function (response) {
         console.log(response);
         _this6.OrderDataARM1 = response.data;
         $("#loading").modal('hide');
@@ -18151,23 +18151,29 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         axios.get("/api/search/CTD/Desc/訂單類&&" + _this.OrderData[0].OrderType).then(function (response) {
           console.log(response);
           _this.OrderDataCTDtype = response.data.codeDesc;
+          $("#loading").modal('hide');
         });
         axios.get("/api/search/CmMemo/" + _this.OrderData[0].QuotNo + "&&02").then(function (response) {
           console.log(response);
           _this.OrderDataMemo = response.data.memo;
+          $("#loading").modal('hide');
         });
         axios.get("/api/search/OrderFINST/" + _this.OrderData[0].QuotNo).then(function (response) {
           console.log(response);
           _this.OrderDataFINST = response.data;
+          $("#loading").modal('hide');
         });
         axios.get("/api/search/PD/" + _this.OrderData[0].UserId).then(function (response) {
           console.log(response);
           _this.OrderDataEM = response.data;
+          $("#loading").modal('hide');
         });
         axios.get("/api/search/OrderARM1/" + _this.OrderData[0].QuotNo).then(function (response) {
           console.log(response);
           _this.OrderDataARM1 = response.data;
+          $("#loading").modal('hide');
         });
+        $("#loading").modal('hide');
       });
     }
   },
