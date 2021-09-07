@@ -590,11 +590,12 @@ class SearchController extends Controller
             $dataSO  = SO::where('QuotNo',$QNO)->first();
     
             $data = ChangePriceRecord::where('料',$PartNo)->where('日','<=',$dataSO->PromotionPeriod)->orderby('日','desc')->first();    
-
+            $data->後價=(int)$data->後價;
             return response()->json([$data,1],200);  
         }
         else{
             $data = im::where('SKU',$PartNo)->first();  
+            $data->FullPrice=(int)$data->FullPrice;
             return response()->json([$data,0],200);  
         }
         
