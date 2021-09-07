@@ -394,7 +394,7 @@ export default {
       this.modifyref=0;
       this.Selectorder=index;    
       this.QuotNo = this.OrderList[this.Selectorder].QuotNo;
-      $("#loading").modal('show');
+      //$("#loading").modal('show');
       axios
         .get("/api/search/OrderDetailitem/" + this.OrderList[index].QuotNo)
         .then((response) => {

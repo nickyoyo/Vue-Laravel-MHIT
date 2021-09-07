@@ -380,7 +380,6 @@ export default {
             this.OrderDetailitem[this.DetailIndex].UnitPrice = response.data[0].FullPrice;
             this.OrderDetailitem[this.DetailIndex].Qty = 0;
             this.OrderDetailitem[this.DetailIndex].OrderValue = 0;
-
           }
         });              
         this.OrderOrderDetailitemstorage[this.DetailIndex]=Object.assign({}, this.OrderDetailitem[this.DetailIndex]);

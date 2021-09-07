@@ -18138,8 +18138,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
       this.modifyref = 0;
       this.Selectorder = index;
-      this.QuotNo = this.OrderList[this.Selectorder].QuotNo;
-      $("#loading").modal('show');
+      this.QuotNo = this.OrderList[this.Selectorder].QuotNo; //$("#loading").modal('show');
+
       axios.get("/api/search/OrderDetailitem/" + this.OrderList[index].QuotNo).then(function (response) {
         console.log(response.data);
         _this.OrderDetailitem = response.data;
