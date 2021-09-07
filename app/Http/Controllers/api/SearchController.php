@@ -470,6 +470,7 @@ class SearchController extends Controller
         foreach($data as $list){
             $list->UnitPrice = (int)$list->UnitPrice;
             $list->OrderValue = (int)$list->OrderValue; 
+            $list->Qty = (int)$list->Qty; 
             $member = EM13::where('EMID','=', $list->UserID)->first();
             $list->Ordermember= $member->EMME;
 
@@ -591,11 +592,19 @@ class SearchController extends Controller
     
             $data = ChangePriceRecord::where('料',$PartNo)->where('日','<=',$dataSO->PromotionPeriod)->orderby('日','desc')->first();    
             $data->後價=(int)$data->後價;
+            if($data->後價 % 10 > 0){
+                $data->後價 = $data->後價/10;
+                $data->後價 = ((int)$data->後價)*10+10;
+            }
             return response()->json([$data,1],200);  
         }
         else{
             $data = im::where('SKU',$PartNo)->first();  
             $data->FullPrice=(int)$data->FullPrice;
+            if($data->FullPrice % 10 > 0){
+                $data->FullPrice = $data->FullPrice/10;
+                $data->FullPrice = ((int)$data->FullPrice)*10+10;
+            }
             return response()->json([$data,0],200);  
         }
         
@@ -663,9 +672,9 @@ class SearchController extends Controller
             $data = SF002_Psf::where('Salescode',$PartNo)->get();    
           
             if(count($data)==0){   
-                $dataColor = SF002_Cost_Price::where('色號',$Color)->where('日期','<=',$dataSO->PromotionPeriod)->orderby('日期','desc')->first();   
-                $TotalPrice += $dataColor->Price_ * $Partim->m3;   
-                //return response()->json(0 ,200);        
+                $dataColor = SF002_Cost_Price::where('色號',$Color)->where('板類',$Partim->Type2)->where('日期','<=',$dataSO->PromotionPeriod)->orderby('日期','desc')->first();   
+                $TotalPrice += $dataColor->售價 * $PartGroup->Qty;
+                       
             }
             else{
                 foreach($data as $PartGroup){  
@@ -675,7 +684,7 @@ class SearchController extends Controller
                         $dataColor = SF002_Cost_Price::where('色號',$Color)->where('板類',$Partim->Type2)->where('日期','<=',$dataSO->PromotionPeriod)->orderby('日期','desc')->first();   
                         if($dataColor==null){
                             $price = IMChangePriceRecord($Partim->SKU,$QNO);
-                            $TotalPrice += $price*$PartGroup->Qty;   
+                            $TotalPrice += $price*$PartGroup->Qty;            
                         }
                         else{
                             $TotalPrice += $dataColor->售價 * $PartGroup->Qty;
@@ -684,10 +693,17 @@ class SearchController extends Controller
                     else{
                         $price = IMChangePriceRecord($Partim->SKU,$QNO);
                         $TotalPrice += $price*$PartGroup->Qty;    
+                        //return response()->json(0 ,200);
                     }
                 }
+               
             }
         }     
+      
+        if($TotalPrice % 10 > 0){
+            $TotalPrice = $TotalPrice/10;
+            $TotalPrice = ((int)$TotalPrice)*10+10;
+        }
         return response()->json((int)$TotalPrice ,200);
            
     }

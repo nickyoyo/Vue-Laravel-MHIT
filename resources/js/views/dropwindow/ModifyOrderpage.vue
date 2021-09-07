@@ -14,8 +14,8 @@
   </div>
 
     <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="font-weight-bold" style="position:relative;left:45%">編修訂單</h2>
+        <div class="modal-header">
+            <h2 class="font-weight-bold" style="position:relative;left:45%">編修訂單</h2>
 				<button type="button" class="close" data-dismiss="modal">
                       <span>&times;</span>
 				</button>
@@ -255,7 +255,7 @@
                                         name='Qty[]'
                                         type="number"
                                         style="height: 30px; width: 70px;"
-                                        min="0"
+                                        min="1"
                                         v-model="itemD.Qty"
                                         v-on:change="SetQty(index)"
                                         @keydown.tab.exact="nextcol(index)"

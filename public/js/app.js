@@ -18138,12 +18138,16 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
       this.modifyref = 0;
       this.Selectorder = index;
-      this.QuotNo = this.OrderList[this.Selectorder].QuotNo; //$("#loading").modal('show');
-
+      this.QuotNo = this.OrderList[this.Selectorder].QuotNo;
+      $("#loading").modal('show');
+      setTimeout(function () {
+        $('#loading').modal('hide');
+        $(".modal").modal('hide');
+      }, 5000);
       axios.get("/api/search/OrderDetailitem/" + this.OrderList[index].QuotNo).then(function (response) {
         console.log(response.data);
         _this.OrderDetailitem = response.data;
-        $("#loading").modal('hide');
+        $(".modal").modal('hide');
       });
       axios.get("/api/search/Orderdata/" + this.OrderList[index].QuotNo).then(function (response) {
         console.log(response);
@@ -18151,29 +18155,23 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         axios.get("/api/search/CTD/Desc/訂單類&&" + _this.OrderData[0].OrderType).then(function (response) {
           console.log(response);
           _this.OrderDataCTDtype = response.data.codeDesc;
-          $("#loading").modal('hide');
         });
         axios.get("/api/search/CmMemo/" + _this.OrderData[0].QuotNo + "&&02").then(function (response) {
           console.log(response);
           _this.OrderDataMemo = response.data.memo;
-          $("#loading").modal('hide');
         });
         axios.get("/api/search/OrderFINST/" + _this.OrderData[0].QuotNo).then(function (response) {
           console.log(response);
           _this.OrderDataFINST = response.data;
-          $("#loading").modal('hide');
         });
         axios.get("/api/search/PD/" + _this.OrderData[0].UserId).then(function (response) {
           console.log(response);
           _this.OrderDataEM = response.data;
-          $("#loading").modal('hide');
         });
         axios.get("/api/search/OrderARM1/" + _this.OrderData[0].QuotNo).then(function (response) {
           console.log(response);
           _this.OrderDataARM1 = response.data;
-          $("#loading").modal('hide');
         });
-        $("#loading").modal('hide');
       });
     }
   },
@@ -23687,7 +23685,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                         name: "Qty[]",
                         type: "number",
                         style: {"height":"30px","width":"70px"},
-                        min: "0",
+                        min: "1",
                         "onUpdate:modelValue": $event => (itemD.Qty = $event),
                         onChange: $event => ($options.SetQty(index)),
                         onKeydown: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)((0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($event => ($options.nextcol(index)), ["exact"]), ["tab"]),
@@ -29149,12 +29147,10 @@ const _hoisted_1 = {
 }
 const _hoisted_2 = {
   id: "loading",
-  class: "modal inmodal fade",
+  class: "modal",
   tabindex: "-1",
-  role: "dialog",
-  "aria-hidden": "true",
-  "data-backdrop": "static",
-  "data-keyboard": "true"
+  style: {"display":"none"},
+  "aria-hidden": "true"
 }
 const _hoisted_3 = { class: "modal-dialog modal-sm" }
 const _hoisted_4 = { style: {"position":"relative","left":"100px"} }

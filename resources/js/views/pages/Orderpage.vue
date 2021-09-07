@@ -3,7 +3,7 @@
             <ModifyOrderpage @closeModify="closeModify" v-bind:QuotNo="QuotNo" v-bind:index="Selectorder" :key="modifyref"></ModifyOrderpage>
   </div>
 
-  <div id="loading" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
+  <div id="loading" class="modal" tabindex="-1" style="display: none;" aria-hidden="true">
       <div class="modal-dialog modal-sm" >
             <loader></loader>
       </div>
@@ -394,13 +394,18 @@ export default {
       this.modifyref=0;
       this.Selectorder=index;    
       this.QuotNo = this.OrderList[this.Selectorder].QuotNo;
-      //$("#loading").modal('show');
+      $("#loading").modal('show');
+　　　setTimeout(function(){
+                $('#loading').modal('hide');
+                $(".modal").modal('hide');
+      },5000)
+
       axios
         .get("/api/search/OrderDetailitem/" + this.OrderList[index].QuotNo)
         .then((response) => {
           console.log(response.data);
-          this.OrderDetailitem = response.data;
-           $("#loading").modal('hide');
+          this.OrderDetailitem = response.data;  
+          $(".modal").modal('hide');
         });
       axios
         .get("/api/search/Orderdata/" + this.OrderList[index].QuotNo)
@@ -412,37 +417,32 @@ export default {
             .then((response) => {
                 console.log(response);
                 this.OrderDataCTDtype = response.data.codeDesc;
-                $("#loading").modal('hide');
             });
             axios
             .get("/api/search/CmMemo/" + this.OrderData[0].QuotNo +"&&02")
             .then((response) => {
                 console.log(response);
                 this.OrderDataMemo = response.data.memo;
-                $("#loading").modal('hide');
             });
             axios
             .get("/api/search/OrderFINST/" + this.OrderData[0].QuotNo)
             .then((response) => {
                 console.log(response);
                 this.OrderDataFINST = response.data;
-                $("#loading").modal('hide');
             });
             axios
             .get("/api/search/PD/" + this.OrderData[0].UserId)
             .then((response) => {
                 console.log(response);
                 this.OrderDataEM = response.data;
-                $("#loading").modal('hide');
             });
             axios
             .get("/api/search/OrderARM1/" + this.OrderData[0].QuotNo)
             .then((response) => {
                 console.log(response);
-                this.OrderDataARM1 = response.data;
-                $("#loading").modal('hide');             
+                this.OrderDataARM1 = response.data;         
             });
-              $("#loading").modal('hide');  
+ 
         });
     },
     
