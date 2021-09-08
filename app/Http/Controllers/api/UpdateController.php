@@ -9,6 +9,8 @@ use App\Models\CM_接待自評;
 use App\Models\CmMemo;
 use App\Models\CTD;
 use App\Models\chk;
+use App\Models\sod;
+use App\Models\SO;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
@@ -400,6 +402,29 @@ class UpdateController extends Controller
             'Time_' => date('His'),
         ]);
          return response()->json($data['CustNo'], 200);
+    }
+
+    public function UpdateOrderDetail(request $request){
+        $data = $request->all();
+        $data = $data['OrderDetailitem'];
+        $TotalPrice = 0;
+
+        for($i=0;$i<count($data);$i++){
+            sod::where('ItemNo', $data[$i]['ItemNo'])
+            ->update([
+                'Ragne' => $data[$i]['Ragne'],
+                'UnitPrice' => $data[$i]['UnitPrice'],
+                'OrderValue' => $data[$i]['OrderValue'],
+                'SalesCode' => $data[$i]['SalesCode'],
+            ]);
+            $TotalPrice+=$data[$i]['OrderValue'];
+        }
+        SO::where('QuotNo', $data[0]['QuotNo'])
+            ->update([
+                'TotalValue' => $TotalPrice,
+            ]);
+
+        return response()->json($data, 200);
     }
 
 }

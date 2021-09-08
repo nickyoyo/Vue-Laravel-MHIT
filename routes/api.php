@@ -57,6 +57,7 @@ Route::post('/Update/CMCRFItems',[UpdateController::class,'UpdateCMCRFItems']);
 Route::post('/Update/Measurestate',[UpdateController::class,'UpdateMeasurestate']);
 Route::post('/Update/DeleteMeasureJK',[UpdateController::class,'UpdateDeleteMeasureJK']);
 Route::post('/Update/MeasureEnd',[UpdateController::class,'UpdateMeasureEnd']);
+Route::post('/Update/OrderDetail',[UpdateController::class,'UpdateOrderDetail']);
 
 Route::post('/Create/CM',[CreateController::class,'CreateCM']);
 Route::post('/Create/CmMemo',[CreateController::class,'CreateCmMemo']);

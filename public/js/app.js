@@ -16020,6 +16020,13 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       this.$emit("closeModify");
     },
     save: function save() {
+      axios.post("/api/Update/OrderDetail", {
+        OrderDetailitem: this.OrderDetailitem
+      }).then(function (response) {
+        console.log(response);
+      })["catch"](function (response) {
+        console.log(response);
+      });
       this.$emit("saveModify");
     }
   },

@@ -521,6 +521,16 @@ export default {
         this.$emit("closeModify");  
     },
     save:function(){
+         axios
+        .post("/api/Update/OrderDetail", {
+          OrderDetailitem: this.OrderDetailitem,
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (response) {
+          console.log(response);
+        });
         this.$emit("saveModify");  
     },
   },
