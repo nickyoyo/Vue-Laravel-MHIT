@@ -11,6 +11,7 @@ use App\Models\CTD;
 use App\Models\chk;
 use App\Models\sod;
 use App\Models\SO;
+use App\Models\arm1;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
@@ -406,22 +407,34 @@ class UpdateController extends Controller
 
     public function UpdateOrderDetail(request $request){
         $data = $request->all();
-        $data = $data['OrderDetailitem'];
+        $dataDetailitem = $data['OrderDetailitem'];
+        $dataArm1 = $data['OrderDataARM1'];
         $TotalPrice = 0;
 
-        for($i=0;$i<count($data);$i++){
-            sod::where('ItemNo', $data[$i]['ItemNo'])
+        for($i=0;$i<count($dataDetailitem);$i++){
+            sod::where('ItemNo', $dataDetailitem[$i]['ItemNo'])
             ->update([
-                'Ragne' => $data[$i]['Ragne'],
-                'UnitPrice' => $data[$i]['UnitPrice'],
-                'OrderValue' => $data[$i]['OrderValue'],
-                'SalesCode' => $data[$i]['SalesCode'],
+                'Ragne' => ($dataDetailitem[$i]['Ragne'] == NULL) ? '' :  $dataDetailitem[$i]['Ragne'],
+                'UnitPrice' => $dataDetailitem[$i]['UnitPrice'],
+                'OrderValue' => $dataDetailitem[$i]['OrderValue'],
+                'SalesCode' => $dataDetailitem[$i]['SalesCode'],
+                'Qty' => $dataDetailitem[$i]['Qty'],
             ]);
-            $TotalPrice+=$data[$i]['OrderValue'];
+            $TotalPrice+=$dataDetailitem[$i]['OrderValue'];
         }
-        SO::where('QuotNo', $data[0]['QuotNo'])
+        SO::where('QuotNo', $dataDetailitem[0]['QuotNo'])
             ->update([
                 'TotalValue' => $TotalPrice,
+            ]);
+
+        arm1::where('CustNo', $dataDetailitem[0]['CustNo'])
+            ->where('OrderNo', $dataDetailitem[0]['QuotNo'])
+            ->update([
+                'OrderValue' => $TotalPrice,
+                'Payment' => $TotalPrice,
+                'MFI' => $TotalPrice,
+                '帳款金額' => $TotalPrice,
+                '實收金額' => $TotalPrice-$dataArm1['RebateValue'],  //RebateValue = Rebat - 退折讓
             ]);
 
         return response()->json($data, 200);

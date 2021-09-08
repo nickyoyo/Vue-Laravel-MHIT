@@ -1,6 +1,6 @@
 <template>
    <div class="modal" id="Modify" tabindex="-1" style="display: none;" aria-hidden="true">
-            <ModifyOrderpage @closeModify="closeModify" v-bind:QuotNo="QuotNo" v-bind:index="Selectorder" :key="modifyref"></ModifyOrderpage>
+            <ModifyOrderpage @saveModify="saveModify" @closeModify="closeModify" v-bind:QuotNo="QuotNo" v-bind:index="Selectorder" :key="modifyref"></ModifyOrderpage>
   </div>
 
   <div id="loading" class="modal" tabindex="-1" style="display: none;" aria-hidden="true">
@@ -393,6 +393,18 @@ export default {
         $("#Modify").modal('hide');
         this.modifyref=0;
     },
+    saveModify: function(){
+  
+        $("#Modify").modal('hide');
+        $("#loading").modal('show');
+      axios
+      .get("/api/search/Order/" + this.OrderDetailitem[0].CustNo)
+      .then((response) => {
+        console.log(response);
+        this.OrderList = response.data[0];
+      });
+        this.GetOrderDetail(this.Selectorder);
+    },
     GetOrderDetail: function (index) {
       this.pushdetail=1;
       this.detailbutton=0;
@@ -400,11 +412,6 @@ export default {
       this.Selectorder=index;    
       this.QuotNo = this.OrderList[this.Selectorder].QuotNo;
       $("#loading").modal('show');
-// 　　　setTimeout(function(){
-//                 $('#loading').modal('hide');
-//                 $(".modal").modal('hide');
-//       },5000)
-
       axios
         .get("/api/search/OrderDetailitem/" + this.OrderList[index].QuotNo)
         .then((response) => {

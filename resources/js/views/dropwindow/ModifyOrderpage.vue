@@ -524,6 +524,7 @@ export default {
          axios
         .post("/api/Update/OrderDetail", {
           OrderDetailitem: this.OrderDetailitem,
+          OrderDataARM1: this.OrderDataARM1,
         })
         .then(function (response) {
           console.log(response);
