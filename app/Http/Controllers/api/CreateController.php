@@ -594,6 +594,7 @@ class CreateController extends Controller
         }
 
     }
+
     public function CreateMeasureCheckK(request $request){
         $data = $request->all();  
         $data = $data['Data'][0];
@@ -609,6 +610,14 @@ class CreateController extends Controller
         else{
             return response()->json('X' , 200); 
         }
+
+    }
+
+    public function CreateOrderDetail(request $request){
+        $data = $request->all();  
+        $data = $data['Data'][0];
+       
+        
 
     }
 }

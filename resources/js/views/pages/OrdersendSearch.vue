@@ -1,4 +1,13 @@
 <template>
+  <div id="CMList" class="modal inmodal fade"  tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="true">
+
+     <CMList @getCustNo="setCustNo"></CMList>
+  </div>
+
+    <div class="modal" id="Modify" tabindex="-1" style="display: none;" aria-hidden="true">
+            <ModifyOrderpage v-bind:index="Selectorder"></ModifyOrderpage>
+  </div>
+
   <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
       <h1>查詢門市訂單</h1>
     <label for="PID">客戶編號:</label><br />
@@ -13,9 +22,17 @@
 </template>
 
 <script>
+import CMList from "../dropwindow/CMList.vue";
+import PartNum from "../dropwindow/PartNum.vue";
+import ModifyOrderpage from "../dropwindow/ModifyOrderpage.vue";
   const axios = require("axios");
 export default {
   name: "CMsendSearch",
+  components: {
+      CMList,
+      PartNum,
+      ModifyOrderpage,
+    },
   data() {
     return {
       PID: [],
@@ -36,6 +53,17 @@ export default {
             }
           });
     },
+      setCustNo: function(CustNo){
+        this.PID = CustNo;
+        $("#CMList").modal('hide');   
+      },
   },
+   mounted() {
+        document.getElementById('PID').addEventListener('keydown',function(e){
+            if (e.shiftKey) {        
+                  $("#Modify").modal('show');    
+            }
+                },false);
+    },
 };
 </script>

@@ -12,6 +12,17 @@ use App\Models\zip;
 use App\Models\chk;
 use App\Models\SO;
 use App\Models\sod;
+use App\Models\im;
+use App\Models\vm;
+use App\Models\po;
+use App\Models\FINST;
+use App\Models\arm1;
+use App\Models\ChangePriceRecord;
+use App\Models\SD_Cost_Price;
+use App\Models\psf;
+use App\Models\psf2;
+use App\Models\SF002_Cost_Price;
+use App\Models\SF002_Psf;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
@@ -43,6 +54,15 @@ class SearchController extends Controller
         $searchname = mb_substr($CName,0,1,"utf-8");
         $data = cm::where('CustName','LIKE', $searchname.'%')->get();
         return response()->json(['CM' => $data],200);
+    }
+    public function searchCMAll(){
+        $data = cm::where('CustNo','LIKE', 'C'.'%')->where('門市別','1000')->get();
+        foreach($data as $list){
+            $EM = EM13::where('EMID','=', $list->UserId)->first();
+            $list->UserId = $EM;
+            $list->DataCreate = substr($list->DataCreate, 0, 4)."/".substr($list->DataCreate, 4, 2)."/".substr($list->DataCreate, 6, 2);  
+        }
+        return response()->json($data,200);
     }
     public function searchCM($CNO)          //CM-Data、月曆格式轉換、CTD
     {
@@ -108,14 +128,97 @@ class SearchController extends Controller
         }    
         if($codename=="屋型"){
             $data  = CTD::where('codename','屋型')->get();
+        }   
+        if($codename=="色號"){
+            $data  = CTD::where('codename','門板色')->orderby('codeindex','asc')->take(100)->get();
         }    
-
+      
         foreach($data as $CTD){
             $CTD->codeindex=trim($CTD->codeindex);
         }
 
         return response()->json($data,200);
     }
+    
+    public function searchColorNoAll() {
+        $data  = CTD::where('codename','門板色')->where('codetype',11)->orderby('Reserve4','asc')->take(100)->get();
+        return response()->json($data,200);
+    }
+    
+    public function searchColorNo($Colorselect,$PartNo)       
+    {
+        $VMcode = substr($PartNo,0,2);
+        if($Colorselect=='X'){
+            $data  = CTD::where('Reserve4','LIKE', $VMcode.'%')->orderby('codeindex','asc')->get();
+        }
+        else{ 
+            $data  = CTD::where('Reserve4','LIKE', $VMcode.'%')->where('codeindex','LIKE',$Colorselect.'%')->orderby('codeindex','asc')->take(100)->get();
+        }      
+        return response()->json($data,200);
+    }
+
+    public function searchColorNoType($Colorselect,$PartNo)        
+    {
+        $VMcode = substr($PartNo,0,2);
+        $data  = CTD::where('codeindex',$Colorselect)->where('Reserve4','LIKE', $VMcode.'%')->orderby('codeindex','asc')->first();
+        
+        if($data!=NULL){
+            $data->codeindex = trim($data->codeindex);
+            $data->Reserve4 = trim($data->Reserve4);
+            return response()->json([$data,1],200);  
+        }
+        return response()->json([$data,0],200);  
+    }
+
+    public function searchPartNo($SKU)        
+    {
+        if($SKU=='XXXXX'){
+            $data  = im::where('SKU','LIKE', 'H%')->take(200)->get();
+        }
+        else{
+        $data  = im::where('SKU','LIKE', $SKU.'%')->take(200)->get();
+         
+            foreach($data as $PartNo){
+                $PartNo->FullPrice=(int)$PartNo->FullPrice;
+                $PartNo->SKU = trim($PartNo->SKU);
+
+                $vm  = vm::where('SuppNo',$PartNo->SupplierNo)->first();
+                $vm->SuppNo = trim($vm->SuppNo);
+                $vm->LastTrans = trim($vm->LastTrans);
+                $PartNo->SupplierNo = $vm;
+            }
+        }
+            return response()->json($data,200);        
+    }
+    public function searchTypePartNo($SKU)        
+    {
+        $data  = im::where('SKU',$SKU)->first();
+        
+        if($data!=NULL){
+            $data->FullPrice=(int)$data->FullPrice;
+            $data->SKU = trim($data->SKU);
+
+            $vm  = vm::where('SuppNo',$data->SupplierNo)->first();
+            $vm->SuppNo = trim($vm->SuppNo);
+            $vm->LastTrans = trim($vm->LastTrans);
+            $data->SupplierNo = $vm;
+
+            return response()->json([$data,1],200);  
+        }
+        return response()->json([$data,0],200);  
+             
+    }
+
+
+    public function searchCTDDesc($codename,$codeindex)        //CTD
+    {
+        if($codename == "訂單類"){
+            $data = CTD::where('codename','訂單類')->where('codeindex',$codeindex)->first();  
+            $data->codeindex=trim($data->codeindex); 
+        }      
+        return response()->json($data,200);
+    }
+
     public function searchCmMemo($CNO,$MemoType)        //CmMemo
     {
         if($MemoType=='85'){
@@ -126,6 +229,15 @@ class SearchController extends Controller
             }         
             return response()->json($data,200);
         }
+        if($MemoType=='02'){
+            $data = CmMemo::where('OrderNo',trim($CNO))->where('Type_',$MemoType)->first(['CmMemo.*','備註 as memo']);
+            if($data != NULL){
+                $data->code_ = trim($data->code_);
+                $data->Type_ = trim($data->Type_);
+            }         
+            return response()->json($data,200);
+        }
+
         $MemoType = $MemoType." ";
         $memonum =array('0','0','0','0','0','0');
         $useCM = cm::where('CustNo',trim($CNO))->first();
@@ -241,11 +353,11 @@ class SearchController extends Controller
         }
         return response()->json([$UseExp,$UDS,$likeStyle,$space],200);
     }
-    public function searchPD()
+    public function searchPD($EMID)
     {
-        //$EMID = Session::get('EMID');
-       // $EM13 = EM13::where('EMID','=', $EMID)->where('OFDT','=','00000000')->first();
-        return response()->json(['YA' => Auth::user()],200);
+
+        $data = EM13::where('EMID','=', $EMID)->where('OFDT','=','00000000')->first();
+        return response()->json($data,200);
     }
     public function searchaddress($street)
     {
@@ -320,7 +432,7 @@ class SearchController extends Controller
     public function searchOrder($CNO)       
     {
         $data = SO::where('CusNo',trim($CNO))->where('QuotNo','LIKE', 'S'.'%')->where('OrderDate','>','00000000')->orderby('QuotNo','asc')->get();
-        if($data == NULL){
+        if(count($data) == 0){
             return response()->json(['msg' => '此客編號不存在'],200);
         }  
         foreach($data as $list){
@@ -330,15 +442,285 @@ class SearchController extends Controller
         return response()->json([$data,'msg' => ''],200);
     }
 
-    public function searchOrderDetail($QNO)        
+    public function searchOrderdata($QNO)       
     {
-        $data = sod::where('QuotNo',trim($QNO))->get(['sod.*','UserID as Ordermember']);
+        $data = SO::where('QuotNo',trim($QNO))->where('OrderDate','>','00000000')->orderby('QuotNo','asc')->get();
+        foreach($data as $list){
+            $list->TotalValue=(int)$list->TotalValue;
+            $list->exwork = (int)$list->exwork;  
+            $list->OrderDate = ($list->OrderDate > '00000000') ? substr($list->OrderDate, 0, 4)."/".substr($list->OrderDate, 4, 2)."/".substr($list->OrderDate, 6, 2) : '';  
+            $list->QuotDate = ($list->QuotDate > '00000000') ? substr($list->QuotDate, 0, 4)."/".substr($list->QuotDate, 4, 2)."/".substr($list->QuotDate, 6, 2) : '';  
+            $list->RequireDate = ($list->RequireDate > '00000000') ? substr($list->RequireDate, 0, 4)."/".substr($list->RequireDate, 4, 2)."/".substr($list->RequireDate, 6, 2) : '';  
+            $list->PromotionPeriod = ($list->PromotionPeriod > '00000000') ? substr($list->PromotionPeriod, 0, 4)."/".substr($list->PromotionPeriod, 4, 2)."/".substr($list->PromotionPeriod, 6, 2) : '';  
+            $list->ExpireDate  = ($list->ExpireDate  > '00000000') ? substr($list->ExpireDate , 0, 4)."/".substr($list->ExpireDate , 4, 2)."/".substr($list->ExpireDate , 6, 2) : '';  
+            $list->DispatchDate = ($list->DispatchDate > '00000000') ? substr($list->DispatchDate, 0, 4)."/".substr($list->DispatchDate, 4, 2)."/".substr($list->DispatchDate, 6, 2) : '';  
+            $list->ClearDate = ($list->ClearDate > '00000000') ? substr($list->ClearDate, 0, 4)."/".substr($list->ClearDate, 4, 2)."/".substr($list->ClearDate, 6, 2) : '';  
+            $list->PickingDate = ($list->PickingDate > '00000000') ? substr($list->PickingDate, 0, 4)."/".substr($list->PickingDate, 4, 2)."/".substr($list->PickingDate, 6, 2) : '';  
+            $list->AppDate = ( $list->AppDate > '00000000') ? substr( $list->AppDate, 0, 4)."/".substr( $list->AppDate, 4, 2)."/".substr( $list->AppDate, 6, 2) : '';  
+            $list->ProfitDate = ($list->ProfitDate > '00000000') ? substr($list->ProfitDate, 0, 4)."/".substr($list->ProfitDate, 4, 2)."/".substr($list->ProfitDate, 6, 2) : '';  
+            
+        }
+      
+        return response()->json($data,200);
+    }
+
+    public function searchOrderDetailitem($QNO)        
+    {
+        $data = sod::where('QuotNo',trim($QNO))->get(['sod.*','UserID as Ordermember','SalesCode as SalesCodeData','temp as poCheck','Ragne as RangeName']);
 
         foreach($data as $list){
-            $member = EM13::where('EMID','=', $list->UserID)->where('OFDT','=','00000000')->first();
+            $list->UnitPrice = (int)$list->UnitPrice;
+            $list->OrderValue = (int)$list->OrderValue; 
+            $list->Qty = (int)$list->Qty; 
+            $member = EM13::where('EMID','=', $list->UserID)->first();
             $list->Ordermember= $member->EMME;
+
+            $SalesCodeData = im::where('SKU','=', $list->SalesCode)->first();
+            $list->SalesCodeData = $SalesCodeData;
+            $list->OrderDate = substr($list->OrderDate, 0, 4)."/".substr($list->OrderDate, 4, 2)."/".substr($list->OrderDate, 6, 2);  
+            $list->DispatchDate = substr($list->DispatchDate, 0, 4)."/".substr($list->DispatchDate, 4, 2)."/".substr($list->DispatchDate, 6, 2);  
+
+            $SupplierNo = vm::where('SuppNo','=', $list->SalesCodeData->SupplierNo)->first();
+            $SupplierNo->LastTrans = trim($SupplierNo->LastTrans);
+            $SupplierNo->SuppNo = trim($SupplierNo->SuppNo);
+            $list->SalesCodeData->SupplierNo = $SupplierNo;
+
+            $doorcolor = CTD::where('codename','門板色')->where('codeindex',$list->Ragne)->first();  
+            if($doorcolor==NULL){
+                $list->RangeName="";
+            }
+            else{
+                $list->RangeName = $doorcolor->codeDesc;
+            }    
+
+            $list->poCheck=0;
+            $poCh = po::where('QuotNo',trim($QNO))->get();
+            if(count($poCh)>0){
+                $list->poCheck=1;
+            }
         }
 
         return response()->json($data,200);
     }
+
+    public function searchOrderitemPO($QNO)        
+    {
+        $getorder=0;
+        $data = po::where('QuotNo',trim($QNO))->get();
+        if(count($data)>0){
+            $getorder=1;
+        }
+
+        return response()->json($getorder,200);
+    }
+
+    public function searchOrderFINST($QNO)
+    {
+        $data = FINST::where('訂單編號',trim($QNO))->first(['FINST.*','確定出貨日 as SuresendDate','檢核日 as CheckDate','安裝日 as SetDate','拆除日 as RemoveDate','運送日 as TransDate']);
+       
+        if($data->SuresendDate > '00000000'){
+            $data->SuresendDate = substr($data->SuresendDate, 0, 4)."/".substr($data->SuresendDate, 4, 2)."/".substr($data->SuresendDate, 6, 2);  
+        }
+        else{
+            $data->SuresendDate='';
+        }
+        if($data->CheckDate > '00000000'){
+            $data->CheckDate = substr($data->CheckDate, 0, 4)."/".substr($data->CheckDate, 4, 2)."/".substr($data->CheckDate, 6, 2);  
+        }
+        else{
+            $data->CheckDate='';
+        }
+        if($data->SetDate > '00000000'){
+            $data->SetDate = substr($data->SetDate, 0, 4)."/".substr($data->SetDate, 4, 2)."/".substr($data->SetDate, 6, 2);  
+        }
+        else{
+            $data->SetDate='';
+        }
+        if($data->RemoveDate > '00000000'){
+            $data->RemoveDate = substr($data->RemoveDate, 0, 4)."/".substr($data->RemoveDate, 4, 2)."/".substr($data->RemoveDate, 6, 2);  
+        }
+        else{
+            $data->RemoveDate='';
+        }
+        if($data->TransDate > '00000000'){
+            $data->TransDate = substr($data->TransDate, 0, 4)."/".substr($data->TransDate, 4, 2)."/".substr($data->TransDate, 6, 2);  
+        }
+        else{
+            $data->TransDate='';
+        }
+        if($data->CloseDate > '00000000'){
+            $data->CloseDate = substr($data->CloseDate, 0, 4)."/".substr($data->CloseDate, 4, 2)."/".substr($data->CloseDate, 6, 2);  
+        }
+        else{
+            $data->CloseDate='';
+        }
+        if($data->InspectDate > '00000000'){
+            $data->InspectDate = substr($data->InspectDate, 0, 4)."/".substr($data->InspectDate, 4, 2)."/".substr($data->InspectDate, 6, 2);  
+        }
+        else{
+            $data->InspectDate='';
+        }
+
+        return response()->json($data,200);
+    }
+
+    public function searchOrderARM1($QNO)
+    {
+        $data = arm1::where('OrderNo',trim($QNO))->first(['arm1.*','帳款金額 as OrderValue1','額外施工費用 as exwork','墊款餘額 as HelpPayValue','退折讓 as Rebate','實收金額 as TrueValue',
+        '應收餘額 as ShouldValue','溢收金額 as MorePayValue','店折扣額 as StoreRebate','代墊餘額 as HelpPayValue1','應收還款 as ShouldBackValue','保固費用 as WarrantyValue','Rebat as RebateValue']);
+        $data->RebateValue = $data->Rebat - $data->退折讓;
+
+        return response()->json($data,200);
+    }
+
+    public function searchOrderDetailitemCheckPC($SuppNo,$colornum){
+        $SuppNo = trim($SuppNo);
+        $data = CTD::where('codeindex',$colornum)->where('Reserve4',$SuppNo)->first();
+        if($data==NULL){
+            return response()->json(0,200);
+        }
+        else{
+            return response()->json(1,200);
+        }
+    }
+
+    public function searchIMChangePriceRecord($PartNo,$QNO){
+        
+        $data = ChangePriceRecord::where('料',$PartNo)->first();    
+
+        if($data!=NULL){
+            $dataSO  = SO::where('QuotNo',$QNO)->first();
+    
+            $data = ChangePriceRecord::where('料',$PartNo)->where('日','<=',$dataSO->PromotionPeriod)->orderby('日','desc')->first();    
+            $data->後價=(int)$data->後價;
+            if($data->後價 % 10 > 0){
+                $data->後價 = $data->後價/10;
+                $data->後價 = ((int)$data->後價)*10+10;
+            }
+            return response()->json([$data,1],200);  
+        }
+        else{
+            $data = im::where('SKU',$PartNo)->first();  
+            $data->FullPrice=(int)$data->FullPrice;
+            if($data->FullPrice % 10 > 0){
+                $data->FullPrice = $data->FullPrice/10;
+                $data->FullPrice = ((int)$data->FullPrice)*10+10;
+            }
+            return response()->json([$data,0],200);  
+        }
+        
+    }
+
+    
+    public function searchColorPrice($PartNo,$Color,$QNO){
+
+        function IMChangePriceRecord($PartNo,$QNO){
+        
+            $data = ChangePriceRecord::where('料',$PartNo)->first();    
+    
+            if($data!=NULL){
+                $dataSO  = SO::where('QuotNo',$QNO)->first();
+        
+                $data = ChangePriceRecord::where('料',$PartNo)->where('日','<=',$dataSO->PromotionPeriod)->orderby('日','desc')->first();    
+    
+                return $data->後價;  
+            }
+            else{
+                $data = im::where('SKU',$PartNo)->first();  
+                return $data->FullPrice;  
+            }
+            
+        }
+
+        function DownPartPrice($QNO,$SKU,$Qty){
+            $TotalPrice = 0;
+            $DownPart = psf2::where('Selescode',$SKU)->get();     //找下階料號  
+            if(count($DownPart)==0){
+                $price = IMChangePriceRecord($SKU,$QNO);
+                $TotalPrice += $price*$Qty;   
+            }
+            else{
+                $TotalDownPrice=0;
+                foreach($DownPart as $DownPartGroup){
+                    $DownPartim  = im::where('SKU',trim($DownPartGroup->Stockcode))->first();  
+                    $TotalDownPrice +=  $DownPartGroup->Qty * $DownPartim->FullPrice;
+                }
+                $TotalPrice += $TotalDownPrice*$Qty;     
+            } 
+            return $TotalPrice;
+        }
+
+        $Color=trim($Color);
+        $PartNo=trim($PartNo);
+        $QNO=trim($QNO);
+        $TotalPrice = 0;  
+        
+        $Partim  = im::where('SKU',$PartNo)->first(); 
+        if(substr($Partim->SupplierNo,0,2)=='SD'){
+            $dataSO = SO::where('QuotNo',$QNO)->first();
+            $data = psf::where('Salescode',$PartNo)->get();     //找中階料號  
+        
+            if(count($data)==0){   
+                $dataColor = SD_Cost_Price::where('Range_',$Color)->where('Date_','<=',$dataSO->PromotionPeriod)->orderby('Date_','desc')->first();   
+                $TotalPrice += $dataColor->Price_ * $Partim->m3;           
+            }
+            else{
+                foreach($data as $PartGroup){  
+                    $Partim  = im::where('SKU',trim($PartGroup->Stockcode))->first();      
+                    $Colorcheck  = vm::where('SuppNo',$Partim->SupplierNo)->first();
+                   
+                    if(trim($Colorcheck->LastTrans)=='A'){       //色號加權
+                        $dataColor = SD_Cost_Price::where('Range_',$Color)->where('Date_','<=',$dataSO->PromotionPeriod)->orderby('Date_','desc')->first();   
+                        if($dataColor==null){
+                            $TotalPrice += DownPartPrice($QNO,$Partim->SKU,$PartGroup->Qty);
+                        }
+                        else{
+                            $TotalPrice += $dataColor->Price_ * $Partim->m3;
+                        }
+                    }
+                    else{
+                        $TotalPrice += DownPartPrice($QNO,$Partim->SKU,$PartGroup->Qty);
+                    }
+                }
+            }
+        }
+        else if(substr($Partim->SupplierNo,0,2)=='SF'){
+            $dataSO = SO::where('QuotNo',$QNO)->first();
+            $data = SF002_Psf::where('Salescode',$PartNo)->get();    //找中階料號   
+          
+            if(count($data)==0){   
+                $dataColor = SF002_Cost_Price::where('色號',$Color)->where('板類',$Partim->Type2)->where('日期','<=',$dataSO->PromotionPeriod)->orderby('日期','desc')->first();   
+                $TotalPrice += $dataColor->售價 * $PartGroup->Qty;
+                       
+            }
+            else{
+                foreach($data as $PartGroup){  
+                    $Partim  = im::where('SKU',trim($PartGroup->StockCode))->first(); 
+                    $Colorcheck  = vm::where('SuppNo',$Partim->SupplierNo)->first();
+                    if(trim($Colorcheck->LastTrans)=='A'){                  //色號加權
+                        $dataColor = SF002_Cost_Price::where('色號',$Color)->where('板類',$Partim->Type2)->where('日期','<=',$dataSO->PromotionPeriod)->orderby('日期','desc')->first();   
+                        if($dataColor==null){                           
+                            $TotalPrice += DownPartPrice($QNO,$Partim->SKU,$PartGroup->Qty);
+                        }
+                        else{
+                            $TotalPrice += $dataColor->售價 * $PartGroup->Qty;
+                        }    
+                    }
+                    else{
+                        //return response()->json(trim($PartGroup->StockCode) ,200);
+                        $TotalPrice += DownPartPrice($QNO,$Partim->SKU,$PartGroup->Qty);
+                        
+                    }
+                }
+               
+            }
+        }     
+        if($TotalPrice % 10 > 0){
+            $TotalPrice = $TotalPrice/10;
+            $TotalPrice = ((int)$TotalPrice)*10+10;
+        }
+        return response()->json((int)$TotalPrice ,200);
+           
+    }
+
 }

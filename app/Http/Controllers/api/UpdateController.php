@@ -9,6 +9,9 @@ use App\Models\CM_接待自評;
 use App\Models\CmMemo;
 use App\Models\CTD;
 use App\Models\chk;
+use App\Models\sod;
+use App\Models\SO;
+use App\Models\arm1;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
@@ -400,6 +403,41 @@ class UpdateController extends Controller
             'Time_' => date('His'),
         ]);
          return response()->json($data['CustNo'], 200);
+    }
+
+    public function UpdateOrderDetail(request $request){
+        $data = $request->all();
+        $dataDetailitem = $data['OrderDetailitem'];
+        $dataArm1 = $data['OrderDataARM1'];
+        $TotalPrice = 0;
+
+        for($i=0;$i<count($dataDetailitem);$i++){
+            sod::where('ItemNo', $dataDetailitem[$i]['ItemNo'])
+            ->update([
+                'Ragne' => ($dataDetailitem[$i]['Ragne'] == NULL) ? '' :  $dataDetailitem[$i]['Ragne'],
+                'UnitPrice' => $dataDetailitem[$i]['UnitPrice'],
+                'OrderValue' => $dataDetailitem[$i]['OrderValue'],
+                'SalesCode' => $dataDetailitem[$i]['SalesCode'],
+                'Qty' => $dataDetailitem[$i]['Qty'],
+            ]);
+            $TotalPrice+=$dataDetailitem[$i]['OrderValue'];
+        }
+        SO::where('QuotNo', $dataDetailitem[0]['QuotNo'])
+            ->update([
+                'TotalValue' => $TotalPrice,
+            ]);
+
+        arm1::where('CustNo', $dataDetailitem[0]['CustNo'])
+            ->where('OrderNo', $dataDetailitem[0]['QuotNo'])
+            ->update([
+                'OrderValue' => $TotalPrice,
+                'Payment' => $TotalPrice,
+                'MFI' => $TotalPrice,
+                '帳款金額' => $TotalPrice,
+                '實收金額' => $TotalPrice-$dataArm1['RebateValue'],  //RebateValue = Rebat - 退折讓
+            ]);
+
+        return response()->json($data, 200);
     }
 
 }
