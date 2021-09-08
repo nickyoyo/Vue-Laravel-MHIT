@@ -296,6 +296,7 @@ export default {
    },
   data: function () {
     return {
+
        refnew:false,
        SuppNo:0,
 
@@ -390,32 +391,41 @@ export default {
         this.OrderDetailitem[index].OrderValue = this.OrderDetailitem[index].UnitPrice * this.OrderDetailitem[index].Qty;
     },
     SetTypeColor:function(index){
-        this.OrderDetailitem[this.DetailIndex].Ragne = this.OrderDetailitem[this.DetailIndex].Ragne.replace(/\s*/g,"");
-        axios
-            .get("/api/search/ColorNoType/"+ this.OrderDetailitem[this.DetailIndex].Ragne + "&&" +  this.OrderDetailitem[index].SalesCodeData.SupplierNo.SuppNo)
-            .then((response) => {
-            console.log(response.data);        
-                if(response.data[1] == 0){
-                    this.OrderDetailitem[index].Ragne = this.OrderOrderDetailitemstorage[index].Ragne;  
-                    this.OrderDetailitem[index].RangeName = this.OrderOrderDetailitemstorage[index].RangeName;
- 
-                }   
-                else{
-                    this.OrderDetailitem[index].Ragne = response.data[0].codeindex;   
-                    this.OrderDetailitem[index].RangeName = response.data[0].codeDesc;
-                    
-                    axios
-                    .get("/api/search/ColorPrice/"+ this.OrderDetailitem[index].SalesCode +"&&" + this.OrderDetailitem[index].Ragne +"&&" + this.OrderData[0].QuotNo)
-                    .then((response) => {
-                    console.log(response.data);
-                        this.OrderDetailitem[index].UnitPrice = response.data;
-                        this.OrderDetailitem[index].Qty = 1;
-                        this.OrderDetailitem[index].OrderValue = this.OrderDetailitem[index].UnitPrice;
-                    });       
+        this.OrderDetailitem[index].Ragne = this.OrderDetailitem[index].Ragne.replace(/\s*/g,"");
+        if(this.OrderDetailitem[index].Ragne==''){
+            document.getElementsByName('Color[]')[index].select();     
+            this.OrderDetailitem[index].Ragne = this.OrderOrderDetailitemstorage[index].Ragne;  
+            this.OrderDetailitem[index].RangeName = this.OrderOrderDetailitemstorage[index].RangeName;   
+            alert("色號不可為空");    
+         }
+        else{
+            axios
+                .get("/api/search/ColorNoType/"+ this.OrderDetailitem[index].Ragne + "&&" +  this.OrderDetailitem[index].SalesCodeData.SupplierNo.SuppNo)
+                .then((response) => {
+                console.log(response.data);        
+                    if(response.data[1] == 0){
+                        this.OrderDetailitem[index].Ragne = this.OrderOrderDetailitemstorage[index].Ragne;  
+                        this.OrderDetailitem[index].RangeName = this.OrderOrderDetailitemstorage[index].RangeName;
+                        document.getElementsByName('Color[]')[index].select();        
+                        alert("此料號並無此色號");    
+                    }   
+                    else{
+                        this.OrderDetailitem[index].Ragne = response.data[0].codeindex;   
+                        this.OrderDetailitem[index].RangeName = response.data[0].codeDesc;
+                        
+                        axios
+                        .get("/api/search/ColorPrice/"+ this.OrderDetailitem[index].SalesCode +"&&" + this.OrderDetailitem[index].Ragne +"&&" + this.OrderData[0].QuotNo)
+                        .then((response) => {
+                        console.log(response.data);
+                            this.OrderDetailitem[index].UnitPrice = response.data;
+                            this.OrderDetailitem[index].Qty = 1;
+                            this.OrderDetailitem[index].OrderValue = this.OrderDetailitem[index].UnitPrice;
+                        });       
 
-                    this.OrderOrderDetailitemstorage[index]=Object.assign({}, this.OrderDetailitem[index]);
-                }
-            });
+                        this.OrderOrderDetailitemstorage[index]=Object.assign({}, this.OrderDetailitem[index]);
+                    }
+                });
+            }
     },  
     SetTypePart:function(index){
         this.OrderDetailitem[index].SalesCode = this.OrderDetailitem[index].SalesCode.replace(/\s*/g,"");
@@ -464,38 +474,45 @@ export default {
          this.DetailIndex = index;
     },
     TypeColorTab:function(index){
-         this.OrderDetailitem[this.DetailIndex].Ragne = this.OrderDetailitem[this.DetailIndex].Ragne.replace(/\s*/g,"");
-            axios
-                .get("/api/search/ColorNoType/"+ this.OrderDetailitem[this.DetailIndex].Ragne + "&&" +  this.OrderDetailitem[index].SalesCodeData.SupplierNo.SuppNo)
-                .then((response) => {
-                console.log(response.data);        
-                    if(response.data[1] == 0){
-                        this.OrderDetailitem[index].Ragne = this.OrderOrderDetailitemstorage[index].Ragne;  
-                        this.OrderDetailitem[index].RangeName = this.OrderOrderDetailitemstorage[index].RangeName;
-                        document.getElementsByName('Color[]')[index].select();        
-                        alert("此料號並無此色號");    
-                    }   
-                    else{
-                        this.OrderDetailitem[index].Ragne = response.data[0].codeindex;   
-                        this.OrderDetailitem[index].RangeName = response.data[0].codeDesc;  
-                        this.OrderOrderDetailitemstorage[index]=Object.assign({}, this.OrderDetailitem[index]);
-                    }
-                });
-        var colornum;
-         if(this.OrderDetailitem[index].Ragne==""){
-            colornum='X';
+         this.OrderDetailitem[index].Ragne = this.OrderDetailitem[index].Ragne.replace(/\s*/g,"");
+         if(this.OrderDetailitem[index].Ragne==''){    
+            this.OrderDetailitem[index].Ragne = this.OrderOrderDetailitemstorage[index].Ragne;  
+            this.OrderDetailitem[index].RangeName = this.OrderOrderDetailitemstorage[index].RangeName;   
+            alert("色號不可為空");     
+            document.getElementsByName('Part[]')[index].select();           //注意程式碼 document.getElementsByName('Color[]')[index].select();
          }
          else{
-            colornum=this.OrderDetailitem[index].Ragne;
-         }
-        axios
-        .get("/api/search/OrderDetailitemCheckPC/"+ this.OrderDetailitem[index].SalesCodeData.SupplierNo.SuppNo +"&&" + colornum)
-        .then((response) => {
-          console.log(response.data);
-            if(response.data==0){
-                this.OrderDetailitem[index]=Object.assign({}, this.OrderOrderDetailitemstorage[index]); 
+                axios
+                    .get("/api/search/ColorNoType/"+ this.OrderDetailitem[index].Ragne + "&&" +  this.OrderDetailitem[index].SalesCodeData.SupplierNo.SuppNo)
+                    .then((response) => {
+                    console.log(response.data);        
+                        if(response.data[1] == 0){
+                            this.OrderDetailitem[index].Ragne = this.OrderOrderDetailitemstorage[index].Ragne;  
+                            this.OrderDetailitem[index].RangeName = this.OrderOrderDetailitemstorage[index].RangeName;
+                            document.getElementsByName('Color[]')[index].select();           
+                        }   
+                        else{
+                            this.OrderDetailitem[index].Ragne = response.data[0].codeindex;   
+                            this.OrderDetailitem[index].RangeName = response.data[0].codeDesc;  
+                            this.OrderOrderDetailitemstorage[index]=Object.assign({}, this.OrderDetailitem[index]);
+                        }
+                    });
+            var colornum;
+            if(this.OrderDetailitem[index].Ragne==""){
+                colornum='X';
             }
-        });  
+            else{
+                colornum=this.OrderDetailitem[index].Ragne;
+            }
+            axios
+            .get("/api/search/OrderDetailitemCheckPC/"+ this.OrderDetailitem[index].SalesCodeData.SupplierNo.SuppNo +"&&" + colornum)
+            .then((response) => {
+            console.log(response.data);
+                if(response.data==0){
+                    this.OrderDetailitem[index]=Object.assign({}, this.OrderOrderDetailitemstorage[index]); 
+                }
+            });
+        }  
     },
     nextcol:function(index){
             this.DetailIndex = index+1;  
@@ -515,7 +532,7 @@ export default {
           console.log(response.data);
           this.OrderDetailitem = response.data;
         });
-     axios
+         axios
         .get("/api/search/OrderDetailitem/"+this.QuotNo)
         .then((response) => {
           console.log(response.data);

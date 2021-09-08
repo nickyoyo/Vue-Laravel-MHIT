@@ -31,7 +31,7 @@
           value="團購"
         />
         &nbsp;
-        <button @click.prevent="Modify" type="submit">資料修改</button>&nbsp;
+        <button @click.prevent="Modify" type="submit" :disabled="pushdetail==0">資料修改</button>&nbsp;
       </div>
       <br />
 
@@ -73,7 +73,7 @@
                 <td v-if="Selectorder==index" style="color:red;font-weight:bold;" class="orderth3">{{ item.QuotNo }}</td>
                 <td v-else class="orderth3">{{ item.QuotNo }}</td>
                 <td class="orderth4">{{ item.TotalValue }}</td>
-                <td><button @click="GetOrderDetail(index)">明細</button></td>
+                <td><button @click="GetOrderDetail(index)" :disabled="detailbutton==0">明細</button></td>
               </tr>
             </table>
           </div>
@@ -378,6 +378,9 @@ export default {
       Selectorder:-1,
       QuotNo:[],
 
+      detailbutton:1,
+      pushdetail:0,
+
       modifyref:1,
     };
   },
@@ -391,6 +394,8 @@ export default {
         this.modifyref=0;
     },
     GetOrderDetail: function (index) {
+      this.pushdetail=1;
+      this.detailbutton=0;
       this.modifyref=0;
       this.Selectorder=index;    
       this.QuotNo = this.OrderList[this.Selectorder].QuotNo;
@@ -406,6 +411,7 @@ export default {
           console.log(response.data);
           this.OrderDetailitem = response.data;  
           $(".modal").modal('hide');
+           this.detailbutton=1;
         });
       axios
         .get("/api/search/Orderdata/" + this.OrderList[index].QuotNo)
