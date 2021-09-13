@@ -28,7 +28,6 @@ export default {
   data() {
     return {
       PID: [],
-      EMID:[],
       msg: "",
     };
   },
