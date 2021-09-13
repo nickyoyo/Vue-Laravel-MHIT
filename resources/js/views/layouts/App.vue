@@ -5,27 +5,6 @@
 	</div>
 </template>
 
-<script>
-import { computed } from '@vue/runtime-core';
-import { useStore } from 'vuex';
-	import Header from "./Header";
-	export default {
-		components: { Header },
-		setup(){
-			const store = useStore();
-			const count = computed(() => store.state.count);
-		
-		function increment(){
-			store.commit("increment");
-		}
-		function decrement(){
-			store.commit("decrement");
-		}
-		return {count ,increment ,decrement}
-		}
-	};
-</script>
-
 <style lang="css">
 	/* GLOBAL STYLES */
 	body {
