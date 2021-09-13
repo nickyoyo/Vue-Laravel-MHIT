@@ -367,7 +367,6 @@
 		memo:"",
 	}],
 
-	newData:[],
 	checkrepeat:0,			//檢查日期是否重複	
     };
   },
