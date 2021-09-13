@@ -50,11 +50,6 @@ export default {
         this.PID = CustNo;
         $("#CMList").modal('hide');   
       },
-     modifyCM: function () {
-       const CNO = this.PID
-        const state = 2
-      this.$router.push({ name: "CMpage", params: { CNO,state } });
-    },
   },
   mounted() {
         document.getElementById('PID').addEventListener('keydown',function(e){
