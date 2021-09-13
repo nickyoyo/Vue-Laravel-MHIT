@@ -16,9 +16,6 @@
                     <dl>
 						<dt>TEST</dt> 
 						<dd><router-link to="/PersonalData" >員工資料</router-link></dd>
-                        <dd><router-link to="/smallwindow" >住址額外視窗</router-link></dd>
-                        <dd><router-link to="/quickButton">快捷鍵</router-link></dd>
-						<dd><router-link to="/BVTest">新增表格</router-link></dd>
                     </dl>
                 </li> 
             </ul>
