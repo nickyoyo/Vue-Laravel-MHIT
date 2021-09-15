@@ -32,7 +32,7 @@
                 left:300px;
                 height: 800px;
                 width:1100px;
-                margin: 0px auto;" :disabled="isdisable == 0">
+                margin: 0px auto;">
     <div class="topic">
       <h1>填寫客戶基本資料</h1>
     </div>
@@ -658,7 +658,6 @@ export default {
   data() {
     return {
        newdate:new Date(Date.now()).toISOString().slice(0,10),
-        isdisable:0,
       space: [
         { type: "|規劃空間", value: "false", data: "全室" },
         { type: "|規劃空間", value: "false", data: "客廳" },
