@@ -17891,10 +17891,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
 /* harmony import */ var _dropwindow_CMList_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../dropwindow/CMList.vue */ "./resources/js/views/dropwindow/CMList.vue");
-/* harmony import */ var _dropwindow_PartNum_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../dropwindow/PartNum.vue */ "./resources/js/views/dropwindow/PartNum.vue");
-/* harmony import */ var _dropwindow_ModifyOrderpage_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../dropwindow/ModifyOrderpage.vue */ "./resources/js/views/dropwindow/ModifyOrderpage.vue");
-
-
 
 
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
@@ -17902,9 +17898,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "CMsendSearch",
   components: {
-    CMList: _dropwindow_CMList_vue__WEBPACK_IMPORTED_MODULE_0__.default,
-    PartNum: _dropwindow_PartNum_vue__WEBPACK_IMPORTED_MODULE_1__.default,
-    ModifyOrderpage: _dropwindow_ModifyOrderpage_vue__WEBPACK_IMPORTED_MODULE_2__.default
+    CMList: _dropwindow_CMList_vue__WEBPACK_IMPORTED_MODULE_0__.default
   },
   data: function data() {
     return {
@@ -17941,7 +17935,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   mounted: function mounted() {
     document.getElementById('PID').addEventListener('keydown', function (e) {
       if (e.shiftKey) {
-        $("#Modify").modal('show');
+        $("#CMList").modal('show');
       }
     }, false);
   }
@@ -27795,29 +27789,22 @@ const _hoisted_1 = {
   "data-backdrop": "static",
   "data-keyboard": "true"
 }
-const _hoisted_2 = {
-  class: "modal",
-  id: "Modify",
-  tabindex: "-1",
-  style: {"display":"none"},
-  "aria-hidden": "true"
-}
-const _hoisted_3 = { class: "max-w-6xl mx-auto sm:px-6 lg:px-8" }
-const _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", null, "查詢門市訂單", -1 /* HOISTED */)
-const _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", { for: "PID" }, "客戶編號:", -1 /* HOISTED */)
+const _hoisted_2 = { class: "max-w-6xl mx-auto sm:px-6 lg:px-8" }
+const _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", null, "查詢門市訂單", -1 /* HOISTED */)
+const _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", { for: "PID" }, "客戶編號:", -1 /* HOISTED */)
+const _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
 const _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
 const _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
-const _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
-const _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("  ")
+const _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("  ")
+const _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
 const _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
-const _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1 /* HOISTED */)
-const _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+const _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
   type: "button",
   onclick: "history.back()",
   value: "Back"
 }, null, -1 /* HOISTED */)
-const _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("  ")
-const _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
+const _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("  ")
+const _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
   href: "/",
   class: "back",
   style: {"color":"black","font-size":"10px"}
@@ -27825,19 +27812,15 @@ const _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_CMList = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("CMList")
-  const _component_ModifyOrderpage = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ModifyOrderpage")
 
   return ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [
       (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_CMList, { onGetCustNo: $options.setCustNo }, null, 8 /* PROPS */, ["onGetCustNo"])
     ]),
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [
-      (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ModifyOrderpage, { index: _ctx.Selectorder }, null, 8 /* PROPS */, ["index"])
-    ]),
-    (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [
+      _hoisted_3,
       _hoisted_4,
       _hoisted_5,
-      _hoisted_6,
       (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
         type: "text",
         "onUpdate:modelValue": _cache[1] || (_cache[1] = $event => ($data.PID = $event)),
@@ -27851,18 +27834,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         hidden: $data.msg=='',
         style: {"color":"red"}
       }, "此客編不存在", 8 /* PROPS */, ["hidden"]),
+      _hoisted_6,
       _hoisted_7,
-      _hoisted_8,
       (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
         onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.searchOrder(...args)), ["prevent"])),
         type: "submit"
       }, "查詢資料"),
+      _hoisted_8,
       _hoisted_9,
       _hoisted_10,
       _hoisted_11,
       _hoisted_12,
-      _hoisted_13,
-      _hoisted_14
+      _hoisted_13
     ])
   ], 64 /* STABLE_FRAGMENT */))
 }

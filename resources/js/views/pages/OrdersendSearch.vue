@@ -4,9 +4,7 @@
      <CMList @getCustNo="setCustNo"></CMList>
   </div>
 
-    <div class="modal" id="Modify" tabindex="-1" style="display: none;" aria-hidden="true">
-            <ModifyOrderpage v-bind:index="Selectorder"></ModifyOrderpage>
-  </div>
+ 
 
   <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
       <h1>查詢門市訂單</h1>
@@ -23,15 +21,12 @@
 
 <script>
 import CMList from "../dropwindow/CMList.vue";
-import PartNum from "../dropwindow/PartNum.vue";
-import ModifyOrderpage from "../dropwindow/ModifyOrderpage.vue";
+
   const axios = require("axios");
 export default {
   name: "CMsendSearch",
   components: {
       CMList,
-      PartNum,
-      ModifyOrderpage,
     },
   data() {
     return {
@@ -61,7 +56,7 @@ export default {
    mounted() {
         document.getElementById('PID').addEventListener('keydown',function(e){
             if (e.shiftKey) {        
-                  $("#Modify").modal('show');    
+                  $("#CMList").modal('show');    
             }
                 },false);
     },
