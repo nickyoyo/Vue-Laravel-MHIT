@@ -16580,6 +16580,15 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         console.log(response);
       });
       this.$emit('my-event', this.msg);
+    },
+    FClear: function FClear() {
+      this.cust[0].FavColor = '';
+    },
+    LClear: function LClear() {
+      this.cust[0].LastModify = '';
+    },
+    WClear: function WClear() {
+      this.cust[0].Woodwork = '';
     }
   },
   props: {
@@ -20018,7 +20027,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _CMcreate_vue_vue_type_template_id_067ad3e0_bindings_newdate_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_test_data_addresschoose_data_CusAddressC_data_CusAddressS_data_FittingAddC_data_FittingAddS_data_data_data_zip_data_street_data_addressState_data_stateA_data_getaddress_options_getcusaddress_options_getfitaddress_options_sendaddress_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CMcreate.vue?vue&type=template&id=067ad3e0&bindings={"newdate":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","test":"data","addresschoose":"data","CusAddressC":"data","CusAddressS":"data","FittingAddC":"data","FittingAddS":"data","data":"data","zip":"data","street":"data","addressState":"data","stateA":"data","getaddress":"options","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","save":"options","msg":"props"} */ "./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={\"newdate\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"test\":\"data\",\"addresschoose\":\"data\",\"CusAddressC\":\"data\",\"CusAddressS\":\"data\",\"FittingAddC\":\"data\",\"FittingAddS\":\"data\",\"data\":\"data\",\"zip\":\"data\",\"street\":\"data\",\"addressState\":\"data\",\"stateA\":\"data\",\"getaddress\":\"options\",\"getcusaddress\":\"options\",\"getfitaddress\":\"options\",\"sendaddress\":\"options\",\"save\":\"options\",\"msg\":\"props\"}");
+/* harmony import */ var _CMcreate_vue_vue_type_template_id_067ad3e0_bindings_newdate_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_test_data_addresschoose_data_CusAddressC_data_CusAddressS_data_FittingAddC_data_FittingAddS_data_data_data_zip_data_street_data_addressState_data_stateA_data_getaddress_options_getcusaddress_options_getfitaddress_options_sendaddress_options_save_options_FClear_options_LClear_options_WClear_options_msg_props___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CMcreate.vue?vue&type=template&id=067ad3e0&bindings={"newdate":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","test":"data","addresschoose":"data","CusAddressC":"data","CusAddressS":"data","FittingAddC":"data","FittingAddS":"data","data":"data","zip":"data","street":"data","addressState":"data","stateA":"data","getaddress":"options","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","save":"options","FClear":"options","LClear":"options","WClear":"options","msg":"props"} */ "./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={\"newdate\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"test\":\"data\",\"addresschoose\":\"data\",\"CusAddressC\":\"data\",\"CusAddressS\":\"data\",\"FittingAddC\":\"data\",\"FittingAddS\":\"data\",\"data\":\"data\",\"zip\":\"data\",\"street\":\"data\",\"addressState\":\"data\",\"stateA\":\"data\",\"getaddress\":\"options\",\"getcusaddress\":\"options\",\"getfitaddress\":\"options\",\"sendaddress\":\"options\",\"save\":\"options\",\"FClear\":\"options\",\"LClear\":\"options\",\"WClear\":\"options\",\"msg\":\"props\"}");
 /* harmony import */ var _CMcreate_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CMcreate.vue?vue&type=script&lang=js */ "./resources/js/views/pages/CMcreate.vue?vue&type=script&lang=js");
 /* harmony import */ var _CMcreate_vue_vue_type_style_index_0_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CMcreate.vue?vue&type=style&index=0&lang=css */ "./resources/js/views/pages/CMcreate.vue?vue&type=style&index=0&lang=css");
 
@@ -20026,7 +20035,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-_CMcreate_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _CMcreate_vue_vue_type_template_id_067ad3e0_bindings_newdate_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_test_data_addresschoose_data_CusAddressC_data_CusAddressS_data_FittingAddC_data_FittingAddS_data_data_data_zip_data_street_data_addressState_data_stateA_data_getaddress_options_getcusaddress_options_getfitaddress_options_sendaddress_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__.render
+_CMcreate_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _CMcreate_vue_vue_type_template_id_067ad3e0_bindings_newdate_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_test_data_addresschoose_data_CusAddressC_data_CusAddressS_data_FittingAddC_data_FittingAddS_data_data_data_zip_data_street_data_addressState_data_stateA_data_getaddress_options_getcusaddress_options_getfitaddress_options_sendaddress_options_save_options_FClear_options_LClear_options_WClear_options_msg_props___WEBPACK_IMPORTED_MODULE_0__.render
 /* hot reload */
 if (false) {}
 
@@ -21076,12 +21085,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={\"newdate\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"test\":\"data\",\"addresschoose\":\"data\",\"CusAddressC\":\"data\",\"CusAddressS\":\"data\",\"FittingAddC\":\"data\",\"FittingAddS\":\"data\",\"data\":\"data\",\"zip\":\"data\",\"street\":\"data\",\"addressState\":\"data\",\"stateA\":\"data\",\"getaddress\":\"options\",\"getcusaddress\":\"options\",\"getfitaddress\":\"options\",\"sendaddress\":\"options\",\"save\":\"options\",\"msg\":\"props\"}":
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={"newdate":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","test":"data","addresschoose":"data","CusAddressC":"data","CusAddressS":"data","FittingAddC":"data","FittingAddS":"data","data":"data","zip":"data","street":"data","addressState":"data","stateA":"data","getaddress":"options","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","save":"options","msg":"props"} ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={\"newdate\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"test\":\"data\",\"addresschoose\":\"data\",\"CusAddressC\":\"data\",\"CusAddressS\":\"data\",\"FittingAddC\":\"data\",\"FittingAddS\":\"data\",\"data\":\"data\",\"zip\":\"data\",\"street\":\"data\",\"addressState\":\"data\",\"stateA\":\"data\",\"getaddress\":\"options\",\"getcusaddress\":\"options\",\"getfitaddress\":\"options\",\"sendaddress\":\"options\",\"save\":\"options\",\"FClear\":\"options\",\"LClear\":\"options\",\"WClear\":\"options\",\"msg\":\"props\"}":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={"newdate":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","test":"data","addresschoose":"data","CusAddressC":"data","CusAddressS":"data","FittingAddC":"data","FittingAddS":"data","data":"data","zip":"data","street":"data","addressState":"data","stateA":"data","getaddress":"options","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","save":"options","FClear":"options","LClear":"options","WClear":"options","msg":"props"} ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={"newdate":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","test":"data","addresschoose":"data","CusAddressC":"data","CusAddressS":"data","FittingAddC":"data","FittingAddS":"data","data":"data","zip":"data","street":"data","addressState":"data","stateA":"data","getaddress":"options","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","save":"options","msg":"props"} .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={"newdate":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","test":"data","addresschoose":"data","CusAddressC":"data","CusAddressS":"data","FittingAddC":"data","FittingAddS":"data","data":"data","zip":"data","street":"data","addressState":"data","stateA":"data","getaddress":"options","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","save":"options","FClear":"options","LClear":"options","WClear":"options","msg":"props"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -21089,9 +21098,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CMcreate_vue_vue_type_template_id_067ad3e0_bindings_newdate_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_test_data_addresschoose_data_CusAddressC_data_CusAddressS_data_FittingAddC_data_FittingAddS_data_data_data_zip_data_street_data_addressState_data_stateA_data_getaddress_options_getcusaddress_options_getfitaddress_options_sendaddress_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CMcreate_vue_vue_type_template_id_067ad3e0_bindings_newdate_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_test_data_addresschoose_data_CusAddressC_data_CusAddressS_data_FittingAddC_data_FittingAddS_data_data_data_zip_data_street_data_addressState_data_stateA_data_getaddress_options_getcusaddress_options_getfitaddress_options_sendaddress_options_save_options_FClear_options_LClear_options_WClear_options_msg_props___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CMcreate_vue_vue_type_template_id_067ad3e0_bindings_newdate_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_test_data_addresschoose_data_CusAddressC_data_CusAddressS_data_FittingAddC_data_FittingAddS_data_data_data_zip_data_street_data_addressState_data_stateA_data_getaddress_options_getcusaddress_options_getfitaddress_options_sendaddress_options_save_options_msg_props___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./CMcreate.vue?vue&type=template&id=067ad3e0&bindings={"newdate":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","test":"data","addresschoose":"data","CusAddressC":"data","CusAddressS":"data","FittingAddC":"data","FittingAddS":"data","data":"data","zip":"data","street":"data","addressState":"data","stateA":"data","getaddress":"options","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","save":"options","msg":"props"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={\"newdate\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"test\":\"data\",\"addresschoose\":\"data\",\"CusAddressC\":\"data\",\"CusAddressS\":\"data\",\"FittingAddC\":\"data\",\"FittingAddS\":\"data\",\"data\":\"data\",\"zip\":\"data\",\"street\":\"data\",\"addressState\":\"data\",\"stateA\":\"data\",\"getaddress\":\"options\",\"getcusaddress\":\"options\",\"getfitaddress\":\"options\",\"sendaddress\":\"options\",\"save\":\"options\",\"msg\":\"props\"}");
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_CMcreate_vue_vue_type_template_id_067ad3e0_bindings_newdate_data_space_data_likeStyle_data_UDS_data_UseExp_data_cust_data_CustType_data_BuyReason_data_Family_data_HouseType_data_Cmemo_data_Gender_data_test_data_addresschoose_data_CusAddressC_data_CusAddressS_data_FittingAddC_data_FittingAddS_data_data_data_zip_data_street_data_addressState_data_stateA_data_getaddress_options_getcusaddress_options_getfitaddress_options_sendaddress_options_save_options_FClear_options_LClear_options_WClear_options_msg_props___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./CMcreate.vue?vue&type=template&id=067ad3e0&bindings={"newdate":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","test":"data","addresschoose":"data","CusAddressC":"data","CusAddressS":"data","FittingAddC":"data","FittingAddS":"data","data":"data","zip":"data","street":"data","addressState":"data","stateA":"data","getaddress":"options","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","save":"options","FClear":"options","LClear":"options","WClear":"options","msg":"props"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={\"newdate\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"test\":\"data\",\"addresschoose\":\"data\",\"CusAddressC\":\"data\",\"CusAddressS\":\"data\",\"FittingAddC\":\"data\",\"FittingAddS\":\"data\",\"data\":\"data\",\"zip\":\"data\",\"street\":\"data\",\"addressState\":\"data\",\"stateA\":\"data\",\"getaddress\":\"options\",\"getcusaddress\":\"options\",\"getfitaddress\":\"options\",\"sendaddress\":\"options\",\"save\":\"options\",\"FClear\":\"options\",\"LClear\":\"options\",\"WClear\":\"options\",\"msg\":\"props\"}");
 
 
 /***/ }),
@@ -22703,10 +22712,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={\"newdate\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"test\":\"data\",\"addresschoose\":\"data\",\"CusAddressC\":\"data\",\"CusAddressS\":\"data\",\"FittingAddC\":\"data\",\"FittingAddS\":\"data\",\"data\":\"data\",\"zip\":\"data\",\"street\":\"data\",\"addressState\":\"data\",\"stateA\":\"data\",\"getaddress\":\"options\",\"getcusaddress\":\"options\",\"getfitaddress\":\"options\",\"sendaddress\":\"options\",\"save\":\"options\",\"msg\":\"props\"}":
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={"newdate":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","test":"data","addresschoose":"data","CusAddressC":"data","CusAddressS":"data","FittingAddC":"data","FittingAddS":"data","data":"data","zip":"data","street":"data","addressState":"data","stateA":"data","getaddress":"options","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","save":"options","msg":"props"} ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={\"newdate\":\"data\",\"space\":\"data\",\"likeStyle\":\"data\",\"UDS\":\"data\",\"UseExp\":\"data\",\"cust\":\"data\",\"CustType\":\"data\",\"BuyReason\":\"data\",\"Family\":\"data\",\"HouseType\":\"data\",\"Cmemo\":\"data\",\"Gender\":\"data\",\"test\":\"data\",\"addresschoose\":\"data\",\"CusAddressC\":\"data\",\"CusAddressS\":\"data\",\"FittingAddC\":\"data\",\"FittingAddS\":\"data\",\"data\":\"data\",\"zip\":\"data\",\"street\":\"data\",\"addressState\":\"data\",\"stateA\":\"data\",\"getaddress\":\"options\",\"getcusaddress\":\"options\",\"getfitaddress\":\"options\",\"sendaddress\":\"options\",\"save\":\"options\",\"FClear\":\"options\",\"LClear\":\"options\",\"WClear\":\"options\",\"msg\":\"props\"}":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/pages/CMcreate.vue?vue&type=template&id=067ad3e0&bindings={"newdate":"data","space":"data","likeStyle":"data","UDS":"data","UseExp":"data","cust":"data","CustType":"data","BuyReason":"data","Family":"data","HouseType":"data","Cmemo":"data","Gender":"data","test":"data","addresschoose":"data","CusAddressC":"data","CusAddressS":"data","FittingAddC":"data","FittingAddS":"data","data":"data","zip":"data","street":"data","addressState":"data","stateA":"data","getaddress":"options","getcusaddress":"options","getfitaddress":"options","sendaddress":"options","save":"options","FClear":"options","LClear":"options","WClear":"options","msg":"props"} ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -23080,7 +23089,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       _hoisted_10,
       (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("form", {
         action: "submit.html",
-        onSubmit: _cache[51] || (_cache[51] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => (_ctx.postdata(...args)), ["prevent"]))
+        onSubmit: _cache[54] || (_cache[54] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => (_ctx.postdata(...args)), ["prevent"]))
       }, [
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [
           (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [
@@ -23695,10 +23704,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                   type: "date",
                   class: "form-control",
                   "onUpdate:modelValue": _cache[40] || (_cache[40] = $event => ($data.cust[0].FavColor = $event)),
+                  style: {"display":"inline","width":"160px"},
                   min: $data.newdate
                 }, null, 8 /* PROPS */, ["min"]), [
                   [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.cust[0].FavColor]
-                ])
+                ]),
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+                  onClick: _cache[41] || (_cache[41] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.FClear(...args)), ["prevent"])),
+                  class: "clearbutton"
+                }, " X")
               ])
             ]),
             _hoisted_145,
@@ -23709,11 +23723,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
                   type: "date",
                   class: "form-control",
-                  "onUpdate:modelValue": _cache[41] || (_cache[41] = $event => ($data.cust[0].Woodwork = $event)),
+                  "onUpdate:modelValue": _cache[42] || (_cache[42] = $event => ($data.cust[0].Woodwork = $event)),
+                  style: {"display":"inline","width":"160px"},
                   min: $data.newdate
                 }, null, 8 /* PROPS */, ["min"]), [
                   [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.cust[0].Woodwork]
-                ])
+                ]),
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+                  onClick: _cache[43] || (_cache[43] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.WClear(...args)), ["prevent"])),
+                  class: "clearbutton",
+                  disabled: _ctx.state == 1
+                }, " X", 8 /* PROPS */, ["disabled"])
               ])
             ]),
             _hoisted_149,
@@ -23724,12 +23744,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
                   type: "date",
                   class: "form-control",
-                  "onUpdate:modelValue": _cache[42] || (_cache[42] = $event => ($data.cust[0].LastModify = $event)),
+                  "onUpdate:modelValue": _cache[44] || (_cache[44] = $event => ($data.cust[0].LastModify = $event)),
+                  style: {"display":"inline","width":"160px"},
                   min: $data.newdate,
                   required: ""
                 }, null, 8 /* PROPS */, ["min"]), [
                   [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.cust[0].LastModify]
-                ])
+                ]),
+                (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+                  onClick: _cache[45] || (_cache[45] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.LClear(...args)), ["prevent"])),
+                  class: "clearbutton",
+                  disabled: _ctx.state == 1
+                }, " X", 8 /* PROPS */, ["disabled"])
               ])
             ]),
             _hoisted_153,
@@ -23740,7 +23766,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
                 (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
                   type: "text",
                   class: "form-control",
-                  "onUpdate:modelValue": _cache[43] || (_cache[43] = $event => ($data.cust[0].Fax = $event))
+                  "onUpdate:modelValue": _cache[46] || (_cache[46] = $event => ($data.cust[0].Fax = $event))
                 }, null, 512 /* NEED_PATCH */), [
                   [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.cust[0].Fax]
                 ])
@@ -23757,7 +23783,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               type: "textarea",
               style: {"height":"100px"},
               class: "form-control",
-              "onUpdate:modelValue": _cache[44] || (_cache[44] = $event => ($data.Cmemo[0].memo = $event))
+              "onUpdate:modelValue": _cache[47] || (_cache[47] = $event => ($data.Cmemo[0].memo = $event))
             }, null, 512 /* NEED_PATCH */), [
               [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.Cmemo[0].memo]
             ])
@@ -23768,7 +23794,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               type: "textarea",
               style: {"height":"100px"},
               class: "form-control",
-              "onUpdate:modelValue": _cache[45] || (_cache[45] = $event => ($data.Cmemo[1].memo = $event))
+              "onUpdate:modelValue": _cache[48] || (_cache[48] = $event => ($data.Cmemo[1].memo = $event))
             }, null, 512 /* NEED_PATCH */), [
               [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.Cmemo[1].memo]
             ])
@@ -23779,7 +23805,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               type: "textarea",
               style: {"height":"100px"},
               class: "form-control",
-              "onUpdate:modelValue": _cache[46] || (_cache[46] = $event => ($data.Cmemo[2].memo = $event))
+              "onUpdate:modelValue": _cache[49] || (_cache[49] = $event => ($data.Cmemo[2].memo = $event))
             }, null, 512 /* NEED_PATCH */), [
               [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.Cmemo[2].memo]
             ])
@@ -23793,7 +23819,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               type: "textarea",
               style: {"height":"100px"},
               class: "form-control",
-              "onUpdate:modelValue": _cache[47] || (_cache[47] = $event => ($data.Cmemo[3].memo = $event))
+              "onUpdate:modelValue": _cache[50] || (_cache[50] = $event => ($data.Cmemo[3].memo = $event))
             }, null, 512 /* NEED_PATCH */), [
               [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.Cmemo[3].memo]
             ])
@@ -23805,7 +23831,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               type: "textarea",
               style: {"height":"100px"},
               class: "form-control",
-              "onUpdate:modelValue": _cache[48] || (_cache[48] = $event => ($data.Cmemo[4].memo = $event))
+              "onUpdate:modelValue": _cache[51] || (_cache[51] = $event => ($data.Cmemo[4].memo = $event))
             }, null, 512 /* NEED_PATCH */), [
               [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.Cmemo[4].memo]
             ])
@@ -23817,14 +23843,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               type: "textarea",
               style: {"height":"100px"},
               class: "form-control",
-              "onUpdate:modelValue": _cache[49] || (_cache[49] = $event => ($data.Cmemo[5].memo = $event))
+              "onUpdate:modelValue": _cache[52] || (_cache[52] = $event => ($data.Cmemo[5].memo = $event))
             }, null, 512 /* NEED_PATCH */), [
               [vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.Cmemo[5].memo]
             ])
           ])
         ]),
         (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-          onClick: _cache[50] || (_cache[50] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.save(...args)), ["prevent"])),
+          onClick: _cache[53] || (_cache[53] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.save(...args)), ["prevent"])),
           type: "submit"
         }, "Post")
       ], 32 /* HYDRATE_EVENTS */)

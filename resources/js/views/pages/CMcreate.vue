@@ -510,38 +510,62 @@
           <br />
         </div>
         <div class="col-md-2 mb-4" style="top: 52px">
-          <h4>
+            <h4>
             <label class="font-weight-bold"
               >裝&nbsp;修&nbsp;工&nbsp;程&nbsp;進&nbsp;場&nbsp;日<br />
-              <input
+            <input
                 type="date"
                 class="form-control"
                 v-model="cust[0].FavColor"
+                 style="display: inline; width: 160px"
                 :min="newdate"
-            /></label>
+            />
+              <button
+                @click.prevent="FClear"
+                class="clearbutton"
+              >
+                X</button
+              >
+            </label>
           </h4>
           <br />
-          <h4>
+            <h4>
             <label class="font-weight-bold"
               >木&nbsp;作&nbsp;工&nbsp;程&nbsp;完&nbsp;成&nbsp;日<br />
               <input
                 type="date"
                 class="form-control"
                 v-model="cust[0].Woodwork"
+                 style="display: inline; width: 160px"
                 :min="newdate"
-            /></label>
+            />
+               <button
+                @click.prevent="WClear"
+                class="clearbutton"
+                :disabled="state == 1"
+              >
+                X</button
+              ></label>
           </h4>
           <br />
           <h4>
             <label class="font-weight-bold"
               >裝&nbsp;修&nbsp;工&nbsp;程&nbsp;退&nbsp;場&nbsp;日<br />
-              <input
+             <input
                 type="date"
                 class="form-control"
                 v-model="cust[0].LastModify"
+                 style="display: inline; width: 160px"
                 :min="newdate"
                 required
-            /></label>
+            />
+              <button
+                @click.prevent="LClear"
+                class="clearbutton"
+                :disabled="state == 1"
+              >
+                X</button
+              ></label>
           </h4>
           <br />
           <h4>
@@ -852,6 +876,15 @@ export default {
           console.log(response);
         });
     this.$emit('my-event', this.msg)
+    },
+     FClear: function () {
+      this.cust[0].FavColor = '';
+    },
+    LClear: function () {
+      this.cust[0].LastModify = '';
+    },
+    WClear: function () {
+      this.cust[0].Woodwork = '';
     },
   },
   props: {
