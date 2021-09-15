@@ -350,7 +350,7 @@ export default {
           console.log(response.data);
             this.OrderDetailitem[this.DetailIndex].UnitPrice = response.data;
             this.OrderDetailitem[this.DetailIndex].Qty = 1;
-            this.OrderDetailitem[this.DetailIndex].OrderValue = 0;
+            this.OrderDetailitem[this.DetailIndex].OrderValue = this.OrderDetailitem[this.DetailIndex].UnitPrice;
         });         
 
         this.OrderOrderDetailitemstorage[this.DetailIndex]=Object.assign({}, this.OrderDetailitem[this.DetailIndex]);

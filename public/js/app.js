@@ -15860,7 +15860,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         console.log(response.data);
         _this.OrderDetailitem[_this.DetailIndex].UnitPrice = response.data;
         _this.OrderDetailitem[_this.DetailIndex].Qty = 1;
-        _this.OrderDetailitem[_this.DetailIndex].OrderValue = 0;
+        _this.OrderDetailitem[_this.DetailIndex].OrderValue = _this.OrderDetailitem[_this.DetailIndex].UnitPrice;
       });
       this.OrderOrderDetailitemstorage[this.DetailIndex] = Object.assign({}, this.OrderDetailitem[this.DetailIndex]);
       document.getElementsByName('Color[]')[this.DetailIndex].select();
