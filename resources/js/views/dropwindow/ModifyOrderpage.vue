@@ -314,8 +314,6 @@ export default {
 
       ColorSelectNum:"",
       PartSelect:"",
-      Ragne:"",
-      RangeName:"",
     };
   },
   methods:{

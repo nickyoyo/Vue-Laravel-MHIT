@@ -15824,9 +15824,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       DetailIndex: "",
       OrderOrderDetailitemstorage: [],
       ColorSelectNum: "",
-      PartSelect: "",
-      Ragne: "",
-      RangeName: ""
+      PartSelect: ""
     };
   },
   methods: {
