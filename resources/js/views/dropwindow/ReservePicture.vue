@@ -98,7 +98,7 @@ export default {
     cleanData: function () {
       this.$emit('my-clean');
 	},
-	  save: function () {
+	  saveJ: function () {
       this.Data[0].MeasureMember = this.DataA[0].MeasureMember;
 		 axios
         .post("/api/Create/Measure", {

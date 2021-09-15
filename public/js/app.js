@@ -16183,7 +16183,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     cleanData: function cleanData() {
       this.$emit('my-clean');
     },
-    save: function save() {
+    saveJ: function saveJ() {
       this.Data[0].MeasureMember = this.DataA[0].MeasureMember;
       axios.post("/api/Create/Measure", {
         Data: this.Data,
@@ -19924,12 +19924,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-/* harmony import */ var _ReservePicture_vue_vue_type_template_id_ac00b77a_bindings_DataN_props_S_props_cleanData_options_save_options_saveK_options_refresh_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={"DataN":"props","S":"props","cleanData":"options","save":"options","saveK":"options","refresh":"options"} */ "./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={\"DataN\":\"props\",\"S\":\"props\",\"cleanData\":\"options\",\"save\":\"options\",\"saveK\":\"options\",\"refresh\":\"options\"}");
+/* harmony import */ var _ReservePicture_vue_vue_type_template_id_ac00b77a_bindings_DataN_props_S_props_cleanData_options_saveJ_options_saveK_options_refresh_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={"DataN":"props","S":"props","cleanData":"options","saveJ":"options","saveK":"options","refresh":"options"} */ "./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={\"DataN\":\"props\",\"S\":\"props\",\"cleanData\":\"options\",\"saveJ\":\"options\",\"saveK\":\"options\",\"refresh\":\"options\"}");
 /* harmony import */ var _ReservePicture_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ReservePicture.vue?vue&type=script&lang=js */ "./resources/js/views/dropwindow/ReservePicture.vue?vue&type=script&lang=js");
 
 
 
-_ReservePicture_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _ReservePicture_vue_vue_type_template_id_ac00b77a_bindings_DataN_props_S_props_cleanData_options_save_options_saveK_options_refresh_options___WEBPACK_IMPORTED_MODULE_0__.render
+_ReservePicture_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _ReservePicture_vue_vue_type_template_id_ac00b77a_bindings_DataN_props_S_props_cleanData_options_saveJ_options_saveK_options_refresh_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* hot reload */
 if (false) {}
 
@@ -21015,12 +21015,12 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={\"DataN\":\"props\",\"S\":\"props\",\"cleanData\":\"options\",\"save\":\"options\",\"saveK\":\"options\",\"refresh\":\"options\"}":
-/*!************************************************************************************************************************************************************************************************************!*\
-  !*** ./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={"DataN":"props","S":"props","cleanData":"options","save":"options","saveK":"options","refresh":"options"} ***!
-  \************************************************************************************************************************************************************************************************************/
+/***/ "./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={\"DataN\":\"props\",\"S\":\"props\",\"cleanData\":\"options\",\"saveJ\":\"options\",\"saveK\":\"options\",\"refresh\":\"options\"}":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={"DataN":"props","S":"props","cleanData":"options","saveJ":"options","saveK":"options","refresh":"options"} ***!
+  \*************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
-/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={"DataN":"props","S":"props","cleanData":"options","save":"options","saveK":"options","refresh":"options"} .render */
+/*! export render [provided] [no usage info] [missing usage info prevents renaming] -> ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={"DataN":"props","S":"props","cleanData":"options","saveJ":"options","saveK":"options","refresh":"options"} .render */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.d, __webpack_require__.r, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
@@ -21028,9 +21028,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ReservePicture_vue_vue_type_template_id_ac00b77a_bindings_DataN_props_S_props_cleanData_options_save_options_saveK_options_refresh_options___WEBPACK_IMPORTED_MODULE_0__.render
+/* harmony export */   "render": () => /* reexport safe */ _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ReservePicture_vue_vue_type_template_id_ac00b77a_bindings_DataN_props_S_props_cleanData_options_saveJ_options_saveK_options_refresh_options___WEBPACK_IMPORTED_MODULE_0__.render
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ReservePicture_vue_vue_type_template_id_ac00b77a_bindings_DataN_props_S_props_cleanData_options_save_options_saveK_options_refresh_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={"DataN":"props","S":"props","cleanData":"options","save":"options","saveK":"options","refresh":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={\"DataN\":\"props\",\"S\":\"props\",\"cleanData\":\"options\",\"save\":\"options\",\"saveK\":\"options\",\"refresh\":\"options\"}");
+/* harmony import */ var _node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ReservePicture_vue_vue_type_template_id_ac00b77a_bindings_DataN_props_S_props_cleanData_options_saveJ_options_saveK_options_refresh_options___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={"DataN":"props","S":"props","cleanData":"options","saveJ":"options","saveK":"options","refresh":"options"} */ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={\"DataN\":\"props\",\"S\":\"props\",\"cleanData\":\"options\",\"saveJ\":\"options\",\"saveK\":\"options\",\"refresh\":\"options\"}");
 
 
 /***/ }),
@@ -22482,10 +22482,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={\"DataN\":\"props\",\"S\":\"props\",\"cleanData\":\"options\",\"save\":\"options\",\"saveK\":\"options\",\"refresh\":\"options\"}":
-/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={"DataN":"props","S":"props","cleanData":"options","save":"options","saveK":"options","refresh":"options"} ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={\"DataN\":\"props\",\"S\":\"props\",\"cleanData\":\"options\",\"saveJ\":\"options\",\"saveK\":\"options\",\"refresh\":\"options\"}":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/views/dropwindow/ReservePicture.vue?vue&type=template&id=ac00b77a&bindings={"DataN":"props","S":"props","cleanData":"options","saveJ":"options","saveK":"options","refresh":"options"} ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! namespace exports */
 /*! export render [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -22572,7 +22572,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _hoisted_11,
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [
       (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
-        onClick: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => ($options.save(...args)), ["prevent"])),
+        onClick: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)((...args) => (_ctx.save(...args)), ["prevent"])),
         "data-dismiss": "modal",
         style: {"display":"inline","border":"1px black solid"},
         class: "btn",
