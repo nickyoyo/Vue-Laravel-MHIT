@@ -290,6 +290,7 @@
                 class="form-control"
                 style="width: 200px"
                 v-model="cust[0].HouseDate"
+                :min="newdate"
                 required
             /></label>
           </h4>
@@ -335,6 +336,7 @@
                 class="form-control"
                 style="width: 200px"
                 v-model="cust[0].FinishDate"
+                :min="newdate"
                 required
             /></label>
           </h4>
@@ -347,6 +349,7 @@
                 class="form-control"
                 style="width: 200px"
                 v-model="cust[0].CheckInDate"
+                :min="newdate"
                 required
             /></label>
           </h4>
@@ -514,6 +517,7 @@
                 type="date"
                 class="form-control"
                 v-model="cust[0].FavColor"
+                :min="newdate"
             /></label>
           </h4>
           <br />
@@ -524,6 +528,7 @@
                 type="date"
                 class="form-control"
                 v-model="cust[0].Woodwork"
+                :min="newdate"
             /></label>
           </h4>
           <br />
@@ -534,6 +539,7 @@
                 type="date"
                 class="form-control"
                 v-model="cust[0].LastModify"
+                :min="newdate"
                 required
             /></label>
           </h4>
@@ -651,6 +657,7 @@ export default {
   name: "CMcreate",
   data() {
     return {
+       newdate:new Date(Date.now()).toISOString().slice(0,10),
         isdisable:0,
       space: [
         { type: "|規劃空間", value: "false", data: "全室" },
