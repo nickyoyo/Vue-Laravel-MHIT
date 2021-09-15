@@ -309,7 +309,6 @@ export default {
       OrderDataFINST: [],
       OrderDataEM: [],
       OrderDataARM1:[],
-      Selectorder:this.index,
       DetailIndex:"",
       OrderOrderDetailitemstorage:[],
 

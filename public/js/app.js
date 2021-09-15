@@ -15821,7 +15821,6 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       OrderDataFINST: [],
       OrderDataEM: [],
       OrderDataARM1: [],
-      Selectorder: this.index,
       DetailIndex: "",
       OrderOrderDetailitemstorage: [],
       ColorSelectNum: "",
