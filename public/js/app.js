@@ -15859,7 +15859,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       axios.get("/api/search/ColorPrice/" + this.OrderDetailitem[this.DetailIndex].SalesCode + "&&" + this.OrderDetailitem[this.DetailIndex].Ragne + "&&" + this.OrderData[0].QuotNo).then(function (response) {
         console.log(response.data);
         _this.OrderDetailitem[_this.DetailIndex].UnitPrice = response.data;
-        _this.OrderDetailitem[_this.DetailIndex].Qty = 0;
+        _this.OrderDetailitem[_this.DetailIndex].Qty = 1;
         _this.OrderDetailitem[_this.DetailIndex].OrderValue = 0;
       });
       this.OrderOrderDetailitemstorage[this.DetailIndex] = Object.assign({}, this.OrderDetailitem[this.DetailIndex]);
