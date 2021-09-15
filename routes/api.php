@@ -43,11 +43,11 @@ Route::get('/search/chk/{CNO}',[SearchController::class,'searchCHK']);
 Route::get('/search/UserDept/{DVID}',[SearchController::class,'searchUserDeptMember']);//搜尋方式待修改
 Route::get('/search/Order/{CNO}',[SearchController::class,'searchOrder']);
 Route::get('/search/Orderdata/{QNO}',[SearchController::class,'searchOrderdata']);
-Route::get('/search/OrderDetailitem/{QNO}',[SearchController::class,'searchOrderDetailitem']);
+Route::get('/search/OrderDatailitem/{QNO}',[SearchController::class,'searchOrderDatailitem']);
 Route::get('/search/OrderitemPO/{QNO}',[SearchController::class,'searchOrderitemPO']);
 Route::get('/search/OrderFINST/{QNO}',[SearchController::class,'searchOrderFINST']);
 Route::get('/search/OrderARM1/{QNO}',[SearchController::class,'searchOrderARM1']);
-Route::get('/search/OrderDetailitemCheckPC/{SuppNo}&&{colornum}',[SearchController::class,'searchOrderDetailitemCheckPC']);
+Route::get('/search/OrderDatailitemCheckPC/{SuppNo}&&{colornum}',[SearchController::class,'searchOrderDatailitemCheckPC']);
 Route::get('/search/IMChangePriceRecord/{PartNo}&&{QNO}',[SearchController::class,'searchIMChangePriceRecord']);
 Route::get('/search/ColorPrice/{PartNo}&&{Color}&&{QNO}',[SearchController::class,'searchColorPrice']);
 

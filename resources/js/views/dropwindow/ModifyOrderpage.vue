@@ -300,7 +300,6 @@ export default {
        refnew:false,
        SuppNo:0,
 
-      OrderList: [],
       OrderData: [{
           OrderType:'',
       }],

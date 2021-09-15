@@ -205,7 +205,7 @@
                                 </tr>
                             </thead>
                             <tr
-                                v-for="(itemD, index) in OrderDetailitem"
+                                v-for="(itemD, index) in OrderDatailitem"
                                 :value="itemD"
                                 :key="index"
                                 style="border: 1px black solid"
@@ -294,13 +294,13 @@ export default {
       }],
       OrderDataMemo: "",
       OrderDataCTDtype: "",
-      OrderDetailitem: [],
+      OrderDatailitem: [],
       OrderDataFINST: [],
       OrderDataEM: [],
       OrderDataARM1:[],
       Selectorder:this.index,
       DetailIndex:"",
-      OrderOrderDetailitemstorage:[],
+      OrderOrderDatailitemstorage:[],
 
       ColorSelectNum:"",
       PartSelect:"",
@@ -316,8 +316,8 @@ export default {
     getColorNum:function(index){  
         this.DetailIndex = index;
         this.refnew=true;
-        this.SuppNo = this.OrderDetailitem[index].SalesCodeData.SupplierNo.SuppNo;
-        this.ColorSelectNum = this.OrderDetailitem[index].Ragne;       
+        this.SuppNo = this.OrderDatailitem[index].SalesCodeData.SupplierNo.SuppNo;
+        this.ColorSelectNum = this.OrderDatailitem[index].Ragne;       
          $("#ColorNum").modal('show');    
     },
     closePart:function(){
@@ -327,19 +327,19 @@ export default {
     getPartNum:function(index){
         this.DetailIndex = index;
         this.refnew=true;
-        this.PartSelect = this.OrderDetailitem[index].SalesCodeData.SKU;       
+        this.PartSelect = this.OrderDatailitem[index].SalesCodeData.SKU;       
          $("#PartNum").modal('show');       
     },
     setColor:function(val){
         this.refnew=false;
-        this.OrderDetailitem[this.DetailIndex].Ragne = val.codeindex;   
-        this.OrderDetailitem[this.DetailIndex].RangeName = val.codeDesc;  
-        this.OrderOrderDetailitemstorage[this.DetailIndex]=Object.assign({}, this.OrderDetailitem[this.DetailIndex]);
+        this.OrderDatailitem[this.DetailIndex].Ragne = val.codeindex;   
+        this.OrderDatailitem[this.DetailIndex].RangeName = val.codeDesc;  
+        this.OrderOrderDatailitemstorage[this.DetailIndex]=Object.assign({}, this.OrderDatailitem[this.DetailIndex]);
         $("#ColorNum").modal('hide');         
         document.getElementsByName('Color[]')[this.DetailIndex].select(); 
 
         axios
-        .get("/api/search/IMChangePriceRecord/"+ this.OrderDetailitem[this.DetailIndex].SalesCode +"&&" + this.OrderData[0].QuotNo)
+        .get("/api/search/IMChangePriceRecord/"+ this.OrderDatailitem[this.DetailIndex].SalesCode +"&&" + this.OrderData[0].QuotNo)
         .then((response) => {
           console.log(response.data);
           
@@ -348,54 +348,54 @@ export default {
 
     setPart:function(val){
          this.refnew=false;
-        this.OrderDetailitem[this.DetailIndex].SalesCode = val.SKU;   
-        this.OrderDetailitem[this.DetailIndex].SalesCodeData = val;  
-        this.OrderDetailitem[this.DetailIndex].Ragne="";
-        this.OrderDetailitem[this.DetailIndex].RangeName="";              
-        this.OrderOrderDetailitemstorage[this.DetailIndex]=Object.assign({}, this.OrderDetailitem[this.DetailIndex]);
+        this.OrderDatailitem[this.DetailIndex].SalesCode = val.SKU;   
+        this.OrderDatailitem[this.DetailIndex].SalesCodeData = val;  
+        this.OrderDatailitem[this.DetailIndex].Ragne="";
+        this.OrderDatailitem[this.DetailIndex].RangeName="";              
+        this.OrderOrderDatailitemstorage[this.DetailIndex]=Object.assign({}, this.OrderDatailitem[this.DetailIndex]);
         $("#PartNum").modal('hide'); 
         document.getElementsByName('Part[]')[this.DetailIndex].select();        
     },
     
     SetTypeColor:function(index){
-        this.OrderDetailitem[this.DetailIndex].Ragne = this.OrderDetailitem[this.DetailIndex].Ragne.replace(/\s*/g,"");
+        this.OrderDatailitem[this.DetailIndex].Ragne = this.OrderDatailitem[this.DetailIndex].Ragne.replace(/\s*/g,"");
         axios
-            .get("/api/search/ColorNoType/"+ this.OrderDetailitem[this.DetailIndex].Ragne + "&&" +  this.OrderDetailitem[index].SalesCodeData.SupplierNo.SuppNo)
+            .get("/api/search/ColorNoType/"+ this.OrderDatailitem[this.DetailIndex].Ragne + "&&" +  this.OrderDatailitem[index].SalesCodeData.SupplierNo.SuppNo)
             .then((response) => {
             console.log(response.data);        
                 if(response.data[1] == 0){
-                    this.OrderDetailitem[index].Ragne = this.OrderOrderDetailitemstorage[index].Ragne;  
-                    this.OrderDetailitem[index].RangeName = this.OrderOrderDetailitemstorage[index].RangeName;  
+                    this.OrderDatailitem[index].Ragne = this.OrderOrderDatailitemstorage[index].Ragne;  
+                    this.OrderDatailitem[index].RangeName = this.OrderOrderDatailitemstorage[index].RangeName;  
                 }   
                 else{
-                    this.OrderDetailitem[index].Ragne = response.data[0].codeindex;   
-                    this.OrderDetailitem[index].RangeName = response.data[0].codeDesc;  
-                    this.OrderOrderDetailitemstorage[index]=Object.assign({}, this.OrderDetailitem[index]);
+                    this.OrderDatailitem[index].Ragne = response.data[0].codeindex;   
+                    this.OrderDatailitem[index].RangeName = response.data[0].codeDesc;  
+                    this.OrderOrderDatailitemstorage[index]=Object.assign({}, this.OrderDatailitem[index]);
                 }
             });
     },  
     SetTypePart:function(index){
-        this.OrderDetailitem[index].SalesCode = this.OrderDetailitem[index].SalesCode.replace(/\s*/g,"");
-        if(this.OrderDetailitem[index].SalesCode ==''|| this.OrderDetailitem[index].SalesCode ==' '){
-              this.OrderDetailitem[index].SalesCodeData = this.OrderOrderDetailitemstorage[index].SalesCodeData;  
-              this.OrderDetailitem[index].SalesCode = this.OrderOrderDetailitemstorage[index].SalesCodeData.SKU;  
+        this.OrderDatailitem[index].SalesCode = this.OrderDatailitem[index].SalesCode.replace(/\s*/g,"");
+        if(this.OrderDatailitem[index].SalesCode ==''|| this.OrderDatailitem[index].SalesCode ==' '){
+              this.OrderDatailitem[index].SalesCodeData = this.OrderOrderDatailitemstorage[index].SalesCodeData;  
+              this.OrderDatailitem[index].SalesCode = this.OrderOrderDatailitemstorage[index].SalesCodeData.SKU;  
         }
         else{
                 axios
-                .get("/api/search/PartNoType/"+ this.OrderDetailitem[index].SalesCode)
+                .get("/api/search/PartNoType/"+ this.OrderDatailitem[index].SalesCode)
                 .then((response) => {
                 console.log(response.data);  
                 if(response.data[1] == 0){
-                    this.OrderDetailitem[index].SalesCodeData = this.OrderOrderDetailitemstorage[index].SalesCodeData;  
-                    this.OrderDetailitem[index].SalesCode = this.OrderOrderDetailitemstorage[index].SalesCodeData.SKU;  
+                    this.OrderDatailitem[index].SalesCodeData = this.OrderOrderDatailitemstorage[index].SalesCodeData;  
+                    this.OrderDatailitem[index].SalesCode = this.OrderOrderDatailitemstorage[index].SalesCodeData.SKU;  
                 }   
                 else{
-                this.OrderDetailitem[index].SalesCode = response.data[0].SKU;   
-                this.OrderDetailitem[index].SalesCodeData = response.data[0];   
-                this.OrderOrderDetailitemstorage[this.DetailIndex]=Object.assign({}, this.OrderDetailitem[this.DetailIndex]);
+                this.OrderDatailitem[index].SalesCode = response.data[0].SKU;   
+                this.OrderDatailitem[index].SalesCodeData = response.data[0];   
+                this.OrderOrderDatailitemstorage[this.DetailIndex]=Object.assign({}, this.OrderDatailitem[this.DetailIndex]);
                 }   
-                this.OrderDetailitem[index].Ragne="";
-                this.OrderDetailitem[index].RangeName="";
+                this.OrderDatailitem[index].Ragne="";
+                this.OrderDatailitem[index].RangeName="";
             });  
         }
     },
@@ -403,34 +403,34 @@ export default {
          this.DetailIndex = index;
     },
     nextcol:function(index){
-         this.OrderDetailitem[this.DetailIndex].Ragne = this.OrderDetailitem[this.DetailIndex].Ragne.replace(/\s*/g,"");
+         this.OrderDatailitem[this.DetailIndex].Ragne = this.OrderDatailitem[this.DetailIndex].Ragne.replace(/\s*/g,"");
             axios
-                .get("/api/search/ColorNoType/"+ this.OrderDetailitem[this.DetailIndex].Ragne + "&&" +  this.OrderDetailitem[index].SalesCodeData.SupplierNo.SuppNo)
+                .get("/api/search/ColorNoType/"+ this.OrderDatailitem[this.DetailIndex].Ragne + "&&" +  this.OrderDatailitem[index].SalesCodeData.SupplierNo.SuppNo)
                 .then((response) => {
                 console.log(response.data);        
                     if(response.data[1] == 0){
-                        this.OrderDetailitem[index].Ragne = this.OrderOrderDetailitemstorage[index].Ragne;  
-                        this.OrderDetailitem[index].RangeName = this.OrderOrderDetailitemstorage[index].RangeName;  
+                        this.OrderDatailitem[index].Ragne = this.OrderOrderDatailitemstorage[index].Ragne;  
+                        this.OrderDatailitem[index].RangeName = this.OrderOrderDatailitemstorage[index].RangeName;  
                     }   
                     else{
-                        this.OrderDetailitem[index].Ragne = response.data[0].codeindex;   
-                        this.OrderDetailitem[index].RangeName = response.data[0].codeDesc;  
-                        this.OrderOrderDetailitemstorage[index]=Object.assign({}, this.OrderDetailitem[index]);
+                        this.OrderDatailitem[index].Ragne = response.data[0].codeindex;   
+                        this.OrderDatailitem[index].RangeName = response.data[0].codeDesc;  
+                        this.OrderOrderDatailitemstorage[index]=Object.assign({}, this.OrderDatailitem[index]);
                     }
                 });
         var colornum;
-         if(this.OrderDetailitem[index].Ragne==""){
+         if(this.OrderDatailitem[index].Ragne==""){
             colornum='X';
          }
          else{
-            colornum=this.OrderDetailitem[index].Ragne;
+            colornum=this.OrderDatailitem[index].Ragne;
          }
         axios
-        .get("/api/search/OrderDetailitemCheckPC/"+ this.OrderDetailitem[index].SalesCodeData.SupplierNo.SuppNo +"&&" + colornum)
+        .get("/api/search/OrderDatailitemCheckPC/"+ this.OrderDatailitem[index].SalesCodeData.SupplierNo.SuppNo +"&&" + colornum)
         .then((response) => {
           console.log(response.data);
             if(response.data==0){
-                this.OrderDetailitem[index]=Object.assign({}, this.OrderOrderDetailitemstorage[index]); 
+                this.OrderDatailitem[index]=Object.assign({}, this.OrderOrderDatailitemstorage[index]); 
             }
             this.DetailIndex = index+1; 
         });
@@ -442,17 +442,17 @@ export default {
   beforeCreate(){
        $("#loading").modal('show');
       axios
-        .get("/api/search/OrderDetailitem/S02171130103")
+        .get("/api/search/OrderDatailitem/S02171130103")
         .then((response) => {
           console.log(response.data);
-          this.OrderDetailitem = response.data;
+          this.OrderDatailitem = response.data;
          $("#loading").modal('hide');
         });
      axios
-        .get("/api/search/OrderDetailitem/S02171130103")
+        .get("/api/search/OrderDatailitem/S02171130103")
         .then((response) => {
           console.log(response.data);
-          this.OrderOrderDetailitemstorage = response.data;
+          this.OrderOrderDatailitemstorage = response.data;
          $("#loading").modal('hide');
         });
       axios

@@ -464,7 +464,7 @@ class SearchController extends Controller
         return response()->json($data,200);
     }
 
-    public function searchOrderDetailitem($QNO)        
+    public function searchOrderDatailitem($QNO)        
     {
         $data = sod::where('QuotNo',trim($QNO))->get(['sod.*','UserID as Ordermember','SalesCode as SalesCodeData','temp as poCheck','Ragne as RangeName']);
 
@@ -573,7 +573,7 @@ class SearchController extends Controller
         return response()->json($data,200);
     }
 
-    public function searchOrderDetailitemCheckPC($SuppNo,$colornum){
+    public function searchOrderDatailitemCheckPC($SuppNo,$colornum){
         $SuppNo = trim($SuppNo);
         $data = CTD::where('codeindex',$colornum)->where('Reserve4',$SuppNo)->first();
         if($data==NULL){

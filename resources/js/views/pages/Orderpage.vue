@@ -317,7 +317,7 @@
                 </tr>
               </thead>
               <tr
-                v-for="(itemD, index) in OrderDetailitem"
+                v-for="(itemD, index) in OrderDatailitem"
                 :value="itemD"
                 :key="index"
                 style="border: 1px black solid"
@@ -371,7 +371,7 @@ export default {
       }],
       OrderDataMemo: "",
       OrderDataCTDtype: "",
-      OrderDetailitem: [],
+      OrderDatailitem: [],
       OrderDataFINST: [],
       OrderDataEM: [],
       OrderDataARM1:[],
@@ -398,7 +398,7 @@ export default {
         $("#Modify").modal('hide');
         $("#loading").modal('show');
       axios
-      .get("/api/search/Order/" + this.OrderDetailitem[0].CustNo)
+      .get("/api/search/Order/" + this.OrderDatailitem[0].CustNo)
       .then((response) => {
         console.log(response);
         this.OrderList = response.data[0];
@@ -413,10 +413,10 @@ export default {
       this.QuotNo = this.OrderList[this.Selectorder].QuotNo;
       $("#loading").modal('show');
       axios
-        .get("/api/search/OrderDetailitem/" + this.OrderList[index].QuotNo)
+        .get("/api/search/OrderDatailitem/" + this.OrderList[index].QuotNo)
         .then((response) => {
           console.log(response.data);
-          this.OrderDetailitem = response.data;  
+          this.OrderDatailitem = response.data;  
           $(".modal").modal('hide');
            this.detailbutton=1;
         });
