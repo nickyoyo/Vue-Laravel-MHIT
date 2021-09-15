@@ -356,6 +356,7 @@
                 class="form-control"
                 style="width: 200px"
                 v-model="custT.HouseDate"
+                :min="newdate"
                 :readonly="state == 1"
             /></label>
           </h4>
@@ -417,6 +418,7 @@
                 style="width: 200px"
                 v-model="custT.CheckInDate"
                 :readonly="state == 1"
+                :min="newdate"
             /></label>
           </h4>
           <br />
@@ -594,6 +596,7 @@
                 style="display: inline; width: 180px"
                 v-model="custT.FavColor"
                 :readonly="state == 1"
+                :min="newdate"
               />
               <button
                 @click.prevent="FClear"
@@ -614,6 +617,7 @@
                 class="form-control"
                 style="display: inline; width: 180px"
                 v-model="custT.Woodwork"
+                :min="newdate"
                 :readonly="state == 1" />
                <button
                 @click.prevent="WClear"
@@ -632,6 +636,7 @@
                 class="form-control"
                 style="display: inline; width: 180px"
                 v-model="custT.LastModify"
+                :min="newdate"
                 :readonly="state == 1" />
               <button
                 @click.prevent="LClear"
@@ -767,6 +772,7 @@ export default {
   name: "CMpage",
   data() {
     return {
+      newdate:new Date(Date.now()).toISOString().slice(0,10),
        pickerOptions0: {
           disabledDate(time) {
             return time.getTime() < Date.now();
