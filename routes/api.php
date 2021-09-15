@@ -25,7 +25,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/EMID',[GoogleController::class,'index']);
 
-Route::get('/search/CM/name/{CNO}',[SearchController::class,'searchCMname']);
 Route::get('/search/CM/{CNO}',[SearchController::class,'searchCM']);
 Route::get('/search/CMAll',[SearchController::class,'searchCMAll']);
 Route::get('/search/CTD/{codename}',[SearchController::class,'searchCTD']);
