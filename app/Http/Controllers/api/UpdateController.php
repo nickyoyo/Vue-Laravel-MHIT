@@ -168,150 +168,39 @@ class UpdateController extends Controller
         $deleteold = CMCRFItems::where('CustNo', $CNO);
         $deleteold->delete();
 
-        if ($UseExp[0]['value'] == 'true' || $UseExp[0]['value'] == 1) {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $UseExp[0]['data'].$UseExp[0]['type'],
-            ]);
+        for($i=0; $i<4; $i++){
+            if ($UseExp[$i]['value'] == 'true' || $UseExp[$i]['value'] == 1) {
+                CMCRFItems::create([
+                    'CustNo' => $CNO,
+                    'Items' => $UseExp[$i]['data'].$UseExp[$i]['type'],
+                ]);
+            }
         }
-        if ($UseExp[1]['value'] == 'true' || $UseExp[1]['value'] == 1) {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $UseExp[1]['data'].$UseExp[1]['type'],
-            ]);
+        for($i=0; $i<5; $i++){
+            if ($UDS[$i]['value'] == 'true' || $UDS[$i]['value'] == 1) {
+                CMCRFItems::create([
+                    'CustNo' => $CNO,
+                    'Items' => $UDS[$i]['data'].$UDS[$i]['type'],
+                ]);
+            }
         }
-        if ($UseExp[2]['value'] == 'true' || $UseExp[2]['value'] == 1) {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $UseExp[2]['data'].$UseExp[2]['type'],
-            ]);
+        for($i=0; $i<6; $i++){
+            if ($likeStyle[$i]['value'] == 'true' || $likeStyle[$i]['value'] == 1) {
+                CMCRFItems::create([
+                    'CustNo' => $CNO,
+                    'Items' => $likeStyle[$i]['data'].$likeStyle[$i]['type'],
+                ]);
+            }
         }
-        if ($UseExp[3]['value'] == 'true' || $UseExp[3]['value'] == 1) {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $UseExp[3]['data'].$UseExp[3]['type'],
-            ]);
+        for($i=0; $i<9; $i++){
+            if ($space[$i]['value'] == 'true' || $space[$i]['value'] == 1) {
+                CMCRFItems::create([
+                    'CustNo' => $CNO,
+                    'Items' => $space[$i]['data'].$space[$i]['type'],
+                ]);
+            }
         }
-        if ($UDS[0]['value'] == 'true' || $UDS[0]['value'] == 1) {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $UDS[0]['data'].$UDS[0]['type'],
-            ]);
-        }
-        if ($UDS[1]['value'] == 'true' || $UDS[1]['value'] == 1) {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $UDS[1]['data'].$UDS[1]['type'],
-            ]);
-        }
-        if ($UDS[2]['value'] == 'true' || $UDS[2]['value'] == 1) {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $UDS[2]['data'].$UDS[2]['type'],
-            ]);
-        }
-        if ($UDS[3]['value'] == 'true' || $UDS[3]['value'] == 1) {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $UDS[3]['data'].$UDS[3]['type'],
-            ]);
-        }
-        if ($UDS[4]['value'] == 'true' || $UDS[4]['value'] == 1) {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $UDS[4]['data'].$UDS[4]['type'],
-            ]);
-        }
-        if ($likeStyle[0]['value'] == 'true' || $likeStyle[0]['value'] == 1) {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $likeStyle[0]['data'].$likeStyle[0]['type'],
-            ]);
-        }
-        if ($likeStyle[1]['value'] == 'true' || $likeStyle[1]['value'] == 1) {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $likeStyle[1]['data'].$likeStyle[1]['type'],
-            ]);
-        }
-        if ($likeStyle[2]['value'] == 'true' || $likeStyle[2]['value'] == 1) {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $likeStyle[2]['data'].$likeStyle[2]['type'],
-            ]);
-        }
-        if ($likeStyle[3]['value'] == 'true' || $likeStyle[3]['value'] == 1) {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $likeStyle[3]['data'].$likeStyle[3]['type'],
-            ]);
-        }
-        if ($likeStyle[4]['value'] == 'true' || $likeStyle[4]['value'] == 1) {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $likeStyle[4]['data'].$likeStyle[4]['type'],
-            ]);
-        }
-        if ($likeStyle[5]['value'] == 'true' || $likeStyle[5]['value'] == 1) {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $likeStyle[5]['data'].$likeStyle[5]['type'],
-            ]);
-        }
-        if ($space[0]['value'] == 'true' || $space[0]['value'] == 1) {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $space[0]['data'].$space[0]['type'],
-            ]);
-        }
-        if ($space[1]['value'] == 'true' || $space[1]['value'] == 1) {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $space[1]['data'].$space[1]['type'],
-            ]);
-        }
-        if ($space[2]['value'] == 'true' || $space[2]['value'] == 1) {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $space[2]['data'].$space[2]['type'],
-            ]);
-        }
-        if ($space[3]['value'] == 'true' || $space[3]['value'] == 1) {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $space[3]['data'].$space[3]['type'],
-            ]);
-        }
-        if ($space[4]['value'] == 'true' || $space[4]['value'] == 1) {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $space[4]['data'].$space[4]['type'],
-            ]);
-        }
-        if ($space[5]['value'] == 'true' || $space[5]['value'] == 1) {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $space[5]['data'].$space[5]['type'],
-            ]);
-        }
-        if ($space[6]['value'] == 'true' || $space[6]['value'] == 1) {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $space[6]['data'].$space[6]['type'],
-            ]);
-        }
-        if ($space[7]['value'] == 'true' || $space[7]['value'] == 1) {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $space[7]['data'].$space[7]['type'],
-            ]);
-        }
-        if ($space[8]['value'] == 'true' || $space[8]['value'] == 1) {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $space[8]['data'].$space[8]['type'],
-            ]);
-        }
+  
         return response()->json([789789], 200);
     }
     public function UpdateMeasurestate(request $request){
