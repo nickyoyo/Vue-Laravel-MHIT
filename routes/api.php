@@ -42,7 +42,6 @@ Route::get('/search/UserDept/{DVID}',[SearchController::class,'searchUserDeptMem
 Route::get('/search/Order/{CNO}',[SearchController::class,'searchOrder']);
 Route::get('/search/Orderdata/{QNO}',[SearchController::class,'searchOrderdata']);
 Route::get('/search/OrderDatailitem/{QNO}',[SearchController::class,'searchOrderDatailitem']);
-Route::get('/search/OrderitemPO/{QNO}',[SearchController::class,'searchOrderitemPO']);
 Route::get('/search/OrderFINST/{QNO}',[SearchController::class,'searchOrderFINST']);
 Route::get('/search/OrderARM1/{QNO}',[SearchController::class,'searchOrderARM1']);
 Route::get('/search/OrderDatailitemCheckPC/{SuppNo}&&{colornum}',[SearchController::class,'searchOrderDatailitemCheckPC']);

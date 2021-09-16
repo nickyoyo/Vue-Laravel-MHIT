@@ -479,17 +479,6 @@ class SearchController extends Controller
         return response()->json($data,200);
     }
 
-    public function searchOrderitemPO($QNO)        
-    {
-        $getorder=0;
-        $data = po::where('QuotNo',trim($QNO))->get();
-        if(count($data)>0){
-            $getorder=1;
-        }
-
-        return response()->json($getorder,200);
-    }
-
     public function searchOrderFINST($QNO)
     {
         $data = FINST::where('訂單編號',trim($QNO))->first(['FINST.*','確定出貨日 as SuresendDate','檢核日 as CheckDate','安裝日 as SetDate','拆除日 as RemoveDate','運送日 as TransDate']);
