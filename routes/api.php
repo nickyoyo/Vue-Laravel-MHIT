@@ -29,7 +29,6 @@ Route::get('/search/CM/{CNO}',[SearchController::class,'searchCM']);
 Route::get('/search/CMAll',[SearchController::class,'searchCMAll']);
 Route::get('/search/CTD/{codename}',[SearchController::class,'searchCTD']);
 Route::get('/search/CTD/Desc/{codename}&&{codeindex}',[SearchController::class,'searchCTDDesc']);
-Route::get('/search/ColorNoA',[SearchController::class,'searchColorNoAll']);
 Route::get('/search/ColorNo/{Colorselect}&&{PartNo}',[SearchController::class,'searchColorNo']);
 Route::get('/search/ColorNoType/{Colorselect}&&{PartNo}',[SearchController::class,'searchColorNoType']);
 Route::get('/search/PartNo/{SKU}',[SearchController::class,'searchPartNo']);

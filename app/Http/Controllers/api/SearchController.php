@@ -65,17 +65,17 @@ class SearchController extends Controller
         }  
         else{
             if($useCM->needChk == '1')$useCM->needChk=true;
-            if($useCM->CusAddress != NULL){
+            if($useCM->CusAddress != NULL){     //通訊地址
                 $length = mb_strlen($useCM->CusAddress,"utf-8");
                 $CusAddressC= mb_substr($useCM->CusAddress,0,6,"utf-8");
                 $CusAddressS= mb_substr($useCM->CusAddress,6,$length-6,"utf-8");
             }
-            if($useCM->FittingAdd != NULL){
+            if($useCM->FittingAdd != NULL){   //安裝地址
                 $length = mb_strlen($useCM->FittingAdd,"utf-8");
                 $FittingAddC= mb_substr($useCM->FittingAdd,0,6,"utf-8");
                 $FittingAddS= mb_substr($useCM->FittingAdd,6,$length-6,"utf-8");
             }
-            if($useCM->FinishDate != NULL){
+            if($useCM->FinishDate != NULL){  //以下時間資料處理
                 $FinishDate= substr($useCM->FinishDate, 0, 4)."-".substr($useCM->FinishDate, 4, 2)."-".substr($useCM->FinishDate, 6, 2);  
             }
             if($useCM->CheckInDate != NULL){
@@ -128,12 +128,7 @@ class SearchController extends Controller
 
         return response()->json($data,200);
     }
-    
-    public function searchColorNoAll() {
-        $data  = CTD::where('codename','門板色')->where('codetype',11)->orderby('Reserve4','asc')->take(100)->get();
-        return response()->json($data,200);
-    }
-    
+        
     public function searchColorNo($Colorselect,$PartNo)       
     {
         $VMcode = substr($PartNo,0,2);
