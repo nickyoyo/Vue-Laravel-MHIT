@@ -409,7 +409,7 @@ class SearchController extends Controller
     {
         $data = SO::where('CusNo',trim($CNO))->where('QuotNo','LIKE', 'S'.'%')->where('OrderDate','>','00000000')->orderby('QuotNo','asc')->get();
         if(count($data) == 0){
-            return response()->json(['msg' => '此客編號不存在'],200);
+            return response()->json(['msg' => '此客編號不存在訂單'],200);
         }  
         foreach($data as $list){
             $list->TotalValue=(int)$list->TotalValue;
