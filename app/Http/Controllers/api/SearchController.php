@@ -44,17 +44,6 @@ class SearchController extends Controller
         return response()->json(['CMCRFItems' => $CMCRFItems],200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function searchCMname($CName){
-        $searchname = mb_substr($CName,0,1,"utf-8");
-        $data = cm::where('CustName','LIKE', $searchname.'%')->get();
-        return response()->json(['CM' => $data],200);
-    }
     public function searchCMAll(){
         $data = cm::where('CustNo','LIKE', 'C'.'%')->where('門市別','1000')->get();
         foreach($data as $list){
