@@ -356,13 +356,6 @@ class SearchController extends Controller
         }
         else{
         //傳資料
-            if($street=="empty"){
-                $address  = DB::select('SELECT DISTINCT 縣市,區鄉鎮市,街路 FROM zip'); 
-                foreach($address as $data){
-                    $data->街路=trim($data->街路);
-                }
-            }
-            else{
                 $str='%'.$street.'%';
                 $address = DB::select("SELECT DISTINCT 縣市,區鄉鎮市,街路 FROM zip WHERE 街路 LIKE '".$str."'");
                 if($address==NULL){
@@ -371,7 +364,6 @@ class SearchController extends Controller
                 foreach($address as $data){
                     $data->街路=trim($data->街路);
                 }
-            }
             return response()->json($address,200);
         } 
     }
