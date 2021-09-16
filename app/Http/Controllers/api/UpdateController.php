@@ -160,11 +160,11 @@ class UpdateController extends Controller
         $data = $request->all();
         // return $data['UDS'];
         $Cust = $data['cust'];
+        $CNO = trim($Cust['CustNo']);
         $UDS = $data['UDS'];
         $UseExp = $data['UseExp'];
         $likeStyle = $data['likeStyle'];
         $space = $data['space'];
-        $CNO = trim($Cust['CustNo']);
         $deleteold = CMCRFItems::where('CustNo', $CNO);
         $deleteold->delete();
 
