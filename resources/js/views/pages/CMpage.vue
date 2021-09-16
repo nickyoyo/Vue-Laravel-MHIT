@@ -875,7 +875,7 @@ export default {
       addresschoose:[],
       data:[],
       zip:[],
-      street:[{value:""}],
+      street:[{value:"empty"}],
       addressState:true,
       stateA:1,
 
