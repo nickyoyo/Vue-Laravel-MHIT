@@ -198,150 +198,39 @@ class CreateController extends Controller
             $CNO = 'C'.substr($EMData->DVID, 2, 2).substr(date('Ym'), 2, 2).$days.$datanumber;  //C.部門後兩碼.年2碼.今年第幾天.當天流水號(2碼)
             $deleteold = CMCRFItems::where('CustNo', $CNO);
             $deleteold->delete();
-        if ($UseExp[0]['value'] == 'true') {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $UseExp[0]['data'].$UseExp[0]['type'],
-            ]);
+        for($i=0; $i<4; $i++){
+            if ($UseExp[$i]['value'] == 'true') {
+                CMCRFItems::create([
+                    'CustNo' => $CNO,
+                    'Items' => $UseExp[$i]['data'].$UseExp[$i]['type'],
+                ]);
+            }
         }
-        if ($UseExp[1]['value'] == 'true') {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $UseExp[1]['data'].$UseExp[1]['type'],
-            ]);
+        for($i=0; $i<5; $i++){
+            if ($UDS[$i]['value'] == 'true') {
+                CMCRFItems::create([
+                    'CustNo' => $CNO,
+                    'Items' => $UDS[$i]['data'].$UDS[$i]['type'],
+                ]);
+            }
         }
-        if ($UseExp[2]['value'] == 'true') {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $UseExp[2]['data'].$UseExp[2]['type'],
-            ]);
+        for($i=0; $i<6; $i++){
+            if ($likeStyle[$i]['value'] == 'true') {
+                CMCRFItems::create([
+                    'CustNo' => $CNO,
+                    'Items' => $likeStyle[$i]['data'].$likeStyle[$i]['type'],
+                ]);
+            }
         }
-        if ($UseExp[3]['value'] == 'true') {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $UseExp[3]['data'].$UseExp[3]['type'],
-            ]);
+        for($i=0; $i<9; $i++){
+            if ($space[$i]['value'] == 'true') {
+                CMCRFItems::create([
+                    'CustNo' => $CNO,
+                    'Items' => $space[$i]['data'].$space[$i]['type'],
+                ]);
+            }
         }
-        if ($UDS[0]['value'] == 'true') {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $UDS[0]['data'].$UDS[0]['type'],
-            ]);
-        }
-        if ($UDS[1]['value'] == 'true') {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $UDS[1]['data'].$UDS[1]['type'],
-            ]);
-        }
-        if ($UDS[2]['value'] == 'true') {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $UDS[2]['data'].$UDS[2]['type'],
-            ]);
-        }
-        if ($UDS[3]['value'] == 'true') {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $UDS[3]['data'].$UDS[3]['type'],
-            ]);
-        }
-        if ($UDS[4]['value'] == 'true') {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $UDS[4]['data'].$UDS[4]['type'],
-            ]);
-        }
-        if ($likeStyle[0]['value'] == 'true') {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $likeStyle[0]['data'].$likeStyle[0]['type'],
-            ]);
-        }
-        if ($likeStyle[1]['value'] == 'true') {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $likeStyle[1]['data'].$likeStyle[1]['type'],
-            ]);
-        }
-        if ($likeStyle[2]['value'] == 'true') {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $likeStyle[2]['data'].$likeStyle[2]['type'],
-            ]);
-        }
-        if ($likeStyle[3]['value'] == 'true') {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $likeStyle[3]['data'].$likeStyle[3]['type'],
-            ]);
-        }
-        if ($likeStyle[4]['value'] == 'true') {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $likeStyle[4]['data'].$likeStyle[4]['type'],
-            ]);
-        }
-        if ($likeStyle[5]['value'] == 'true') {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $likeStyle[5]['data'].$likeStyle[5]['type'],
-            ]);
-        }
-        if ($space[0]['value'] == 'true') {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $space[0]['data'].$space[0]['type'],
-            ]);
-        }
-        if ($space[1]['value'] == 'true') {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $space[1]['data'].$space[1]['type'],
-            ]);
-        }
-        if ($space[2]['value'] == 'true') {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $space[2]['data'].$space[2]['type'],
-            ]);
-        }
-        if ($space[3]['value'] == 'true') {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $space[3]['data'].$space[3]['type'],
-            ]);
-        }
-        if ($space[4]['value'] == 'true') {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $space[4]['data'].$space[4]['type'],
-            ]);
-        }
-        if ($space[5]['value'] == 'true') {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $space[5]['data'].$space[5]['type'],
-            ]);
-        }
-        if ($space[6]['value'] == 'true') {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $space[6]['data'].$space[6]['type'],
-            ]);
-        }
-        if ($space[7]['value'] == 'true') {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $space[7]['data'].$space[7]['type'],
-            ]);
-        }
-        if ($space[8]['value'] == 'true') {
-            CMCRFItems::create([
-                'CustNo' => $CNO,
-                'Items' => $space[8]['data'].$space[8]['type'],
-            ]);
-        }
+        
         return response()->json([789789], 200);
     }
     public function CreateCMself(request $request)
@@ -450,7 +339,7 @@ class CreateController extends Controller
             $datanumber = count($datanumber)+1;
             $datanumber = sprintf("%02d", $datanumber);
                 //dd($datanumber,date('Ymd'));
-                $CNO = 'J'.substr($data['Dept'], 2, 2).substr(date('Ym'), 2, 2).$days.$datanumber;  //C.部門後兩碼.年2碼.今年第幾天.當天流水號(2碼)
+            $CNO = 'J'.substr($data['Dept'], 2, 2).substr(date('Ym'), 2, 2).$days.$datanumber;  //C.部門後兩碼.年2碼.今年第幾天.當天流水號(2碼)
              //   return response()->json($data , 200);
             chk::create([
                 '單號' => $CNO,

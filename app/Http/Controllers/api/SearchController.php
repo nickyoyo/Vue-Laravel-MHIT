@@ -636,7 +636,7 @@ class SearchController extends Controller
                    
                     if(trim($Colorcheck->LastTrans)=='A'){       //色號加權
                         $dataColor = SD_Cost_Price::where('Range_',$Color)->where('Date_','<=',$dataSO->PromotionPeriod)->orderby('Date_','desc')->first();   
-                        if($dataColor==null){
+                        if($dataColor==null){       //查詢下階料號
                             $TotalPrice += DownPartPrice($QNO,$Partim->SKU,$PartGroup->Qty);
                         }
                         else{
@@ -664,7 +664,7 @@ class SearchController extends Controller
                     $Colorcheck  = vm::where('SuppNo',$Partim->SupplierNo)->first();
                     if(trim($Colorcheck->LastTrans)=='A'){                  //色號加權
                         $dataColor = SF002_Cost_Price::where('色號',$Color)->where('板類',$Partim->Type2)->where('日期','<=',$dataSO->PromotionPeriod)->orderby('日期','desc')->first();   
-                        if($dataColor==null){                           
+                        if($dataColor==null){               //查詢下階料號                   
                             $TotalPrice += DownPartPrice($QNO,$Partim->SKU,$PartGroup->Qty);
                         }
                         else{
